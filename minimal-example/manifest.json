@@ -1,0 +1,15 @@
+{
+  "type": "Lab",
+  "specVersion": "1",
+
+  "name": "minimal-lab-example",
+
+  "length": 30,
+  "level": "easy-peasy",
+
+  "assets": [
+      {
+        "type": "gcp_project"
+      }
+  ]
+}

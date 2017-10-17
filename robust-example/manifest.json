@@ -1,0 +1,43 @@
+{
+  "type": "Lab",
+  "specVersion": "1",
+
+  "name": "robust-lab-example",
+
+  "primaryLocale": "en",
+  "length": 60,
+  "duration": 80,
+  "level": "easy-peasy",
+  "tags": [
+    "sample",
+    "life-changing",
+    "gcp"
+  ],
+
+  "resources": [
+    {
+      "type": "github",
+      "title": "Self-referencial Github Repo",
+      "uri": "https://github.com/CloudVLab/qwiklabs-lab-bundle-spec",
+    },
+    {
+      "type": "pdf",
+      "title": "Sample PDF",
+      "uri": "./resources/sample-en.pdf",
+      "locale": "en"
+    },
+    {
+      "type": "pdf",
+      "title": "Ejemplo de PDF",
+      "uri": "./resources/sample-es.pdf",
+      "locale": "es"
+    }
+  ],
+
+
+  "assets": [
+      {
+        "type": "gcp_project"
+      }
+  ]
+}
