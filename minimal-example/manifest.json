@@ -9,7 +9,7 @@
 
   "assets": [
       {
-        "type": "gcp_project"
+        "type": "gcp_project_and_user",
       }
   ]
 }

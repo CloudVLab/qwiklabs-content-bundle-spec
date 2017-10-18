@@ -37,7 +37,18 @@
 
   "assets": [
       {
-        "type": "gcp_project"
+        "type": "gcp_project",
+        "name": "the_project",
+        "dm_script": "./deployment_manager/instance_pool.py"
+      },
+      {
+        "type": "gcp_user",
+        "name":"primary_user",
+        "permissions": { }
+      },
+      {
+        "type": "gcp_user",
+        "name": "secondary_user"
       }
   ]
 }
