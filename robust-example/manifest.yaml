@@ -1,0 +1,66 @@
+---
+entityType: Lab
+specVersion: '1'
+
+name: robust-lab-example
+
+primaryLocale: en
+length: 60
+duration: 80
+level: easy-peasy
+
+tags:
+- sample
+- life-changing
+- gcp
+
+resources:
+- type: github
+  title: Self-referencial Github Repo
+  uri: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec
+- type: pdf
+  title: Sample PDF
+  uri: "./resources/sample-en.pdf"
+  locale: en
+- type: pdf
+  title: Ejemplo de PDF
+  uri: "./resources/sample-es.pdf"
+  locale: es
+
+assets:
+- type: gcp_project
+  name: the_project
+  dm_script: "./deployment_manager/instance_pool.py"
+- type: gcp_user
+  name: primary_user
+  permissions: {}
+- type: gcp_user
+  name: secondary_user
+
+assessment:
+  # TODO: I'm debating whether checkpoint should be defined here, or in the
+  #  checkpoint code. The primary benefit of putting them here, is that they can
+  #  easily cross-reference the asset names.
+  checkpoints:
+  - name: gce_instance_created
+    value: 5
+    asset: the_project
+    services: ComputeV1
+    checkMethod: gce_instance_created # Defaults to the name of the checkpoint?
+
+  - name: persistent_disk_created
+    value: 5
+    asset: the_project
+    services: ComputeV1
+
+  - name: disk_attached
+    value: 5
+    asset: the_project
+    services: ComputeV1
+
+  passing_criteria:
+    checkpoints: 15
+
+  # vs
+
+  checkpoints: "./assessment/checkpoints.rb"

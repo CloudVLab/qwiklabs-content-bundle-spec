@@ -7,9 +7,17 @@ description: Seriously the best lab you've ever taken. Bar none.
 
 We've given you a GCP resource. Go ahead and play around with it.
 
+<!-- checkpoint: gce_instance_created -->
+
 ## Step 2: ...
 
 ...
+
+<!-- checkpoint: persistent_disk_created -->
+
+...
+
+<!-- checkpoint: disk_attached -->
 
 ## Step 3: Profit
 
