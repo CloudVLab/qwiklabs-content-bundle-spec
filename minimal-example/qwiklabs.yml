@@ -1,0 +1,15 @@
+entity_type: Lab
+schema_version: 1
+
+name: minimal-lab-example
+
+length: 20
+level: easy-peasy
+
+instruction:
+  type: markdown
+  locales:
+    default: './instruction.md'
+
+assets:
+  - type: gcp_project_and_user

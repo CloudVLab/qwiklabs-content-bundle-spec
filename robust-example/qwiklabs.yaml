@@ -1,0 +1,79 @@
+entity_type: Lab
+schema_version: 1
+
+name: robust-lab-example
+
+# Metadata
+defaultLocale: en
+length: 60
+duration: 80
+level: easy-peasy
+tags:
+  - sample
+  - life-changing
+  - gcp
+
+# Explicit specification of instruction
+instruction:
+  type: markdown
+  locales:
+    default: "./instructions/en.md"
+    es: "./instructions/es.md"
+
+resources:
+  - type: github
+    locales:
+      default:
+        uri: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec
+        title: Self-referencial Github Repo
+  - type: pdf
+    locales:
+      default:
+        title: Sample PDF
+        uri: "./resources/sample-en.pdf"
+      es:
+        title: Ejemplo de PDF
+        uri: "./resources/sample-es.pdf"
+
+
+environment_resources:
+  - type: gcp_project
+    ref: my_primary_project
+    dm_script:
+      locales:
+        default: "./deployment_manager/instance_pool-en.py"
+        es: "./deployment_manager/instance_pool-es.py"
+  - type: gcp_user
+    ref: primary_user
+    permissions:
+      - my_primary_project:
+        - compute: editor
+  - type: gcp_user
+    ref: secondary_user
+
+
+assessment:
+  # TODO: I'm debating whether checkpoint should be defined here, or in the
+  #  checkpoint code. The primary benefit of putting them here, is that they can
+  #  easily cross-reference the asset names.
+  checkpoints: "./assessment/checkpoints.rb"
+
+  # vs
+
+  passing_criteria:
+    checkpoints: 15
+
+  checkpoints:
+    - name: gce_instance_created
+      value: 5
+      asset: the_project
+      services: ComputeV1
+      checkMethod: gce_instance_created # Defaults to the name of the checkpoint?
+    - name: persistent_disk_created
+      value: 5
+      asset: the_project
+      services: ComputeV1
+    - name: disk_attached
+      value: 5
+      asset: the_project
+      services: ComputeV1

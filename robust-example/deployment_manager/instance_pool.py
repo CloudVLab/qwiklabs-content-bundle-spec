@@ -1,21 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Explore
- @jgan
- Sign out
- Watch 30
-  Star 92  Fork 59 GoogleCloudPlatform/deploymentmanager-samples
- Code  Issues 6  Pull requests 0  Projects 0  Wiki  Insights
-Branch: master Find file Copy pathdeploymentmanager-samples/examples/v2/instance_pool/python/instance-pool.py
-c229ea8  on Jan 20
-@likeulb likeulb update instance_pool sample
-1 contributor
-RawBlameHistory
-79 lines (69 sloc)  2.74 KB
 # Copyright 2016 Google Inc. All rights reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -94,15 +76,3 @@ def GetNetworkConfig(has_external_ip, network):
         'type': 'ONE_TO_ONE_NAT'
     }]
   return network_interfaces
-© 2017 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-API
-Training
-Shop
-Blog
-About
