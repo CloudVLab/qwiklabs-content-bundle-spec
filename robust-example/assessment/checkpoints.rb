@@ -10,15 +10,16 @@ module Checkpoints
     api :gcp
     services "ComputeV1"
 
-    check do
-      gce = handles[0]
+    check do |gce|
       resp = gce.list_instances
       if resp&.items&.try(:any?)
         complete 5
       end
 
       # en: No instance detected. Double check you created it in the correct region.
-      helper_text :instance_not_detected
+      incomplete 0, :instance_not_detected
+      # ... or ...
+      message :instance_not_detected
     end
   end
 
@@ -28,8 +29,7 @@ module Checkpoints
     api :gcp
     services "ComputeV1"
 
-    check do
-      gce = handles[0]
+    check do |gce|
       disk = gce.get_disk 'mydisk'
       if disk
         complete 5
@@ -37,9 +37,8 @@ module Checkpoints
 
       # en: No persistent disk named 'mydisk' created. Double check you gave
       #     your disk the right name.
-      helper_text :disk_not_detected
+      message :disk_not_detected
     end
-
   end
 
   # en: Attach 'mydisk' to the VM
@@ -48,8 +47,7 @@ module Checkpoints
     api :gcp
     services "ComputeV1"
 
-    check do
-      gce = handles[0]
+    check do |gce|
       disk = gce.get_disk 'mydisk'
       if disk&.users&.any?
         complete 5
@@ -57,7 +55,7 @@ module Checkpoints
 
       # en: 'mydisk' is not attached to a GCE instance. Double check you
       #     attached the right disk.
-      helper_text :disk_not_attached
+      message :disk_not_attached
     end
   end
 end
