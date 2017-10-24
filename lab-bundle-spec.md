@@ -31,7 +31,7 @@ For instance, `locales` is a required field for external resources. If you only 
       uri: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
 ```
 
-> TODO: Explain `default` locale.
+[TODO: Explain `default` locale]
 
 ### Prefer explicit configuration over convention
 
@@ -39,15 +39,15 @@ The only requirement we put on your bundle's file structure is the `qwiklabs.yam
 
 The lab definition in `qwiklabs.yaml` explicitly references files when specifying instructions, resources, etc. This makes it much easier to do static validation of your package and ensure that a file you intended to be there isn't missing.
 
-> TODO: Add Dave's example of forgetting to add a file to a git repo, thus loosing an entire locale.
+[TODO: Add Dave's example of forgetting to add a file to a git repo, thus loosing an entire locale]
 
 ### Schema Version will be trackedthat
 
-> TODO:
-> - v1 the spec will evolve in an "additive" manner (e.g. new resource types)
-> - Breaking changes will result in a new version change.
-> - Older schema versions will be supported for a "reasonable" deprecation periods.
-> - The Qwiklabs team will try to create migration tools that make schema updates a mostly automated process
+TODO: Flesh out
+- v1 the spec will evolve in an "additive" manner (e.g. new resource types)
+- Breaking changes will result in a new version change.
+- Older schema versions will be supported for a "reasonable" deprecation periods.
+- The Qwiklabs team will try to create migration tools that make schema updates a mostly automated process
 
 ## `qwiklabs.yaml` Structure
 
@@ -62,20 +62,20 @@ name: my-awesome-lab
 duration: 60
 level: intro
 tags: [sample, life-changing, gcp]
-# ...
+...
 
-# Explicit specification of instruction
-instructions:
-  # ...
 
-resources:
-  # ...
+# The primary instruction content for this lab
+instructions: ...
 
-environment_resources:
-  # ...
+# Other resources the learner should access while taking this lab
+resources: ...
 
-assessment:
-  # ...
+# Lab sandbox resources (cloud account, databases, etc)
+environment_resources: ...
+
+# Checkpoint evaluation and quiz data
+assessment: ...
 ```
 
 Two properties are critical for specifying your lab bundle:
@@ -86,7 +86,7 @@ Two properties are critical for specifying your lab bundle:
 
 - `schema_version`
 
-  TODO
+  [TODO]
 
 ### Lab attributes
 
@@ -127,7 +127,7 @@ instruction:
     es: "./instructions/es.md"
 ```
 
-> TODO: Document the meta data specified in the instruction file.
+[TODO: Document the meta data specified in the instruction file]
 
 ### Resources
 
@@ -135,7 +135,7 @@ Resources are additional materials that learners may refer to while taking this 
 
 We encourage content authors to use as few external links as possible. Qwiklabs cannot guarantee that those links will be available when a learner takes your lab. For instance, if you have a PDF that you wish to include in the lab, you should add it as a file in this lab bundle instead of referencing it as a link to Cloud Storage or S3.
 
-TODO: Recommendation for extremely large resources.
+[TODO: Recommendation for extremely large resources]
 
 > **Note**: If you are linking to an external resource that has its own understanding of source control, please link to the specific revision of that resource. That way, if the external resource is updated, your learners will not be affected. For example, if you are referencing a Github repo, include the link to a specific tag, instead of the default branch.
 >
@@ -179,9 +179,9 @@ resources:
 - `github` - Github link
 - `youtube` - Youtube link
 
-> TODO:
-> - Should we auto-detect URLs we display in a special manner, or special external URL types or have the author specify their type explicitly?
-> - Does the fact that we know it's a Github repo give us any additional functionality when referencing it elsewhere in the bundle?
+TODO:
+- Should we auto-detect URLs we display in a special manner, or special external URL types or have the author specify their type explicitly?
+- Does the fact that we know it's a Github repo give us any additional functionality when referencing it elsewhere in the bundle?
 
 ### Environment Resources
 
@@ -285,8 +285,8 @@ roles       |          | dictionary | Specificy IAM roles per project
 
 ##### GSuite Domain (gsuite-domain)
 
-> TODO: Ask @davetchen what defines a GSuite fleet
+[TODO: Ask @davetchen what defines a GSuite fleet]
 
 ### Assessment
 
-> TODO
+[TODO]
