@@ -1,7 +1,7 @@
 # Qwiklabs Lab Bundle Specification
 
 > This is a DRAFT document and refers to QLB schema v1-prerelease.
-
+>
 > We welcome feedback as this format evolves.
 
 A Qwiklabs Bundle, or QLB, is any directory that contains a qwiklabs.yaml file which defines a learning entity in Qwiklabs. This specification focuses specifically on the Lab entity.
@@ -35,14 +35,15 @@ For instance, `locales` is a required field for external resources. If you only 
 
 ### Prefer explicit configuration over convention
 
-The only requirement we put on your bundle's file structure is the `qwiklabs.yaml` MUST be in the root folder of the bundle. You can arrange your other files in whatever folder structure you choose. However, as a result, we will not
+The only requirement we put on your bundle's file structure is the `qwiklabs.yaml` MUST be in the root folder of the bundle. You can arrange your other files in whatever folder structure you choose.
 
-The lab definition in `qwiklabs.yaml` explicitly references files in the
+The lab definition in `qwiklabs.yaml` explicitly references files when specifying instructions, resources, etc. This makes it much easier to do static validation of your package and ensure that a file you intended to be there isn't missing.
 
-### Schema Version will be tracked
+> TODO: Add Dave's example of forgetting to add a file to a git repo, thus loosing an entire locale.
+
+### Schema Version will be trackedthat
 
 > TODO:
->
 > - v1 the spec will evolve in an "additive" manner (e.g. new resource types)
 > - Breaking changes will result in a new version change.
 > - Older schema versions will be supported for a "reasonable" deprecation periods.
@@ -85,12 +86,12 @@ Two properties are critical for specifying your lab bundle:
 
 - `schema_version`
 
-- `name`?
+  TODO
 
 ### Lab attributes
 
 attribute | required | type      | notes
---------- | -------- | --------- | -------------------------------------------------------
+--------- | -------- | --------- | -----------------------------------------------------------------------------
 name      | ✓        | string    | Identifier for this lab, must be unique per "library" (think github org/repo)
 duration  | ✓        | integer   | Amount of time the user is expected to have (minutes)
 level     |          | string    | enum?
@@ -113,12 +114,10 @@ t.boolean  "concurrent_allowed",                                                
 
 ### Instructions
 
-> TODO
-
-attribute | required | type        | notes
---------- | -------- | ----------- | -----------------------------------------------------
-type      | ✓        | enum        | [See list of valid types below]
-locales   | ✓        | dictionary  | Keys are locale codes, the values are paths to files in the bundle.
+attribute | required | type       | notes
+--------- | -------- | ---------- | -------------------------------------------------------------------
+type      | ✓        | enum       | [See list of valid types below]
+locales   | ✓        | dictionary | Keys are locale codes, the values are paths to files in the bundle.
 
 ```yml
 instruction:
@@ -127,6 +126,8 @@ instruction:
     default: "./instructions/en.md"
     es: "./instructions/es.md"
 ```
+
+> TODO: Document the meta data specified in the instruction file.
 
 ### Resources
 
@@ -137,18 +138,18 @@ We encourage content authors to use as few external links as possible. Qwiklabs 
 TODO: Recommendation for extremely large resources.
 
 > **Note**: If you are linking to an external resource that has its own understanding of source control, please link to the specific revision of that resource. That way, if the external resource is updated, your learners will not be affected. For example, if you are referencing a Github repo, include the link to a specific tag, instead of the default branch.
-
+>
 > Brittle: <https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/>
-
+>
 > Better: <https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease>
 
 attribute | required | type        | notes
---------- | -------- | ----------- | -----------------------------------------------------
+--------- | -------- | ----------- | ---------------------------------------------------------------------------------
 type      | ✓        | enum        | [See list of valid types below]
 ref       |          | string      | Identifier that can be used throughout project bundle
 locales   | ✓        | dictionary  | Keys are locale codes, the values are dictionaries with the following attributes:
-> title   | ✓        | string      | Display title for the resource
-> uri     | ✓        | URL or path | External URL or path to local file in bundle
+-- title   | ✓        | string      | Display title for the resource
+-- uri     | ✓        | URL or path | External URL or path to local file in bundle
 
 ```yml
 resources:
@@ -179,7 +180,7 @@ resources:
 - `youtube` - Youtube link
 
 > TODO:
-> -  Should we auto-detect URLs we display in a special manner, or special external URL types or have the author specify their type explicitly?
+> - Should we auto-detect URLs we display in a special manner, or special external URL types or have the author specify their type explicitly?
 > - Does the fact that we know it's a Github repo give us any additional functionality when referencing it elsewhere in the bundle?
 
 ### Environment Resources
@@ -213,7 +214,7 @@ environment_resources:
 ##### AWS Account (aws-account)
 
 attribute | required | type           | notes
---------- | -------- | -------------- | -----------------------------------------------
+--------- | -------- | -------------- | -----------------------------------------------------
 cf_script |          | localized_path | relative path to file in bundle
 variant   |          | enum           | TODO: This maps to our current understanding of fleet
 
@@ -243,7 +244,7 @@ t.string   "allow_aws_rds_instances",                   limit: 255
 ##### GCP Project (gcp-project)
 
 attribute | required | type           | notes
---------- | -------- | -------------- | -----------------------------------------------
+--------- | -------- | -------------- | -----------------------------------------------------
 dm_script |          | localized_path | relative path to file in bundle
 variant   |          | enum           | TODO: This maps to our current understanding of fleet
 
@@ -285,7 +286,6 @@ roles       |          | dictionary | Specificy IAM roles per project
 ##### GSuite Domain (gsuite-domain)
 
 > TODO: Ask @davetchen what defines a GSuite fleet
-
 
 ### Assessment
 
