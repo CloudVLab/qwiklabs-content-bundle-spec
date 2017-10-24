@@ -4,34 +4,104 @@
 >
 > We welcome feedback as this format evolves.
 
-...
-
+A Qwiklabs Bundle, or QLB, is any directory that contains a qwiklabs.yaml file which defines a learning entity in Qwiklabs. This specification focuses specifically on the Lab entity.
 
 The QLB format aims to:
 
-1.
+1. Make it easy to author developer learning materials in your native tools.
+
+1. Provide a simple format into which existing content can be programmatically transformed, making it convenient to migrate existing learning materials from diverse sources into Qwiklabs modules.
 
 
+## Structure Overview
 
-## Basic QLB Structure
+- Instructions
+- Resources
+- "Assets"
+- Additional Files
 
 
+## QLB Structure Details
+
+### Instructions
+
+Specified as markdown files in root folder.
 
 ### Resources
 
 | attribute | required | sample | notes |
 |-----------|----------|--------|-------|
-| type | ✓ | learning-the-tango-steps | Unique within an Outlearn user or organization, alphanumeric+dashes |
-| title | ✓ | Learning the Tango Steps | Human-readable title for the Module |
-| dm_script |  | #eecc25 | HTML color for this path.  If none is selected, a pretty decent one will be chosen for you.  Warning: please resist the temptation to make your learning ugly |
-| sections | ✓ | [ { section_spec }+ ] | Array of at least one section that specifies a title and content location |
+| type      | ✓ | github    | [See list of valid types] |
+| title     | ✓ | My Awesome Doc | Display title for the resource |
+| uri       | ✓ | ./resources/sample-en.pdf | External URL or path to local file in bundle |
+| locale    |   | en             | If specified, the resource will only be displayed to users in the given locale. If unspecified, the resource will be displayed for all locales. |
 
-## Open Questions
 
-Q. Can something exist in a catalog that is not a reference to a library?
+##### Valid types
 
-A. Yes, but only a classroom (not even SPL Quests). The classroom must be made
-  of component parts that exist in libraries.
-    - What about
-    - How does this effect extended access? Does it prohibit extended access?
-    - Is this a non-standard catalog feature?
+- Bundled file
+- Url
+- Github link
+- Youtube link
+
+
+### Assets
+
+| attribute | required | sample | notes |
+|-----------|----------|--------|-------|
+| type      | ✓ | gcp-project    | [See list of valid types] |
+| ref       |   | my_asset       | identifier that can be used throughout project bundle
+| title     | ✓ | My Awesome Doc | Display title for the resource |
+| locale    |   | en             | If specified, the resource will only be displayed to users in the given locale. If unspecified, the resource will be displayed for all locales. |
+
+> Note: Localization is necessary primarily for the concept of title and alternate versions of the setup scripts.
+
+#### Valid types
+
+- gcp-project
+- gcp-user
+- aws-account
+- gsuite-account
+- multi-tennent????
+
+Additional valid properties of the asset depend on the selected type.
+
+
+
+#### GCP Project (gcp-project)
+
+| attribute | required | sample | notes |
+|-----------|----------|--------|-------|
+| type      | ✓ | gcp-project    | |
+| dm_script |  | ./deployment_manager/foo.yml | relative path to file in bundle |
+| variant   |  | ASL | This maps to our current understanding of fleet |
+| include_user | | true/false | ???? |
+
+#### GCP User (gcp-user)
+
+| attribute | required | sample | notes |
+|-----------|----------|--------|-------|
+| type         | ✓ | gcp-user    |      |
+| permissions  |   | [See below] | Provide IAM roles |
+
+
+```yaml
+permissions:
+  # Reference to a GCP project asset
+  my_project:
+    compute: editor
+  other_project:
+    compute: editor
+    netword: editor
+```
+
+#### AWS Account (aws-account)
+
+| attribute | required | sample | notes |
+|-----------|----------|--------|-------|
+| type      | ✓ | aws-account   | |
+| cf_script |  | ./cloudformation/foo.json | relative path to file in bundle |
+
+#### GSuite Account (gsuite-account)
+
+...
