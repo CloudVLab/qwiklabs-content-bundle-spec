@@ -35,33 +35,30 @@ resources:
         title: Ejemplo de PDF
         uri: "./resources/sample-es.pdf"
 
-
 environment_resources:
   - type: gcp_project
-    ref: my_primary_project
+    ref_id: my_primary_project
     dm_script:
       locales:
         default: "./deployment_manager/instance_pool-en.py"
         es: "./deployment_manager/instance_pool-es.py"
   - type: gcp_user
-    ref: primary_user
+    ref_id: primary_user
     permissions:
       - my_primary_project:
         - compute: editor
   - type: gcp_user
-    ref: secondary_user
-
+    ref_id: secondary_user
 
 assessment:
   # TODO: I'm debating whether checkpoint should be defined here, or in the
-  #  checkpoint code. The primary benefit of putting them here, is that they can
-  #  easily cross-reference the asset names.
-  checkpoints: "./assessment/checkpoints.rb"
-
-  # vs
-
+  #  checkpoint code. The primary benefit of defining them in this file, is that
+  #  they can easily cross-reference environment_resource names.
   passing_criteria:
     checkpoints: 15
+
+  scripts: "./assessment/checkpoints_code.rb"
+  messages: "./assesment/checkpoints_messages.yml"
 
   checkpoints:
     - name: gce_instance_created
@@ -77,3 +74,9 @@ assessment:
       value: 5
       asset: the_project
       services: ComputeV1
+
+  # vs
+
+  checkpoints:
+    scripts: "./assessment/checkpoints_dsl.rb"
+    messages: "./assesment/checkpoints_messages.yml"

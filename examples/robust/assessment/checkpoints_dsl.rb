@@ -12,11 +12,11 @@ checkpoint :gce_instance_created do
   check do |gce|
     resp = gce.list_instances
     if resp&.items&.try(:any?)
-      complete 5
+      score 5, :success
     end
 
     # en: No instance detected. Double check you created it in the correct region.
-    incomplete 0, :instance_not_detected
+    score 0, :instance_not_detected
     # ... or ...
     message :instance_not_detected
   end
@@ -31,7 +31,7 @@ checkpoint :persistent_disk_created do
   check do |gce|
     disk = gce.get_disk 'mydisk'
     if disk
-      complete 5
+      score 5, :success
     end
 
     # en: No persistent disk named 'mydisk' created. Double check you gave
@@ -49,7 +49,7 @@ checkpoint :attach_disk do
   check do |gce|
     disk = gce.get_disk 'mydisk'
     if disk&.users&.any?
-      complete 5
+      score 5, :success
     end
 
     # en: 'mydisk' is not attached to a GCE instance. Double check you
