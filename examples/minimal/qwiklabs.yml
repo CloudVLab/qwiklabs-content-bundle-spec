@@ -1,7 +1,7 @@
 entity_type: Lab
 schema_version: 1
 
-name: minimal-lab-example
+id: minimal-lab-example
 
 length: 20
 level: easy-peasy

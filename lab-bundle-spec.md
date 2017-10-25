@@ -60,7 +60,7 @@ entity_type: Lab
 schema_version: 1
 
 # Lab Attributes
-name: my-awesome-lab
+id: my-awesome-lab
 duration: 60
 level: intro
 tags: [sample, life-changing, gcp]
@@ -94,7 +94,7 @@ Two properties are critical for specifying your lab bundle:
 
 attribute | required | type        | notes
 --------- | -------- | ----------- | -----------------------------------------
-name      | ✓        | string      | Identifier for this lab, must be unique per "library" and URL friendly (think github org/repo)
+id        | ✓        | string      | Identifier for this lab, must be unique per "library" and URL friendly (think github org/repo)
 duration  | ✓        | integer     | Amount of time it should take an average learner to complete the lab (in minutes)
 level     |          | string      | enum?
 logo      |          | file path   |
