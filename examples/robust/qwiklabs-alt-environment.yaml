@@ -33,20 +33,24 @@ resources:
         title: Ejemplo de PDF
         uri: "./resources/sample-es.pdf"
 
-environment_resources:
-  - type: gcp_project
-    ref_id: my_primary_project
-    dm_script:
-      locales:
-        default: "./deployment_manager/instance_pool-en.py"
-        es: "./deployment_manager/instance_pool-es.py"
-  - type: gcp_user
-    ref_id: primary_user
-    permissions:
-      - my_primary_project:
-        - compute: editor
-  - type: gcp_user
-    ref_id: secondary_user
+environment:
+  resources:
+    - type: gcp_project
+      ref_id: my_primary_project
+      dm_script:
+        locales:
+          default: "./deployment_manager/instance_pool-en.py"
+          es: "./deployment_manager/instance_pool-es.py"
+    - type: gcp_user
+      ref_id: primary_user
+      permissions:
+        - my_primary_project:
+          - compute: editor
+    - type: gcp_user
+      ref_id: secondary_user
+
+  post_setup_script: "./scripts/post_setup_script"
+  lab_health_check: "./scripts/lab_health_check"
 
 assessment:
   # TODO: I'm debating whether checkpoint should be defined here, or in the
