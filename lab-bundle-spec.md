@@ -144,13 +144,11 @@ locales   | ✓        | dictionary | Keys are locale codes, the values are path
 
 ```yml
 instruction:
-  type: markdown
+  type: html
   locales:
     en: "./instructions/en.html"
     es: "./instructions/es.html"
 ```
-
-[TODO: Document the meta data specified in the instruction file]
 
 #### Valid types
 
