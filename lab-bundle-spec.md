@@ -159,13 +159,17 @@ HTML is the preferred format for stored instructions. PDFs will be displayed emb
 
 ##### Qwiklabs supported HTML
 
-We will not accept arbitrary HTML. Your input will be heavily scrubbed.
+There are benefits to formating lab instructions as HTML.
 
+- Instruction styling will be updated automatically as the Qwiklabs interface evolves.
+- Qwiklabs will help users navigate within your instruction document with a table of contents or direct links. It will also remember the learner's location in the document if they leave the page.
+- Authors can specify interactive elements that will be displayed inline with your instructions in the learner's interface (quizes, checkpoints, etc)
+
+However, we will not accept arbitrary HTML. Your input will be heavily scrubbed.
+
+- Only a standard subset of HTML elements will be supported (`<h1>`, `<p>`, `<strong>`, etc). All other tags will be stripped out of displayed content.
 - All styling will be removed.
 - All scripting will be removed.
-- Only a standard subset of HTML elements will be supported (`<h1>`, `<p>`, `<b>`, etc). All other tags will be stripped out of displayed content.
-
-However, there are other
 
 See [Instruction HTML spec](./instruction-html-spec.md) for details.
 
