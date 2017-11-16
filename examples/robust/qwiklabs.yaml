@@ -2,9 +2,18 @@ entity_type: Lab
 schema_version: 1
 
 id: robust-lab-example
-
-# Metadata
 defaultLocale: en
+
+title:
+  locales:
+    en: Robust Lab Example
+    es: Ejemplo de Robust Lab
+
+description:
+  locales:
+    en: Seriously the best lab you've ever taken. Bar none.
+    es: En serio, el mejor lab que has tomado. Sin excepción.
+
 duration: 60
 level: easy-peasy
 tags:
