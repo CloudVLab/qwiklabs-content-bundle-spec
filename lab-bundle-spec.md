@@ -12,7 +12,11 @@ The QLB format aims to:
 
 1. Make it easy to author developer learning materials in your native tools.
 
-2. Provide a simple format into which existing content can be programmatically transformed, making it convenient to migrate existing learning materials from diverse sources into Qwiklabs modules.
+2. Provide a simple format into which existing content can be **programmatically** transformed, making it convenient to migrate existing learning materials from diverse sources into Qwiklabs modules.
+
+> **Note**: The Lab bundle specification is designed for long term support (even as the spec evolves) and machine-to-machine communication. As such, this spec errs on the side of being overly verbose and comprehensive, which can make it more cumbersome to author directly in this format.
+>
+> A Lab bundle should be the **output** of the authoring process, and not necessarily written directly by authors. Qwiklabs will create authoring tools that make the authoring experience easier, including a GDoc conversion tool and a Git repo management service, all of which will produce lab bundles as their end product. Users are also encouraged to build their own authoring tools that target this spec.
 
 ## Design Goals
 
@@ -22,18 +26,21 @@ We understand that not all instructional content is localized... but it should b
 
 Therefore, QLB will prioritize explicit and clear localization semantics at the risk of being overly verbose for authors who only work with one locale.
 
-For instance, `locales` is a required field for external resources. If you only have one locale you still need to specify it as the `default` locale:
+For instance, `locales` is a required field for external resources. If you only have one locale you still need to specify it:
 
 ```yml
 - type: github
   ref_id: code_repo
   locales:
-    default:
+    en:
       title: Self-referential Github Repo
       uri: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
 ```
 
-[TODO: Explain `default` locale]
+#### Default Locale
+
+The lab bundle MUST specify a `default_locale`. It corresponds to the locale that the lab is originally authored in. Authoring tools can use this as a hint to notify localizers when content in the default locale is updated. Also, it provides a hint to the learner interface about which locale to display if an instruction/resource is not localized for the learner's current locale.
+
 
 ### Prefer explicit configuration over implicit convention
 
@@ -45,7 +52,8 @@ The lab definition in `qwiklabs.yaml` explicitly references files when specifyin
 
 ### Schema versions
 
-TODO: Flesh out
+[TODO: Flesh out...]
+
 - v1 the spec will evolve in an "additive" manner (e.g. new resource types)
 - Breaking changes will result in a new version change.
 - Older schema versions will be supported for a "reasonable" deprecation periods.
@@ -61,19 +69,31 @@ schema_version: 1
 
 # Lab Attributes
 id: my-awesome-lab
+default_locale: en
+
+title:
+  locales:
+    en: Best Lab Ever
+
+description:
+  locales:
+    en: No, seriously. It's the best lab ever. You're going to love it!
+
 duration: 60
 level: intro
 tags: [sample, life-changing, gcp]
+
 ...
 
 
 # The primary instruction content for this lab
 instructions: ...
 
-# Other resources the learner should access while taking this lab
+# Other resources the learner may access while taking this lab
 resources: ...
 
-# Lab sandbox resources (cloud account, databases, etc)
+# Lab resources that are provisioned by Qwiklabs
+#  e.g. cloud account, databases, etc.
 environment_resources: ...
 
 # Checkpoint evaluation and quiz data
@@ -90,16 +110,19 @@ Two properties are critical for specifying your lab bundle:
 
   [TODO]
 
+
 ### Lab attributes
 
-attribute | required | type        | notes
---------- | -------- | ----------- | -----------------------------------------
-id        | ✓        | string      | Identifier for this lab, must be unique per "library" and URL friendly (think github org/repo)
-duration  | ✓        | integer     | Amount of time it should take an average learner to complete the lab (in minutes)
-level     |          | string      | enum?
-logo      |          | file path   |
-tags      |          | array       |
-copyright |          | string/enum | v2 feature after more research?
+attribute   | required | type        | notes
+----------- | -------- | ----------- | -----------------------------------------
+id          | ✓        | string      | Identifier for this lab, must be unique per "library" and URL friendly (think github org/repo)
+title       | ✓        | locale dictionary |
+description | ✓        | locale dictionary |
+duration    | ✓        | integer     | Amount of time it should take an average learner to complete the lab (in minutes)
+level       |          | string      | enum?
+logo        |          | file path   |
+tags        |          | array       |
+copyright   |          | string/enum | v2 feature after more research?
 
 
 ```ruby
@@ -123,11 +146,30 @@ locales   | ✓        | dictionary | Keys are locale codes, the values are path
 instruction:
   type: markdown
   locales:
-    default: "./instructions/en.md"
-    es: "./instructions/es.md"
+    en: "./instructions/en.html"
+    es: "./instructions/es.html"
 ```
 
 [TODO: Document the meta data specified in the instruction file]
+
+#### Valid types
+
+- `html`
+- `pdf`
+
+HTML is the preferred format for stored instructions. PDFs will be displayed embedded in the learner interface, but will lack any navigation or interactive functionality.
+
+##### Qwiklabs supported HTML
+
+We will not accept arbitrary HTML. Your input will be heavily scrubbed.
+
+- All styling will be removed.
+- All scripting will be removed.
+- Only a standard subset of HTML elements will be supported (`<h1>`, `<p>`, `<b>`, etc). All other tags will be stripped out of displayed content.
+
+However, there are other
+
+See [Instruction HTML spec](./instruction-html-spec.md) for details.
 
 ### Resources
 
@@ -156,7 +198,7 @@ resources:
   - type: github
     ref_id: code_repo
     locales:
-      default:
+      en:
         title: Self-referential Github Repo
         uri: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
       es:
@@ -164,7 +206,7 @@ resources:
         uri: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
   - type: file
     locales:
-      default:
+      en:
         title: Sample PDF
         uri: "./resources/sample-en.pdf"
       es:
@@ -201,7 +243,7 @@ environment_resources:
     ref_id: my_primary_project
     dm_script:
       locales:
-        default: "./deployment_manager/instance_pool-en.py"
+        en: "./deployment_manager/instance_pool-en.py"
         es: "./deployment_manager/instance_pool-es.py"
   - type: gcp_user
     ref_id: primary_user
@@ -227,7 +269,7 @@ variant   |          | enum           | TODO: This maps to our current understan
   variant: STS
   cf_script:
     locales:
-      default: ./cloudformation/intro-dynamo-db.yaml
+      en: ./cloudformation/intro-dynamo-db.yaml
       es: ./cloudformation/intro-dynamo-db-es.yaml
 ```
 
@@ -235,21 +277,13 @@ variant   |          | enum           | TODO: This maps to our current understan
 # NOTE: Unreferenced properties on Lab model that we may also want to add here.
 t.decimal  "billing_limit"
 t.string   "aws_region"
-t.boolean  "global_set_vnc_password",       default: true
-t.boolean  "allow_aws_vpc_deletion",        default: false
-t.boolean  "allow_aws_subnet_deletion",     default: false
-t.boolean  "allow_aws_spot_instances",      default: false
+t.boolean  "global_set_vnc_password"
+t.boolean  "allow_aws_vpc_deletion"
+t.boolean  "allow_aws_subnet_deletion"
+t.boolean  "allow_aws_spot_instances"
 t.string   "allow_aws_ondemand_instances"
-t.boolean  "allow_aws_dedicated_instances", default: false
+t.boolean  "allow_aws_dedicated_instances"
 t.string   "allow_aws_rds_instances"
-
-# NOTE: Are these only relevant to AWS labs, or are they also used for GCP labs?
-t.boolean  "display_connection_fleetconsole"
-t.boolean  "display_connection_ssh"
-t.boolean  "display_connection_vnc"
-t.boolean  "display_connection_rdp"
-t.boolean  "display_connection_custom"
-t.boolean  "display_connection_access_key_id"
 ```
 
 ##### GCP Project (gcp-project)
@@ -265,7 +299,7 @@ variant   |          | enum           | TODO: This maps to our current understan
   variant: ASL
   dm_script:
     locales:
-      default: ./deployment_manager/instance_pool.yaml
+      en: ./deployment_manager/instance_pool.yaml
       es: ./deployment_manager/instance_poolb-es.yaml
 ```
 

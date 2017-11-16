@@ -15,38 +15,43 @@ tags:
 instruction:
   type: markdown
   locales:
-    default: "./instructions/en.md"
+    en: "./instructions/en.md"
     es: "./instructions/es.md"
 
 resources:
   - type: github
     locales:
-      default:
+      en:
         uri: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec
         title: Self-referencial Github Repo
   - type: pdf
     locales:
-      default:
+      en:
         title: Sample PDF
         uri: "./resources/sample-en.pdf"
       es:
         title: Ejemplo de PDF
         uri: "./resources/sample-es.pdf"
 
-environment_resources:
-  - type: gcp_project
-    ref_id: my_primary_project
-    dm_script:
-      locales:
-        default: "./deployment_manager/instance_pool-en.py"
-        es: "./deployment_manager/instance_pool-es.py"
-  - type: gcp_user
-    ref_id: primary_user
-    permissions:
-      - my_primary_project:
-        - compute: editor
-  - type: gcp_user
-    ref_id: secondary_user
+environment:
+  resources:
+    - type: gcp_project
+      ref_id: my_primary_project
+      dm_script:
+        locales:
+          en: "./deployment_manager/instance_pool-en.py"
+          es: "./deployment_manager/instance_pool-es.py"
+    - type: gcp_user
+      ref_id: primary_user
+      permissions:
+        - my_primary_project:
+          - compute: editor
+    - type: gcp_user
+      ref_id: secondary_user
+
+  # Other meta data for the lab environment?
+  post_setup_script: "./scripts/post_setup_script"
+  lab_health_check: "./scripts/lab_health_check"
 
 assessment:
   # TODO: I'm debating whether checkpoint should be defined here, or in the
@@ -63,7 +68,7 @@ assessment:
       value: 5
       asset: the_project
       services: ComputeV1
-      checkMethod: gce_instance_created # Defaults to the name of the checkpoint?
+      checkMethod: gce_instance_created # Defaults to the name of the checkpoint
     - name: persistent_disk_created
       value: 5
       asset: the_project
