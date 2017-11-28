@@ -1,6 +1,6 @@
 # Qwiklabs Lab Bundle Specification
 
-**Version 1.1**
+**Version 1**
 
 > This is a DRAFT document. We welcome feedback as this format evolves.
 
@@ -187,13 +187,14 @@ We encourage content authors to use as few external links as possible. Qwiklabs 
 >
 > Better: <https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease>
 
-attribute | required | type        | notes
---------- | -------- | ----------- | -----------------------------------------
-type      | ✓        | enum        | [See list of valid types below]
-ref       |          | string      | Identifier that can be used throughout project bundle
-locales   | ✓        | dictionary  | Keys are locale codes, the values are dictionaries with the following attributes:
--- title  | ✓        | string      | Display title for the resource
--- uri    | ✓        | URL or path | External URL or path to local file in bundle
+attribute      | required | type        | notes
+-------------- | -------- | ----------- | -----------------------------------------
+type           | ✓        | enum        | [See list of valid types below]
+ref            |          | string      | Identifier that can be used throughout project bundle
+locales        | ✓        | dictionary  | Keys are locale codes, the values are dictionaries with the following attributes:
+-- title       | ✓        | string      | Display title for the resource
+-- description |          | string      | More content to display beyond just the title of the resource
+-- uri         | ✓        | URL or path | External URL or path to local file in bundle
 
 ```yml
 resources:
@@ -210,10 +211,8 @@ resources:
     locales:
       en:
         title: Sample PDF
+        description: This PDF contains all of the code samples for the lab
         uri: resources/sample-en.pdf
-      es:
-        title: Ejemplo de PDF
-        uri: resources/sample-es.pdf
 ```
 
 #### Valid types
