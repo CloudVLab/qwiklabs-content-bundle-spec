@@ -1,12 +1,12 @@
 # Qwiklabs Lab Bundle Specification
 
-**Version 1.0**
+**Version 1.1**
 
 > This is a DRAFT document. We welcome feedback as this format evolves.
 
 ## Introduction
 
-A Qwiklabs Bundle, or QLB, is any directory that contains a qwiklabs.yaml file which defines a learning entity in Qwiklabs. This specification focuses specifically on the Lab entity.
+A Qwiklabs Bundle, or QLB, is a zip file that contains exactly one directory. Inside of that directory is a `qwiklabs.yaml` file which defines a learning entity in Qwiklabs. All other files in the bundle should also be inside of the single parent directory. This specification focuses specifically on the Lab entity.
 
 The QLB format aims to:
 
@@ -108,7 +108,7 @@ Two properties are critical for specifying your lab bundle:
 
 - `schema_version`
 
-  [TODO]
+  This notes which version of this spec the bundle is using. Currently, the only valid value is "1" but this will change as new features get added.
 
 
 ### Lab attributes
@@ -146,8 +146,8 @@ locales   | ✓        | dictionary | Keys are locale codes, the values are path
 instruction:
   type: html
   locales:
-    en: "./instructions/en.html"
-    es: "./instructions/es.html"
+    en: instructions/en.html
+    es: instructions/es.html
 ```
 
 #### Valid types
@@ -210,10 +210,10 @@ resources:
     locales:
       en:
         title: Sample PDF
-        uri: "./resources/sample-en.pdf"
+        uri: resources/sample-en.pdf
       es:
         title: Ejemplo de PDF
-        uri: "./resources/sample-es.pdf"
+        uri: resources/sample-es.pdf
 ```
 
 #### Valid types
@@ -245,8 +245,8 @@ environment_resources:
     ref_id: my_primary_project
     dm_script:
       locales:
-        en: "./deployment_manager/instance_pool-en.py"
-        es: "./deployment_manager/instance_pool-es.py"
+        en: deployment_manager/instance_pool-en.py
+        es: deployment_manager/instance_pool-es.py
   - type: gcp_user
     ref_id: primary_user
     permissions:
@@ -271,8 +271,8 @@ variant   |          | enum           | TODO: This maps to our current understan
   variant: STS
   cf_script:
     locales:
-      en: ./cloudformation/intro-dynamo-db.yaml
-      es: ./cloudformation/intro-dynamo-db-es.yaml
+      en: cloudformation/intro-dynamo-db.yaml
+      es: cloudformation/intro-dynamo-db-es.yaml
 ```
 
 ```ruby
@@ -301,8 +301,8 @@ variant   |          | enum           | TODO: This maps to our current understan
   variant: ASL
   dm_script:
     locales:
-      en: ./deployment_manager/instance_pool.yaml
-      es: ./deployment_manager/instance_poolb-es.yaml
+      en: deployment_manager/instance_pool.yaml
+      es: deployment_manager/instance_poolb-es.yaml
 ```
 
 ```ruby
