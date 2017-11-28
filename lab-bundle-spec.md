@@ -29,7 +29,7 @@ Therefore, QLB will prioritize explicit and clear localization semantics at the 
 For instance, `locales` is a required field for external resources. If you only have one locale you still need to specify it:
 
 ```yml
-- type: github
+- type: code
   ref_id: code_repo
   locales:
     en:
@@ -163,7 +163,7 @@ There are benefits to formating lab instructions as HTML.
 
 - Instruction styling will be updated automatically as the Qwiklabs interface evolves.
 - Qwiklabs will help users navigate within your instruction document with a table of contents or direct links. It will also remember the learner's location in the document if they leave the page.
-- Authors can specify interactive elements that will be displayed inline with your instructions in the learner's interface (quizes, checkpoints, etc)
+- Authors can specify interactive elements that will be displayed inline with your instructions in the learner's interface (quizzes, checkpoints, etc)
 
 However, we will not accept arbitrary HTML. Your input will be heavily scrubbed.
 
@@ -197,7 +197,7 @@ locales   | ✓        | dictionary  | Keys are locale codes, the values are dic
 
 ```yml
 resources:
-  - type: github
+  - type: code
     ref_id: code_repo
     locales:
       en:
@@ -218,13 +218,14 @@ resources:
 
 #### Valid types
 
-- `file` - a relative path to a file in the lab bundle
-- `link` - a url to an external resource
-- `github` - Github link
-- `youtube` - Youtube link
+- `file`  - a relative path to a file in the lab bundle
+- `link`  - a url to an external resource
+- `code`  - A link to code outside of the bundle such as on Github
+- `video` - A link to a video outside of the bundle such as on Youtube
+
+To prevent confusion, all resources much explicitly define what type they are. This helps distinguish between a link to a GitHub repo and a link to a code snippet on GitHub.
 
 TODO:
-- Should we auto-detect URLs we display in a special manner, or special external URL types or have the author specify their type explicitly?
 - Does the fact that we know it's a Github repo give us any additional functionality when referencing it elsewhere in the bundle?
 
 ### Environment Resources
