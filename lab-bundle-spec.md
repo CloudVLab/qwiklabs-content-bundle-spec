@@ -250,8 +250,10 @@ environment_resources:
   - type: gcp_user
     ref_id: primary_user
     permissions:
-      - my_primary_project:
-        - compute: editor
+      - project: my_primary_project
+        roles:
+          - roles/editor
+            roles/bigquery.admin
   - type: gcp_user
     ref_id: secondary_user
 ```
