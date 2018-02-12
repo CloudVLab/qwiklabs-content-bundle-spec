@@ -1,0 +1,92 @@
+entity_type: Quest
+schema_version: 1
+
+# Quest Attributes
+id: gcp-survey-path
+
+tags: [sample, life-changing, gcp]
+logo: ./quest-logo.png
+default_locale: en
+
+
+resources:
+  - type: video
+    ref_id: intro-video
+    locales:
+      en:
+        title: Welcome to GCP!
+        uri: https://youtu.be/dNW0B0HsvVs
+      es:
+        title: ¡Bienvenido a GCP!
+        uri: https://youtu.be/dNW0B0HsvVs
+  - type: video
+    ref_id: outro-video
+    locales:
+      en:
+        title: Wasn't that fun!
+        uri: https://youtu.be/dNW0B0HsvVs
+      es:
+        title: Eso fue divertido, ¿verdad?
+        uri: https://youtu.be/dNW0B0HsvVs
+
+steps:
+  - content: $intro-video
+    next: [intro-to-gcp]
+  - content: intro-to-gcp
+    next_prompt:
+      locales:
+        en: Learn about compute options
+    next:
+      - intro-to-appengine-python
+      - intro-to-kubernetes-engine
+      - intro-to-cloud-functions
+
+  - content: intro-to-appengine-python
+    next: [%storage-options]
+  - content: intro-to-kubernetes-engine
+    next: [%storage-options]
+  - content: intro-to-cloud-functions
+    next: [%storage-options]
+
+  - id: storage-options
+    next_prompt:
+      locales:
+        en: Learn about data storage options
+    next:
+      - intro-to-datastore
+      - intro-to-cloudsql
+      - intro-to-spanner
+
+  - content: intro-to-datastore
+    next: [%big-data-options]
+  - content: intro-to-cloudsql
+    next: [%big-data-options]
+  - content: intro-to-spanner
+    next: [%big-data-options]
+
+  - id: big-data-options
+    next_prompt:
+      locales:
+        en: Learn about "big data" management options
+    next:
+      - intro-to-bigquery
+      - intro-to-ml-engine
+      - into-to-dataproc
+
+  - content: intro-to-bigquery
+    next: [%ending]
+  - content: intro-to-ml-engine
+    next: [%ending]
+  - content: intro-to-dataproc
+    next: [%ending]
+
+  - id: ending
+    next:
+      - advanced-gcp-task
+      - outro-video
+
+  - content: advanced-gcp-task
+    next: [outro-video]
+
+  - content: $outro-video
+    done: true

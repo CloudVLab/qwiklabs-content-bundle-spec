@@ -1,0 +1,68 @@
+entity_type: Quest
+schema_version: 1
+
+# Quest Attributes
+id: gcp-survey-path
+
+tags: [sample, life-changing, gcp]
+logo: ./quest-logo.png
+default_locale: en
+
+
+# The important part of a quest which lists all of the
+resources:
+  - type: video
+    ref_id: intro-video
+    locales:
+      en:
+        title: Welcome to GCP!
+        uri: https://youtu.be/dNW0B0HsvVs
+      es:
+        title: ¡Bienvenido a GCP!
+        uri: https://youtu.be/dNW0B0HsvVs
+  - type: video
+    ref_id: outro-video
+    locales:
+      en:
+        title: Wasn't that fun!
+        uri: https://youtu.be/dNW0B0HsvVs
+      es:
+        title: Eso fue divertido, ¿verdad?
+        uri: https://youtu.be/dNW0B0HsvVs
+
+path:
+  - content: $intro-video
+    next: [intro-to-gcp]
+  - content: intro-to-gcp
+    next_prompt:
+      locales:
+        en: Learn more about one of these common compute/database pairs.
+    next:
+      - intro-to-appengine-python
+      - intro-to-kubernetes-engine
+      - intro-to-cloud-functions
+
+  - content: intro-to-appengine-python
+    next: [intro-to-datastore]
+  - content: intro-to-kubernetes-engine
+    next: [intro-to-cloudsql]
+  - content: intro-to-cloud-functions
+    next: [intro-to-spanner]
+
+  # Everyone needs to work with BigQuery
+  - content: intro-to-datastore
+    next: [intro-to-bigquery]
+  - content: intro-to-kubernetes-engine
+    next: [intro-to-bigquery]
+  - content: intro-to-spanner
+    next: [intro-to-bigquery]
+
+  - content: intro-to-bigquery
+    next:
+      - advanced-gcp-task
+      - $outro-video
+  - content: advanced-gcp-task
+    next: [$outro-video]
+
+  - content: $outro-video
+    done: true

@@ -1,0 +1,23 @@
+entity_type: Quest
+schema_version: 1
+
+# Quest Attributes
+id: my-awesome-quest
+
+tags: [sample, life-changing, gcp]
+logo: ./quest-logo.png
+default_locale: en
+
+steps:
+  - content: lab-minimal
+    next:
+      - lab-robust
+      - intro-to-happiness
+  - content: lab-robust
+    next: [intro-to-happiness]
+  - content: intro-to-happiness
+    next: [advanced-happiness]
+  - content: advanced-happiness
+    next: [other-library-id/intro-to-pottery]
+  - content: other-library-id/intro-to-pottery
+    done: true
