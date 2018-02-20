@@ -31,7 +31,7 @@ resources:
         uri: https://youtu.be/dNW0B0HsvVs
 
 path:
-  - content: $intro-video
+  - content: intro-video
 
   - content: intro-to-gcp
 
@@ -56,4 +56,4 @@ path:
   - content: advanced-gcp-task
     optional: true
 
-  - content: $outro-video
+  - content: outro-video

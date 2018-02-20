@@ -57,33 +57,41 @@ resources:
         title: Eso fue divertido, ¿verdad?
         uri: https://youtu.be/dNW0B0HsvVs
 
-steps:
-  - content: $intro-video
-  - content: intro-to-gcp
+path:
+  - type: Resource
+    content: intro-video
+
+  - type: Lab
+    content: intro-to-gcp
+
   - choice:
       prompt:
         locales:
-          en: Learn about compute options
+          en: Learn more about one of these common compute/database pairs.
       options:
-        - content: intro-to-appengine-python
-        - content: intro-to-kubernetes-engine
-        - content: intro-to-cloud-functions
-  - choice:
-      prompt:
-        locales:
-          en: Learn about data storage options
-      options:
-        - content: intro-to-datastore
-        - content: intro-to-cloudsql
-        - content: intro-to-spanner
-  - choice:
-      prompt:
-        locales:
-          en: Learn about "big data" management options
-      options:
-        - content: intro-to-bigquery
-        - content: intro-to-ml-engine
-        - content: intro-to-dataproc
-  - content: advanced-gcp-task
+        - path:
+          - type: Lab
+            content: intro-to-appengine-python
+          - type: Lab
+            content: intro-to-datastore
+        - path:
+          - type: Lab
+            content: intro-to-kubernetes-engine
+          - type: Lab
+            content: intro-to-cloudsql
+        - path:
+          - type: Lab
+            content: intro-to-cloud-functions
+          - type: Lab
+            content: intro-to-spanner
+
+  # Everyone needs to know bigquery so it's not in the optional paths
+  - type: Lab
+    content: intro-to-bigquery
+
+  - type: Lab
+    content: advanced-gcp-task
     optional: true
-  - content: $outro-video
+
+  - type: Resource
+    content: outro-video

@@ -30,7 +30,7 @@ resources:
         uri: https://youtu.be/dNW0B0HsvVs
 
 steps:
-  - content: $intro-video
+  - content: intro-video
   - content: intro-to-gcp
   - choice:
       prompt:
@@ -58,4 +58,4 @@ steps:
         - content: intro-to-dataproc
   - content: advanced-gcp-task
     optional: true
-  - content: $outro-video
+  - content: outro-video

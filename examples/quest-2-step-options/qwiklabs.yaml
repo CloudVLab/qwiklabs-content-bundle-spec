@@ -58,32 +58,54 @@ resources:
         uri: https://youtu.be/dNW0B0HsvVs
 
 steps:
-  - content: $intro-video
-  - content: intro-to-gcp
+  - type: Resource
+    content: intro-video
+  - type: Lab
+    content: intro-to-gcp
   - choice:
       prompt:
         locales:
           en: Learn about compute options
       options:
-        - content: intro-to-appengine-python
-        - content: intro-to-kubernetes-engine
-        - content: intro-to-cloud-functions
+        - path:
+          - type: Lab
+            content: intro-to-appengine-python
+        - path:
+          - type: Lab
+            content: intro-to-kubernetes-engine
+        - path:
+          - type: Lab
+            content: intro-to-cloud-functions
   - choice:
       prompt:
         locales:
           en: Learn about data storage options
       options:
-        - content: intro-to-datastore
-        - content: intro-to-cloudsql
-        - content: intro-to-spanner
+        - path:
+          - type: Lab
+            content: intro-to-datastore
+        - path:
+          - type: Lab
+            content: intro-to-cloudsql
+        - path:
+          - type: Lab
+            content: intro-to-spanner
   - choice:
       prompt:
         locales:
           en: Learn about "big data" management options
       options:
-        - content: intro-to-bigquery
-        - content: intro-to-ml-engine
-        - content: intro-to-dataproc
-  - content: advanced-gcp-task
+        - path:
+          - type: Lab
+            content: intro-to-bigquery
+        - path:
+          - type: Lab
+            content: intro-to-ml-engine
+        - path:
+          - type: Lab
+            content: intro-to-dataproc
+  - type: Lab
+    content: advanced-gcp-task
     optional: true
-  - content: $outro-video
+  - type: Resource
+    content: outro-video
