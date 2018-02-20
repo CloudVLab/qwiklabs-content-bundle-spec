@@ -1,0 +1,89 @@
+entity_type: Quest
+schema_version: 1
+
+# Quest Attributes
+id: my-awesome-quest
+
+tags: [sample, life-changing, gcp]
+logo: ./quest-logo.png
+default_locale: en
+
+title:
+  locales:
+    en: GCP Survey Quest
+
+description:
+  locales:
+    en: Get a taste of what GCP has to offer.
+
+objectives:
+  locales:
+    en: |
+      <p>This course will teach people</p>
+      <ul><li>The power of frienship</li></ul>
+
+audience:
+  locales:
+    en: |
+      <p>This course is intended for people who</p>
+      <ul><li>Do not understand the power of frienship</li></ul>
+
+prerequisites:
+  locales:
+    en: <p>A firm understanding of interpersonal interactions is recommended but not required.</p>
+
+suggested_duration:
+  locales:
+    en: 1 day
+
+# The important part of a quest which lists all of the
+resources:
+  - type: video
+    ref_id: intro-video
+    locales:
+      en:
+        title: Welcome to GCP!
+        uri: https://youtu.be/dNW0B0HsvVs
+      es:
+        title: ¡Bienvenido a GCP!
+        uri: https://youtu.be/dNW0B0HsvVs
+  - type: video
+    ref_id: outro-video
+    locales:
+      en:
+        title: Wasn't that fun!
+        uri: https://youtu.be/dNW0B0HsvVs
+      es:
+        title: Eso fue divertido, ¿verdad?
+        uri: https://youtu.be/dNW0B0HsvVs
+
+steps:
+  - content: $intro-video
+  - content: intro-to-gcp
+  - choice:
+      prompt:
+        locales:
+          en: Learn about compute options
+      options:
+        - content: intro-to-appengine-python
+        - content: intro-to-kubernetes-engine
+        - content: intro-to-cloud-functions
+  - choice:
+      prompt:
+        locales:
+          en: Learn about data storage options
+      options:
+        - content: intro-to-datastore
+        - content: intro-to-cloudsql
+        - content: intro-to-spanner
+  - choice:
+      prompt:
+        locales:
+          en: Learn about "big data" management options
+      options:
+        - content: intro-to-bigquery
+        - content: intro-to-ml-engine
+        - content: intro-to-dataproc
+  - content: advanced-gcp-task
+    optional: true
+  - content: $outro-video
