@@ -2,7 +2,7 @@ entity_type: Lab
 schema_version: 1
 
 id: minimal-lab-example
-defaultLocale: en
+default_locale: en
 
 title:
   locales:
@@ -16,9 +16,9 @@ length: 20
 level: easy-peasy
 
 instruction:
-  type: markdown
+  type: html
   locales:
     en: './instruction.html'
 
-assets:
+environment_resources:
   - type: gcp_project_and_user
