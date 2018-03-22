@@ -26,7 +26,9 @@ description:
 
 duration: 60
 level: intro
-tags: [sample, life-changing, gcp]
+tags:
+  locales:
+    en: [sample, life-changing, gcp]
 
 ...
 
@@ -147,20 +149,25 @@ locales        | ✓        | dictionary  | Keys are locale codes, the values ar
 ```yml
 resources:
   - type: code
-    ref_id: code_repo
-    locales:
-      en:
-        title: Self-referential Github Repo
-        uri: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
-      es:
-        title: Auto-referencial Github Repo
-        uri: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
+    id: code_repo
+    title:
+      locales:
+        en: Self-referential Github Repo
+        es: Auto-referencial Github Repo
+    uri:
+      locales:
+        en: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
+        es: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
   - type: file
-    locales:
-      en:
-        title: Sample PDF
-        description: This PDF contains all of the code samples for the lab
-        uri: resources/sample-en.pdf
+    title:
+      locales:
+        en: Sample PDF
+    description:
+      locales:
+        en: This PDF contains all of the code samples for the lab
+    uri:
+      locales:
+        en: resources/sample-en.pdf
 ```
 
 #### Valid types
@@ -190,20 +197,20 @@ ref       |          | string | Identifier that can be used throughout project b
 ```yml
 environment_resources:
   - type: gcp_project
-    ref_id: my_primary_project
+    id: my_primary_project
     dm_script:
       locales:
         en: deployment_manager/instance_pool-en.py
         es: deployment_manager/instance_pool-es.py
   - type: gcp_user
-    ref_id: primary_user
+    id: primary_user
     permissions:
       - project: my_primary_project
         roles:
           - roles/editor
             roles/bigquery.admin
   - type: gcp_user
-    ref_id: secondary_user
+    id: secondary_user
 ```
 
 #### Valid types
@@ -217,7 +224,7 @@ variant   |          | enum           | TODO: This maps to our current understan
 
 ```yml
 - type: aws-account
-  ref_id: primary_account
+  id: primary_account
   variant: STS
   cf_script:
     locales:
@@ -247,7 +254,7 @@ variant   |          | enum           | TODO: This maps to our current understan
 
 ```yml
 - type: gcp-project
-  ref_id: secondary_project
+  id: secondary_project
   variant: ASL
   dm_script:
     locales:
@@ -269,7 +276,7 @@ roles       |          | dictionary | Specificy IAM roles per project
 
 ```yml
 - type: gcp-user
-  ref_id: learner_user
+  id: learner_user
   credentials: true
   roles:
     # Reference to a GCP project asset

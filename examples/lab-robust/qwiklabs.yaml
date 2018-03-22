@@ -2,7 +2,7 @@ entity_type: Lab
 schema_version: 1
 
 id: robust-lab-example
-defaultLocale: en
+default_locale: en
 
 title:
   locales:
@@ -17,9 +17,11 @@ description:
 duration: 60
 level: easy-peasy
 tags:
-  - sample
-  - life-changing
-  - gcp
+  locales:
+    en:
+      - sample
+      - life-changing
+      - gcp
 
 instruction:
   type: markdown
@@ -29,11 +31,13 @@ instruction:
 
 resources:
   - type: github
+    id: main-code-sample
     locales:
       en:
         uri: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec
         title: Self-referencial Github Repo
   - type: pdf
+    id: sample-pdf
     locales:
       en:
         title: Sample PDF
@@ -42,21 +46,21 @@ resources:
         title: Ejemplo de PDF
         uri: "./resources/sample-es.pdf"
 
-environment:
+environment_resources:
   resources:
     - type: gcp_project
-      ref_id: my_primary_project
+      id: my_primary_project
       dm_script:
         locales:
           en: "./deployment_manager/instance_pool-en.py"
           es: "./deployment_manager/instance_pool-es.py"
     - type: gcp_user
-      ref_id: primary_user
+      id: primary_user
       permissions:
         - my_primary_project:
           - compute: editor
     - type: gcp_user
-      ref_id: secondary_user
+      id: secondary_user
 
   # Other meta data for the lab environment?
   post_setup_script: "./scripts/post_setup_script"
