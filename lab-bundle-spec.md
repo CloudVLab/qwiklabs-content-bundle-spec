@@ -4,6 +4,8 @@
 
 > This is a DRAFT document. We welcome feedback as this format evolves.
 
+Previously (in b6086b8f824aa398c1f4413b92351a4956e744cd), the robust example had some cool ideas for how deployment manager and activity tracking should look in the future. None of it is implemented yet but the ideas may be useful in the future.
+
 ## `qwiklabs.yaml` Structure
 
 Here's a sample `qwiklabs.yaml` file, with all nested details removed to make it easier to see the general file structure.

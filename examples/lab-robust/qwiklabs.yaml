@@ -30,11 +30,11 @@ instruction:
     es: "./instructions/es.md"
 
 resources:
-  - type: github
+  - type: link
     id: main-code-sample
     locales:
       en:
-        uri: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec
+        uri: https://github.com/CloudVLab/qwiklabs-content-bundle-spec
         title: Self-referencial Github Repo
   - type: pdf
     id: sample-pdf
@@ -50,49 +50,16 @@ environment_resources:
   resources:
     - type: gcp_project
       id: my_primary_project
-      dm_script:
-        locales:
-          en: "./deployment_manager/instance_pool-en.py"
-          es: "./deployment_manager/instance_pool-es.py"
+      dm_script: dm.zip
+      default_zone: 'us-central-1c'
     - type: gcp_user
-      id: primary_user
+      id: user_0
       permissions:
-        - my_primary_project:
-          - compute: editor
-    - type: gcp_user
-      id: secondary_user
+      - project: project_0
+        roles:
+        - roles/editor
+        - roles/appengine.appAdmin
+        - roles/bigquery.admin
+        - roles/bigquery.user
 
-  # Other meta data for the lab environment?
-  post_setup_script: "./scripts/post_setup_script"
-  lab_health_check: "./scripts/lab_health_check"
-
-assessment:
-  # TODO: I'm debating whether checkpoint should be defined here, or in the
-  #  checkpoint code. The primary benefit of defining them in this file, is that
-  #  they can easily cross-reference environment_resource names.
-  passing_criteria:
-    checkpoints: 15
-
-  scripts: "./assessment/checkpoints_code.rb"
-  messages: "./assesment/checkpoints_messages.yml"
-
-  checkpoints:
-    - name: gce_instance_created
-      value: 5
-      asset: the_project
-      services: ComputeV1
-      checkMethod: gce_instance_created # Defaults to the name of the checkpoint
-    - name: persistent_disk_created
-      value: 5
-      asset: the_project
-      services: ComputeV1
-    - name: disk_attached
-      value: 5
-      asset: the_project
-      services: ComputeV1
-
-  # vs
-
-  checkpoints:
-    scripts: "./assessment/checkpoints_dsl.rb"
-    messages: "./assesment/checkpoints_messages.yml"
+assessment: assessment.yaml
