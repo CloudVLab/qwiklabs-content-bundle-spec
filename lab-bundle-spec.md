@@ -71,21 +71,11 @@ id          | ✓        | string      | Identifier for this lab, must be unique
 title       | ✓        | locale dictionary |
 description | ✓        | locale dictionary |
 duration    | ✓        | integer     | Amount of time it should take an average learner to complete the lab (in minutes)
-level       |          | string      | enum?
+level       |          | string      | 
 logo        |          | file path   |
 tags        |          | array       |
 copyright   |          | string/enum | v2 feature after more research?
 
-
-```ruby
-# NOTE: Unreferenced properties on Lab model that we may also want to add here.
-t.string   "creator_tagline"
-t.decimal  "price"
-
-# NOTE: Currently on Lab model, but aren't really content concerns.
-t.boolean  "send_end_lab_email"
-t.boolean  "concurrent_allowed"
-```
 
 ### Instructions
 
@@ -115,7 +105,7 @@ There are benefits to formating lab instructions as HTML.
 
 - Instruction styling will be updated automatically as the Qwiklabs interface evolves.
 - Qwiklabs will help users navigate within your instruction document with a table of contents or direct links. It will also remember the learner's location in the document if they leave the page.
-- Authors can specify interactive elements that will be displayed inline with your instructions in the learner's interface (quizzes, checkpoints, etc)
+- Authors can specify interactive elements that will be displayed inline with your instructions in the learner's interface (quizzes, checkpoints, etc).
 
 However, we will not accept arbitrary HTML. Your input will be heavily scrubbed.
 
@@ -131,7 +121,7 @@ Resources are additional materials that learners may refer to while taking this 
 
 We encourage content authors to use as few external links as possible. Qwiklabs cannot guarantee that those links will be available when a learner takes your lab. For instance, if you have a PDF that you wish to include in the lab, you should add it as a file in this lab bundle instead of referencing it as a link to Cloud Storage or S3.
 
-[TODO: Recommendation for extremely large resources]
+For files larger than 50MB, please use an externally referenced resource. Your entire content bundle should be less than 100MB.
 
 > **Note**: If you are linking to an external resource that has its own understanding of source control, please link to the specific revision of that resource. That way, if the external resource is updated, your learners will not be affected. For example, if you are referencing a Github repo, include the link to a specific tag, instead of the default branch.
 >
@@ -181,8 +171,11 @@ resources:
 
 To prevent confusion, all resources much explicitly define what type they are. This helps distinguish between a link to a GitHub repo and a link to a code snippet on GitHub.
 
-TODO:
-- Does the fact that we know it's a Github repo give us any additional functionality when referencing it elsewhere in the bundle?
+> **Aside:** Why define external resources instead of putting links directly in my instructions?
+>
+> 1. You can reference your resource directly in your instructions and will be displayed in a special format, depending on it's type. For example, a YouTube link will be displayed as an embedded widget.
+>
+> 2. You can edit the resource in one location and every place it is referenced will be updated (also across locales).
 
 ### Environment Resources
 
@@ -221,8 +214,8 @@ environment_resources:
 
 attribute | required | type           | notes
 --------- | -------- | -------------- | ---------------------------------------
-cf_script |          | localized_path | relative path to file in bundle
-variant   |          | enum           | TODO: This maps to our current understanding of fleet
+cf_script |          | localized_path | Relative path to file in bundle
+variant   |          | enum           | This is equivalent to the current concept of Qwiklabs fleets
 
 ```yml
 - type: aws-account
@@ -252,7 +245,7 @@ t.string   "allow_aws_rds_instances"
 attribute | required | type           | notes
 --------- | -------- | -------------- | --------------------------------------
 dm_script |          | localized_path | relative path to file in bundle
-variant   |          | enum           | TODO: This maps to our current understanding of fleet
+variant   |          | enum           | This is equivalent to the current concept of Qwiklabs fleets
 
 ```yml
 - type: gcp-project
