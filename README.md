@@ -44,19 +44,26 @@ For instance, `locales` is a required field for external resources. If you only 
       uri: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
 ```
 
+
 ### Prefer explicit configuration over implicit convention
 
 The only requirement we put on your bundle's file structure is the `qwiklabs.yaml` MUST be in the root folder of the bundle. You can arrange your other files in whatever folder structure you choose.
 
 The lab definition in `qwiklabs.yaml` explicitly references files when specifying instructions, resources, etc. This makes static validation of your package easier and ensure that files you intended to be there aren't missing.
 
-[TODO: Add Dave's example of forgetting to add a file to a git repo, thus loosing an entire locale]
 
 ### Schema versions
 
-[TODO: Flesh out...]
+The v1 spec will evolve in an additive manner. The spec is designed to easily accomodate new feature variants. In particular, content authors should expect:
 
-- v1 the spec will evolve in an "additive" manner (e.g. new resource types)
-- Breaking changes will result in a new version change.
-- Older schema versions will be supported for a "reasonable" deprecation periods.
-- The Qwiklabs team will try to create migration tools that make schema updates a mostly automated process
+- new external resource types (e.g. GitHub repos, YouTube videos, etc.),
+- new environment resource types (e.g. GSuite domain, iPython notebook, etc.), and
+- additional supported HTML components for instructions (e.g. inline quiz elements, embedded videos, etc.).
+
+#### Breaking Changes
+
+If a breaking change can not be avoided, a new schema version will be issued (i.e. v1 -> v2).
+
+Older schema versions will be supported for a "reasonable" deprecation periods.
+
+The Qwiklabs team will *try* to create migration tools that make schema updates a mostly automated process.
