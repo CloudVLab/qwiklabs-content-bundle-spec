@@ -287,6 +287,20 @@ roles       |          | dictionary | Specificy IAM roles per project
 - GSuite Domain (gsuite-domain)
 - iPython Notebook (ipython-notebook)
 
-### Assessment
+### Activity Tracking (Alpha)
 
-[TODO]
+Activity tracking is a feature for evaluating a students performance in a lab by running a script at "checkpoints". These scripts can call APIs relavent to any environment resource to query their current state. For example, the script may inspect and validate the configuration of GCE instances running in `my-project`, to ensure the user is following the instructions properly.
+
+Lab bundles will provisionally support the JSON representation of Activity Tracking currently used in the Qwiklabs web interface. The JSON definition should be stored in file separately from (and referenced directly in) `qwiklabs.yaml`. 
+
+```yaml
+entity_type: Lab
+
+...
+
+activity_tracking: ./assessment/activity_tracking.json
+```
+
+> **Note:** Support for this format should be considered deprecated.
+>
+> Further work will be done to define a new DSL for expressing Activity Tracking logic. Exploratory sketches of this DSL can be found in the `./examples` directory of this repository.
