@@ -282,9 +282,10 @@ roles       |          | dictionary | Specificy IAM roles per project
       - storage.admin
 ```
 
-##### GSuite Domain (gsuite-domain)
+##### Future Resource Types
 
-[TODO: Ask @davetchen what defines a GSuite fleet]
+- GSuite Domain (gsuite-domain)
+- iPython Notebook (ipython-notebook)
 
 ### Assessment
 
