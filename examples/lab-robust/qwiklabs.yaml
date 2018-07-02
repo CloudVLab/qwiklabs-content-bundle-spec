@@ -51,7 +51,7 @@ environment_resources:
     - type: gcp_project
       id: my_primary_project
       dm_script: dm.zip
-      default_zone: 'us-central-1c'
+      default_region: 'us-central-1c'
     - type: gcp_user
       id: user_0
       permissions:
