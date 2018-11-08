@@ -1,0 +1,43 @@
+schema_version: 1
+
+locale: en
+passing_percentage: 80
+
+items:
+  - type: "multiple-choice"
+    stem: "Who won the Nobel Prize for discovering the cause of the photoelectric effect?"
+    options:
+      - title: "Albert Einstein"
+        is_answer: true
+        rationale: "Correct! Albert Einstein won the Nobel Prize in 1922 for work that forms the foundation for how modern solar panels work."
+      - title: "Francis Crick"
+        is_answer: false
+        rationale: "While Crick did win a Nobel Prize, it was for his discovery of DNA along with James Watson."
+      - title: "Rosalind Franklin"
+        is_answer: false
+        rationale: "Sorry! While her work was instrumental in discovering DNA, Rosalind Franklin never won a Nobel Prize."
+      - title: "Max Planck"
+        is_answer: false
+        rationale: "Max Planck won the Nobel Price in Physics in 1918 for his work on quantum theory, and while his work was used in the discovery of the photoelectric effect, he actually rejected the initial theory."
+
+  - type: "multiple-select"
+    stem: "Which of the following is a state in the United States?"
+    options:
+      - title: "Massachusetts"
+        is_answer: true
+        rationale: "Yep! Massachusetts is located in the Northeast."
+      - title: "Manitoba"
+        is_answer: false
+        rationale: "Sorry! Manitoba is a Canadian province, though it does share a border with the Midwest United States."
+      - title: "Oregon"
+        is_answer: true
+        rationale: "Yep! Oregon is a state in the Pacific Northwest."
+      - title: "Washington, D.C."
+        is_answer: false
+        rationale: "Washington, D.C. is specifically mentioned in the U.S. Constitution as as a district administered by the federal government for the purpose of being the Seat of the Government of the United States. It lacks several of the rights states have, such as full representation in Congress."
+
+  - type: "true-false"
+    stem: "Direct democracy is a form of government where a single leader has ultimate ruling authority."
+    answer: false
+    true_rationale: "Sorry! A single leader having ultimate authority describes an autocracy."
+    false_rationale: "Right! That form of government would be closer to an autocracy, not democracy."
