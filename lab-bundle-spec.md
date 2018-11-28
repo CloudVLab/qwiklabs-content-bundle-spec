@@ -53,11 +53,11 @@ Two properties are critical for specifying your lab bundle:
 
 - `entity_type`
 
-  Currently this can only be "Lab". In the future we will expand the QLB specification to include "Courses", "Quests", and other content that Qwiklabs supports.
+  Currently this can only be `Lab` or `Course`. In the future we will expand the QLB specification to include `Quiz`, and other content that Qwiklabs supports.
 
 - `schema_version`
 
-  This notes which version of this spec the bundle is using. Currently, the only valid value is "1" but this will change as new features get added.
+  This notes which version of this spec the bundle is using. Currently, the only valid value is `1` but this will change as new features get added.
 
 ### Default Locale
 
@@ -71,7 +71,7 @@ id          | ✓        | string      | Identifier for this lab, must be unique
 title       | ✓        | locale dictionary |
 description | ✓        | locale dictionary |
 duration    | ✓        | integer     | Amount of time it should take an average learner to complete the lab (in minutes)
-level       |          | string      | 
+level       |          | string      |
 logo        |          | file path   |
 tags        |          | array       |
 copyright   |          | string/enum | v2 feature after more research?
@@ -119,63 +119,7 @@ See [Instruction HTML spec](./instruction-html-spec.md) for details.
 
 Resources are additional materials that learners may refer to while taking this lab.
 
-We encourage content authors to use as few external links as possible. Qwiklabs cannot guarantee that those links will be available when a learner takes your lab. For instance, if you have a PDF that you wish to include in the lab, you should add it as a file in this lab bundle instead of referencing it as a link to Cloud Storage or S3.
-
-For files larger than 50MB, please use an externally referenced resource. Your entire content bundle should be less than 100MB.
-
-> **Note**: If you are linking to an external resource that has its own understanding of source control, please link to the specific revision of that resource. That way, if the external resource is updated, your learners will not be affected. For example, if you are referencing a Github repo, include the link to a specific tag, instead of the default branch.
->
-> Brittle: <https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/>
->
-> Better: <https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease>
-
-attribute      | required | type        | notes
--------------- | -------- | ----------- | -----------------------------------------
-type           | ✓        | enum        | [See list of valid types below]
-ref            |          | string      | Identifier that can be used throughout project bundle
-locales        | ✓        | dictionary  | Keys are locale codes, the values are dictionaries with the following attributes:
--- title       | ✓        | string      | Display title for the resource
--- description |          | string      | More content to display beyond just the title of the resource
--- uri         | ✓        | URL or path | External URL or path to local file in bundle
-
-```yml
-resources:
-  - type: code
-    id: code_repo
-    title:
-      locales:
-        en: Self-referential Github Repo
-        es: Auto-referencial Github Repo
-    uri:
-      locales:
-        en: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
-        es: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
-  - type: file
-    title:
-      locales:
-        en: Sample PDF
-    description:
-      locales:
-        en: This PDF contains all of the code samples for the lab
-    uri:
-      locales:
-        en: resources/sample-en.pdf
-```
-
-#### Valid types
-
-- `file`  - a relative path to a file in the lab bundle
-- `link`  - a url to an external resource
-- `code`  - A link to code outside of the bundle such as on Github
-- `video` - A link to a video outside of the bundle such as on Youtube
-
-To prevent confusion, all resources much explicitly define what type they are. This helps distinguish between a link to a GitHub repo and a link to a code snippet on GitHub.
-
-> **Aside:** Why define external resources instead of putting links directly in my instructions?
->
-> 1. You can reference your resource directly in your instructions and will be displayed in a special format, depending on it's type. For example, a YouTube link will be displayed as an embedded widget.
->
-> 2. You can edit the resource in one location and every place it is referenced will be updated (also across locales).
+See [Resource Spec](./resource-spec.md) for details.
 
 ### Environment Resources
 
@@ -187,7 +131,7 @@ The properties of each environment resource will depend on their type, i.e. AWS 
 attribute | required | type   | notes
 --------- | -------- | ------ | -----------------------------------------
 type      | ✓        | enum   | [See list of valid types]
-ref       |          | string | Identifier that can be used throughout project bundle
+id        |          | string | Identifier that can be used throughout project bundle
 
 ```yml
 environment_resources:
@@ -291,7 +235,7 @@ roles       |          | dictionary | Specificy IAM roles per project
 
 Activity tracking is a feature for evaluating a students performance in a lab by running a script at "checkpoints". These scripts can call APIs relavent to any environment resource to query their current state. For example, the script may inspect and validate the configuration of GCE instances running in `my-project`, to ensure the user is following the instructions properly.
 
-Lab bundles will provisionally support the JSON representation of Activity Tracking currently used in the Qwiklabs web interface. The JSON definition should be stored in file separately from (and referenced directly in) `qwiklabs.yaml`. 
+Lab bundles will provisionally support the JSON representation of Activity Tracking currently used in the Qwiklabs web interface. The JSON definition should be stored in file separately from (and referenced directly in) `qwiklabs.yaml`.
 
 ```yaml
 entity_type: Lab
