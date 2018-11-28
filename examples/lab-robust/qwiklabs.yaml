@@ -30,21 +30,29 @@ instruction:
     es: "./instructions/es.md"
 
 resources:
-  - type: link
-    id: main-code-sample
-    locales:
-      en:
-        uri: https://github.com/CloudVLab/qwiklabs-content-bundle-spec
-        title: Self-referencial Github Repo
-  - type: pdf
-    id: sample-pdf
-    locales:
-      en:
-        title: Sample PDF
-        uri: "./resources/sample-en.pdf"
-      es:
-        title: Ejemplo de PDF
-        uri: "./resources/sample-es.pdf"
+  - type: code
+    id: code_repo
+    title:
+      locales:
+        en: Self-referential Github Repo
+        es: Auto-referencial Github Repo
+    uri:
+      locales:
+        en: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
+        es: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
+  - type: file
+    title:
+      locales:
+        en: Sample PDF
+        es: Ejemplo de PDF
+    description:
+      locales:
+        en: This PDF contains all of the code samples for the lab.
+        es: Este PDF contiene todos los ejemplos de código para el laboratorio.
+    uri:
+      locales:
+        en: "./resources/sample-en.pdf"
+        en: "./resources/sample-es.pdf"
 
 environment_resources:
   resources:
