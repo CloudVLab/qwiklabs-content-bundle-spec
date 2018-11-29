@@ -60,6 +60,27 @@ steps: ...
 
 Note that all of the main chunks of localized content (title, description, objectives, audience, and prerequisites) are HTML content that may be displayed in various contexts. All of these chunks will be sanitized according to [instruction-html-spec.md](./instruction-html-spec.md).
 
+### Attribute specification
+The full specification is as follows:
+
+attribute        | required | type        | notes
+---------------- | -------- | ----------- | -----------------------------------------
+entity_type      | ✓        | string      | Must be `Course`
+schema_version   | ✓        | integer     |
+id               | ✓        | string      | Identifier for this course, must be unique per "library" and URL friendly (think github org/repo)
+default_locale   | ✓        | enum        | Must be a valid locale code
+title            | ✓        | dictionary  | A locale dictionary of titles
+description      |          | dictionary  | A locale dictionary of descriptions
+objectives       |          | dictionary  | A locale dictionary of objectives
+audience         |          | dictionary  | A locale dictionary of audiences
+prerequisites    |          | dictionary  | A locale dictionary of prerequisites
+tags             |          | array       | Array of strings to be used as hints in searching, etc
+image            |          | string      | Link to an image file to be used as the image for the course
+badge            |          | string      | Link to an image file to be used as the badge for the course
+duration         |          | integer     | Estimated time to take the course, *in days*
+resources        |          | dictionary  | See below
+steps            | ✓        | dictionary  | See below
+
 ### Resources
 
 While heavyweight activities like labs and quizzes must be defined elsewhere in the library, we allow simpler resources to be specified directly in the course's `qwiklabs.yaml`. They can then be referenced in the `steps` just like labs and quizzes.
