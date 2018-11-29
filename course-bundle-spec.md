@@ -47,8 +47,8 @@ tags: [sample, life-changing, gcp]
 image: gcp-intro-course-image.png
 badge: gcp-intro-course-badge.png
 
-# Estimated time to take the course, *in days*
-duration: 1
+# Estimated time to take the course, in days
+estimated_duration_days: 1
 
 # Resources that may be referenced below in steps
 resources: ...
@@ -65,21 +65,21 @@ The full specification is as follows:
 
 attribute        | required | type        | notes
 ---------------- | -------- | ----------- | -----------------------------------------
-entity_type      | ✓        | string      | Must be `Course`
-schema_version   | ✓        | integer     |
-id               | ✓        | string      | Identifier for this course, must be unique per "library" and URL friendly (think github org/repo)
-default_locale   | ✓        | enum        | Must be a valid locale code
-title            | ✓        | dictionary  | A locale dictionary of titles
-description      |          | dictionary  | A locale dictionary of descriptions
-objectives       |          | dictionary  | A locale dictionary of objectives
-audience         |          | dictionary  | A locale dictionary of audiences
-prerequisites    |          | dictionary  | A locale dictionary of prerequisites
-tags             |          | array       | Array of strings to be used as hints in searching, etc
-image            |          | string      | Link to an image file to be used as the image for the course
-badge            |          | string      | Link to an image file to be used as the badge for the course
-duration         |          | integer     | Estimated time to take the course, *in days*
-resources        |          | dictionary  | See below
-steps            | ✓        | dictionary  | See below
+entity_type             | ✓        | string      | Must be `Course`
+schema_version          | ✓        | integer     |
+id                      | ✓        | string      | Identifier for this course, must be unique per "library" and URL friendly (think github org/repo)
+default_locale          | ✓        | enum        | Must be a valid locale code
+title                   | ✓        | dictionary  | A locale dictionary of titles
+description             |          | dictionary  | A locale dictionary of descriptions
+objectives              |          | dictionary  | A locale dictionary of objectives
+audience                |          | dictionary  | A locale dictionary of audiences
+prerequisites           |          | dictionary  | A locale dictionary of prerequisites
+tags                    |          | array       | Array of strings to be used as hints in searching, etc
+image                   |          | string      | Link to an image file to be used as the image for the course
+badge                   |          | string      | Link to an image file to be used as the badge for the course
+estimated_duration_days |          | integer     | Estimated time to take the course, in days
+resources               |          | dictionary  | See below
+steps                   | ✓        | dictionary  | See below
 
 ### Resources
 

@@ -36,8 +36,7 @@ tags: [sample, life-changing, gcp]
 image: gcp-intro-course-image.png
 badge: gcp-intro-course-badge.png
 
-# Estimated time to take the course, *in days*
-duration: 1
+estimated_duration_days: 1
 
 resources:
   - type: video
