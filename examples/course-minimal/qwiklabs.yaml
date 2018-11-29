@@ -33,8 +33,8 @@ prerequisites:
     en: <p>A basic understanding of serverless architecture is recommended but not required.</p>
 
 tags: [sample, life-changing, gcp]
-image: ./gcp-intro-course-image.png
-badge: ./gcp-intro-course-badge.png
+image: gcp-intro-course-image.png
+badge: gcp-intro-course-badge.png
 
 # Estimated time to take the course, *in days*
 duration: 1
