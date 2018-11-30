@@ -44,6 +44,7 @@ prerequisites:
     en: <p>A basic understanding of serverless architecture is recommended but not required.</p>
 
 tags: [sample, life-changing, gcp]
+level: 1
 image: gcp-intro-course-image.png
 badge: gcp-intro-course-badge.png
 
@@ -75,6 +76,7 @@ objectives              |          | dictionary  | A locale dictionary of object
 audience                |          | dictionary  | A locale dictionary of audiences
 prerequisites           |          | dictionary  | A locale dictionary of prerequisites
 tags                    |          | array       | Array of strings to be used as hints in searching, etc
+level                   |          | integer     | Integer between 1 and 4, with 1 being the easiest
 image                   |          | string      | Link to an image file to be used as the image for the course
 badge                   |          | string      | Link to an image file to be used as the badge for the course
 estimated_duration_days |          | integer     | Estimated time to take the course, in days
