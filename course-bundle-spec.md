@@ -44,7 +44,7 @@ prerequisites:
     en: <p>A basic understanding of serverless architecture is recommended but not required.</p>
 
 tags: [sample, life-changing, gcp]
-gcp_product_tags: ['compute engine', 'cloud storage']
+product_tags: ['compute engine', 'cloud storage']
 role_tags: ['cloud architect', 'developers backend']
 domain_tags: ['infrastructure']
 level: 1
@@ -79,7 +79,7 @@ objectives              |          | dictionary  | A locale dictionary of object
 audience                |          | dictionary  | A locale dictionary of audiences
 prerequisites           |          | dictionary  | A locale dictionary of prerequisites
 tags                    |          | array       | Array of strings to be used as hints in searching, etc
-gcp_product_tags        |          | array       | Array of strings from the "Products" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
+product_tags            |          | array       | Array of strings from the "Products" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 role_tags               |          | array       | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 domain_tags             |          | array       | Array of strings from the "Domain" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 level                   |          | integer     | Integer between 1 and 4, with 1 being the easiest
