@@ -33,6 +33,9 @@ prerequisites:
     en: <p>A basic understanding of serverless architecture is recommended but not required.</p>
 
 tags: [sample, life-changing, gcp]
+gcp_product_tags: ['bigquery']
+role_tags: ['database admin']
+domain_tags: ['infrastructure', 'data']
 level: 1
 image: gcp-intro-course-image.png
 badge: gcp-intro-course-badge.png
