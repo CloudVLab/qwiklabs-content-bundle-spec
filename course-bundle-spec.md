@@ -62,7 +62,7 @@ steps: ...
 
 ```
 
-Note that all of the main chunks of localized content (title, description, objectives, audience, and prerequisites) are HTML content that may be displayed in various contexts. All of these chunks will be sanitized according to [instruction-html-spec.md](./instruction-html-spec.md).
+Note that all of the main chunks of localized content (title, description, objectives, audience, and prerequisites) are HTML content that may be displayed in various contexts. All of these chunks will be sanitized according to the restricted set in the [HTML spec](./html-spec.md).
 
 ### Attribute specification
 The full specification is as follows:

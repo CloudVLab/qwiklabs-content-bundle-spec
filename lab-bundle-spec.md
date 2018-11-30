@@ -113,7 +113,7 @@ However, we will not accept arbitrary HTML. Your input will be heavily scrubbed.
 - All styling will be removed.
 - All scripting will be removed.
 
-See [Instruction HTML spec](./instruction-html-spec.md) for details.
+See the Instruction part of the [HTML spec](./html-spec.md) for details.
 
 ### Resources
 
