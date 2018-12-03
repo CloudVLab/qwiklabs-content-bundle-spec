@@ -88,11 +88,13 @@ resources:
 
 modules:
   - title:
-      en: Introduction
-      es: Introducción
+      locales:
+        en: Introduction
+        es: Introducción
     description:
-      en: Some introductory material
-      es: Algo de material introductorio
+      locales:
+        en: Some introductory material
+        es: Algo de material introductorio
     steps:
       - activity_options:
         - type: resource
@@ -107,8 +109,9 @@ modules:
         - type: lab
           content: intro-to-gcp
   - title:
-      en: Learn about compute
-      es: Aprender acerca de la computadora
+      locales:
+        en: Learn about compute
+        es: Aprender acerca de la computadora
     steps:
       - activity_options:
         - type: resource
@@ -126,8 +129,9 @@ modules:
             en: Learn more about one of these common compute resources.
             es: Obtenga más información sobre uno de estos recursos informáticos comunes.
   - title:
-      en: Learn about storage
-      es: Aprende sobre almacenamiento
+      locales:
+        en: Learn about storage
+        es: Aprende sobre almacenamiento
     steps:
       - activity_options:
         - type: resource
@@ -154,8 +158,9 @@ modules:
           content: bigquery-quiz
 
   - title:
-      en: Finish up
-      es: Termina
+      locales:
+        en: Finish up
+        es: Termina
     steps:
       - activity_options:
         - type: lab

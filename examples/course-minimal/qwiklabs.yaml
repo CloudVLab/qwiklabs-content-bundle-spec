@@ -44,8 +44,9 @@ estimated_duration_days: 1
 
 modules:
   - title:
-      en: Module 1
-      es: Módulo 1
+      locales:
+        en: Module 1
+        es: Módulo 1
     steps:
       - activity_options:
         - type: lab
