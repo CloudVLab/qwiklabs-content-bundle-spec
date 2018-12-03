@@ -42,13 +42,17 @@ badge: gcp-intro-course-badge.png
 
 estimated_duration_days: 1
 
-steps:
-  - activity_options:
-    - type: lab
-      content: intro-to-gcp
-  - activity_options:
-    - type: lab
-      content: intro-to-bigquery
-  - activity_options:
-    - type: quiz
-      content: gcp-quiz
+modules:
+  - title:
+      en: Module 1
+      es: Módulo 1
+    steps:
+      - activity_options:
+        - type: lab
+          content: intro-to-gcp
+      - activity_options:
+        - type: lab
+          content: intro-to-bigquery
+      - activity_options:
+        - type: quiz
+          content: gcp-quiz

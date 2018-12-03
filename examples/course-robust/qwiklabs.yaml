@@ -86,68 +86,85 @@ resources:
         en: resources/storage_options_en.pdf
         es: resources/storage_options_es.pdf
 
-steps:
-  - activity_options:
-    - type: resource
-      content: intro-video
-    prompt:
-      locales:
-        en: If you've never used GCP, we recommend this overview video.
-        es: Si nunca ha usado GCP, le recomendamos este video general.
-    optional: true
+modules:
+  - title:
+      en: Introduction
+      es: Introducción
+    description:
+      en: Some introductory material
+      es: Algo de material introductorio
+    steps:
+      - activity_options:
+        - type: resource
+          content: intro-video
+        prompt:
+          locales:
+            en: If you've never used GCP, we recommend this overview video.
+            es: Si nunca ha usado GCP, le recomendamos este video general.
+        optional: true
 
-  - activity_options:
-    - type: lab
-      content: intro-to-gcp
+      - activity_options:
+        - type: lab
+          content: intro-to-gcp
+  - title:
+      en: Learn about compute
+      es: Aprender acerca de la computadora
+    steps:
+      - activity_options:
+        - type: resource
+          content: choosing-compute
 
-  - activity_options:
-    - type: resource
-      content: choosing-compute
+      - activity_options:
+        - type: lab
+          content: intro-to-appengine-python
+        - type: lab
+          content: intro-to-kubernetes-engine
+        - type: lab
+          content: intro-to-cloud-functions
+        prompt:
+          locales:
+            en: Learn more about one of these common compute resources.
+            es: Obtenga más información sobre uno de estos recursos informáticos comunes.
+  - title:
+      en: Learn about storage
+      es: Aprende sobre almacenamiento
+    steps:
+      - activity_options:
+        - type: resource
+          content: storage-options
 
-  - activity_options:
-    - type: lab
-      content: intro-to-appengine-python
-    - type: lab
-      content: intro-to-kubernetes-engine
-    - type: lab
-      content: intro-to-cloud-functions
-    prompt:
-      locales:
-        en: Learn more about one of these common compute resources.
-        es: Obtenga más información sobre uno de estos recursos informáticos comunes.
+      - activitiy_options:
+        - type: lab
+          content: intro-to-datastore
+        - type: lab
+          content: intro-to-cloudsql
+        - type: lab
+          content: intro-to-spanner
+        prompt:
+          locales:
+            en: Learn more about one of these common database technologies.
+            es: Obtenga más información sobre una de estas tecnologías de base de datos comunes.
 
-  - activity_options:
-    - type: resource
-      content: storage-options
+      - activity_options:
+        - type: lab
+          content: intro-to-bigquery
 
-  - activitiy_options:
-    - type: lab
-      content: intro-to-datastore
-    - type: lab
-      content: intro-to-cloudsql
-    - type: lab
-      content: intro-to-spanner
-    prompt:
-      locales:
-        en: Learn more about one of these common database technologies.
-        es: Obtenga más información sobre una de estas tecnologías de base de datos comunes.
+      - activity_options:
+        - type: quiz
+          content: bigquery-quiz
 
-  - activity_options:
-    - type: lab
-      content: intro-to-bigquery
+  - title:
+      en: Finish up
+      es: Termina
+    steps:
+      - activity_options:
+        - type: lab
+          content: advanced-gcp-task
+        optional: true
+        prompt:
+          locales:
+            en: If you want to try your hand at this advanced task, go for it!
 
-  - activity_options:
-    - type: quiz
-      content: bigquery-quiz
-
-  - activity_options:
-    - type: lab
-      content: advanced-gcp-task
-    optional: true
-    prompt:
-      locales:
-        en: If you want to try your hand at this advanced task, go for it!
-
-  - activity_options:
-    - type: resource
-      content: outro-video
+      - activity_options:
+        - type: resource
+          content: outro-video

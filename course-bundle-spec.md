@@ -58,7 +58,7 @@ estimated_duration_days: 1
 resources: ...
 
 # The important part of a course which lists all of the activities
-steps: ...
+modules: ...
 
 ```
 
@@ -67,8 +67,8 @@ Note that all of the main chunks of localized content (title, description, objec
 ### Attribute specification
 The full specification is as follows:
 
-attribute        | required | type        | notes
----------------- | -------- | ----------- | -----------------------------------------
+attribute               | required | type        | notes
+----------------------- | -------- | ----------- | -----------------------------------------
 entity_type             | ✓        | string      | Must be `Course`
 schema_version          | ✓        | integer     |
 id                      | ✓        | string      | Identifier for this course, must be unique per "library" and URL friendly (think github org/repo)
@@ -86,8 +86,18 @@ level                   |          | integer     | Integer between 1 and 4, with
 image                   |          | string      | Link to an image file to be used as the image for the course
 badge                   |          | string      | Link to an image file to be used as the badge for the course
 estimated_duration_days |          | integer     | Estimated time to take the course, in days
-resources               |          | dictionary  | See below
-steps                   | ✓        | dictionary  | See below
+resources               |          | array       | See below
+modules                 | ✓        | array       | See below
+
+### Modules
+
+The meat of a course is an ordered list of modules, each of which is a collection of steps, defining what a learner needs to do to complete the course. A module has a `title`, `description`, and array of `steps`. The full specification is as follows:
+
+attribute               | required | type        | notes
+----------------------- | -------- | ----------- | -----------------------------------------
+title                   | ✓        | dictionary  | A locale dictionary of titles
+description             |          | dictionary  | A locale dictionary of descriptions
+steps                   | ✓        | array       | See below
 
 ### Resources
 
@@ -97,7 +107,7 @@ For details on how to specify resources, see the [Resource Spec](./resource-spec
 
 ### Steps
 
-The meat of a course is an ordered list of steps defining what a learner needs to do to complete the course. A step consists of a set of one or more activity options, along with some metadata. Valid activity types are:
+A step consists of a set of one or more activity options, along with some metadata. Valid activity types are:
 
 * `lab`
 * `quiz`
