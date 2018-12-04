@@ -13,7 +13,6 @@ entity_type: Course
 schema_version: 1
 
 # Course Attributes
-id: gcp-intro-course
 default_locale: en
 
 title:
@@ -71,7 +70,6 @@ attribute               | required | type        | notes
 ----------------------- | -------- | ----------- | -----------------------------------------
 entity_type             | ✓        | string      | Must be `Course`
 schema_version          | ✓        | integer     |
-id                      | ✓        | string      | Identifier for this course, must be unique per "library" and URL friendly (think github org/repo)
 default_locale          | ✓        | enum        | Must be a valid locale code
 title                   | ✓        | dictionary  | A locale dictionary of titles
 description             |          | dictionary  | A locale dictionary of descriptions
