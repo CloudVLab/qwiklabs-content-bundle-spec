@@ -205,10 +205,20 @@ roles       |          | dictionary | Specificy IAM roles per project
       - storage.admin
 ```
 
+##### GSuite Domain (gsuite-domain)
+
+attribute   | required | type       | notes
+----------- | -------- | ---------- | ----------------------------------------
+No additional attributes
+
+```yml
+- type: gsuite_domain
+  id: primary_domain
+```
+
 ##### Future Resource Types
 
 - AWS Account (aws-account)
-- GSuite Domain (gsuite-domain)
 - iPython Notebook (ipython-notebook)
 
 > **NOTE:** A draft of the `aws-account` resource type was previously specified

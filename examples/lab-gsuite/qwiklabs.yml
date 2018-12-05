@@ -1,0 +1,24 @@
+entity_type: Lab
+schema_version: 1
+
+id: minimal-gsuite-lab-example
+default_locale: en
+
+title:
+  locales:
+    en: Minialist Gsuite Domain Example
+
+description:
+  locales:
+    en: Just the basics, nothing more.
+
+length: 20
+level: easy-peasy
+
+instruction:
+  type: html
+  locales:
+    en: './instruction.html'
+
+environment_resources:
+  - type: gsuite-domain
