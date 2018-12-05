@@ -154,36 +154,6 @@ environment_resources:
 
 #### Valid types
 
-##### AWS Account (aws-account)
-
-attribute | required | type           | notes
---------- | -------- | -------------- | ---------------------------------------
-cf_script |          | localized_path | Relative path to file in bundle
-variant   |          | enum           | This is equivalent to the current concept of Qwiklabs fleets
-
-```yml
-- type: aws-account
-  id: primary_account
-  variant: STS
-  cf_script:
-    locales:
-      en: cloudformation/intro-dynamo-db.yaml
-      es: cloudformation/intro-dynamo-db-es.yaml
-```
-
-```ruby
-# NOTE: Unreferenced properties on Lab model that we may also want to add here.
-t.decimal  "billing_limit"
-t.string   "aws_region"
-t.boolean  "global_set_vnc_password"
-t.boolean  "allow_aws_vpc_deletion"
-t.boolean  "allow_aws_subnet_deletion"
-t.boolean  "allow_aws_spot_instances"
-t.string   "allow_aws_ondemand_instances"
-t.boolean  "allow_aws_dedicated_instances"
-t.string   "allow_aws_rds_instances"
-```
-
 ##### GCP Project (gcp-project)
 
 attribute | required | type   | notes
@@ -237,8 +207,12 @@ roles       |          | dictionary | Specificy IAM roles per project
 
 ##### Future Resource Types
 
+- AWS Account (aws-account)
 - GSuite Domain (gsuite-domain)
 - iPython Notebook (ipython-notebook)
+
+> **NOTE:** A draft of the `aws-account` resource type was previously specified
+> in this document. See [previous version](https://github.com/CloudVLab/qwiklabs-content-bundle-spec/blob/93896ced4ae5b543132d7a10d838ac17bd5ae3e1/lab-bundle-spec.md) for details.
 
 ### Activity Tracking (Alpha)
 
