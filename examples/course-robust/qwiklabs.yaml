@@ -41,6 +41,15 @@ badge: gcp-intro-course-badge.png
 
 estimated_duration_days: 1
 
+instructor_resources:
+  - type: link
+    title:
+      locales:
+        en: How to teach
+    uri:
+      locales:
+        en: https://www.wikihow.com/Teach
+
 resources:
   - type: video
     id: intro-video

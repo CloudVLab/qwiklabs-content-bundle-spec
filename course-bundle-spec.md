@@ -53,6 +53,9 @@ badge: gcp-intro-course-badge.png
 # Estimated time to take the course, in days
 estimated_duration_days: 1
 
+# Resources that will not be surfaced to students, but may be referenced by an instructor
+instructor_resources: ...
+
 # Resources that may be referenced below in steps
 resources: ...
 
@@ -84,6 +87,7 @@ level                   |          | integer     | Integer between 1 and 4, with
 image                   |          | string      | Link to an image file to be used as the image for the course
 badge                   |          | string      | Link to an image file to be used as the badge for the course
 estimated_duration_days |          | integer     | Estimated time to take the course, in days
+instructor_resources    |          | array       | Instructor-specific resources. See the [Resource Spec](./resource-spec.md) for full specification.
 resources               |          | array       | See below
 modules                 | ✓        | array       | See below
 
