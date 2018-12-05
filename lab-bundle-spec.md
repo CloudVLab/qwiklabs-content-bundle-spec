@@ -186,25 +186,34 @@ t.string   "allow_aws_rds_instances"
 
 ##### GCP Project (gcp-project)
 
-attribute | required | type           | notes
---------- | -------- | -------------- | --------------------------------------
-dm_script |          | localized_path | relative path to file in bundle
-variant   |          | enum           | This is equivalent to the current concept of Qwiklabs fleets
+attribute | required | type   | notes
+--------- | -------- | -------| --------------------------------------
+dm_script |          | path   | A relative path to a Deployment Manager file.
+fleet     |          | enum*  | Specify the specific Qwiklabs fleet to pull the project from.
 
 ```yml
 - type: gcp-project
   id: secondary_project
-  variant: ASL
-  dm_script:
-    locales:
-      en: deployment_manager/instance_pool.yaml
-      es: deployment_manager/instance_poolb-es.yaml
+  fleet: gcpdfree
+  dm_script: deployment_manager/instance_pool.yaml
 ```
 
-```ruby
-# NOTE: Unreferenced properties on Lab model that we may also want to add here.
-t.string   "cloud_region",                              limit: 255
-```
+> **NOTE:** Not all GCP fleet names are supported.
+>
+> The existing concept of Qwiklabs' Fleets do not have a single analog in
+> content bundles. Notice that some fleet types map to resource types (e.g.
+> `gsuite_multi_tenant` fleet is now the `gsuite-domain` resource type).
+> However other fleets are "variants" of the same resource type (e.g.
+> "free", "ASL", and "standard" GCP projects). Therefore, the fleet
+>
+> Presently, authors are allowed to specify one of the following fleet types for
+> a gcp-project:
+> - gcpd [default]
+> - gcpfree
+> - gcpasl
+>
+> Future versions of the Content Bundle spec may use different terminology for
+> resource_type variations to avoid conflation.
 
 ##### GCP User (gcp-user)
 
