@@ -12,7 +12,7 @@ description:
   locales:
     en: Get a taste of what GCP has to offer.
 
-versions:
+version:
   locales:
     en: 2
     es: 1

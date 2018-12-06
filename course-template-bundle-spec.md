@@ -24,7 +24,7 @@ description:
     en: Get a taste of what GCP has to offer.
 
 # Versions should be considered decorators, and are not used as a source of truth for revision history.
-versions:
+version:
   locales:
     en: 2
     es: 1
@@ -85,7 +85,7 @@ schema_version          | ✓        | integer     |
 default_locale          | ✓        | enum        | Must be a valid locale code
 title                   | ✓        | dictionary  | A locale dictionary of titles
 description             |          | dictionary  | A locale dictionary of descriptions
-versions                |          | dictionary  | A locale dictionary of version strings. These version strings should be considered decorators, and are not used as a source of truth for revision history.
+version                 |          | dictionary  | A locale dictionary of version strings. These version strings should be considered decorators, and are not used as a source of truth for revision history.
 objectives              |          | dictionary  | A locale dictionary of objectives
 audience                |          | dictionary  | A locale dictionary of audiences
 prerequisites           |          | dictionary  | A locale dictionary of prerequisites
