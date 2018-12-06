@@ -12,6 +12,11 @@ description:
   locales:
     en: Get a taste of what GCP has to offer.
 
+versions:
+  locales:
+    en: 2
+    es: 1
+
 objectives:
   locales:
     en: |
