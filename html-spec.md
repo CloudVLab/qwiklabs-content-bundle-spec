@@ -1,4 +1,4 @@
-# Instruction HTML Specification
+# HTML Specification
 
 > **Note**: This is a very preliminary sketch of what the instruction format should look like. Feedback is appreciated.
 
@@ -7,6 +7,10 @@ Before rendering, Qwiklabs will aggressively sanitize the provided HTML.
 - Remove all script tags.
 - Remove all style tags.
 - Remove all tags, classes, and attributes that are not white-listed.
+
+The allowed tags, classes, and attributes depend on the context. We currently have two contexts: restricted, and instruction.
+
+## Instruction HTML
 
 ### White-listed Tags
 
@@ -53,3 +57,17 @@ Before rendering, Qwiklabs will aggressively sanitize the provided HTML.
 
   <!-- checkpoint: id="step_1" -->
   ```
+
+## Restricted HTML
+
+### White-listed Tags
+
+- p
+- em, strong
+- a
+- ul, ol, li
+
+### White-listed attributes
+
+- title
+- href

@@ -1,15 +1,13 @@
 # Qwiklabs Content Bundle Specs
 
-This repo currently houses the specs for both lab bundles and quest bundles. Information about lab bundles can be found under `/labs` and information about quests can be found under `/quests`.
-
-See [the spec](./lab-bundle-spec.md) for documentation on authoring [Qwiklabs](https://www.qwiklabs.com/) labs.
+This repo houses specs for Qwiklabs content bundles. Each supported bundle type has a set of examples and a type-specific bundle specification.
 
 ## Notable Files and Folders
 
 * `/examples/`: A list of example bundles (of any type)
-* `lab-bundle-spec.md`: A formal-ish specification for lab bundles
-* `quest-bundle-spec.md`: A formal-ish specification for quest bundles
-* `instruction-html-spec.md`: A document outlining what constitutes valid HTML in a content bundle (e.g. what is required, what is forbidden, etc.)
+* `lab-bundle-spec.md`: A formal-ish specification for `Lab` bundles
+* `course-template-bundle-spec.md`: A formal-ish specification for `CourseTemplate` bundles
+* `html-spec.md`: A document outlining what constitutes valid HTML in a content bundle (e.g. what is required, what is forbidden, etc.)
 
 ## Introduction
 

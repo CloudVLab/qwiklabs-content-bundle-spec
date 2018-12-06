@@ -53,7 +53,7 @@ Two properties are critical for specifying your lab bundle:
 
 - `entity_type`
 
-  Currently this can only be `Lab` or `Course`. In the future we will expand the QLB specification to include `Quiz`, and other content that Qwiklabs supports.
+  Currently this can only be `Lab` or `CourseTemplate`. In the future we will expand the QLB specification to include `Quiz`, and other content that Qwiklabs supports.
 
 - `schema_version`
 
@@ -113,7 +113,7 @@ However, we will not accept arbitrary HTML. Your input will be heavily scrubbed.
 - All styling will be removed.
 - All scripting will be removed.
 
-See [Instruction HTML spec](./instruction-html-spec.md) for details.
+See the Instruction part of the [HTML spec](./html-spec.md) for details.
 
 ### Resources
 
