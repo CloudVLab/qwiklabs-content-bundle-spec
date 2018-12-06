@@ -111,7 +111,7 @@ modules:
     steps:
       - activity_options:
         - type: resource
-          content: intro-video
+          id: intro-video
         prompt:
           locales:
             en: If you've never used GCP, we recommend this overview video.
@@ -120,7 +120,7 @@ modules:
 
       - activity_options:
         - type: lab
-          content: intro-to-gcp
+          id: intro-to-gcp
   - title:
       locales:
         en: Learn about compute
@@ -128,15 +128,15 @@ modules:
     steps:
       - activity_options:
         - type: resource
-          content: choosing-compute
+          id: choosing-compute
 
       - activity_options:
         - type: lab
-          content: intro-to-appengine-python
+          id: intro-to-appengine-python
         - type: lab
-          content: intro-to-kubernetes-engine
+          id: intro-to-kubernetes-engine
         - type: lab
-          content: intro-to-cloud-functions
+          id: intro-to-cloud-functions
         prompt:
           locales:
             en: Learn more about one of these common compute resources.
@@ -148,15 +148,15 @@ modules:
     steps:
       - activity_options:
         - type: resource
-          content: storage-options
+          id: storage-options
 
       - activitiy_options:
         - type: lab
-          content: intro-to-datastore
+          id: intro-to-datastore
         - type: lab
-          content: intro-to-cloudsql
+          id: intro-to-cloudsql
         - type: lab
-          content: intro-to-spanner
+          id: intro-to-spanner
         prompt:
           locales:
             en: Learn more about one of these common database technologies.
@@ -164,11 +164,11 @@ modules:
 
       - activity_options:
         - type: lab
-          content: intro-to-bigquery
+          id: intro-to-bigquery
 
       - activity_options:
         - type: quiz
-          content: bigquery-quiz
+          id: bigquery-quiz
 
   - title:
       locales:
@@ -177,7 +177,7 @@ modules:
     steps:
       - activity_options:
         - type: lab
-          content: advanced-gcp-task
+          id: advanced-gcp-task
         optional: true
         prompt:
           locales:
@@ -185,4 +185,4 @@ modules:
 
       - activity_options:
         - type: resource
-          content: outro-video
+          id: outro-video

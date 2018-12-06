@@ -54,10 +54,10 @@ modules:
     steps:
       - activity_options:
         - type: lab
-          content: intro-to-gcp
+          id: intro-to-gcp
       - activity_options:
         - type: lab
-          content: intro-to-bigquery
+          id: intro-to-bigquery
       - activity_options:
         - type: quiz
-          content: gcp-quiz
+          id: gcp-quiz
