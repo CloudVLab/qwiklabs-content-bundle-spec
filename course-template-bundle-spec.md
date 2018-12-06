@@ -1,4 +1,4 @@
-# Qwiklabs Course Bundle Specification
+# Qwiklabs CourseTemplate Bundle Specification
 
 **Version 1**
 
@@ -9,10 +9,10 @@
 Here's a sample `qwiklabs.yaml` file with all nested details removed to make it easier to see the general file structure.
 
 ```yml
-entity_type: Course
+entity_type: CourseTemplate
 schema_version: 1
 
-# Course Attributes
+# CourseTemplate Attributes
 default_locale: en
 
 title:
@@ -62,7 +62,7 @@ instructor_resources: ...
 # Resources that may be referenced below in steps
 resources: ...
 
-# The important part of a course which lists all of the activities
+# The important part of a CourseTemplate which lists all of the activities
 modules: ...
 
 ```
@@ -74,7 +74,7 @@ The full specification is as follows:
 
 attribute               | required | type        | notes
 ----------------------- | -------- | ----------- | -----------------------------------------
-entity_type             | ✓        | string      | Must be `Course`
+entity_type             | ✓        | string      | Must be `CourseTemplate`
 schema_version          | ✓        | integer     |
 default_locale          | ✓        | enum        | Must be a valid locale code
 title                   | ✓        | dictionary  | A locale dictionary of titles
@@ -97,7 +97,7 @@ modules                 | ✓        | array       | See below
 
 ### Modules
 
-The meat of a course is an ordered list of modules, each of which is a collection of steps, defining what a learner needs to do to complete the course. A module has a `title`, `description`, and array of `steps`. The full specification is as follows:
+The meat of a `CourseTemplate` is an ordered list of modules, each of which is a collection of steps, defining what a learner needs to do to complete the course. A module has a `title`, `description`, and array of `steps`. The full specification is as follows:
 
 attribute               | required | type        | notes
 ----------------------- | -------- | ----------- | -----------------------------------------
@@ -107,7 +107,7 @@ steps                   | ✓        | array       | See below
 
 ### Resources
 
-While heavyweight activities like labs and quizzes must be defined elsewhere in the library, we allow simpler resources to be specified directly in the course's `qwiklabs.yaml`. They can then be referenced in the `steps` just like labs and quizzes.
+While heavyweight activities like labs and quizzes must be defined elsewhere in the library, we allow simpler resources to be specified directly in `qwiklabs.yaml`. They can then be referenced in the `steps` just like labs and quizzes.
 
 For details on how to specify resources, see the [Resource Spec](./resource-spec.md).
 

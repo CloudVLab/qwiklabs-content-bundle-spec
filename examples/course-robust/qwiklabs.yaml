@@ -1,7 +1,7 @@
-entity_type: Course
+entity_type: CourseTemplate
 schema_version: 1
 
-# Course Attributes
+# CourseTemplate Attributes
 default_locale: en
 
 title:
