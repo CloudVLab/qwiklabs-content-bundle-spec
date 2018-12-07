@@ -56,6 +56,7 @@ environment_resources:
   resources:
     - type: gcp_project
       id: my_primary_project
+      fleet: gcpfree
       dm_script: dm.zip
       default_region: 'us-central-1c'
     - type: gcp_user
