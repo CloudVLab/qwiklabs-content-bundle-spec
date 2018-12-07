@@ -12,7 +12,7 @@ description:
   locales:
     en: Get a taste of what GCP has to offer.
 
-versions:
+version:
   locales:
     en: 2
     es: 1
@@ -52,12 +52,15 @@ modules:
         en: Module 1
         es: Módulo 1
     steps:
-      - activity_options:
+      - id: intro-to-gcp
+        activity_options:
         - type: lab
-          content: intro-to-gcp
-      - activity_options:
+          id: intro-to-gcp
+      - id: intro-to-bigquery
+        activity_options:
         - type: lab
-          content: intro-to-bigquery
-      - activity_options:
+          id: intro-to-bigquery
+      - id: gcp-quiz
+        activity_options:
         - type: quiz
-          content: gcp-quiz
+          id: gcp-quiz

@@ -24,7 +24,7 @@ description:
     en: Get a taste of what GCP has to offer.
 
 # Versions should be considered decorators, and are not used as a source of truth for revision history.
-versions:
+version:
   locales:
     en: 2
     es: 1
@@ -85,7 +85,7 @@ schema_version          | ✓        | integer     |
 default_locale          | ✓        | enum        | Must be a valid locale code
 title                   | ✓        | dictionary  | A locale dictionary of titles
 description             |          | dictionary  | A locale dictionary of descriptions
-versions                |          | dictionary  | A locale dictionary of version strings. These version strings should be considered decorators, and are not used as a source of truth for revision history.
+version                 |          | dictionary  | A locale dictionary of version strings. These version strings should be considered decorators, and are not used as a source of truth for revision history.
 objectives              |          | dictionary  | A locale dictionary of objectives
 audience                |          | dictionary  | A locale dictionary of audiences
 prerequisites           |          | dictionary  | A locale dictionary of prerequisites
@@ -108,6 +108,7 @@ The meat of a `CourseTemplate` is an ordered list of modules, each of which is a
 
 attribute               | required | type        | notes
 ----------------------- | -------- | ----------- | -----------------------------------------
+id                      | ✓        | string      | A unique identifier for this module
 title                   | ✓        | dictionary  | A locale dictionary of titles
 description             |          | dictionary  | A locale dictionary of descriptions
 steps                   | ✓        | array       | See below
@@ -132,36 +133,41 @@ The overall format should look like:
 
 ```yml
 steps:
-  - activity_options:
+  - id: overview-video
+    activity_options:
     - type: resource
-      content: intro-video
+      id: intro-video
     prompt:
       locales:
         en: If you've never used GCP, we recommend this overview video.
     optional: true
 
-  - activity_options:
+  - id: intro-lab
+    activity_options:
     - type: lab
-      content: intro-to-gcp
+      id: intro-to-gcp
 
-  - activity_options:
+  - id: choosing-compute
+    activity_options:
     - type: resource
-      content: choosing-compute
+      id: choosing-compute
 
-  - activity_options:
+  - id: learn-compute
+    activity_options:
     - type: lab
-      content: intro-to-appengine-python
+      id: intro-to-appengine-python
     - type: lab
-      content: intro-to-kubernetes-engine
+      id: intro-to-kubernetes-engine
     - type: lab
-      content: intro-to-cloud-functions
+      id: intro-to-cloud-functions
     prompt:
       locales:
         en: Learn more about one of these common compute resources.
 
-  - activity_options:
+  - id: compute-quiz
+    activity_options:
     - type: quiz
-      content: compute-quiz
+      id: compute-quiz
 ```
 
 The order in which steps are listed defines the order they will be displayed. When a step has multiple options, the learner will be expected to do exactly one of the activities.
@@ -170,8 +176,9 @@ The full specification for a step is as follows:
 
 attribute        | required | type        | notes
 ---------------- | -------- | ----------- | -----------------------------------------
+id               | ✓        | string      | A unique identifier for this step
 activity_options | ✓        | array       | `activity_options` is an array of dictionaries with the format:
 -- type          | ✓        | enum        | One of `lab`, `quiz`, `resource`
--- content       | ✓        | string      | Reference to the unique identifier for the activity. TODO: How to fully qualify `id` on labs and quizzes?
+-- id            | ✓        | string      | Reference to the unique identifier for the activity. TODO: How to fully qualify `id` on labs and quizzes?
 prompt           |          | dictionary  | Key is `locales` and each locale is a dictionary mapping locale codes to a prompt describing the step
 optional         |          | boolean     | `true` if the step is *not* required for completion
