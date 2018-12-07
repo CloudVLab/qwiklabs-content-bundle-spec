@@ -189,22 +189,24 @@ t.string   "allow_aws_rds_instances"
 attribute | required | type   | notes
 --------- | -------- | -------| --------------------------------------
 dm_script |          | path   | A relative path to a Deployment Manager file.
-fleet     |          | enum*  | Specify the specific Qwiklabs fleet to pull the project from.
+fleet     |          | enum*  | Specify a Qwiklabs fleet to pull the project from.
 
 ```yml
 - type: gcp-project
   id: secondary_project
-  fleet: gcpdfree
+  fleet: gcpfree
   dm_script: deployment_manager/instance_pool.yaml
 ```
 
 > **NOTE:** Not all GCP fleet names are supported.
 >
-> The existing concept of Qwiklabs' Fleets do not have a single analog in
+> The existing concept of Qwiklabs' Fleets does not have a single analog in
 > content bundles. Notice that some fleet types map to resource types (e.g.
 > `gsuite_multi_tenant` fleet is now the `gsuite-domain` resource type).
 > However other fleets are "variants" of the same resource type (e.g.
-> "free", "ASL", and "standard" GCP projects). Therefore, the fleet
+> "free", "ASL", and "standard" GCP projects). Therefore, not all fleet names that
+> an experienced Qwiklabs author may be familiar with, are allowed in the `fleet`
+> field.
 >
 > Presently, authors are allowed to specify one of the following fleet types for
 > a gcp-project:
