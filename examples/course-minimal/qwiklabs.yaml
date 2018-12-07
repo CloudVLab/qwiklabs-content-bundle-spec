@@ -52,12 +52,15 @@ modules:
         en: Module 1
         es: Módulo 1
     steps:
-      - activity_options:
+      - id: intro-to-gcp
+        activity_options:
         - type: lab
           id: intro-to-gcp
-      - activity_options:
+      - id: intro-to-bigquery
+        activity_options:
         - type: lab
           id: intro-to-bigquery
-      - activity_options:
+      - id: gcp-quiz
+        activity_options:
         - type: quiz
           id: gcp-quiz

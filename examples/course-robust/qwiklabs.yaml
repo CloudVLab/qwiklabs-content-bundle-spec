@@ -100,7 +100,8 @@ resources:
         es: resources/storage_options_es.pdf
 
 modules:
-  - title:
+  - id: intro-module
+    title:
       locales:
         en: Introduction
         es: Introducción
@@ -109,7 +110,8 @@ modules:
         en: Some introductory material
         es: Algo de material introductorio
     steps:
-      - activity_options:
+      - id: intro-video
+        activity_options:
         - type: resource
           id: intro-video
         prompt:
@@ -118,19 +120,24 @@ modules:
             es: Si nunca ha usado GCP, le recomendamos este video general.
         optional: true
 
-      - activity_options:
+      - id: intro-lab
+        activity_options:
         - type: lab
           id: intro-to-gcp
-  - title:
+
+  - id: learn-compute
+    title:
       locales:
         en: Learn about compute
         es: Aprender acerca de la computadora
     steps:
-      - activity_options:
+      - id: choose-compute
+        activity_options:
         - type: resource
           id: choosing-compute
 
-      - activity_options:
+      - id: learn-compute
+        activity_options:
         - type: lab
           id: intro-to-appengine-python
         - type: lab
@@ -141,16 +148,19 @@ modules:
           locales:
             en: Learn more about one of these common compute resources.
             es: Obtenga más información sobre uno de estos recursos informáticos comunes.
-  - title:
+  - id: learn-storage
+    title:
       locales:
         en: Learn about storage
         es: Aprende sobre almacenamiento
     steps:
-      - activity_options:
+      - id: storage-options
+        activity_options:
         - type: resource
           id: storage-options
 
-      - activitiy_options:
+      - id: learn-storage
+        activitiy_options:
         - type: lab
           id: intro-to-datastore
         - type: lab
@@ -162,20 +172,24 @@ modules:
             en: Learn more about one of these common database technologies.
             es: Obtenga más información sobre una de estas tecnologías de base de datos comunes.
 
-      - activity_options:
+      - id: intro-to-bigquery
+        activity_options:
         - type: lab
           id: intro-to-bigquery
 
-      - activity_options:
+      - id: bigquery-quiz
+        activity_options:
         - type: quiz
           id: bigquery-quiz
 
-  - title:
+  - id: outro-module
+    title:
       locales:
         en: Finish up
         es: Termina
     steps:
-      - activity_options:
+      - id: advanced-gcp-task
+        activity_options:
         - type: lab
           id: advanced-gcp-task
         optional: true
@@ -183,6 +197,7 @@ modules:
           locales:
             en: If you want to try your hand at this advanced task, go for it!
 
-      - activity_options:
+      - id: outro-video
+        activity_options:
         - type: resource
           id: outro-video

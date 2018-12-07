@@ -133,7 +133,8 @@ The overall format should look like:
 
 ```yml
 steps:
-  - activity_options:
+  - id: overview-video
+    activity_options:
     - type: resource
       id: intro-video
     prompt:
@@ -141,15 +142,18 @@ steps:
         en: If you've never used GCP, we recommend this overview video.
     optional: true
 
-  - activity_options:
+  - id: intro-lab
+    activity_options:
     - type: lab
       id: intro-to-gcp
 
-  - activity_options:
+  - id: choosing-compute
+    activity_options:
     - type: resource
       id: choosing-compute
 
-  - activity_options:
+  - id: learn-compute
+    activity_options:
     - type: lab
       id: intro-to-appengine-python
     - type: lab
@@ -160,7 +164,8 @@ steps:
       locales:
         en: Learn more about one of these common compute resources.
 
-  - activity_options:
+  - id: compute-quiz
+    activity_options:
     - type: quiz
       id: compute-quiz
 ```
