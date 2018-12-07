@@ -17,11 +17,9 @@ description:
 duration: 60
 level: easy-peasy
 tags:
-  locales:
-    en:
-      - sample
-      - life-changing
-      - gcp
+  - sample
+  - life-changing
+  - gcp
 
 instruction:
   type: markdown

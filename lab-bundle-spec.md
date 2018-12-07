@@ -28,9 +28,7 @@ description:
 
 duration: 60
 level: intro
-tags:
-  locales:
-    en: [sample, life-changing, gcp]
+tags: [sample, life-changing, gcp]
 
 ...
 
