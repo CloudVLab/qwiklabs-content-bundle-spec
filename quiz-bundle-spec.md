@@ -29,22 +29,22 @@ Items are polymorphic - i.e. there are several different _item types_ that are d
 
 #### Multiple Choice Items
 
-A quiz item that has multiple options and one answer. One option is the _answer_, and the rest are _distractors_. Each option has a required rationale that explains why that option is correct or incorrect.
+A quiz item that has multiple options and one answer. One option is the _answer_, and the rest are _distractors_.
 
 attribute               | required | type              | notes
 ----------------------- | -------- | ----------------- | -----------------------------------------
 id                      | ✓        | string            | A unique identifier for this item
 type                    | ✓        | 'multiple-choice' | The item type, which is always 'multiple-choice'
-stem                    | ✓        | dictionary        | A locale dictionary of locales for the text that asks the question, such as "Which of the following is a color?"
+stem                    | ✓        | dictionary        | A locale dictionary of the text that asks the question, such as "Which of the following is a color?"
 options                 | ✓        | array             | An array of item options
 -- id                   | ✓        | string            | A unique ID for this item option
 -- title                | ✓        | dictionary        | A locale dictionary of locales for the content of this option, such as "Blue"
 -- rationale            | ✓        | dictionary        | A locale dictionary of locales for an explanation of why this option is correct or incorrect
--- is_answer            | ✓        | boolean           | Whether this option is an answer or distractor
+-- is_answer            | ✓        | boolean           | `true` if this option is an answer, and `false` if it is a distractor
 
 #### Multiple Select Items
 
-A quiz item that has multiple options and multiple answers. Correct options are _answers_, and incorrect options are _distractors_. Each option has a required rationale that explains why that option is correct or incorrect.
+A quiz item that has multiple options and multiple answers. Correct options are _answers_, and incorrect options are _distractors_.
 
 attribute               | required | type              | notes
 ----------------------- | -------- | ----------------- | -----------------------------------------
@@ -59,13 +59,13 @@ options                 | ✓        | array             | An array of item opti
 
 ### True False Items
 
-A quiz item that has two predefined options: true and false. The correct option (e.g. "True") is the answer and the other is the distractors.
+A quiz item that has two predefined options: true and false. The correct option (e.g. "True") is the answer and the other is the distractor.
 
 attribute               | required | type              | notes
 ----------------------- | -------- | ----------------- | -----------------------------------------
 id                      | ✓        | string            | A unique identifier for this item
 type                    | ✓        | 'true-false'      | The item type, which is always 'true-false'
-stem                    | ✓        | string            | The text that asks the question, such as "True or false: the world is round."
-answer                  | ✓        | boolean           | The correct answer. true for "True", false for "False"
+stem                    | ✓        | dictionary        | A locale dictionary of text that asks the question, such as "True or false: the world is round."
+answer                  | ✓        | boolean           | The correct answer. `true` for "True", `false` for "False"
 true_rationale          | ✓        | string            | Explains why "True" is correct or incorrect
 false_rationale         | ✓        | string            | Explains why "False" is correct or incorrect
