@@ -25,7 +25,10 @@ items: ...
 Note that all of the localized content (stem, option titles, rationales, etc) are HTML content that may be displayed in various contexts. All of these chunks will be sanitized according to the restricted set in the [HTML spec](./html-spec.md).
 
 ### Items
-Items are polymorphic - i.e. there are several different _item types_ that are defined slightly differently. `items` is an array of items defined correctly for their type as defined by the `type` attribute.
+Items are polymorphic - i.e. there are several different _item types_ that are defined slightly differently. `items` is an array of items defined correctly for their type as defined by the `type` attribute. The allowed values for `type` are:
+- `multiple-choice`
+- `multiple-select`
+- `true-false`
 
 #### Multiple Choice Items
 
@@ -34,7 +37,7 @@ A quiz item that has multiple options and one answer. One option is the _answer_
 attribute               | required | type              | notes
 ----------------------- | -------- | ----------------- | -----------------------------------------
 id                      | ✓        | string            | A unique identifier for this item
-type                    | ✓        | 'multiple-choice' | The item type, which is always 'multiple-choice'
+type                    | ✓        | string            | The item type, which is always 'multiple-choice'
 stem                    | ✓        | dictionary        | A locale dictionary of the text that asks the question, such as "Which of the following is a color?"
 options                 | ✓        | array             | An array of item options
 -- id                   | ✓        | string            | A unique ID for this item option
@@ -57,7 +60,7 @@ options                 | ✓        | array             | An array of item opti
 -- rationale            | ✓        | dictionary        | A locale dictionary of locales for an explanation of why this option is correct or incorrect
 -- is_answer            | ✓        | string            | Whether this option is an answer or distractor
 
-### True False Items
+#### True False Items
 
 A quiz item that has two predefined options: true and false. The correct option (e.g. "True") is the answer and the other is the distractor.
 
