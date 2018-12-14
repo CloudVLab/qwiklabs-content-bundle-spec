@@ -180,6 +180,6 @@ attribute        | required | type        | notes
 id               | ✓        | string      | A unique identifier for this step
 activity_options | ✓        | array       | `activity_options` is an array of dictionaries with the format:
 -- type          | ✓        | enum        | One of `lab`, `quiz`, `resource`
--- id            | ✓        | string      | Reference to the unique identifier for the activity - `library/slug` (or just `slug` if the activity is present in the same `library` as the course).
+-- id            | ✓        | string      | Reference to the unique identifier for the activity - `library/slug`.
 prompt           |          | dictionary  | Key is `locales` and each locale is a dictionary mapping locale codes to a prompt describing the step
 optional         |          | boolean     | `true` if the step is *not* required for completion
