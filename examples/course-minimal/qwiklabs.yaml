@@ -47,7 +47,8 @@ badge: gcp-intro-course-badge.png
 estimated_duration_days: 1
 
 modules:
-  - title:
+  - id: module-1
+    title:
       locales:
         en: Module 1
         es: Módulo 1
