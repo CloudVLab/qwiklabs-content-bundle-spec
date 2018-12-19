@@ -9,6 +9,7 @@
 Here's a sample `qwiklabs.yaml` file with all nested details removed to make it easier to see the general file structure.
 
 ```yml
+id: my-library/gcp-intro-course
 entity_type: CourseTemplate
 schema_version: 1
 
@@ -179,6 +180,6 @@ attribute        | required | type        | notes
 id               | ✓        | string      | A unique identifier for this step
 activity_options | ✓        | array       | `activity_options` is an array of dictionaries with the format:
 -- type          | ✓        | enum        | One of `lab`, `quiz`, `resource`
--- id            | ✓        | string      | Reference to the unique identifier for the activity. TODO: How to fully qualify `id` on labs and quizzes?
+-- id            | ✓        | string      | Reference to the unique identifier for the activity - `library/slug`.
 prompt           |          | dictionary  | Key is `locales` and each locale is a dictionary mapping locale codes to a prompt describing the step
 optional         |          | boolean     | `true` if the step is *not* required for completion
