@@ -9,7 +9,6 @@
 Here's a sample `qwiklabs.yaml` file with all nested details removed to make it easier to see the general file structure.
 
 ```yml
-id: my-library/gcp-intro-course
 entity_type: CourseTemplate
 schema_version: 1
 
