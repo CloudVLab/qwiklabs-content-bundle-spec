@@ -13,9 +13,6 @@ Here's a sample `qwiklabs.yaml` file, with all nested details removed to make it
 ```yml
 entity_type: Lab
 schema_version: 1
-
-# Lab Attributes
-id: my-awesome-lab
 default_locale: en
 
 title:
@@ -65,7 +62,6 @@ The lab bundle MUST specify a `default_locale`. It corresponds to the locale tha
 
 attribute   | required | type        | notes
 ----------- | -------- | ----------- | -----------------------------------------
-id          | ✓        | string      | Identifier for this lab, must be unique per "library" and URL friendly (think github org/repo)
 title       | ✓        | locale dictionary |
 description | ✓        | locale dictionary |
 duration    | ✓        | integer     | Amount of time it should take an average learner to complete the lab (in minutes)

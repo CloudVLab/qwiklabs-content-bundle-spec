@@ -1,7 +1,6 @@
 entity_type: Lab
 schema_version: 1
 
-id: minimal-gsuite-lab-example
 default_locale: en
 
 title:
