@@ -34,14 +34,15 @@ Therefore, QLB will prioritize explicit and clear localization semantics at the 
 For instance, `locales` is a required field for external resources. If you only have one locale you still need to specify it:
 
 ```yml
-- type: code
-  ref_id: code_repo
-  locales:
-    en:
-      title: Self-referential Github Repo
-      uri: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
+- type: link
+  ref_id: my-repo
+  uri:
+    locales:
+      en: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
+  title:
+    locales:
+      en: Self-referential Github Repo
 ```
-
 
 ### Prefer explicit configuration over implicit convention
 
