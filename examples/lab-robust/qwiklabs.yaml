@@ -40,6 +40,20 @@ resources:
       locales:
         en: "./resources/sample-en.pdf"
         en: "./resources/sample-es.pdf"
+  - type: video
+    id: intro-video
+    title:
+      locales:
+        en: Welcome to GCP!
+        es: ¡Bienvenido a GCP!
+    uri:
+      locales:
+        en: https://www.youtu.be/oHg5SJYRHA0
+        es: https://www.youtu.be/7jjoyy7_RCk
+    description:
+      locales:
+        en: Overview of Google Cloud Platform
+        es: Descripción general de Google Cloud Platform
 
 environment_resources:
   resources:
