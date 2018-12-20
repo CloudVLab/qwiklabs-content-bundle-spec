@@ -22,8 +22,8 @@ uri            |          | string      | Key is `locales` and each locale is a 
 
 ```yml
 resources:
-  - type: code
-    id: code_repo
+  - type: link
+    id: repo-link
     title:
       locales:
         en: Self-referential Github Repo
@@ -61,10 +61,9 @@ resources:
 
 - `file`  - A relative path to a file in the bundle
 - `link`  - A url to an external resource
-- `code`  - A link to code outside of the bundle such as on Github
 - `video` - A link to a video outside of the bundle such as on Youtube
 
-To prevent confusion, all resources must explicitly define what type they are. This helps distinguish between a link to a GitHub repo and a link to a code snippet on GitHub.
+To prevent confusion, all resources must explicitly define what type they are.
 
 > **Aside:** Why define external resources instead of putting links directly in lab instructions?
 >

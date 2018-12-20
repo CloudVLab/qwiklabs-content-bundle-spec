@@ -27,16 +27,6 @@ instruction:
     es: "./instructions/es.md"
 
 resources:
-  - type: code
-    id: code_repo
-    title:
-      locales:
-        en: Self-referential Github Repo
-        es: Auto-referencial Github Repo
-    uri:
-      locales:
-        en: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
-        es: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
   - type: file
     title:
       locales:
