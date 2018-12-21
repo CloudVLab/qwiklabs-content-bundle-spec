@@ -62,10 +62,11 @@ resources:
       locales:
         en: Welcome to GCP!
         es: ¡Bienvenido a GCP!
-    uri:
+    video_id:
       locales:
-        en: https://youtu.be/oHg5SJYRHA0
-        es: https://youtu.be/7jjoyy7_RCk
+        en: oHg5SJYRHA0
+        es: 7jjoyy7_RCk
+    video_provider: YouTube
     description:
       locales:
         en: Overview of Google Cloud Platform
@@ -76,10 +77,11 @@ resources:
       locales:
         en: Wasn't that fun?!
         es: Eso fue divertido, ¿verdad?
-    uri:
+    video_id:
       locales:
-        en: https://youtu.be/oHg5SJYRHA0
-        es: https://youtu.be/7jjoyy7_RCk
+        en: oHg5SJYRHA0
+        es: 7jjoyy7_RCk
+    video_provider: YouTube
   - type: link
     id: choosing-compute
     title:

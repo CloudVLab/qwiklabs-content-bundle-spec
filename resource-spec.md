@@ -18,7 +18,9 @@ type           | ✓        | enum        | [See list of valid types below]
 id             |          | string      | Identifier that can be used throughout project bundle
 title          | ✓        | dictionary  | Key is `locales` and each locale is a dictionary mapping locale codes to localized titles
 description    |          | string      | Key is `locales` and each locale is a dictionary mapping locale codes to localized descriptions
-uri            |          | string      | Key is `locales` and each locale is a dictionary mapping locale codes to localized uris
+uri            |          | string      | Key is `locales` and each locale is a dictionary mapping locale codes to localized uris.
+video_id       |          | string      | Key is `locales` and each locale is a dictionary mapping locale codes to localized video_ids. Required for type `video` when the container content is not a `Lab`.
+video_provider |          | string      | The video provider. Required for type `video` when the container content is not a `Lab`.
 
 ```yml
 resources:
@@ -46,7 +48,7 @@ resources:
         en: "./resources/sample-en.pdf"
         en: "./resources/sample-es.pdf"
   - type: video
-    id: intro-video
+    id: lab-video
     title:
       locales:
         en: Welcome to GCP!
@@ -55,6 +57,17 @@ resources:
         locales:
           en: https://youtu.be/oHg5SJYRHA0
           es: https://youtu.be/7jjoyy7_RCk
+  - type: video
+    id: course-video
+    title:
+      locales:
+        en: Welcome to GCP!
+        es: ¡Bienvenido a GCP!
+    video_id:
+        locales:
+          en: oHg5SJYRHA0
+          es: 7jjoyy7_RCk
+    video_provider: YouTube
 ```
 
 ## Valid types
