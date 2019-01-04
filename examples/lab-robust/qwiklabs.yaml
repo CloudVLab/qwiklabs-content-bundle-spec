@@ -54,6 +54,7 @@ resources:
       locales:
         en: Overview of Google Cloud Platform
         es: Descripción general de Google Cloud Platform
+    duration: 360
 
 environment_resources:
   resources:

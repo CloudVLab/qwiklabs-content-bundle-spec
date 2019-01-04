@@ -66,6 +66,7 @@ resources:
         locales:
           en: https://youtu.be/oHg5SJYRHA0
           es: https://youtu.be/7jjoyy7_RCk
+    duration: 120
   - type: video
     id: course-video
     title:
@@ -77,6 +78,7 @@ resources:
           en: oHg5SJYRHA0
           es: 7jjoyy7_RCk
     video_provider: YouTube
+    duration: 360
 ```
 
 ## Valid types
