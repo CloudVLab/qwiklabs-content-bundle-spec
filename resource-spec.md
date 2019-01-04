@@ -29,6 +29,8 @@ video_id       | ✓        | string      | Key is `locales` and each locale is 
 video_provider | ✓        | string      | The video provider.
 duration       | ✓        | integer     | The duration of the video (in seconds).
 
+## Example
+
 ```yml
 resources:
   - type: link
