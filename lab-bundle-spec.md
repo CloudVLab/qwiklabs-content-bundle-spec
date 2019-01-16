@@ -154,7 +154,7 @@ environment_resources:
 attribute                     | required | type    | notes
 ----------------------------- | -------- | ------- | --------------------------------------
 dm_template.script            |          | path    | A relative path to a Deployment Manager file.
-dm_template.custom_properties |          | array   | Array of key/value pairs
+dm_template.custom_properties |          | array   | Array of key/value pairs.
 fleet                         |          | enum*   | Specify a Qwiklabs fleet to pull the project from.
 
 ```yml
