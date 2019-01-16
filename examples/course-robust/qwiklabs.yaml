@@ -71,6 +71,7 @@ resources:
       locales:
         en: Overview of Google Cloud Platform
         es: Descripción general de Google Cloud Platform
+    duration: 360
   - type: video
     id: outro-video
     title:
@@ -82,6 +83,7 @@ resources:
         en: oHg5SJYRHA0
         es: 7jjoyy7_RCk
     video_provider: YouTube
+    duration: 100
   - type: link
     id: choosing-compute
     title:

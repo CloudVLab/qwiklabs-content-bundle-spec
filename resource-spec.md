@@ -19,8 +19,17 @@ id             |          | string      | Identifier that can be used throughout
 title          | ✓        | dictionary  | Key is `locales` and each locale is a dictionary mapping locale codes to localized titles
 description    |          | string      | Key is `locales` and each locale is a dictionary mapping locale codes to localized descriptions
 uri            |          | string      | Key is `locales` and each locale is a dictionary mapping locale codes to localized uris.
-video_id       |          | string      | Key is `locales` and each locale is a dictionary mapping locale codes to localized video_ids. Required for type `video` when the container content is not a `Lab`.
-video_provider |          | string      | The video provider. Required for type `video` when the container content is not a `Lab`.
+
+## Videos
+Videos have the following additional attributes:
+
+attribute      | required | type        | notes
+-------------- | -------- | ----------- | -----------------------------------------
+video_id       | ✓        | string      | Key is `locales` and each locale is a dictionary mapping locale codes to localized video_ids.
+video_provider | ✓        | string      | The video provider.
+duration       | ✓        | integer     | The duration of the video (in seconds).
+
+## Example
 
 ```yml
 resources:
@@ -57,6 +66,7 @@ resources:
         locales:
           en: https://youtu.be/oHg5SJYRHA0
           es: https://youtu.be/7jjoyy7_RCk
+    duration: 120
   - type: video
     id: course-video
     title:
@@ -68,6 +78,7 @@ resources:
           en: oHg5SJYRHA0
           es: 7jjoyy7_RCk
     video_provider: YouTube
+    duration: 360
 ```
 
 ## Valid types
