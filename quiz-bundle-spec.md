@@ -12,14 +12,10 @@ Here's a sample `qwiklabs.yaml` file with all nested details removed to make it 
 entity_type: Quiz
 schema_version: 1
 
+id: final-exam
+passing_percentage: 67
 default_locale: en
 
-title: Super Hard Quiz
-
-# The threshold grade that a student needs to achieve in order to count as "passing" the quiz.
-passing_percentage: 67
-
-# The "items" (i.e. questions) contained in this quiz.
 items: ...
 ```
 
@@ -29,13 +25,11 @@ Note that all of the localized content (stem, option titles, rationales, etc) ar
 
 attribute          | required | type    | notes
 -------------------| -------- | ------- | -----------------------------------------
-title              | ✓        | string  | The authoring title of the quiz - not visible to learners.
+default_locale     | ✓        | string  | Corresponds to the locale that the quiz is authored in. Authoring tools can use this as a hint to notify localizers when content in the default locale is updated. Also, it provides a hint to the learner interface about which locale to display if an instruction/resource is not localized for the learner's current locale.
+schema
+id                 | ✓        | string  | A unique identifier for this quiz, must be unique per "library" and URL friendly (think github org/repo)
 passing_percentage | ✓        | integer | The threshold grade that a student needs to achieve in order to count as "passing" the quiz.
 items              | ✓        | array   | An ordered array of `items` (see below for details) in this quiz - items will appear to students in this order
-
-### Default locale
-
-The quiz bundle must specify a `default_locale`. It corresponds to the locale that the quiz is authored in. Authoring tools can use this as a hint to notify localizers when content in the default locale is updated. Also, it provides a hint to the learner interface about which locale to display if an instruction/resource is not localized for the learner's current locale.
 
 ### Items
 Items are polymorphic - i.e. there are several different _item types_ that are defined slightly differently. `items` is an array of dictionaries with appropriate attributes for the given `type`. The allowed values for `type` are:

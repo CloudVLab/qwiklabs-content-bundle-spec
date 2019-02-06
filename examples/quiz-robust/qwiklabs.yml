@@ -1,10 +1,9 @@
 entity_type: Quiz
-schema_version:
+schema_version: 1
 
-default_locale: en
-
-title: Robust Quiz
+id: quiz-robust
 passing_percentage: 67
+default_locale: en
 
 items:
   - type: multiple-choice
