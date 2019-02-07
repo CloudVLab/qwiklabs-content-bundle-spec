@@ -26,7 +26,7 @@ Note that all of the localized content (stem, option titles, rationales, etc) ar
 attribute          | required | type    | notes
 -------------------| -------- | ------- | -----------------------------------------
 default_locale     | ✓        | string  | Corresponds to the locale that the quiz is authored in. Authoring tools can use this as a hint to notify localizers when content in the default locale is updated. Also, it provides a hint to the learner interface about which locale to display if an instruction/resource is not localized for the learner's current locale.
-schema
+schema_version     | ✓        | integer   | Which version of the quiz bundle schema you are using
 id                 | ✓        | string  | A unique identifier for this quiz, must be unique per "library" and URL friendly (think github org/repo)
 passing_percentage | ✓        | integer | The threshold grade that a student needs to achieve in order to count as "passing" the quiz.
 items              | ✓        | array   | An ordered array of `items` (see below for details) in this quiz - items will appear to students in this order
