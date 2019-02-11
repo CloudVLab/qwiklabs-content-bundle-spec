@@ -1,7 +1,6 @@
 entity_type: Quiz
 schema_version: 1
 
-id: quiz-minimal
 passing_percentage: 100
 default_locale: en
 
