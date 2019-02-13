@@ -142,7 +142,7 @@ environment_resources:
       - project: my_primary_project
         roles:
           - roles/editor
-            roles/bigquery.admin
+          - roles/bigquery.admin
   - type: gcp_user
     id: secondary_user
 ```
