@@ -41,6 +41,7 @@ A quiz item that has multiple options and one answer. One option is the _answer_
 
 attribute | required | type       | notes
 ----------| -------- | -----------| -----------------------------------------
+id        | ✓        | string     | A unique identifier for this item
 type      | ✓        | string     | The item type, which is always `multiple-choice`
 stem      | ✓        | dictionary | A locale dictionary of the text that asks the question, such as "Which of the following is a color?"
 options   | ✓        | array      | An array of `options` (see below for details); order does not matter
@@ -51,6 +52,7 @@ A quiz item that has multiple options, any number of which are answers. Correct 
 
 attribute | required | type       | notes
 ----------| -------- | -----------| -----------------------------------------
+id        | ✓        | string     | A unique identifier for this item
 type      | ✓        | string     | The item type, which is always `multiple-select`
 stem      | ✓        | dictionary | A locale dictionary for the text that asks the question, such as "Which of the following is a color?"
 options   | ✓        | array      | An array of `options` (see below for details); order does not matter
@@ -62,6 +64,7 @@ A quiz item that has two predefined options: true and false. The correct option 
 
 attribute       | required | type       | notes
 ----------------| -------- | -----------| -----------------------------------------
+id              | ✓        | string     | A unique identifier for this item
 type            | ✓        | string     | The item type, which is always `true-false`
 stem            | ✓        | dictionary  | A locale dictionary of text that asks the question, such as "True or false: the world is round."
 answer          | ✓        | boolean     | The correct answer. `true` for "True", `false` for "False"
@@ -74,6 +77,7 @@ false_rationale | ✓        | string      | Explains why "False" is correct or 
 
 attribute    | required | type       | notes
 -------------| -------- | -----------| -----------------------------------------
+id        | ✓        | string     | A unique ID for this Option
 title     | ✓        | dictionary | A locale dictionary for the content of this option, such as "Blue"
 rationale | ✓        | dictionary | A locale dictionary for an explanation of why this option is correct or incorrect
 is_answer | ✓        | boolean    | `true` if this option is an answer, and `false` if it is a distractor
