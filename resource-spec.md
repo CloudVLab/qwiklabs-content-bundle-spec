@@ -25,7 +25,7 @@ Videos have the following additional attributes:
 
 attribute      | required | type        | notes
 -------------- | -------- | ----------- | -----------------------------------------
-video_id       | ✓        | string      | Key is `locales` and each locale is a dictionary mapping locale codes to localized video_ids.
+video_id       | ✓        | dictionary  | Key is `locales` and each locale is a dictionary mapping locale codes to localized video_ids.
 video_provider | ✓        | string      | The video provider.
 duration       | ✓        | integer     | The duration of the video (in seconds).
 

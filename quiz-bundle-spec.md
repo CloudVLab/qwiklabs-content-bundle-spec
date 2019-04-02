@@ -68,8 +68,8 @@ id              | ✓        | string     | A unique identifier for this item
 type            | ✓        | string     | The item type, which is always `true-false`
 stem            | ✓        | dictionary  | A locale dictionary of text that asks the question, such as "True or false: the world is round."
 answer          | ✓        | boolean     | The correct answer. `true` for "True", `false` for "False"
-true_rationale  | ✓        | string      | Explains why "True" is correct or incorrect
-false_rationale | ✓        | string      | Explains why "False" is correct or incorrect
+true_rationale  | ✓        | dictionary  | A locale dictionary for the text that explains why "True" is correct or incorrect
+false_rationale | ✓        | dictionary  | A locale dictionary for the text that explains why "False" is correct or incorrect
 
 ### Option
 
