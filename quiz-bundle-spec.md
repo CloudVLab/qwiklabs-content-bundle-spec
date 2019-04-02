@@ -22,12 +22,13 @@ Note that all of the localized content (stem, option titles, rationales, etc) ar
 
 ### Quiz attributes
 
-attribute          | required | type    | notes
--------------------| -------- | ------- | -----------------------------------------
-default_locale     | ✓        | string  | Corresponds to the locale that the quiz is authored in. Authoring tools can use this as a hint to notify localizers when content in the default locale is updated. Also, it provides a hint to the learner interface about which locale to display if an instruction/resource is not localized for the learner's current locale.
-schema_version     | ✓        | integer   | Which version of the quiz bundle schema you are using
-passing_percentage | ✓        | integer | The threshold grade that a student needs to achieve in order to count as "passing" the quiz.
-items              | ✓        | array   | An ordered array of `items` (see below for details) in this quiz - items will appear to students in this order
+attribute          | required | type       | notes
+-------------------| -------- | ---------- | -----------------------------------------
+default_locale     | ✓        | string     | Corresponds to the locale that the quiz is authored in. Authoring tools can use this as a hint to notify localizers when content in the default locale is updated. Also, it provides a hint to the learner interface about which locale to display if an instruction/resource is not localized for the learner's current locale.
+schema_version     | ✓        | integer    | Which version of the quiz bundle schema you are using
+title              |          | dictionary | A locale dictionary of the quiz title, such as "My Awesome Quiz"
+passing_percentage | ✓        | integer    | The threshold grade that a student needs to achieve in order to count as "passing" the quiz.
+items              | ✓        | array      | An ordered array of `items` (see below for details) in this quiz - items will appear to students in this order
 
 ### Items
 Items are polymorphic - i.e. there are several different _item types_ that are defined slightly differently. `items` is an array of dictionaries with appropriate attributes for the given `type`. The allowed values for `type` are:
