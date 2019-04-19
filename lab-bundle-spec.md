@@ -162,7 +162,9 @@ fleet                         |          | enum*   | Specify a Qwiklabs fleet to
   id: secondary_project
   fleet: gcpfree
   dm_template:
-    script: deployment_manager
+    script:
+      locales:
+        en: deployment_manager
     custom_properties:
       - key: userNameWindows
         value: student
