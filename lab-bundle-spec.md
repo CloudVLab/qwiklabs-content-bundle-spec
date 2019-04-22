@@ -132,10 +132,7 @@ environment_resources:
   - type: gcp_project
     id: my_primary_project
     dm_template:
-      script:
-        locales:
-          en: deployment_manager
-          es: deployment_manager-es
+      script: deployment_manager
   - type: gcp_user
     id: primary_user
     permissions:
@@ -162,9 +159,7 @@ fleet                         |          | enum*   | Specify a Qwiklabs fleet to
   id: secondary_project
   fleet: gcpfree
   dm_template:
-    script:
-      locales:
-        en: deployment_manager
+    script: deployment_manager
     custom_properties:
       - key: userNameWindows
         value: student
