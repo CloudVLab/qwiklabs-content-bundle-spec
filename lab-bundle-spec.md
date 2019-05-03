@@ -132,10 +132,7 @@ environment_resources:
   - type: gcp_project
     id: my_primary_project
     dm_template:
-      script:
-        locales:
-          en: deployment_manager/instance_pool-en.py
-          es: deployment_manager/instance_pool-es.py
+      script: deployment_manager
   - type: gcp_user
     id: primary_user
     permissions:
@@ -153,7 +150,7 @@ environment_resources:
 
 attribute                     | required | type    | notes
 ----------------------------- | -------- | ------- | --------------------------------------
-dm_template.script            |          | path    | A relative path to a Deployment Manager file.
+dm_template.script            |          | path    | Relative path to a Deployment Manager directory tree.
 dm_template.custom_properties |          | array   | Array of key/value pairs.
 fleet                         |          | enum*   | Specify a Qwiklabs fleet to pull the project from.
 
@@ -162,7 +159,7 @@ fleet                         |          | enum*   | Specify a Qwiklabs fleet to
   id: secondary_project
   fleet: gcpfree
   dm_template:
-    script: deployment_manager/instance_pool.yaml
+    script: deployment_manager
     custom_properties:
       - key: userNameWindows
         value: student
