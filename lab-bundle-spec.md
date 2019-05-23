@@ -26,6 +26,7 @@ description:
 duration: 60
 level: intro
 tags: [sample, life-changing, gcp]
+display: [connection_fleetconsole, connection_vnc, connection_rdp, connection_custom, connection_access_key_id]
 
 ...
 
@@ -68,6 +69,7 @@ duration    | ✓        | integer     | Amount of time it should take an averag
 level       |          | string      |
 logo        |          | file path   |
 tags        |          | array       |
+display     |          | array       | Elements to expose in ql-lab-control-panel widget
 copyright   |          | string/enum | v2 feature after more research?
 
 
