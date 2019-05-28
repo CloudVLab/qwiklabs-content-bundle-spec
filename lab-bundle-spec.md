@@ -28,6 +28,7 @@ level: intro
 tags: [sample, life-changing, gcp]
 legacy_display_options: [
   hide_connection_fleetconsole,
+  show_connection_ssh,
   show_connection_vnc,
   show_connection_rdp,
   show_connection_custom,
