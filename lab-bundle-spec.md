@@ -26,6 +26,13 @@ description:
 duration: 60
 level: intro
 tags: [sample, life-changing, gcp]
+legacy_display_options: [
+  hide_connection_fleetconsole,
+  show_connection_vnc,
+  show_connection_rdp,
+  show_connection_custom,
+  show_connection_access_key_id
+]
 
 ...
 
@@ -60,15 +67,16 @@ The lab bundle MUST specify a `default_locale`. It corresponds to the locale tha
 
 ### Lab attributes
 
-attribute   | required | type        | notes
------------ | -------- | ----------- | -----------------------------------------
-title       | ✓        | locale dictionary |
-description | ✓        | locale dictionary |
-duration    | ✓        | integer     | Amount of time it should take an average learner to complete the lab (in minutes)
-level       |          | string      |
-logo        |          | file path   |
-tags        |          | array       |
-copyright   |          | string/enum | v2 feature after more research?
+attribute              | required | type        | notes
+---------------------- | -------- | ----------- | -----------------------------------------
+title                  | ✓        | locale dictionary |
+description            | ✓        | locale dictionary |
+duration               | ✓        | integer     | Amount of time it should take an average learner to complete the lab (in minutes)
+level                  |          | string      |
+logo                   |          | file path   |
+tags                   |          | array       |
+legacy_display_options |          | array       | Elements to hide/show in ql-lab-control-panel widget
+copyright              |          | string/enum | v2 feature after more research?
 
 
 ### Instructions
