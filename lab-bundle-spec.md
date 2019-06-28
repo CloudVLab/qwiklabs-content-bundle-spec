@@ -32,7 +32,8 @@ legacy_display_options: [
   show_connection_vnc,
   show_connection_rdp,
   show_connection_custom,
-  show_connection_access_key_id
+  show_connection_access_key_id,
+  allow_immediate_entry
 ]
 
 ...
