@@ -198,20 +198,16 @@ fleet                         |          | enum*   | Specify a Qwiklabs fleet to
 
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
-credentials |          | boolean    | Should the learner be given credentials for this user
-roles       |          | dictionary | Specificy IAM roles per project
+permissions |          | array      | Array of project/roles(array) pairs
 
 ```yml
-- type: gcp_user
-  id: learner_user
-  credentials: true
-  roles:
-    # Reference to a GCP project asset
-    my_project:
-      - project.editor
-    other_project:
-      - pubsub.editor
-      - storage.admin
+  - type: gcp_user
+    id: primary_user
+    permissions:
+      - project: my_primary_project
+        roles:
+          - roles/editor
+          - roles/bigquery.admin
 ```
 
 ##### GSuite Domain (gsuite_domain)
