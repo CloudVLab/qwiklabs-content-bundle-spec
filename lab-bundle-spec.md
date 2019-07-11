@@ -156,7 +156,7 @@ environment_resources:
 
 #### Valid types
 
-##### GCP Project (gcp-project)
+##### GCP Project (gcp_project)
 
 attribute                     | required | type    | notes
 ----------------------------- | -------- | ------- | --------------------------------------
@@ -165,7 +165,7 @@ dm_template.custom_properties |          | array   | Array of key/value pairs.
 fleet                         |          | enum*   | Specify a Qwiklabs fleet to pull the project from.
 
 ```yml
-- type: gcp-project
+- type: gcp_project
   id: secondary_project
   fleet: gcpfree
   dm_template:
@@ -186,7 +186,7 @@ fleet                         |          | enum*   | Specify a Qwiklabs fleet to
 > field.
 >
 > Presently, authors are allowed to specify one of the following fleet types for
-> a gcp-project:
+> a gcp_project:
 > - gcpd [default]
 > - gcpfree
 > - gcpasl
@@ -194,7 +194,7 @@ fleet                         |          | enum*   | Specify a Qwiklabs fleet to
 > Future versions of the Content Bundle spec may use different terminology for
 > resource_type variations to avoid conflation.
 
-##### GCP User (gcp-user)
+##### GCP User (gcp_user)
 
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
@@ -202,7 +202,7 @@ credentials |          | boolean    | Should the learner be given credentials fo
 roles       |          | dictionary | Specificy IAM roles per project
 
 ```yml
-- type: gcp-user
+- type: gcp_user
   id: learner_user
   credentials: true
   roles:
@@ -214,7 +214,7 @@ roles       |          | dictionary | Specificy IAM roles per project
       - storage.admin
 ```
 
-##### GSuite Domain (gsuite-domain)
+##### GSuite Domain (gsuite_domain)
 
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
