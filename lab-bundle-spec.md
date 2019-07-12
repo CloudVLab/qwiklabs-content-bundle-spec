@@ -57,7 +57,7 @@ Two properties are critical for specifying your lab bundle:
 
 - `entity_type`
 
-  Currently this can only be `Lab` or `CourseTemplate`. In the future we will expand the QLB specification to include `Quiz`, and other content that Qwiklabs supports.
+  This should be set to `Lab` for lab bundles. For other entity types such as `CourseTemplate` or `Quiz` please see their own bundle spec.
 
 - `schema_version`
 
