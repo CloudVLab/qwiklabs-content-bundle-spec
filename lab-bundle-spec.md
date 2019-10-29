@@ -127,7 +127,7 @@ See [Resource Spec](./resource-spec.md) for details.
 
 ### Environment Resources
 
-The sandbox learning environment is a key features of Qwiklabs. As the author of a lab, you need to tell us which cloud accounts to provision for a learner, and what resources we should create in that account before handing it over to the learner.
+The sandbox learning environment is a key feature of Qwiklabs. As the author of a lab, you need to tell us which cloud accounts to provision for a learner, and what resources we should create in that account before handing it over to the learner.
 
 The properties of each environment resource will depend on their type, i.e. AWS Accounts and GSuite Users require different configuration data. However, there are two properties that all resources have regardless of type:
 
@@ -231,7 +231,7 @@ No additional attributes
 
 ### Activity Tracking (Alpha)
 
-Activity tracking is a feature for evaluating a students performance in a lab by running a script at "checkpoints". These scripts can call APIs relavent to any environment resource to query their current state. For example, the script may inspect and validate the configuration of GCE instances running in `my-project`, to ensure the user is following the instructions properly.
+Activity tracking is a feature for evaluating a students performance in a lab by running a script at "checkpoints". These scripts can call APIs relevant to any environment resource to query their current state. For example, the script may inspect and validate the configuration of GCE instances running in `my-project`, to ensure the user is following the instructions properly.
 
 Lab bundles will provisionally support the JSON representation of Activity Tracking currently used in the Qwiklabs web interface. The JSON definition should be stored in file separately from (and referenced directly in) `qwiklabs.yaml`.
 
