@@ -161,6 +161,7 @@ dm_template.end.script              |          | path    | Relative path to a De
 dm_template.end.custom_properties   |          | array   | Array of key/value pairs.
 fleet                               |          | enum*   | Specify a Qwiklabs fleet to pull the project from.
 service_account_permissions         |          | array   | Array of project/roles(array) pairs to be granted to the default compute engine service account in this project.
+ssh_key_user                        |          | string  | If this project should use a user's SSH key, the id of that user.
 
 ```yml
 - type: gcp_project
@@ -207,12 +208,10 @@ service_account_permissions         |          | array   | Array of project/role
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
 permissions |          | array      | Array of project/roles(array) pairs
-ssh_project |          | string     | If an SSH key is desired for thise user, the id of the project that the SSH key should be attached to.
 
 ```yml
   - type: gcp_user
     id: primary_user
-    ssh_project: my_primary_project
     permissions:
       - project: my_primary_project
         roles:
