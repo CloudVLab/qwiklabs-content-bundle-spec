@@ -207,10 +207,12 @@ service_account_permissions         |          | array   | Array of project/role
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
 permissions |          | array      | Array of project/roles(array) pairs
+ssh_project |          | string     | If an SSH key is desired for thise user, fill this in with the id of the project that the SSH key should be attached to.
 
 ```yml
   - type: gcp_user
     id: primary_user
+    ssh_project: my_primary_project
     permissions:
       - project: my_primary_project
         roles:
