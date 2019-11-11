@@ -1,6 +1,6 @@
 # Qwiklabs Lab Bundle Specification
 
-**Version 2**
+**Version 1**
 
 > This is a DRAFT document. We welcome feedback as this format evolves.
 
@@ -12,7 +12,7 @@ Here's a sample `qwiklabs.yaml` file, with all nested details removed to make it
 
 ```yml
 entity_type: Lab
-schema_version: 2
+schema_version: 1
 default_locale: en
 
 title:
@@ -61,7 +61,7 @@ Two properties are critical for specifying your lab bundle:
 
 - `schema_version`
 
-  This notes which version of this spec the bundle is using. The valid values are `1` (deprecated) and `2` (current).
+  This notes which version of this spec the bundle is using. Currently, the only valid value is `1` but this will change as new features get added.
 
 ### Default Locale
 
@@ -141,10 +141,15 @@ id        |          | string | Identifier that can be used throughout project b
 environment_resources:
   - type: gcp_project
     id: my_primary_project
-  - type: gcp_project
-    id: secondary_project
+    dm_template:
+      script: deployment_manager
   - type: gcp_user
     id: primary_user
+    permissions:
+      - project: my_primary_project
+        roles:
+          - roles/editor
+          - roles/bigquery.admin
   - type: gcp_user
     id: secondary_user
 ```
@@ -153,34 +158,21 @@ environment_resources:
 
 ##### GCP Project (gcp_project)
 
-attribute                           | required | type    | notes
------------------------------------ | -------- | ------- | --------------------------------------
-dm_template.start.script            |          | path    | Relative path to a Deployment Manager directory tree.
-dm_template.start.custom_properties |          | array   | Array of key/value pairs.
-dm_template.end.script              |          | path    | Relative path to a Deployment Manager directory tree.
-dm_template.end.custom_properties   |          | array   | Array of key/value pairs.
-fleet                               |          | enum*   | Specify a Qwiklabs fleet to pull the project from.
-service_account_permissions         |          | array   | Array of project/roles(array) pairs to be granted to the default compute engine service account in this project.
+attribute                     | required | type    | notes
+----------------------------- | -------- | ------- | --------------------------------------
+dm_template.script            |          | path    | Relative path to a Deployment Manager directory tree.
+dm_template.custom_properties |          | array   | Array of key/value pairs.
+fleet                         |          | enum*   | Specify a Qwiklabs fleet to pull the project from.
 
 ```yml
 - type: gcp_project
   id: secondary_project
   fleet: gcpfree
   dm_template:
-    start:
-      script: dm_startup.zip
-      custom_properties:
-        - key: userNameWindows
-          value: student
-    end:
-      script: dm_cleanup.zip
-  service_account_permissions:
-    - project: my_primary_project
-      roles:
-        - roles/viewer
-    - project: secondary_project
-      roles:
-        - roles/editor
+    script: deployment_manager
+    custom_properties:
+      - key: userNameWindows
+        value: student
 ```
 
 > **NOTE:** Not all GCP fleet names are supported.
