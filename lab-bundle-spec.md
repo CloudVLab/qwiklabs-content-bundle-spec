@@ -135,7 +135,8 @@ The properties of each environment resource will depend on their type, i.e. AWS 
 attribute | required | type   | notes
 --------- | -------- | ------ | -----------------------------------------
 type      | ✓        | enum   | [See list of valid types]
-id        |          | string | Identifier that can be used throughout project bundle
+id        |          | string | Identifier that can be used throughout project bundle.
+variant   |          | string | The subtype resource being requested. Each type below lists its valid variants and specifies which is the default.
 
 ```yml
 environment_resources:
@@ -143,6 +144,7 @@ environment_resources:
     id: my_primary_project
   - type: gcp_project
     id: secondary_project
+    variant: gcpfree
   - type: gcp_user
     id: primary_user
   - type: gcp_user
@@ -153,29 +155,34 @@ environment_resources:
 
 ##### GCP Project (gcp_project)
 
-attribute                           | required | type    | notes
------------------------------------ | -------- | ------- | --------------------------------------
-dm_template.start.script            |          | path    | Relative path to a Deployment Manager directory tree.
-dm_template.start.custom_properties |          | array   | Array of key/value pairs.
-dm_template.end.script              |          | path    | Relative path to a Deployment Manager directory tree.
-dm_template.end.custom_properties   |          | array   | Array of key/value pairs.
-fleet                               |          | enum*   | Specify a Qwiklabs fleet to pull the project from.
-service_account_permissions         |          | array   | Array of project/roles(array) pairs to be granted to the default compute engine service account in this project.
-ssh_key_user                        |          | string  | If this project should use a user's SSH key, the id of that user.
+attribute                        | required | type    | notes
+---------------------------------| -------- | ------- | --------------------------------------
+startup_script.type              |          | string  | The type of startup script. Only `deployment_manager` is supported.
+startup_script.path              |          | path    | Relative path to a directory tree with the script contents.
+startup_script.custom_properties |          | array   | Array of pairs. See below for details.
+cleanup_script.type              |          | string  | The type of cleanup script. Only `deployment_manager` is supported.
+cleanup_script.path              |          | path    | Relative path to a directory tree with the script contents.
+cleanup_script.custom_properties |          | array   | Array of pairs. See below for details.
+gce_service_account_permissions  |          | array   | Array of project/roles(array) pairs to be granted to the default compute engine service account in this project.
+ssh_key_user                     |          | string  | If this project should use a user's SSH key, the id of that user.
 
 ```yml
 - type: gcp_project
   id: secondary_project
-  fleet: gcpfree
-  dm_template:
-    start:
-      script: dm_startup.zip
-      custom_properties:
-        - key: userNameWindows
-          value: student
-    end:
-      script: dm_cleanup.zip
-  service_account_permissions:
+  variant: gcpfree
+  startup_script:
+    type: deployment_manager
+    path: dm_startup.zip
+    custom_properties:
+      - key: userNameWindows
+        value: student
+  cleanup_script:
+    type: deployment_manager
+    path: dm_cleanup.zip
+    custom_properties:
+      - key: primary_project_zone
+        value: my_primary_project.zone
+  gce_service_account_permissions:
     - project: my_primary_project
       roles:
         - roles/viewer
@@ -184,24 +191,35 @@ ssh_key_user                        |          | string  | If this project shoul
         - roles/editor
 ```
 
-> **NOTE:** Not all GCP fleet names are supported.
+> **NOTE:** The existing concept of Qwiklabs' Fleets does not have a single
+> analog in content bundles.
 >
-> The existing concept of Qwiklabs' Fleets does not have a single analog in
-> content bundles. Notice that some fleet types map to resource types (e.g.
-> `gsuite_multi_tenant` fleet is now the `gsuite-domain` resource type).
-> However other fleets are "variants" of the same resource type (e.g.
-> "free", "ASL", and "standard" GCP projects). Therefore, not all fleet names that
-> an experienced Qwiklabs author may be familiar with, are allowed in the `fleet`
-> field.
->
-> Presently, authors are allowed to specify one of the following fleet types for
-> a gcp_project:
-> - gcpd [default]
-> - gcpfree
-> - gcpasl
->
-> Future versions of the Content Bundle spec may use different terminology for
-> resource_type variations to avoid conflation.
+> Some fleet types map to resource types (e.g. `gsuite_multi_tenant` fleet is
+> now the `gsuite-domain` resource type), while other fleets are allowed as
+> "variants" of `gcp_project` (see below).
+
+###### Variants
+
+The allowed variants are:
+- gcpd [default]
+- gcpfree
+- gcpasl
+
+
+###### Custom properties
+
+attribute | required | type   | notes
+----------| -------- | ------ | --------------------------------------
+key       | ✓        | string | How the property will be referenced within the script.
+value     |          | string | A value to be passed into the script.
+reference |          | string | A reference to a value, in the form `[RESOURCE].[PROPERTY]`, which will be obtained from the running resource and passed into the script.
+
+The valid `reference`s are:
+- [USER_ID].username
+- [USER_ID].password
+- [PROJECT_ID].project_id
+- [PROJECT_ID].zone
+
 
 ##### GCP User (gcp_user)
 
