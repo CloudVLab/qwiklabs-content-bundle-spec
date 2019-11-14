@@ -163,7 +163,6 @@ startup_script.custom_properties |          | array   | Array of pairs. See belo
 cleanup_script.type              |          | string  | The type of cleanup script. Only `deployment_manager` is supported.
 cleanup_script.path              |          | path    | Relative path to a directory tree with the script contents.
 cleanup_script.custom_properties |          | array   | Array of pairs. See below for details.
-gce_service_account_permissions  |          | array   | Array of project/roles(array) pairs to be granted to the default compute engine service account in this project.
 ssh_key_user                     |          | string  | If this project should use a user's SSH key, the id of that user.
 
 ```yml
@@ -182,13 +181,6 @@ ssh_key_user                     |          | string  | If this project should u
     custom_properties:
       - key: primary_project_zone
         value: my_primary_project.zone
-  gce_service_account_permissions:
-    - project: my_primary_project
-      roles:
-        - roles/viewer
-    - project: secondary_project
-      roles:
-        - roles/editor
 ```
 
 > **NOTE:** The existing concept of Qwiklabs' Fleets does not have a single
