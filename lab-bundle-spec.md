@@ -6,6 +6,14 @@
 
 Previously (in b6086b8f824aa398c1f4413b92351a4956e744cd), the robust example had some cool ideas for how deployment manager and activity tracking should look in the future. None of it is implemented yet but the ideas may be useful in the future.
 
+## Changelog
+
+The primary changes made from v1 to v2 are:
+- Renaming the `fleet` attribute on the `gcp_project` resource type to `variant`, and allowing for `variant` to be specified on other resource types.
+- Replacing the `dm_template` attribute on the `gcp_project` resource type with a `startup_script` and `cleanup_script`.
+- Allowing `custom_properties` to include a `reference` (rather than `value`) that can be filled in from running resources.
+- Adding an `ssh_key_user` attribute on the `gcp_project` resource type.
+
 ## `qwiklabs.yaml` Structure
 
 Here's a sample `qwiklabs.yaml` file, with all nested details removed to make it easier to see the general file structure.
