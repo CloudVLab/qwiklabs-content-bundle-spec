@@ -214,11 +214,13 @@ key       | ✓        | string | How the property will be referenced within the
 value     |          | string | A value to be passed into the script.
 reference |          | string | A reference to a value, in the form `[RESOURCE].[PROPERTY]`, which will be obtained from the running resource and passed into the script.
 
-The valid `reference`s are:
-- [USER_ID].username
-- [USER_ID].password
-- [PROJECT_ID].project_id
-- [PROJECT_ID].zone
+See each resource type's "Valid custom property references" section for the valid references.
+
+###### Valid custom property references
+
+The valid `reference`s for the `gcp_project` resource are:
+- [PROJECT].project_id
+- [PROJECT].default_zone
 
 
 ##### GCP User (gcp_user)
@@ -236,6 +238,12 @@ permissions |          | array      | Array of project/roles(array) pairs
           - roles/editor
           - roles/bigquery.admin
 ```
+
+###### Valid custom property references
+
+The valid `reference`s for the `gcp_project` resource are:
+- [USER].username
+- [USER].password
 
 ##### GSuite Domain (gsuite_domain)
 
