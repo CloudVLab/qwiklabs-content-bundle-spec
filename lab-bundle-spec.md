@@ -241,7 +241,7 @@ permissions |          | array      | Array of project/roles(array) pairs
 
 ###### Valid custom property references
 
-The valid `reference`s for the `gcp_project` resource are:
+The valid `reference`s for the `gcp_user` resource are:
 - [USER].username
 - [USER].password
 
