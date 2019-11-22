@@ -9,10 +9,26 @@ Previously (in b6086b8f824aa398c1f4413b92351a4956e744cd), the robust example had
 ## Changelog
 
 The primary changes made from v1 to v2 are:
+
+- Add `environment` as a top level property with two children: (1) `resources` matches the usage of `environment_resources` in v1, and (2) `display_outputs` specifies which properties of those resources should be displayed to the student (e.g. only display the username and password for the `primary_user` instead of every gcp_user created by the lab). See the [Display Outputs section](#display-outputs) for details.
+
 - Renaming the `fleet` attribute on the `gcp_project` resource type to `variant`, and allowing for `variant` to be specified on other resource types.
+
 - Replacing the `dm_template` attribute on the `gcp_project` resource type with a `startup_script` and `cleanup_script`.
+
 - Allowing `custom_properties` to include a `reference` (rather than `value`) that can be filled in from running resources.
+
 - Adding an `ssh_key_user` attribute on the `gcp_project` resource type.
+
+## Concepts
+
+### Resource References
+
+TODO: Flesh out
+
+- Applies to both environment resources and instruction resources.
+- In qwiklabs.yaml only valid when the property type is a reference (e.g. `display_output` and `custom_properties`)
+- [Planned] Can be interpolated into instructions.
 
 ## `qwiklabs.yaml` Structure
 
@@ -29,23 +45,11 @@ title:
 
 description:
   locales:
-    en: No, seriously. It's the best lab ever. You're going to love it!
+    en: "No, seriously. It's the best lab ever. You're going to love it!"
 
 duration: 60
 level: intro
 tags: [sample, life-changing, gcp]
-legacy_display_options: [
-  hide_connection_fleetconsole,
-  show_connection_ssh,
-  show_connection_vnc,
-  show_connection_rdp,
-  show_connection_custom,
-  show_connection_access_key_id,
-  allow_immediate_entry
-]
-
-...
-
 
 # The primary instruction content for this lab
 instruction: ...
@@ -53,9 +57,15 @@ instruction: ...
 # Other resources the learner may access while taking this lab
 resources: ...
 
-# Lab resources that are provisioned by Qwiklabs
-#  e.g. cloud account, databases, etc.
-environment_resources: ...
+environment:
+  # Lab resources that are provisioned by Qwiklabs
+  #  e.g. cloud account, databases, etc.
+  resources: ...
+
+  # Properties of the lab environment that are displayed to the user
+  #  e.g. gcp project, username, password. etc.
+  display_outputs: ...
+
 
 # Checkpoint evaluation and quiz data
 assessment: ...
@@ -133,12 +143,13 @@ Resources are additional materials that learners may refer to while taking this 
 
 See [Resource Spec](./resource-spec.md) for details.
 
-### Environment Resources
+### Environment
+
+#### Resources (Environment)
 
 The sandbox learning environment is a key feature of Qwiklabs. As the author of a lab, you need to tell us which cloud accounts to provision for a learner, and what resources we should create in that account before handing it over to the learner.
 
 The properties of each environment resource will depend on their type, i.e. AWS Accounts and GSuite Users require different configuration data. However, there are two properties that all resources have regardless of type:
-
 
 attribute | required | type   | notes
 --------- | -------- | ------ | -----------------------------------------
@@ -147,19 +158,20 @@ id        |          | string | Identifier that can be used throughout project b
 variant   |          | string | The subtype resource being requested. Each type below lists its valid variants and specifies which is the default.
 
 ```yml
-environment_resources:
-  - type: gcp_project
-    id: my_primary_project
-  - type: gcp_project
-    id: secondary_project
-    variant: gcpfree
-  - type: gcp_user
-    id: primary_user
-  - type: gcp_user
-    id: secondary_user
+environment:
+  resources:
+    - type: gcp_project
+      id: my_primary_project
+    - type: gcp_project
+      id: secondary_project
+      variant: gcpfree
+    - type: gcp_user
+      id: primary_user
+    - type: gcp_user
+      id: secondary_user
 ```
 
-#### Valid types
+
 
 ##### GCP Project (gcp_project)
 
@@ -219,9 +231,9 @@ See each resource type's "Valid custom property references" section for the vali
 ###### Valid custom property references
 
 The valid `reference`s for the `gcp_project` resource are:
+
 - [PROJECT].project_id
 - [PROJECT].default_zone
-
 
 ##### GCP User (gcp_user)
 
@@ -242,6 +254,7 @@ permissions |          | array      | Array of project/roles(array) pairs
 ###### Valid custom property references
 
 The valid `reference`s for the `gcp_user` resource are:
+
 - [USER].username
 - [USER].password
 
@@ -263,6 +276,32 @@ No additional attributes
 
 > **NOTE:** A draft of the `aws-account` resource type was previously specified
 > in this document. See [previous version](https://github.com/CloudVLab/qwiklabs-content-bundle-spec/blob/93896ced4ae5b543132d7a10d838ac17bd5ae3e1/lab-bundle-spec.md) for details.
+
+#### Display Outputs
+
+TODO: Describe usage
+
+attribute | required | type   | notes
+----------| -------- | ------ | --------------------------------------
+label     | ✓        | string | How the property will be referenced within the script.
+reference | ✓        | string | A reference to a value, in the form `[RESOURCE].[PROPERTY]`, which will be obtained from the running resource and passed into the script.
+
+```yml
+environment:
+  display_outputs:
+    - label:
+        locales:
+          en: "GCP Project"
+      reference: primary_project.project_id
+    - label:
+        locales:
+          en: "Username"
+      reference: primary_user.username
+    - label:
+        locales:
+          en: "Password"
+      reference: primary_user.password
+```
 
 ### Activity Tracking (Alpha)
 
