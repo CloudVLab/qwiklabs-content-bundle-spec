@@ -57,20 +57,19 @@ resources:
     duration: 360
 
 environment_resources:
-  resources:
-    - type: gcp_project
-      id: my_primary_project
-      fleet: gcpfree
-      dm_script: dm.zip
-      default_region: 'us-central-1c'
-    - type: gcp_user
-      id: user_0
-      permissions:
-      - project: project_0
-        roles:
-        - roles/editor
-        - roles/appengine.appAdmin
-        - roles/bigquery.admin
-        - roles/bigquery.user
+  - type: gcp_project
+    id: my_primary_project
+    fleet: gcpfree
+    dm_script: dm.zip
+    default_region: 'us-central-1c'
+  - type: gcp_user
+    id: user_0
+    permissions:
+    - project: project_0
+      roles:
+      - roles/editor
+      - roles/appengine.appAdmin
+      - roles/bigquery.admin
+      - roles/bigquery.user
 
 assessment: assessment.yaml
