@@ -279,7 +279,9 @@ No additional attributes
 
 #### Display Outputs
 
-TODO: Describe usage
+Specify which resources properties are given to the lab taker.
+
+Not all details of the lab environment should be exposed to the lab taken. For example, a lab may involve a GCP project and two GCP users. The lab taker is expected to log into GCP as one user, and manipulate the IAM privileges of the other. Since the lab taker is not expected to log in to the second user, there is no reason to display the GCP user's password and doing so may be distract.
 
 attribute | required | type   | notes
 ----------| -------- | ------ | --------------------------------------
