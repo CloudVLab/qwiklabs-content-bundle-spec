@@ -10,7 +10,7 @@ Previously (in b6086b8f824aa398c1f4413b92351a4956e744cd), the robust example had
 
 The primary changes made from v1 to v2 are:
 
-- Add `environment` as a top level property with two children: (1) `resources` matches the usage of `environment_resources` in v1, and (2) `display_outputs` specifies which properties of those resources should be displayed to the student (e.g. only display the username and password for the `primary_user` instead of every gcp_user created by the lab). See the [Display Outputs section](#display-outputs) for details.
+- Add `environment` as a top level property with two children: (1) `resources` matches the usage of `environment_resources` in v1, and (2) `student_visible_outputs` specifies which properties of those resources should be provided to the student (e.g. only display the username and password for the `primary_user` instead of every gcp_user created by the lab). See the [Student Visible Outputs section](#student-visible-outputs) for details.
 
 - Renaming the `fleet` attribute on the `gcp_project` resource type to `variant`, and allowing for `variant` to be specified on other resource types.
 
@@ -64,7 +64,7 @@ environment:
 
   # Properties of the lab environment that are displayed to the user
   #  e.g. gcp project, username, password. etc.
-  display_outputs: ...
+  student_visible_outputs: ...
 
 
 # Checkpoint evaluation and quiz data
@@ -277,7 +277,7 @@ No additional attributes
 > **NOTE:** A draft of the `aws-account` resource type was previously specified
 > in this document. See [previous version](https://github.com/CloudVLab/qwiklabs-content-bundle-spec/blob/93896ced4ae5b543132d7a10d838ac17bd5ae3e1/lab-bundle-spec.md) for details.
 
-#### Display Outputs
+#### Student Visible Outputs
 
 Specify which resource properties are given to the lab taker.
 
@@ -290,7 +290,7 @@ reference | ✓        | string | A reference to a value, in the form `[RESOURCE
 
 ```yml
 environment:
-  display_outputs:
+  student_visible_outputs:
     - label:
         locales:
           en: "GCP Project"
@@ -304,7 +304,9 @@ environment:
           en: "Password"
       reference: primary_user.password
 ```
+
 See each resource type's "Valid custom property references" section for the valid references.
+
 ### Activity Tracking (Alpha)
 
 Activity tracking is a feature for evaluating a students performance in a lab by running a script at "checkpoints". These scripts can call APIs relevant to any environment resource to query their current state. For example, the script may inspect and validate the configuration of GCE instances running in `my-project`, to ensure the user is following the instructions properly.

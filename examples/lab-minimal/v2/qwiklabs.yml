@@ -19,7 +19,7 @@ instruction:
     en: './instruction.html'
 
 environment:
-  display_outputs:
+  student_visible_outputs:
     - label:
         locales:
           en: "GCP Project"

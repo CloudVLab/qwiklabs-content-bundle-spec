@@ -57,7 +57,7 @@ resources:
     duration: 360
 
 environment_resources:
-  display_outputs:
+  student_visible_outputs:
     - label:
         locales:
           en: "GCP Project"
