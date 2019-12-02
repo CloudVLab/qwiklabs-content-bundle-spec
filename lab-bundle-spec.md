@@ -279,9 +279,9 @@ No additional attributes
 
 #### Display Outputs
 
-Specify which resources properties are given to the lab taker.
+Specify which resource properties are given to the lab taker.
 
-Not all details of the lab environment should be exposed to the lab taken. For example, a lab may involve a GCP project and two GCP users. The lab taker is expected to log into GCP as one user, and manipulate the IAM privileges of the other. Since the lab taker is not expected to log in to the second user, there is no reason to display the GCP user's password and doing so may be distract.
+Not all details of the lab environment should be exposed to the lab taker. For example, a lab may involve a GCP project and two GCP users. The lab taker is expected to log into GCP as one user, and manipulate the IAM privileges of the other. Since the lab taker is not expected to log in as the second user, there is no reason to display the second user's password and doing so may be distracting.
 
 attribute | required | type   | notes
 ----------| -------- | ------ | --------------------------------------
@@ -304,7 +304,7 @@ environment:
           en: "Password"
       reference: primary_user.password
 ```
-
+See each resource type's "Valid custom property references" section for the valid references.
 ### Activity Tracking (Alpha)
 
 Activity tracking is a feature for evaluating a students performance in a lab by running a script at "checkpoints". These scripts can call APIs relevant to any environment resource to query their current state. For example, the script may inspect and validate the configuration of GCE instances running in `my-project`, to ensure the user is following the instructions properly.
