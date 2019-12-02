@@ -220,7 +220,7 @@ The allowed variants are:
 - gcpedu
 
 
-###### Custom properties
+###### Custom Script Properties
 
 attribute | required | type               | notes
 ----------| -------- | ------------------ | --------------------------------------
@@ -270,6 +270,40 @@ No additional attributes
 - type: gsuite_domain
   id: primary_domain
 ```
+
+##### AWS Account (aws_account)
+
+attribute   | required | type       | notes
+----------- | -------- | ---------- | ----------------------------------------
+startup_script.type              |          | string  | The type of startup script. Only `cloud_formation` is supported.
+startup_script.path              |          | path    | Relative path to a directory tree with the script contents.
+startup_script.custom_properties |          | array   | Array of pairs. See [Custom Script Properties](#custom-script-properties) for details.
+cleanup_script.type              |          | string  | The type of cleanup script. Only `cloud_formation` is supported.
+cleanup_script.path              |          | path    | Relative path to a directory tree with the script contents.
+cleanup_script.custom_properties |          | array   | Array of pairs. See [Custom Script Properties](#custom-script-properties) for details.
+permissions                      |          | path    | Relative path to a [JSON policy](https://awspolicygen.s3.amazonaws.com/policygen.html) document
+variant                          |          | enum*   | Specify a Qwiklabs fleet name.
+
+```yml
+- type: aws_account
+  id: the_account
+  variant: sts
+  startup_script:
+    type: cloud_formation
+    path: ./cf_script.zip
+    custom_properties:
+      - key: userNameWindows
+        value: student
+```
+
+###### Valid custom property references
+
+The valid `reference`s for an `aws_account` resource are:
+
+- [AWS_ACCOUNT].account_id
+- [AWS_ACCOUNT].username
+- [AWS_ACCOUNT].password
+- [AWS_ACCOUNT].sts_token (?)
 
 ##### Future Resource Types
 
