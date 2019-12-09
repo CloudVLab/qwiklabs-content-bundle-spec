@@ -1,5 +1,5 @@
 entity_type: Lab
-schema_version: 1
+schema_version: 2
 
 default_locale: en
 
@@ -39,7 +39,7 @@ resources:
     uri:
       locales:
         en: "./resources/sample-en.pdf"
-        en: "./resources/sample-es.pdf"
+        es: "./resources/sample-es.pdf"
   - type: video
     id: intro-video
     title:
@@ -56,7 +56,7 @@ resources:
         es: Descripción general de Google Cloud Platform
     duration: 360
 
-environment_resources:
+environment:
   student_visible_outputs:
     - label:
         locales:
@@ -75,7 +75,6 @@ environment_resources:
     - type: gcp_project
       id: primary_project
       variant: gcpfree
-      dm_script: dm.zip
       startup_script:
         type: deployment_manager
         path: dm_startup.zip
