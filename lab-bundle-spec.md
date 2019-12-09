@@ -10,7 +10,9 @@ Previously (in b6086b8f824aa398c1f4413b92351a4956e744cd), the robust example had
 
 The primary changes made from v1 to v2 are:
 
-- Add `environment` as a top level property with two children: (1) `resources` matches the usage of `environment_resources` in v1, and (2) `student_visible_outputs` specifies which properties of those resources should be provided to the student (e.g. only display the username and password for the `primary_user` instead of every gcp_user created by the lab). See the [Student Visible Outputs section](#student-visible-outputs) for details.
+- Adding `environment` as a top level property with two children:
+  - `resources` matches the usage of `environment_resources` in v1
+  - `student_visible_outputs` specifies which properties of those resources should be provided to the student (e.g. only display the username and password for the `primary_user` instead of every `gcp_user` created by the lab). See the [Student Visible Outputs section](#student-visible-outputs) for details.
 
 - Renaming the `fleet` attribute on the `gcp_project` resource type to `variant`, and allowing for `variant` to be specified on other resource types.
 
@@ -24,11 +26,11 @@ The primary changes made from v1 to v2 are:
 
 ### Resource References
 
-TODO: Flesh out
+Sometimes it is useful to reference values that are unknown at authoring time. For example, an author may specify that a GCP Project username should be displayed to the student, but this username is not known until the lab is started. To address this, we have the concept of resource references.
 
-- Applies to both environment resources and instruction resources.
-- In qwiklabs.yaml only valid when the property type is a reference (e.g. `display_output` and `custom_properties`)
-- [Planned] Can be interpolated into instructions.
+A resource reference has the form `[RESOURCE_ID].[RESOURCE_ATTRIBUTE]`. Each environment resource type has an allowed set of attributes that can be referenced, defined in its "Valid resource references" section. When an attribute has type "resource reference", the value should be of this form.
+
+Currently, this can only be used for `student_visible_outputs` and `custom_properties` (of startup/cleanup scripts). In the future, we hope to allow interpolating these resource references into the lab instructions.
 
 ## `qwiklabs.yaml` Structure
 
@@ -96,8 +98,6 @@ level                  |          | string      |
 logo                   |          | file path   |
 tags                   |          | array       |
 legacy_display_options |          | array       | Elements to hide/show in ql-lab-control-panel widget
-copyright              |          | string/enum | v2 feature after more research?
-
 
 ### Instructions
 
@@ -149,7 +149,7 @@ See [Resource Spec](./resource-spec.md) for details.
 
 The sandbox learning environment is a key feature of Qwiklabs. As the author of a lab, you need to tell us which cloud accounts to provision for a learner, and what resources we should create in that account before handing it over to the learner.
 
-The properties of each environment resource will depend on their type, i.e. AWS Accounts and GSuite Users require different configuration data. However, there are two properties that all resources have regardless of type:
+The properties of each environment resource will depend on their type, e.g. AWS Accounts and GSuite Users require different configuration data. However, there are three properties that all resources have regardless of type:
 
 attribute | required | type   | notes
 --------- | -------- | ------ | -----------------------------------------
@@ -220,15 +220,13 @@ The allowed variants are:
 
 ###### Custom properties
 
-attribute | required | type   | notes
-----------| -------- | ------ | --------------------------------------
-key       | ✓        | string | How the property will be referenced within the script.
-value     |          | string | A value to be passed into the script.
-reference |          | string | A reference to a value, in the form `[RESOURCE].[PROPERTY]`, which will be obtained from the running resource and passed into the script.
+attribute | required | type               | notes
+----------| -------- | ------------------ | --------------------------------------
+key       | ✓        | string             | How the property will be referenced within the script.
+value     |          | string             | A value to be passed into the script.
+reference |          | resource reference | A [resource reference](#resource-references) to be passed into the script.
 
-See each resource type's "Valid custom property references" section for the valid references.
-
-###### Valid custom property references
+###### Valid resource references
 
 The valid `reference`s for the `gcp_project` resource are:
 
@@ -251,7 +249,7 @@ permissions |          | array      | Array of project/roles(array) pairs
           - roles/bigquery.admin
 ```
 
-###### Valid custom property references
+###### Valid resource references
 
 The valid `reference`s for the `gcp_user` resource are:
 
@@ -283,10 +281,10 @@ Specify which resource properties are given to the lab taker.
 
 Not all details of the lab environment should be exposed to the lab taker. For example, a lab may involve a GCP project and two GCP users. The lab taker is expected to log into GCP as one user, and manipulate the IAM privileges of the other. Since the lab taker is not expected to log in as the second user, there is no reason to display the second user's password and doing so may be distracting.
 
-attribute | required | type   | notes
-----------| -------- | ------ | --------------------------------------
-label     | ✓        | string | How the property will be referenced within the script.
-reference | ✓        | string | A reference to a value, in the form `[RESOURCE].[PROPERTY]`, which will be obtained from the running resource and passed into the script.
+attribute | required | type               | notes
+----------| -------- | ------------------ | --------------------------------------
+label     | ✓        | string             | A label identifying to the student what the displayed reference is.
+reference | ✓        | resource reference | A [resource reference](#resource-references) for a value to be displayed to the student.
 
 ```yml
 environment:
@@ -302,10 +300,9 @@ environment:
     - label:
         locales:
           en: "Password"
+          es: "Contraseña"
       reference: primary_user.password
 ```
-
-See each resource type's "Valid custom property references" section for the valid references.
 
 ### Activity Tracking (Alpha)
 
