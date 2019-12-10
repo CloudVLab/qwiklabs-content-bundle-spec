@@ -251,6 +251,8 @@ permissions |          | array      | Array of project/roles(array) pairs
           - roles/bigquery.admin
 ```
 
+The `gcp_user` type could more properly be called `gaia_user`, since that's what it provisions. However, the term `gaia` is less well-known, so we stick with `gcp`.
+
 ###### Valid resource references
 
 The valid `reference`s for the `gcp_user` resource are:
