@@ -15,8 +15,9 @@ level: easy-peasy
 
 instruction:
   type: html
-  locales:
-    en: './instruction.html'
+  uri:
+    locales:
+      en: './instruction.html'
 
 environment:
   student_visible_outputs:

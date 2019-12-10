@@ -101,17 +101,18 @@ legacy_display_options |          | array       | Elements to hide/show in ql-la
 
 ### Instructions
 
-attribute | required | type       | notes
---------- | -------- | ---------- | -----------------------------------------
-type      | ✓        | enum       | [See list of valid types below]
-locales   | ✓        | dictionary | Keys are locale codes, the values are paths to files in the bundle.
+attribute | required | type              | notes
+--------- | -------- | ----------------- | -----------------------------------------
+type      | ✓        | enum              | [See list of valid types below]
+uri       | ✓        | locale dictionary | Within the locale dictionary, the values are paths to files in the bundle.
 
 ```yml
 instruction:
   type: html
-  locales:
-    en: instructions/en.html
-    es: instructions/es.html
+  uri:
+    locales:
+      en: instructions/en.html
+      es: instructions/es.html
 ```
 
 #### Valid types
@@ -200,7 +201,7 @@ ssh_key_user                     |          | string  | If this project should u
     path: dm_cleanup.zip
     custom_properties:
       - key: primary_project_zone
-        value: my_primary_project.zone
+        reference: my_primary_project.zone
 ```
 
 > **NOTE:** The existing concept of Qwiklabs' Fleets does not have a single
@@ -216,6 +217,7 @@ The allowed variants are:
 - gcpd [default]
 - gcpfree
 - gcpasl
+- gcpedu
 
 
 ###### Custom properties
@@ -306,7 +308,7 @@ environment:
 
 ### Activity Tracking (Alpha)
 
-Activity tracking is a feature for evaluating a students performance in a lab by running a script at "checkpoints". These scripts can call APIs relevant to any environment resource to query their current state. For example, the script may inspect and validate the configuration of GCE instances running in `my-project`, to ensure the user is following the instructions properly.
+Activity tracking is a feature for evaluating a student's performance in a lab by running a script at "checkpoints". These scripts can call APIs relevant to any environment resource to query their current state. For example, the script may inspect and validate the configuration of GCE instances running in `my-project`, to ensure the user is following the instructions properly.
 
 Lab bundles will provisionally support the JSON representation of Activity Tracking currently used in the Qwiklabs web interface. The JSON definition should be stored in file separately from (and referenced directly in) `qwiklabs.yaml`.
 

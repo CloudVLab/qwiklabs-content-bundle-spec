@@ -22,9 +22,10 @@ tags:
 
 instruction:
   type: markdown
-  locales:
-    en: "./instructions/en.md"
-    es: "./instructions/es.md"
+  uri:
+    locales:
+      en: "./instructions/en.md"
+      es: "./instructions/es.md"
 
 resources:
   - type: file
