@@ -1,5 +1,5 @@
 entity_type: Lab
-schema_version: 1
+schema_version: 2
 
 default_locale: en
 
@@ -22,9 +22,10 @@ tags:
 
 instruction:
   type: markdown
-  locales:
-    en: "./instructions/en.md"
-    es: "./instructions/es.md"
+  uri:
+    locales:
+      en: "./instructions/en.md"
+      es: "./instructions/es.md"
 
 resources:
   - type: file
@@ -39,7 +40,7 @@ resources:
     uri:
       locales:
         en: "./resources/sample-en.pdf"
-        en: "./resources/sample-es.pdf"
+        es: "./resources/sample-es.pdf"
   - type: video
     id: intro-video
     title:
@@ -56,17 +57,41 @@ resources:
         es: Descripción general de Google Cloud Platform
     duration: 360
 
-environment_resources:
+environment:
+  student_visible_outputs:
+    - label:
+        locales:
+          en: "GCP Project"
+      reference: primary_project.project_id
+    - label:
+        locales:
+          en: "Username"
+      reference: primary_user.username
+    - label:
+        locales:
+          en: "Password"
+      reference: primary_user.password
+
   resources:
     - type: gcp_project
-      id: my_primary_project
-      fleet: gcpfree
-      dm_script: dm.zip
-      default_region: 'us-central-1c'
+      id: primary_project
+      variant: gcpfree
+      startup_script:
+        type: deployment_manager
+        path: dm_startup.zip
+        custom_properties:
+          - key: userNameWindows
+            value: student
+      cleanup_script:
+        type: deployment_manager
+        path: dm_cleanup.zip
+        custom_properties:
+          - key: primary_project_zone
+            reference: primary_project.zone
     - type: gcp_user
-      id: user_0
+      id: primary_user
       permissions:
-      - project: project_0
+      - project: primary_project
         roles:
         - roles/editor
         - roles/appengine.appAdmin

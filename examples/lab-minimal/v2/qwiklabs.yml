@@ -1,0 +1,45 @@
+entity_type: Lab
+schema_version: 2
+default_locale: en
+
+title:
+  locales:
+    en: Minialist Lab Example
+
+description:
+  locales:
+    en: Just the basics, nothing more.
+
+length: 20
+level: easy-peasy
+
+instruction:
+  type: html
+  uri:
+    locales:
+      en: './instruction.html'
+
+environment:
+  student_visible_outputs:
+    - label:
+        locales:
+          en: "GCP Project"
+      reference: primary_project.project_id
+    - label:
+        locales:
+          en: "Username"
+      reference: primary_user.username
+    - label:
+        locales:
+          en: "Password"
+      reference: primary_user.password
+
+  resources:
+    - type: gcp_project
+      id: primary_project
+    - type: gcp_user
+      id: primary_user
+      permissions:
+        - project: primary_project
+          roles:
+            - roles/editor
