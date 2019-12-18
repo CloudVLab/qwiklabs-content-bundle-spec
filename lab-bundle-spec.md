@@ -172,8 +172,6 @@ environment:
       id: secondary_user
 ```
 
-
-
 ##### GCP Project (gcp_project)
 
 attribute                        | required | type    | notes
@@ -214,11 +212,11 @@ ssh_key_user                     |          | string  | If this project should u
 ###### Variants
 
 The allowed variants are:
+
 - gcpd [default]
 - gcpfree
 - gcpasl
 - gcpedu
-
 
 ###### Custom Script Properties
 
@@ -275,13 +273,19 @@ No additional attributes
 
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
+default_policy.allow_aws_dedicated_instances |          | boolean | Default false.
+default_policy.allow_aws_ondemand_instances  |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid Ondemand usage. Default none.
+default_policy.allow_aws_rds_instances       |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for RDS usage. Default none.
+default_policy.allow_aws_spot_instances      |          | boolean | Default false.
+default_policy.allow_aws_subnet_deletion     |          | boolean | Default false.
+default_policy.allow_aws_vpc_deletion        |          | boolean | Default false.
 startup_script.type              |          | string  | The type of startup script. Only `cloud_formation` is supported.
 startup_script.path              |          | path    | Relative path to a directory tree with the script contents.
 startup_script.custom_properties |          | array   | Array of pairs. See [Custom Script Properties](#custom-script-properties) for details.
 cleanup_script.type              |          | string  | The type of cleanup script. Only `cloud_formation` is supported.
 cleanup_script.path              |          | path    | Relative path to a directory tree with the script contents.
 cleanup_script.custom_properties |          | array   | Array of pairs. See [Custom Script Properties](#custom-script-properties) for details.
-permissions                      |          | path    | Relative path to a [JSON policy](https://awspolicygen.s3.amazonaws.com/policygen.html) document
+user_policy                      |          | path    | Relative path to a [JSON policy](https://awspolicygen.s3.amazonaws.com/policygen.html) document
 variant                          |          | enum*   | Specify a Qwiklabs fleet name.
 
 ```yml
@@ -290,11 +294,50 @@ variant                          |          | enum*   | Specify a Qwiklabs fleet
   variant: sts
   startup_script:
     type: cloud_formation
-    path: ./cf_script.zip
+    path: ./lab.template
     custom_properties:
       - key: userNameWindows
         value: student
+  user_policy: ./student.policy
+  default_policy:
+    allow_aws_dedicated_instances: false
+    allow_aws_ondemand_instances: false
+    allow_aws_rds_instances: ['db.t2.micro']
+    allow_aws_spot_instances: false
+    allow_aws_subnet_deletion: false
+    allow_aws_vpc_deletion: false
 ```
+
+###### Valid Variants for AWS Account
+
+- aws_beta
+- aws_ec2
+- aws_rt53labs_ilt
+- aws_sts
+- aws_vpc
+- awsiam
+
+... or ....
+
+List of all fleets as currently used:
+https://console.cloud.google.com/bigquery?sq=403355294977:d397a1416639404e9b320ec78f476209
+
+
+###### Valid EC2 Instance Types
+
+The list of valid EC2 instance types is not fixed.
+
+TODO(joshgan): Find link for evergreen reference to valid content types.
+
+TODO(joshgan): Should Qwiklabs/Alexandria validate this at time of ingestion/publishing?
+
+###### AWS Account Default Policy
+
+The default policy is an important tool for limiting the actions a student can take in a lab.
+
+TODO(joshgan): Add more details
+
+TODO(joshgan): Do we want to allow the lab author to specify this as another policy file?
 
 ###### Valid custom property references
 
@@ -303,15 +346,15 @@ The valid `reference`s for an `aws_account` resource are:
 - [AWS_ACCOUNT].account_id
 - [AWS_ACCOUNT].username
 - [AWS_ACCOUNT].password
-- [AWS_ACCOUNT].sts_token (?)
 
-##### Future Resource Types
+<!-- Legacy display option replacements -->
 
-- AWS Account (aws-account)
-- iPython Notebook (ipython-notebook)
-
-> **NOTE:** A draft of the `aws-account` resource type was previously specified
-> in this document. See [previous version](https://github.com/CloudVLab/qwiklabs-content-bundle-spec/blob/93896ced4ae5b543132d7a10d838ac17bd5ae3e1/lab-bundle-spec.md) for details.
+- [AWS_ACCOUNT].sts_link
+- [AWS_ACCOUNT].access_key_id
+- [AWS_ACCOUNT].fleet_console_credentials
+- [AWS_ACCOUNT].rdp_credentials
+- [AWS_ACCOUNT].ssh_credentials
+- [AWS_ACCOUNT].vnc_link
 
 #### Student Visible Outputs
 
