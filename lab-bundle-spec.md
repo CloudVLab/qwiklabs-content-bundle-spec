@@ -308,20 +308,88 @@ environment:
       reference: primary_user.password
 ```
 
-### Activity Tracking (Alpha)
+### Activity Tracking
 
 Activity tracking is a feature for evaluating a student's performance in a lab by running a script at "checkpoints". These scripts can call APIs relevant to any environment resource to query their current state. For example, the script may inspect and validate the configuration of GCE instances running in `my-project`, to ensure the user is following the instructions properly.
 
-Lab bundles will provisionally support the JSON representation of Activity Tracking currently used in the Qwiklabs web interface. The JSON definition should be stored in file separately from (and referenced directly in) `qwiklabs.yaml`.
+A lab has a Manual, which in turn contains the Steps (checkpoints).
 
-```yaml
-entity_type: Lab
+#### Manual
 
-...
+attribute          | required | type    | notes
+-------------------| -------- | --------| --------------------------------------
+passing_percentage | ✓        | integer | The percentage of total points the student must achieve to "pass" the lab.
+steps              | ✓        | array   | An array of [Steps](#steps)
 
-activity_tracking: ./assessment/activity_tracking.json
+```yml
+manual:
+  passing_percentage: 75
+  steps: ...
 ```
 
-> **Note:** Support for this format should be considered deprecated.
->
-> Further work will be done to define a new DSL for expressing Activity Tracking logic. Exploratory sketches of this DSL can be found in the `./examples` directory of this repository.
+#### Steps
+
+attribute        | required | type                       | notes
+-----------------| -------- | ---------------------------| --------------------------------------
+title            | ✓        | locale dictionary          |
+maximum_score    | ✓        | integer                    | The maximum number of points this step can award.
+student_messages | ✓        | array of objects           | The keys are how the messages will be referenced in the code, and the values are locale dictionaries.
+services         | ✓        | array of resource services | An array of services that will be used in the code block. Each resource type specifies a set of allowed services.
+code             | ✓        | string                     | Code to be executed. See [below](#code) for more information.
+
+```yml
+manual:
+  passing_percentage: 75
+  steps:
+    - title:
+      en: Create a Cloud Storage bucket
+      es: Crear un depósito de almacenamiento en la nube
+    maximum_score: 5
+    student_messages:
+      - success:
+          en:
+            Great job! You created the bucket!
+          es:
+            ¡Gran trabajo! ¡Creaste el cubo!
+      - bucket_missing:
+          en:
+            Oops! No bucket found.
+          es:
+            ¡Uy! No se ha encontrado el cubo.
+      - bucket_misconfigured:
+          en:
+            Hmm. The bucket is there, but it is misconfigured.
+          es:
+            Hmm. El cubo está allí, pero está mal configurado.
+    services:
+      - my_gcp_project.StorageV1
+    code: |-
+      def check(handles)
+        storage_handle = handles['my_gcp_project.StorageV1']
+        
+        # Check for bucket
+        found_bucket = ...
+        unless found_bucket
+          return { score: 0, message: 'bucket_missing' }
+        end
+        
+        # Check bucket configuration
+        bucket_configured_correctly = ...
+        unless bucket_configured_correctly
+          return { score: 2, message: 'bucket_misconfigured' }
+        end
+        
+        { score: 5, message: 'success' }
+      end
+```
+
+##### Code
+
+The code block must be valid Ruby code. It must have a method called `check`, and may optionally contain helper methods as well.
+
+The method `check` will be called with a single argument:
+- A map from `[RESOURCE].[SERVICE]` to a handle to that resource's service. It will only contain handles to services specified in the step's `services` array.
+
+The method `check` should return a single hash with:
+- `:score`: the number of points the student earned.
+- `:message`: a key from the step's `student_messages` array, which will be presented to the student in the appropriate locale.
