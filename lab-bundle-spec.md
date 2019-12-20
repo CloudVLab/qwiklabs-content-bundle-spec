@@ -368,7 +368,7 @@ assessment:
       services:
         - target_project.StorageV1
       code: |-
-        def check(handles)
+        def check(handles, max_score)
           storage_handle = handles['target_project.StorageV1']
 
           # Check for bucket
@@ -383,7 +383,7 @@ assessment:
             return { score: 2, message: 'bucket_misconfigured' }
           end
 
-          { score: 5, message: 'success' }
+          { score: max_score, message: 'success' }
         end
     - title:
         locales:
@@ -413,7 +413,7 @@ assessment:
         - source_project.StorageV1
         - target_project.StorageV1
       code: |-
-        def check(handles)
+        def check(handles, max_score)
           target_storage_handle = handles['target_project.StorageV1']
           source_storage_handle = handles['source_project.StorageV1']
 
@@ -430,7 +430,7 @@ assessment:
             return { score: 2, message: 'file_mismatch' }
           end
 
-          { score: 5, message: 'success' }
+          { score: max_score, message: 'success' }
         end
 ```
 
@@ -438,8 +438,9 @@ assessment:
 
 The code block must be valid Ruby code. It must have a method called `check`, and may optionally contain helper methods as well.
 
-The method `check` will be called with a single argument:
+The method `check` will be called with two arguments:
 - A map from `[RESOURCE].[SERVICE]` to a handle to that resource's service. It will only contain handles to services specified in the step's `services` array.
+- The maximum score for the step.
 
 The method `check` should return a single hash with:
 - `:score`: the number of points the student earned.
