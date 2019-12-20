@@ -312,9 +312,9 @@ environment:
 
 Activity tracking is a feature for evaluating a student's performance in a lab by running a script at "checkpoints". These scripts can call APIs relevant to any environment resource to query their current state. For example, the script may inspect and validate the configuration of GCE instances running in `my-project`, to ensure the user is following the instructions properly.
 
-A lab has a Manual, which in turn contains the Steps (checkpoints).
+A lab has an Assessment, which in turn contains the Steps (checkpoints).
 
-#### Manual
+#### Assessment
 
 attribute          | required | type    | notes
 -------------------| -------- | --------| --------------------------------------
@@ -322,7 +322,7 @@ passing_percentage | ✓        | integer | The percentage of total points the s
 steps              | ✓        | array   | An array of [Steps](#steps)
 
 ```yml
-manual:
+assessment:
   passing_percentage: 75
   steps: ...
 ```
@@ -338,49 +338,100 @@ services         | ✓        | array of resource services | An array of service
 code             | ✓        | string                     | Code to be executed. See [below](#code) for more information.
 
 ```yml
-manual:
+assessment:
   passing_percentage: 75
   steps:
     - title:
-      en: Create a Cloud Storage bucket
-      es: Crear un depósito de almacenamiento en la nube
-    maximum_score: 5
-    student_messages:
-      - success:
-          en:
-            Great job! You created the bucket!
-          es:
-            ¡Gran trabajo! ¡Creaste el cubo!
-      - bucket_missing:
-          en:
-            Oops! No bucket found.
-          es:
-            ¡Uy! No se ha encontrado el cubo.
-      - bucket_misconfigured:
-          en:
-            Hmm. The bucket is there, but it is misconfigured.
-          es:
-            Hmm. El cubo está allí, pero está mal configurado.
-    services:
-      - my_gcp_project.StorageV1
-    code: |-
-      def check(handles)
-        storage_handle = handles['my_gcp_project.StorageV1']
-        
-        # Check for bucket
-        found_bucket = ...
-        unless found_bucket
-          return { score: 0, message: 'bucket_missing' }
+        locales:
+          en: Create a Cloud Storage bucket
+          es: Crear un depósito de almacenamiento en la nube
+      maximum_score: 5
+      student_messages:
+        - success:
+            locales:
+              en:
+                Great job! You created the bucket!
+              es:
+                ¡Gran trabajo! ¡Creaste el cubo!
+        - bucket_missing:
+            locales:
+              en:
+                Oops! No bucket found.
+              es:
+                ¡Uy! No se ha encontrado el cubo.
+        - bucket_misconfigured:
+            locales:
+              en:
+                Hmm. The bucket is there, but it is misconfigured.
+              es:
+                Hmm. El cubo está allí, pero está mal configurado.
+      services:
+        - target_project.StorageV1
+      code: |-
+        def check(handles)
+          storage_handle = handles['target_project.StorageV1']
+
+          # Check for bucket
+          found_bucket = ...
+          unless found_bucket
+            return { score: 0, message: 'bucket_missing' }
+          end
+
+          # Check bucket configuration
+          bucket_configured_correctly = ...
+          unless bucket_configured_correctly
+            return { score: 2, message: 'bucket_misconfigured' }
+          end
+
+          { score: 5, message: 'success' }
         end
-        
-        # Check bucket configuration
-        bucket_configured_correctly = ...
-        unless bucket_configured_correctly
-          return { score: 2, message: 'bucket_misconfigured' }
+    - title:
+        locales:
+          en: Copy a file to the bucket
+          es: Copiar un archivo al cubo
+      maximum_score: 5
+      student_messages:
+        - success:
+            locales:
+              en:
+                Great job! You copied the file!
+              es:
+                ¡Gran trabajo! ¡Copiaste el archivo!
+        - file_missing:
+            locales:
+              en:
+                Oops! No file found.
+              es:
+                ¡Uy! No se ha encontrado el archivo.
+        - file_mismatch:
+            locales:
+              en:
+                Hmm. There's a file here, but it doesn't match the source contents.
+              es:
+                Hmm. Hay un archivo aquí, pero no coincide con el contenido de origen.
+      services:
+        - source_project.StorageV1
+        - target_project.StorageV1
+      code: |-
+        def check(handles)
+          target_storage_handle = handles['target_project.StorageV1']
+          source_storage_handle = handles['source_project.StorageV1']
+
+          # Check for file
+          found_file = ...
+          unless found_file
+            return { score: 0, message: 'file_missing' }
+          end
+
+          # Check file contents
+          source_contents = ...
+          target_contents = ...
+          unless source_contents == target_contents
+            return { score: 2, message: 'file_mismatch' }
+          end
+
+          { score: 5, message: 'success' }
         end
-        
-        { score: 5, message: 'success' }
-      end
 ```
 
 ##### Code
