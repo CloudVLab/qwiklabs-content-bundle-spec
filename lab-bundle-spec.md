@@ -374,16 +374,16 @@ assessment:
           # Check for bucket
           found_bucket = ...
           unless found_bucket
-            return { score: 0, message: 'bucket_missing' }
+            return { score: 0, student_message: 'bucket_missing' }
           end
 
           # Check bucket configuration
           bucket_configured_correctly = ...
           unless bucket_configured_correctly
-            return { score: 2, message: 'bucket_misconfigured' }
+            return { score: 2, student_message: 'bucket_misconfigured' }
           end
 
-          { score: max_score, message: 'success' }
+          { score: max_score, student_message: 'success' }
         end
     - title:
         locales:
@@ -420,17 +420,17 @@ assessment:
           # Check for file
           found_file = ...
           unless found_file
-            return { score: 0, message: 'file_missing' }
+            return { score: 0, student_message: 'file_missing' }
           end
 
           # Check file contents
           source_contents = ...
           target_contents = ...
           unless source_contents == target_contents
-            return { score: 2, message: 'file_mismatch' }
+            return { score: 2, student_message: 'file_mismatch' }
           end
 
-          { score: max_score, message: 'success' }
+          { score: max_score, student_message: 'success' }
         end
 ```
 
@@ -444,4 +444,4 @@ The method `check` will be called with two arguments:
 
 The method `check` should return a single hash with:
 - `:score`: the number of points the student earned.
-- `:message`: a key from the step's `student_messages` array, which will be presented to the student in the appropriate locale.
+- `:student_message`: a key from the step's `student_messages` array, which will be presented to the student in the appropriate locale.
