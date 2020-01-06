@@ -209,7 +209,7 @@ ssh_key_user                     |          | string  | If this project should u
 > now the `gsuite-domain` resource type), while other fleets are allowed as
 > "variants" of `gcp_project` (see below).
 
-###### Variants
+###### Variants for GCP Project
 
 The allowed variants are:
 
@@ -307,7 +307,7 @@ user_policy                      |          | path    | Relative path to a [JSON
     allowed_rds_instances: ['db.t2.micro']
 ```
 
-###### Valid Variants for AWS Account
+###### Variants for AWS Account
 
 - aws_beta
 - aws_ec2
