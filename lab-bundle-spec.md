@@ -273,12 +273,12 @@ No additional attributes
 
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
-default_policy.allow_aws_dedicated_instances |          | boolean | Default false.
-default_policy.allow_aws_ondemand_instances  |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for Ondemand usage. Default none.
-default_policy.allow_aws_rds_instances       |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for RDS usage. Default none.
-default_policy.allow_aws_spot_instances      |          | boolean | Default false.
-default_policy.allow_aws_subnet_deletion     |          | boolean | Default false.
-default_policy.allow_aws_vpc_deletion        |          | boolean | Default false.
+account_restrictions.allow_dedicated_instances  |          | boolean | Default false.
+account_restrictions.allow_spot_instances       |          | boolean | Default false.
+account_restrictions.allow_subnet_deletion      |          | boolean | Default false.
+account_restrictions.allow_vpc_deletion         |          | boolean | Default false.
+account_restrictions.allowed_ondemand_instances |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for Ondemand usage. Default none.
+account_restrictions.allowed_rds_instances      |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for RDS usage. Default none.
 startup_script.type              |          | string  | The type of startup script. Only `cloud_formation` is supported.
 startup_script.path              |          | path    | Relative path to a directory tree with the script contents.
 startup_script.custom_properties |          | array   | Array of pairs. See [Custom Script Properties](#custom-script-properties) for details.
@@ -298,13 +298,13 @@ user_policy                      |          | path    | Relative path to a [JSON
       - key: userNameWindows
         value: student
   user_policy: ./student.policy
-  default_policy:
-    allow_aws_dedicated_instances: false
-    allow_aws_ondemand_instances: false
-    allow_aws_rds_instances: ['db.t2.micro']
-    allow_aws_spot_instances: false
-    allow_aws_subnet_deletion: false
-    allow_aws_vpc_deletion: false
+  account_restrictions:
+    allow_dedicated_instances: false
+    allow_spot_instances: false
+    allow_subnet_deletion: false
+    allow_vpc_deletion: false
+    allowed_ondemand_instances: []
+    allowed_rds_instances: ['db.t2.micro']
 ```
 
 ###### Valid Variants for AWS Account
@@ -320,7 +320,6 @@ user_policy                      |          | path    | Relative path to a [JSON
 
 List of all fleets as currently used:
 https://console.cloud.google.com/bigquery?sq=403355294977:d397a1416639404e9b320ec78f476209
-
 
 ###### Valid EC2 Instance Types
 
