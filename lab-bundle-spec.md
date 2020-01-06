@@ -274,7 +274,7 @@ No additional attributes
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
 default_policy.allow_aws_dedicated_instances |          | boolean | Default false.
-default_policy.allow_aws_ondemand_instances  |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid Ondemand usage. Default none.
+default_policy.allow_aws_ondemand_instances  |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for Ondemand usage. Default none.
 default_policy.allow_aws_rds_instances       |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for RDS usage. Default none.
 default_policy.allow_aws_spot_instances      |          | boolean | Default false.
 default_policy.allow_aws_subnet_deletion     |          | boolean | Default false.
@@ -285,8 +285,7 @@ startup_script.custom_properties |          | array   | Array of pairs. See [Cus
 cleanup_script.type              |          | string  | The type of cleanup script. Only `cloud_formation` is supported.
 cleanup_script.path              |          | path    | Relative path to a directory tree with the script contents.
 cleanup_script.custom_properties |          | array   | Array of pairs. See [Custom Script Properties](#custom-script-properties) for details.
-user_policy                      |          | path    | Relative path to a [JSON policy](https://awspolicygen.s3.amazonaws.com/policygen.html) document
-variant                          |          | enum*   | Specify a Qwiklabs fleet name.
+user_policy                      |          | path    | Relative path to a [JSON policy](https://awspolicygen.s3.amazonaws.com/policygen.html) document.
 
 ```yml
 - type: aws_account
