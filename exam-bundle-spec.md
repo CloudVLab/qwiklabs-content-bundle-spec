@@ -66,7 +66,7 @@ Items are polymorphic - i.e. there are several different _item types_ that are d
 
 #### multiple-choice Items
 
-A quiz item that has multiple options and one answer. One option is the _answer_, and the rest are _distractors_. There must be exactly one answer.
+An exam item that has multiple options and one answer. One option is the _answer_, and the rest are _distractors_. There must be exactly one answer.
 
 attribute | required | type       | notes
 ----------| -------- | -----------| -----------------------------------------
@@ -77,7 +77,7 @@ options   | ✓        | array      | An array of `options` (see below for detai
 
 #### multiple-select Items
 
-A quiz item that has multiple options, any number of which are answers. Correct options are _answers_, and incorrect options are _distractors_.
+An exam item that has multiple options, any number of which are answers. Correct options are _answers_, and incorrect options are _distractors_.
 
 attribute | required | type       | notes
 ----------| -------- | -----------| -----------------------------------------
