@@ -1,0 +1,98 @@
+# Qwiklabs Exam Bundle Specification
+
+**Version 1**
+
+> This is a DRAFT document. We welcome feedback as this format evolves.
+
+## `qwiklabs.yaml` Structure
+
+Here's a sample `qwiklabs.yaml` file with all nested details removed to make it easier to see the general file structure.
+
+```yml
+entity_type: Exam
+schema_version: 1
+
+passing_percentage: 67
+default_locale: en
+duration: 120
+
+title: 
+  locales:
+    en: My Excellent Exam
+
+forms: ...
+```
+
+Note that all of the localized content (stem, option titles, etc) are HTML content that may be displayed in various contexts. All of these chunks will be sanitized according to the restricted set in the [HTML spec](./html-spec.md).
+
+### Exam attributes
+
+attribute          | required | type       | notes
+-------------------| -------- | ---------- | -----------------------------------------
+default_locale     | ✓        | string     | Corresponds to the locale that the exam is authored in. Authoring tools can use this as a hint to notify localizers when content in the default locale is updated. Also, it provides a hint to the learner interface about which locale to display if an instruction/resource is not localized for the learner's current locale.
+schema_version     | ✓        | integer    | Which version of the exam bundle schema you are using
+title              | ✓        | dictionary | A locale dictionary of the exam title, such as "My Excellent Exam"
+passing_percentage | ✓        | integer    | The threshold grade that a student needs to achieve in order to count as "passing" the exam.
+duration           | ✓        | integer    | The maximum time a student is allotted for the exam, in minutes.
+forms              | ✓        | array      | An array of paths to `form` (see below for details) files in the bundle.
+
+### Forms
+Forms are versions of an exam. An exam may have multiple forms (i.e. A and B), where A and B will have a different collection of items. One student taking an exam may get form A, and another form B, but both students are considered to be taking "equivalent" exams. YAML is the required format for stored forms.
+
+```yml
+forms:
+  - forms/formA.yaml
+  - forms/formB.yaml
+  - forms/formC.yaml
+```
+
+#### `formX.yaml` Structure
+
+Here's a sample `formX.yaml` file with all nested details removed to make it easier to see the general file structure.
+
+```yml
+items: ...
+```
+
+attribute          | required | type       | notes
+-------------------| -------- | ---------- | -----------------------------------------
+items              | ✓        | array      | An ordered array of `items` (see below for details) in this form - items will appear to students in this order
+
+
+### Items
+Items are polymorphic - i.e. there are several different _item types_ that are defined slightly differently. `items` is an array of dictionaries with appropriate attributes for the given `type`. The allowed values for `type` are:
+- `multiple-choice`
+- `multiple-select`
+
+#### multiple-choice Items
+
+A quiz item that has multiple options and one answer. One option is the _answer_, and the rest are _distractors_. There must be exactly one answer.
+
+attribute | required | type       | notes
+----------| -------- | -----------| -----------------------------------------
+id        | ✓        | string     | A unique identifier for this item
+type      | ✓        | string     | The item type, which is always `multiple-choice`
+stem      | ✓        | dictionary | A locale dictionary of the text that asks the question, such as "Which of the following is a color?"
+options   | ✓        | array      | An array of `options` (see below for details); order does not matter
+
+#### multiple-select Items
+
+A quiz item that has multiple options, any number of which are answers. Correct options are _answers_, and incorrect options are _distractors_.
+
+attribute | required | type       | notes
+----------| -------- | -----------| -----------------------------------------
+id        | ✓        | string     | A unique identifier for this item
+type      | ✓        | string     | The item type, which is always `multiple-select`
+stem      | ✓        | dictionary | A locale dictionary for the text that asks the question, such as "Which of the following is a color?"
+options   | ✓        | array      | An array of `options` (see below for details); order does not matter
+
+### Option
+
+`multiple-choice` and `multiple-select` items both have an `options` array which contains all of the answer(s) and distractors that the user may choose from. Options are defined for both item types below:
+
+attribute    | required | type       | notes
+-------------| -------- | -----------| -----------------------------------------
+id        | ✓        | string     | A unique ID for this Option
+title     | ✓        | dictionary | A locale dictionary for the content of this option, such as "Blue"
+rationale |          | dictionary | A locale dictionary for an explanation of why this option is correct or incorrect
+is_answer | ✓        | boolean    | `true` if this option is an answer, and `false` if it is a distractor

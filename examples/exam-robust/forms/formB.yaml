@@ -1,0 +1,27 @@
+items:
+  - type: multiple-select
+    stem:
+      locales:
+        en: Which of the following is a state in the United States?
+        fr: Lequel des États suivants est un État aux États-Unis?
+    options:
+      - title:
+          locales:
+            en: Massachusetts
+            fr: Massachusetts
+        is_answer: true
+      - title:
+          locales:
+            en: Manitoba
+            fr: Manitoba
+        is_answer: false
+      - title:
+          locales:
+            en: Oregon
+            fr: l'Oregon
+        is_answer: true
+      - title:
+          locales:
+            en: Washington, D.C.
+            fr: Washington, D.C.
+        is_answer: false
