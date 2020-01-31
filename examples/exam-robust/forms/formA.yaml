@@ -10,18 +10,34 @@ items:
             en: Albert Einstein
             fr: Albert Einstein
         is_answer: true
+        rationale:
+          locales:
+            en: Correct! Albert Einstein won the Nobel Prize in 1922 for work that forms the foundation for how modern solar panels work.
+            fr: Correct! Albert Einstein a reçu le prix Nobel en 1922 pour des travaux qui constituent le fondement du fonctionnement des panneaux solaires modernes.
       - title:
           locales:
             en: Francis Crick
             fr: Francis Crick
         is_answer: false
+        rationale:
+          locales:
+            en: While Crick did win a Nobel Prize, it was for his discovery of DNA along with James Watson.
+            fr: Bien que Crick ait remporté un prix Nobel, c'était pour sa découverte de l'ADN avec James Watson.
       - title:
           locales:
             en: Rosalind Franklin
             fr: Rosalind Franklin
         is_answer: false
+        rationale:
+          locales:
+            en: Sorry! While her work was instrumental in discovering DNA, Rosalind Franklin never won a Nobel Prize.
+            fr: Désolé! Alors que son travail a joué un rôle déterminant dans la découverte de l'ADN, Rosalind Franklin n'a jamais remporté de prix Nobel.
       - title:
           locales:
             en: Max Planck
             fr: Max Planck
         is_answer: false
+        rationale:
+          locales:
+            en: Max Planck won the Nobel Price in Physics in 1918 for his work on quantum theory, and while his work was used in the discovery of the photoelectric effect, he actually rejected the initial theory.
+            fr: Max Planck a remporté le prix Nobel de physique en 1918 pour ses travaux sur la théorie quantique. Bien que ses travaux aient servi à la découverte de l'effet photoélectrique, il a en réalité rejeté la théorie initiale.

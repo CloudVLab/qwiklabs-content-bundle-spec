@@ -1,0 +1,16 @@
+entity_type: Exam
+schema_version: 1
+
+id: exam-robust
+passing_percentage: 67
+default_locale: en
+duration: 120
+
+title:
+  locales:
+    en: My Excellent History Exam
+    fr: Mon Excellent Examen d'Histoire
+
+forms:
+- formA.yaml
+- formB.yaml
