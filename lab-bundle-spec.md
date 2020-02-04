@@ -273,6 +273,8 @@ No additional attributes
 
 ##### GCP Shell (gcp_shell)
 
+> _PROPOSED ONLY: GCP Shell is not yet supported by Qwiklabs runtime._
+
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
 permissions | ✓        | array      | Array of project/roles(array) pairs
