@@ -121,7 +121,7 @@ audience                |          | dictionary  | A locale dictionary of audien
 prerequisites           |          | dictionary  | A locale dictionary of prerequisites
 outline                 |          | dictionary  | A locale dictionary of outline elements usually formatted as a JSON string
 on_demand_url           |          | dictionary  | A locale dictionary of URL's to Coursera (or other) on-demand content
-tags                    |          | array       | Array of strings to be used as hints in searching, etc
+tags                    |          | array       | Array of strings to be used as hints in searching, etc.
 product_tags            |          | array       | Array of strings from the "Products" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 role_tags               |          | array       | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 domain_tags             |          | array       | Array of strings from the "Domain" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
@@ -137,14 +137,14 @@ student_resources       |          | array       | Student-specific instructions
 instructor_resources    |          | array       | Instructor-specific instructions. See the [Resource Spec](./resource-spec.md) for full specification.
 modules                 |          | array       | See below
 
-### One Module
+### Modules
 
 A `ClassroomTemplate` presents labs to the learner in a specific order. To keep some compatibilty with other "bundle entities" we will use a simple collection of steps, each with one lab activity.
 
 attribute               | required | type        | notes
 ----------------------- | -------- | ----------- | -----------------------------------------
 id                      | ✓        | string      | A unique identifier for this module
-steps                   | ✓        | array       | See below
+steps                   |          | array       | See below
 
 ### Steps
 
