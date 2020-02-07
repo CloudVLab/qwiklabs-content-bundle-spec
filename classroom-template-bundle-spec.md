@@ -84,9 +84,6 @@ max_hot_labs: 30
 # Enable DRM on instructions if supported
 enable_drm: false
 
-# Billing code used for reporting ["gcp", "platform", "aws"]
-billing_code: null
-
 # Check classroom for fraud
 resource_limit_check: false
 
@@ -131,7 +128,6 @@ estimated_duration      |          | integer     | Estimated time to take the co
 lock_position           |          | boolean     | Allow lab order to be changed by the trainer
 max_hot_labs            |          | integer     | Maximum number of hot labs for this course.
 enable_drm              |          | boolean     | Enable DRM on instructions if supported
-billing_code            |          | string      | Billing code used for reporting usually one of [null, "gcp", "platform", "aws"]
 resource_limit_check    |          | boolean     | Check classroom for fraud
 student_resources       |          | array       | Student-specific instructions. See the [Resource Spec](./resource-spec.md) for full specification.
 instructor_resources    |          | array       | Instructor-specific instructions. See the [Resource Spec](./resource-spec.md) for full specification.
