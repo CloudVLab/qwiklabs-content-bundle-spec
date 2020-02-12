@@ -2,7 +2,10 @@
 
 **Version 1**
 
-> This is a DRAFT document. We welcome feedback as this format evolves.
+> **Note: For Interim Use Only**
+>
+> This specification is for existing Qwiklabs platform users that are currently using the `ClassroomTemplate` model. It should be used to help transition from `ClassroomTemplates` to [`CourseTemplates`](./course-template-bundle-spec.md). If you are not currently using `ClassroomTemplates`, please use `CourseTemplates` instead.
+
 
 ## `qwiklabs.yaml` Structure
 
