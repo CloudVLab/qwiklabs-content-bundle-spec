@@ -69,9 +69,6 @@ role_tags: ['cloud architect', 'developers backend']
 domain_tags: ['infrastructure']
 level: 1
 
-# Allow classroom scheduling for this ClassroomTemplate
-published: true
-
 # Estimated time to take the course, in days
 estimated_duration_days: 1
 
@@ -113,14 +110,14 @@ schema_version          | ✓        | integer     |
 default_locale          | ✓        | enum        | Must be a valid locale code
 version                 |          | string      | Version string used as content decorator
 classroom_type          |          | enum        | One of ["Self-paced", "Bootcamp/Workshop", "Instructor-led"]
-course_code             |          | string      | Id for Course, e.g. T_AHYXXX-I
+course_code             |          | string      | Id for Course, e.g. T_AHYXXX-I, usually determined by Training Ops. Not the same as the Git "slug"
 title                   | ✓        | dictionary  | A locale dictionary of titles
 description             | ✓        | dictionary  | A locale dictionary of descriptions
 objectives              |          | dictionary  | A locale dictionary of objectives
 audience                |          | dictionary  | A locale dictionary of audiences
 prerequisites           |          | dictionary  | A locale dictionary of prerequisites
 outline                 |          | dictionary  | A locale dictionary of outline elements usually formatted as a JSON string
-on_demand_url           |          | dictionary  | A locale dictionary of URL's to Coursera (or other) on-demand content
+external_content_url    |          | dictionary  | A locale dictionary of URL's to Coursera (or other) external content
 tags                    |          | array       | Array of strings to be used as hints in searching, etc.
 product_tags            |          | array       | Array of strings from the "Products" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 role_tags               |          | array       | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
@@ -128,7 +125,7 @@ domain_tags             |          | array       | Array of strings from the "Do
 level                   |          | integer     | Integer between 1 and 4, with 1 being the easiest
 estimated_duration_days |          | integer     | Estimated time to take the course, in days
 estimated_duration      |          | integer     | Estimated time to take the course, in minutes
-lock_position           |          | boolean     | Allow lab order to be changed by the trainer
+lock_activity_position  |          | boolean     | Allow lab order to be changed by the trainer
 max_hot_labs            |          | integer     | Maximum number of hot labs for this course.
 enable_drm              |          | boolean     | Enable DRM on instructions if supported
 resource_limit_check    |          | boolean     | Check classroom for fraud
