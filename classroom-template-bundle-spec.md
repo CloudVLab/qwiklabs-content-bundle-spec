@@ -76,7 +76,7 @@ estimated_duration_days: 1
 estimated_duration: 60
 
 # Allow lab order to be changed by the trainer
-lock_activity_position: false
+lock_position: false
 
 # Trainers must stay within the limits
 max_hot_labs: 30
