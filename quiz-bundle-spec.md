@@ -35,6 +35,7 @@ Items are polymorphic - i.e. there are several different _item types_ that are d
 - `multiple-choice`
 - `multiple-select`
 - `true-false`
+- `matching`
 
 #### multiple-choice Items
 
@@ -58,7 +59,6 @@ type      | ✓        | string     | The item type, which is always `multiple-s
 stem      | ✓        | dictionary | A locale dictionary for the text that asks the question, such as "Which of the following is a color?"
 options   | ✓        | array      | An array of `options` (see below for details); order does not matter
 
-
 #### true-false Items
 
 A quiz item that has two predefined options: true and false. The correct option (e.g. "True") is the answer and the other is the distractor.
@@ -72,13 +72,36 @@ answer          | ✓        | boolean     | The correct answer. `true` for "Tru
 true_rationale  | ✓        | dictionary  | A locale dictionary for the text that explains why "True" is correct or incorrect
 false_rationale | ✓        | dictionary  | A locale dictionary for the text that explains why "False" is correct or incorrect
 
+#### matching Items
+
+A quiz item that has multiple stems with a "lead in" prompt. The correct option for each matching stem is directly specified as the answer. A matching item
+will be scored based on correctly matching *all* the stems.
+
+attribute       | required | type       | notes
+----------------| -------- | -----------| -----------------------------------------
+id              | ✓        | string     | A unique identifier for this item
+type            | ✓        | string     | The item type, which is always `matching`
+lead_in         | ✓        | dictionary  | A locale dictionary of text that provides a lead-in, such as "Can You Match the Capital City to the Correct US State?"
+stems           | ✓        | array      | An array of `matching stems` (see below for details); order does not matter
+options         | ✓        | array      | An array of `options` (see below for details); order does not matter
+
+### matching Stems
+
+Matching items need an additional `stems` array which contains all of the question(s) for which the user must provide a match and the matching answer.
+
+attribute    | required | type       | notes
+-------------| -------- | -----------| -----------------------------------------
+id        | ✓        | string     | A unique ID for this matching Stem
+title     | ✓        | dictionary | A locale dictionary for the content of this stem, such as "Springfield"
+answer    | ✓        | string     | ID for option that is the answer for this stem
+
 ### Option
 
-`multiple-choice` and `multiple-select` items both have an `options` array which contains all of the answer(s) and distractors that the user may choose from. Options are defined for both item types below:
+`multiple-choice`, `multiple-select` and `matching` items all have an `options` array which contains all of the answer(s) and distractors that the user may choose from. Options are defined for these item types below:
 
 attribute    | required | type       | notes
 -------------| -------- | -----------| -----------------------------------------
 id        | ✓        | string     | A unique ID for this Option
 title     | ✓        | dictionary | A locale dictionary for the content of this option, such as "Blue"
-rationale | ✓        | dictionary | A locale dictionary for an explanation of why this option is correct or incorrect
-is_answer | ✓        | boolean    | `true` if this option is an answer, and `false` if it is a distractor
+rationale | ✓        | dictionary | A locale dictionary for an explanation of why this option is correct or incorrect (optional for `matching` type)
+is_answer | ✓        | boolean    | `true` if this option is an answer, and `false` if it is a distractor (not used for `matching` type)
