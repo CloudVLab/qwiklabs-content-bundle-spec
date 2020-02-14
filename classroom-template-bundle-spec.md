@@ -59,7 +59,7 @@ outline:
     en: >
       {\"subhead\":\"The course includes presentations and hands-on labs.\",\"modules\":[{\"name\":\"Module 1: Anthos Overview\",\"items\":[\"Describe challenges of hybrid cloud\",\"Discuss modern solutions\",\"Describe the Anthos Technology Stack\"]}]}
 
-on_demand_url:
+external_content_url:
   locales:
     en: "https://www.coursera.org/specializations/architecting-hybrid-cloud-infrastructure-anthos"
 
