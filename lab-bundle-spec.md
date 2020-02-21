@@ -1,7 +1,7 @@
 # Qwiklabs Lab Bundle Specification
 
-**Version 2**
-
+> **Version 2**
+>
 > This is a DRAFT document. We welcome feedback as this format evolves.
 
 Previously (in b6086b8f824aa398c1f4413b92351a4956e744cd), the robust example had some cool ideas for how deployment manager and activity tracking should look in the future. None of it is implemented yet but the ideas may be useful in the future.
@@ -172,8 +172,6 @@ environment:
       id: secondary_user
 ```
 
-
-
 ##### GCP Project (gcp_project)
 
 attribute                        | required | type    | notes
@@ -211,16 +209,18 @@ ssh_key_user                     |          | string  | If this project should u
 > now the `gsuite-domain` resource type), while other fleets are allowed as
 > "variants" of `gcp_project` (see below).
 
-###### Variants
+###### Variants for GCP Project
 
 The allowed variants are:
+
+<!-- TODO: Describe the functionality of each variant. -->
+
 - gcpd [default]
 - gcpfree
 - gcpasl
 - gcpedu
 
-
-###### Custom properties
+###### Custom Script Properties
 
 attribute | required | type               | notes
 ----------| -------- | ------------------ | --------------------------------------
@@ -253,7 +253,7 @@ permissions |          | array      | Array of project/roles(array) pairs
 
 The `gcp_user` type could more properly be called `gaia_user`, since that's what it provisions. However, the term `gaia` is less well-known, so we stick with `gcp`.
 
-###### Valid resource references
+###### Valid resource references for gcp_user
 
 The valid `reference`s for the `gcp_user` resource are:
 
@@ -290,13 +290,69 @@ permissions | ✓        | array      | Array of project/roles(array) pairs
 
 Note: Even though the spec supports any number of projects with any number roles, Qwiklabs only supports a shell having access to a single project and it must have the `roles/editor` role in that project. This note will be removed when Qwiklabs supports multiple projects and different roles for `gcp_shell`.
 
-##### Future Resource Types
+##### AWS Account (aws_account)
 
-- AWS Account (aws-account)
-- iPython Notebook (ipython-notebook)
+attribute   | required | type       | notes
+----------- | -------- | ---------- | ----------------------------------------
+account_restrictions.allow_dedicated_instances  | | boolean | Should the account allow users to create [Dedicated Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html). Default false.
+account_restrictions.allow_spot_instances       | | boolean | Should the account allow users to create [Spot Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html) functionality. Default false.
+account_restrictions.allow_subnet_deletion      | | boolean | Default false.
+account_restrictions.allow_vpc_deletion         | | boolean | Default false.
+account_restrictions.allowed_ec2_instances      | | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for any EC2 product (e.g. dedicated, spot, on-demand). Default none.
+account_restrictions.allowed_rds_instances      | | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for RDS usage. Default none.
+startup_script.type              | | string  | The type of startup script. Only `cloud_formation` is supported.
+startup_script.path              | | path    | Relative path to a directory tree with the script contents.
+cleanup_script.type              | | string  | The type of cleanup script. Only `cloud_formation` is supported.
+cleanup_script.path              | | path    | Relative path to a directory tree with the script contents.
+user_policy                      | | path    | Relative path to a [JSON policy](https://awspolicygen.s3.amazonaws.com/policygen.html) document.
 
-> **NOTE:** A draft of the `aws-account` resource type was previously specified
-> in this document. See [previous version](https://github.com/CloudVLab/qwiklabs-content-bundle-spec/blob/93896ced4ae5b543132d7a10d838ac17bd5ae3e1/lab-bundle-spec.md) for details.
+```yml
+- type: aws_account
+  id: the_account
+  variant: aws_vpc
+  startup_script:
+    type: cloud_formation
+    path: ./lab.template
+  user_policy: ./student.policy
+  account_restrictions:
+    allow_dedicated_instances: false
+    allow_spot_instances: false
+    allow_subnet_deletion: false
+    allow_vpc_deletion: false
+    allowed_ondemand_instances: []
+    allowed_rds_instances: ['db.t2.micro']
+```
+
+###### Variants for AWS Account
+
+There is only one publically allowed variant for AWS accounts.
+
+<!-- TODO: Describe the functionality of each variant. -->
+
+- aws_vpc
+
+> __Note for legacy fleet users:__ `aws_account.variant` can be used to specify your lab's fleet.
+
+###### Valid custom property references
+
+The valid `reference`s for an `aws_account` resource are:
+
+- [AWS_ACCOUNT].account_id
+- [AWS_ACCOUNT].username
+- [AWS_ACCOUNT].password
+<!-- Legacy display option replacements -->
+- [AWS_ACCOUNT].sts_link
+- [AWS_ACCOUNT].access_key_id
+- [AWS_ACCOUNT].fleet_console_credentials
+- [AWS_ACCOUNT].rdp_credentials
+- [AWS_ACCOUNT].ssh_credentials
+- [AWS_ACCOUNT].vnc_link
+
+###### Valid EC2 Instance Types
+
+Qwiklabs regularly syncronizes it's list of EC2 instance types with the AWS platform. We purposefully do not provide a full list of EC2 instance types in this document, because AWS adds and deprecates instance types regularly.
+
+For a complete and up-to-date list of EC2 instance types, see [AWS official documentation](https://aws.amazon.com/ec2/instance-types/)
 
 #### Student Visible Outputs
 
