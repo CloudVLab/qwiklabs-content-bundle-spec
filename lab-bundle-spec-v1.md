@@ -1,7 +1,7 @@
 # Qwiklabs Lab Bundle Specification
 
-**Version 1**
-
+> **Version 1**
+>
 > This is a DRAFT document. We welcome feedback as this format evolves.
 
 Previously (in b6086b8f824aa398c1f4413b92351a4956e744cd), the robust example had some cool ideas for how deployment manager and activity tracking should look in the future. None of it is implemented yet but the ideas may be useful in the future.
@@ -80,7 +80,6 @@ tags                   |          | array       |
 legacy_display_options |          | array       | Elements to hide/show in ql-lab-control-panel widget
 copyright              |          | string/enum | v2 feature after more research?
 
-
 ### Instructions
 
 attribute | required | type       | notes
@@ -96,7 +95,7 @@ instruction:
     es: instructions/es.html
 ```
 
-#### Valid types
+#### Valid instruction types
 
 - `html`
 - `pdf`
@@ -130,7 +129,6 @@ See [Resource Spec](./resource-spec.md) for details.
 The sandbox learning environment is a key feature of Qwiklabs. As the author of a lab, you need to tell us which cloud accounts to provision for a learner, and what resources we should create in that account before handing it over to the learner.
 
 The properties of each environment resource will depend on their type, i.e. AWS Accounts and GSuite Users require different configuration data. However, there are two properties that all resources have regardless of type:
-
 
 attribute | required | type   | notes
 --------- | -------- | ------ | -----------------------------------------
@@ -187,6 +185,7 @@ fleet                         |          | enum*   | Specify a Qwiklabs fleet to
 >
 > Presently, authors are allowed to specify one of the following fleet types for
 > a gcp_project:
+>
 > - gcpd [default]
 > - gcpfree
 > - gcpasl
