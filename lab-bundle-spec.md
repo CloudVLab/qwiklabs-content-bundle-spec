@@ -269,6 +269,23 @@ No additional attributes
   id: primary_domain
 ```
 
+##### GCP Shell (gcp_shell)
+
+> _PROPOSED ONLY: GCP Shell is not yet supported by Qwiklabs runtime._
+
+attribute   | required | type       | notes
+----------- | -------- | ---------- | ----------------------------------------
+permissions | ✓        | array      | Array of project/roles(array) pairs
+
+```yml
+  - type: gcp_shell
+    id: shell
+    permissions:
+      - project: my_primary_project
+        roles:
+          - roles/editor
+```
+
 ##### AWS Account (aws_account)
 
 attribute   | required | type       | notes
@@ -344,23 +361,6 @@ The valid `reference`s for an `aws_account` resource are:
 - [AWS_ACCOUNT].account_id
 - [AWS_ACCOUNT].username
 - [AWS_ACCOUNT].password
-
-##### GCP Shell (gcp_shell)
-
-> _PROPOSED ONLY: GCP Shell is not yet supported by Qwiklabs runtime._
-
-attribute   | required | type       | notes
------------ | -------- | ---------- | ----------------------------------------
-permissions | ✓        | array      | Array of project/roles(array) pairs
-
-```yml
-  - type: gcp_shell
-    id: shell
-    permissions:
-      - project: my_primary_project
-        roles:
-          - roles/editor
-```
 
 Note: Even though the spec supports any number of projects with any number roles, Qwiklabs only supports a shell having access to a single project and it must have the `roles/editor` role in that project. This note will be removed when Qwiklabs supports multiple projects and different roles for `gcp_shell`.
 
