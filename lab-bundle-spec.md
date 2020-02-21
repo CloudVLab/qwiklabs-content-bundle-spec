@@ -302,10 +302,8 @@ account_restrictions.allowed_ec2_instances      | | array   | Array of [EC2 inst
 account_restrictions.allowed_rds_instances      | | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for RDS usage. Default none.
 startup_script.type              | | string  | The type of startup script. Only `cloud_formation` is supported.
 startup_script.path              | | path    | Relative path to a directory tree with the script contents.
-startup_script.custom_properties | | array   | Array of pairs. See [Custom Script Properties](#custom-script-properties) for details.
 cleanup_script.type              | | string  | The type of cleanup script. Only `cloud_formation` is supported.
 cleanup_script.path              | | path    | Relative path to a directory tree with the script contents.
-cleanup_script.custom_properties | | array   | Array of pairs. See [Custom Script Properties](#custom-script-properties) for details.
 user_policy                      | | path    | Relative path to a [JSON policy](https://awspolicygen.s3.amazonaws.com/policygen.html) document.
 
 ```yml
@@ -315,9 +313,6 @@ user_policy                      | | path    | Relative path to a [JSON policy](
   startup_script:
     type: cloud_formation
     path: ./lab.template
-    custom_properties:
-      - key: userNameWindows
-        value: student
   user_policy: ./student.policy
   account_restrictions:
     allow_dedicated_instances: false
