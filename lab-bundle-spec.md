@@ -213,6 +213,8 @@ ssh_key_user                     |          | string  | If this project should u
 
 The allowed variants are:
 
+<!-- TODO: Describe the functionality of each variant. -->
+
 - gcpd [default]
 - gcpfree
 - gcpasl
@@ -286,6 +288,9 @@ permissions | ✓        | array      | Array of project/roles(array) pairs
           - roles/editor
 ```
 
+Note: Even though the spec supports any number of projects with any number roles, Qwiklabs only supports a shell having access to a single project and it must have the `roles/editor` role in that project. This note will be removed when Qwiklabs supports multiple projects and different roles for `gcp_shell`.
+
+
 ##### AWS Account (aws_account)
 
 attribute   | required | type       | notes
@@ -294,7 +299,7 @@ account_restrictions.allow_dedicated_instances  |          | boolean | Default f
 account_restrictions.allow_spot_instances       |          | boolean | Default false.
 account_restrictions.allow_subnet_deletion      |          | boolean | Default false.
 account_restrictions.allow_vpc_deletion         |          | boolean | Default false.
-account_restrictions.allowed_ondemand_instances |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for Ondemand usage. Default none.
+account_restrictions.allowed_ec2_instances      |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for Ondemand usage. Default none.
 account_restrictions.allowed_rds_instances      |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for RDS usage. Default none.
 startup_script.type              |          | string  | The type of startup script. Only `cloud_formation` is supported.
 startup_script.path              |          | path    | Relative path to a directory tree with the script contents.
@@ -307,7 +312,7 @@ user_policy                      |          | path    | Relative path to a [JSON
 ```yml
 - type: aws_account
   id: the_account
-  variant: sts
+  variant: aws_vpc
   startup_script:
     type: cloud_formation
     path: ./lab.template
@@ -326,25 +331,13 @@ user_policy                      |          | path    | Relative path to a [JSON
 
 ###### Variants for AWS Account
 
-- aws_beta
-- aws_ec2
-- aws_rt53labs_ilt
-- aws_sts
+There is only one publically allowed variant for AWS accounts.
+
+<!-- TODO: Describe the functionality of each variant. -->
+
 - aws_vpc
-- awsiam
 
-... or ....
-
-List of all fleets as currently used:
-https://console.cloud.google.com/bigquery?sq=403355294977:d397a1416639404e9b320ec78f476209
-
-###### Valid EC2 Instance Types
-
-The list of valid EC2 instance types is not fixed.
-
-TODO(joshgan): Find link for evergreen reference to valid content types.
-
-TODO(joshgan): Should Qwiklabs/Alexandria validate this at time of ingestion/publishing?
+> __Note for legacy fleet users:__ `aws_account.variant` can be used to specify your lab's fleet.
 
 ###### AWS Account Default Policy
 
@@ -361,17 +354,19 @@ The valid `reference`s for an `aws_account` resource are:
 - [AWS_ACCOUNT].account_id
 - [AWS_ACCOUNT].username
 - [AWS_ACCOUNT].password
-
-Note: Even though the spec supports any number of projects with any number roles, Qwiklabs only supports a shell having access to a single project and it must have the `roles/editor` role in that project. This note will be removed when Qwiklabs supports multiple projects and different roles for `gcp_shell`.
-
 <!-- Legacy display option replacements -->
-
 - [AWS_ACCOUNT].sts_link
 - [AWS_ACCOUNT].access_key_id
 - [AWS_ACCOUNT].fleet_console_credentials
 - [AWS_ACCOUNT].rdp_credentials
 - [AWS_ACCOUNT].ssh_credentials
 - [AWS_ACCOUNT].vnc_link
+
+###### Valid EC2 Instance Types
+
+Qwiklabs regularly syncronizes it's list of EC2 instance types with the AWS platform. We purposefully do not provide a full list of EC2 instance types in this document, because AWS adds and deprecates instance types regularly.
+
+For a complete and up-to-date list of EC2 instance types, see https://aws.amazon.com/ec2/instance-types/
 
 #### Student Visible Outputs
 
