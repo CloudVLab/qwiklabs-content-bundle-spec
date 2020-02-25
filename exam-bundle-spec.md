@@ -58,7 +58,7 @@ items: ...
 
 attribute          | required | type       | notes
 -------------------| -------- | ---------- | -----------------------------------------
-items              | ✓        | array      | An ordered array of `items` (see below for details) in this form - items will appear to students in this order
+items              | ✓        | array      | An ordered array of `items` (see below for details) in this form
 
 
 ### Items
