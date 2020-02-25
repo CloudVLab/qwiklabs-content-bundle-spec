@@ -1,5 +1,6 @@
 items:
   - type: multiple-select
+    client_code: geo-item-0
     stem:
       locales:
         en: Which of the following is a state in the United States?
@@ -37,3 +38,5 @@ items:
             en: Washington, D.C.
             fr: Washington, D.C.
         is_answer: false
+    section: Geography
+    seed: true

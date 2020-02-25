@@ -1,6 +1,5 @@
 items:
   - type: multiple-choice
-    client_code: item-0
     stem:
       locales:
         en: Who won the Nobel Prize for discovering the cause of the photoelectric effect?
