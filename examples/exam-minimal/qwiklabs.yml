@@ -5,12 +5,58 @@ id: exam-robust
 passing_percentage: 67
 default_locale: en
 duration: 120
+price: 80
 
 title:
   locales:
     en: My Excellent History Exam
-    fr: Mon Excellent Examen d'Histoire
 
 forms:
-- formA.yaml
-- formB.yaml
+- id: form-0
+  name: FormA
+  items:
+  - type: multiple-choice
+    stem:
+      locales:
+        en: Who won the Nobel Prize for discovering the cause of the photoelectric effect?
+    options:
+      - title:
+          locales:
+            en: Albert Einstein
+        is_answer: true
+      - title:
+          locales:
+            en: Francis Crick
+        is_answer: false
+      - title:
+          locales:
+            en: Rosalind Franklin
+        is_answer: false
+      - title:
+          locales:
+            en: Max Planck
+        is_answer: false
+- id: form-1
+  name: FormB
+  items:
+  - type: multiple-select
+    stem:
+      locales:
+        en: Which of the following is a state in the United States?
+    options:
+      - title:
+          locales:
+            en: Massachusetts
+        is_answer: true
+      - title:
+          locales:
+            en: Manitoba
+        is_answer: false
+      - title:
+          locales:
+            en: Oregon
+        is_answer: true
+      - title:
+          locales:
+            en: Washington, D.C.
+        is_answer: false

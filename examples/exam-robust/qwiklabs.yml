@@ -5,6 +5,7 @@ id: exam-robust
 passing_percentage: 67
 default_locale: en
 duration: 120
+price: 80
 
 title:
   locales:
@@ -12,5 +13,91 @@ title:
     fr: Mon Excellent Examen d'Histoire
 
 forms:
-- formA.yaml
-- formB.yaml
+- id: form-0
+  name: A
+  items:
+  - type: multiple-choice
+    client_code: sci-item-0
+    stem:
+      locales:
+        en: Who won the Nobel Prize for discovering the cause of the photoelectric effect?
+        fr: Qui a remporté le prix Nobel pour avoir découvert la cause de l'effet photoélectrique?
+    rationale:
+      locales:
+        en: |
+          Albert Einstein won the Nobel Prize in 1922 for work that forms the foundation for how modern solar panels work.
+          While Crick did win a Nobel Prize, it was for his discovery of DNA along with James Watson.
+          While her work was instrumental in discovering DNA, Rosalind Franklin never won a Nobel Prize.
+          Max Planck won the Nobel Price in Physics in 1918 for his work on quantum theory, and while his work was used in the discovery of the photoelectric effect, he actually rejected the initial theory.
+        fr: |
+          Albert Einstein a reçu le prix Nobel en 1922 pour des travaux qui constituent le fondement du fonctionnement des panneaux solaires modernes.
+          Bien que Crick ait remporté un prix Nobel, c'était pour sa découverte de l'ADN avec James Watson.
+          Alors que son travail a joué un rôle déterminant dans la découverte de l'ADN, Rosalind Franklin n'a jamais remporté de prix Nobel.
+          Max Planck a remporté le prix Nobel de physique en 1918 pour ses travaux sur la théorie quantique. Bien que ses travaux aient servi à la découverte de l'effet photoélectrique, il a en réalité rejeté la théorie initiale.
+    options:
+      - title:
+          locales:
+            en: Albert Einstein
+            fr: Albert Einstein
+        is_answer: true
+      - title:
+          locales:
+            en: Francis Crick
+            fr: Francis Crick
+        is_answer: false
+      - title:
+          locales:
+            en: Rosalind Franklin
+            fr: Rosalind Franklin
+        is_answer: false
+      - title:
+          locales:
+            en: Max Planck
+            fr: Max Planck
+        is_answer: false
+    section: Science
+    seed: true
+- id: form-1
+  name: B
+  items:
+  - type: multiple-select
+    client_code: geo-item-0
+    stem:
+      locales:
+        en: Which of the following is a state in the United States?
+        fr: Lequel des États suivants est un État aux États-Unis?
+    rationale:
+      locales:
+        en: |
+          Massachusetts is located in the Northeast.
+          Manitoba is a Canadian province, though it does share a border with the Midwest United States.
+          Oregon is a state in the Pacific Northwest.
+          Washington, D.C. is specifically mentioned in the U.S. Constitution as as a district administered by the federal government for the purpose of being the Seat of the Government of the United States. It lacks several of the rights states have, such as full representation in Congress.
+        fr: |
+          Le Massachusetts est situé dans le nord-est.
+          L'Oregon est un état du nord-ouest du Pacifique.
+          Le Manitoba est une province canadienne, même s'il partage une frontière avec le Midwest américain.
+          Washington, DC, est expressément mentionné dans la Constitution américaine comme un district administré par le gouvernement fédéral dans le but d’être le siège du gouvernement des États-Unis. Il manque plusieurs des droits des États, tels que la pleine représentation au Congrès.
+    options:
+      - title:
+          locales:
+            en: Massachusetts
+            fr: Massachusetts
+        is_answer: true
+      - title:
+          locales:
+            en: Manitoba
+            fr: Manitoba
+        is_answer: false
+      - title:
+          locales:
+            en: Oregon
+            fr: l'Oregon
+        is_answer: true
+      - title:
+          locales:
+            en: Washington, D.C.
+            fr: Washington, D.C.
+        is_answer: false
+    section: Geography
+    seed: true
