@@ -49,6 +49,8 @@ items: ...
 
 attribute          | required | type       | notes
 -------------------| -------- | ---------- | -----------------------------------------
+id                 | ✓        | string     | A unique identifier for this form
+name               | ✓        | string     | A name for this form
 items              | ✓        | array      | An ordered array of `items` (see below for details) in this form
 
 
