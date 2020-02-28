@@ -15,6 +15,7 @@ schema_version: 1
 passing_percentage: 67
 default_locale: en
 duration: 120
+price: 80
 
 title: 
   locales:
@@ -31,12 +32,17 @@ attribute          | required | type       | notes
 -------------------| -------- | ---------- | -----------------------------------------
 default_locale     | ✓        | string     | Corresponds to the locale that the exam is authored in. Authoring tools can use this as a hint to notify localizers when content in the default locale is updated. Also, it provides a hint to the learner interface about which locale to display if an instruction/resource is not localized for the learner's current locale.
 schema_version     | ✓        | integer    | Which version of the exam bundle schema you are using
-title              | ✓        | dictionary | A locale dictionary of the exam title, such as "My Excellent Exam"
+title              |          | dictionary | A locale dictionary of the exam title, such as "My Excellent Exam"
+introduction       |          | dictionary | A locale dictionary of the exam introduction to show before a student starts the exam. May include a description, any terms and conditions, instructions, etc.
 passing_percentage | ✓        | integer    | The threshold grade that a student needs to achieve in order to count as "passing" the exam.
 duration           | ✓        | integer    | The maximum time a student is allotted for the exam, in minutes.
+price              | ✓        | integer    | The cost of an exam, in USD.
 forms              | ✓        | array      | An array of `forms` (see below for details) files in the bundle.
 randomize_items    |          | boolean    | Whether `items` in `forms` should be presented in a random order; `true` by default
 randomize_options  |          | boolean    | Whether `options` in `items` should be presented in a random order; `true` by default
+can_retake         |          | boolean    | Whether or not a student is allowed to retake an exam.
+show_score         |          | boolean    | Whether or not to display the scored exam to a student post-submission.
+
 
 ### Forms
 Forms are versions of an exam. An exam may have multiple forms (i.e. A and B), where A and B will have a different collection of items. One student taking an exam may get form A, and another form B, but both students are considered to be taking "equivalent" exams. YAML is the required format for stored forms.
