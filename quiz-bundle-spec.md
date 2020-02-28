@@ -87,7 +87,7 @@ options         | ✓        | array      | An array of `options` (see below for
 
 ### matching Stems
 
-Match items need an additional `stems` array which contains all of the question(s) for which the user must provide a match and the matching answer.
+Match items need an additional `stems` array which contains the question(s) for which the user must provide the matching answer.
 
 attribute    | required | type       | notes
 -------------| -------- | -----------| -----------------------------------------
