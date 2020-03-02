@@ -43,7 +43,7 @@ randomize_options  | ✓        | boolean    | Whether `options` in `items` shou
 
 
 ### Forms
-Forms are versions of an exam. An exam may have multiple forms (i.e. A and B), where A and B will have a different collection of items. One student taking an exam may get form A, and another form B, but both students are considered to be taking "equivalent" exams. YAML is the required format for stored forms.
+Forms are versions of an exam. An exam may have multiple forms (i.e. A and B), where A and B will have a different collection of items. One student taking an exam may get form A, and another form B, but both students are considered to be taking "equivalent" exams.
 
 ```yml
 id: form-0
