@@ -16,6 +16,8 @@ passing_percentage: 67
 default_locale: en
 duration: 120
 price: 80
+randomize_items: true
+randomize_options: true
 
 title: 
   locales:
@@ -37,9 +39,9 @@ introduction       |          | dictionary | A locale dictionary of the exam int
 passing_percentage | ✓        | integer    | The threshold grade that a student needs to achieve in order to count as "passing" the exam.
 duration           | ✓        | integer    | The maximum time a student is allotted for the exam, in minutes.
 price              | ✓        | integer    | The cost of an exam, in USD.
-forms              | ✓        | array      | An array of `forms` (see below for details)
 randomize_items    | ✓        | boolean    | Whether `items` in `forms` should be presented in a random order; `true` by default
 randomize_options  | ✓        | boolean    | Whether `options` in `items` should be presented in a random order; `true` by default
+forms              | ✓        | array      | An array of `forms` (see below for details)
 
 
 ### Forms
