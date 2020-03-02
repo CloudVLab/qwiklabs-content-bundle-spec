@@ -18,6 +18,7 @@ duration: 120
 price: 80
 randomize_items: true
 randomize_options: true
+randomize_prompts: true
 
 title: 
   locales:
@@ -41,6 +42,7 @@ duration           | ✓        | integer    | The maximum time a student is all
 price              | ✓        | integer    | The cost of an exam, in USD.
 randomize_items    | ✓        | boolean    | Whether `items` in `forms` should be presented in a random order; `true` by default
 randomize_options  | ✓        | boolean    | Whether `options` in `items` should be presented in a random order; `true` by default
+randomize_prompts  | ✓        | boolean    | Whether `prompts` in `match items` should be presented in a random order; `true` by default
 forms              | ✓        | array      | An array of `forms` (see below for details)
 
 
