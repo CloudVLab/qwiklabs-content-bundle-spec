@@ -6,6 +6,12 @@ passing_percentage: 67
 default_locale: en
 duration: 120
 price: 80
+randomize_items: true
+randomize_options: true
+randomize_prompts: true
+retake_cooldown:
+- 1
+- 7
 
 title:
   locales:
