@@ -70,8 +70,7 @@ domain_tags: ['infrastructure']
 level: 1
 
 # course_surveys
-course_surveys:
-- 'cloud-training-l2io16cn5i'
+course_surveys: ['cloud-training-l2io16cn5i']
 
 # Estimated time to take the course, in days
 estimated_duration_days: 1
