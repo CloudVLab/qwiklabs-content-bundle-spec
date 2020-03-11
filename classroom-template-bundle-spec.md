@@ -69,6 +69,10 @@ role_tags: ['cloud architect', 'developers backend']
 domain_tags: ['infrastructure']
 level: 1
 
+# course_surveys
+course_surveys:
+- 'cloud-training-l2io16cn5i'
+
 # Estimated time to take the course, in days
 estimated_duration_days: 1
 
@@ -123,6 +127,7 @@ product_tags            |          | array       | Array of strings from the "Pr
 role_tags               |          | array       | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 domain_tags             |          | array       | Array of strings from the "Domain" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 level                   |          | integer     | Integer between 1 and 4, with 1 being the easiest
+course_surveys          |          | array       | Array of course survey 'slugs'
 estimated_duration_days |          | integer     | Estimated time to take the course, in days
 estimated_duration      |          | integer     | Estimated time to take the course, in minutes
 lock_activity_position  |          | boolean     | Allow lab order to be changed by the trainer
