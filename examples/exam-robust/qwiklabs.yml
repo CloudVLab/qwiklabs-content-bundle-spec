@@ -5,7 +5,6 @@ id: exam-robust
 passing_percentage: 67
 default_locale: en
 duration: 120
-price: 80
 randomize_items: true
 randomize_options: true
 randomize_prompts: true
@@ -26,7 +25,7 @@ forms:
   - items:
     - type: multiple-choice
       id: form-0-sec-0-item-0
-      client_code: 1.1.1(b).SCI
+      code: 1.1.1(b).SCI
       seed: false
       stem:
         locales:
@@ -60,7 +59,7 @@ forms:
   - items:
     - type: multiple-select
       id: form-1-sec-1-item-0
-      client_code: 1.1.1(b).GEO
+      code: 1.1.1(b).GEO
       seed: false
       stem:
         locales:
