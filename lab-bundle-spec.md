@@ -271,16 +271,16 @@ No additional attributes
   id: primary_domain
 ```
 
-##### GCP Shell (gcp_shell)
+##### Cloud Terminal (cloud_terminal)
 
-> _PROPOSED ONLY: GCP Shell is not yet supported by Qwiklabs runtime._
+> _PROPOSED ONLY: Cloud Terminal is not yet supported by Qwiklabs runtime._
 
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
 permissions | ✓        | array      | Array of project/roles(array) pairs
 
 ```yml
-  - type: gcp_shell
+  - type: cloud_terminal
     id: shell
     permissions:
       - project: my_primary_project
@@ -288,7 +288,7 @@ permissions | ✓        | array      | Array of project/roles(array) pairs
           - roles/editor
 ```
 
-Note: Even though the spec supports any number of projects with any number roles, Qwiklabs only supports a shell having access to a single project and it must have the `roles/editor` role in that project. This note will be removed when Qwiklabs supports multiple projects and different roles for `gcp_shell`.
+Note: Even though the spec supports any number of projects with any number roles, Qwiklabs only supports a shell having access to a single project and it must have the `roles/editor` role in that project. This note will be removed when Qwiklabs supports multiple projects and different roles for `cloud_terminal`.
 
 ##### AWS Account (aws_account)
 
