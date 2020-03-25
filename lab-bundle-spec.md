@@ -16,7 +16,7 @@ The primary changes made from v1 to v2 are:
 
 - Renaming the `fleet` attribute on the `gcp_project` resource type to `variant`, and allowing for `variant` to be specified on other resource types.
 
-- Replacing the `dm_template` attribute on the `gcp_project` resource type with a `startup_script` and `cleanup_script`.
+- Replacing the `dm_template` attribute on the `gcp_project` resource type with a `startup_script` and an invitation-only `cleanup_script`.
 
 - Allowing `custom_properties` to include a `reference` (rather than `value`) that can be filled in from running resources.
 
@@ -179,9 +179,6 @@ attribute                        | required | type    | notes
 startup_script.type              |          | string  | The type of startup script. Only `deployment_manager` is supported.
 startup_script.path              |          | path    | Relative path to a directory tree with the script contents.
 startup_script.custom_properties |          | array   | Array of pairs. See below for details.
-cleanup_script.type              |          | string  | The type of cleanup script. Only `deployment_manager` is supported.
-cleanup_script.path              |          | path    | Relative path to a directory tree with the script contents.
-cleanup_script.custom_properties |          | array   | Array of pairs. See below for details.
 ssh_key_user                     |          | string  | If this project should use a user's SSH key, the id of that user.
 
 ```yml
@@ -194,12 +191,6 @@ ssh_key_user                     |          | string  | If this project should u
     custom_properties:
       - key: userNameWindows
         value: student
-  cleanup_script:
-    type: deployment_manager
-    path: dm_cleanup.zip
-    custom_properties:
-      - key: primary_project_zone
-        reference: my_primary_project.zone
 ```
 
 > **NOTE:** The existing concept of Qwiklabs' Fleets does not have a single
@@ -208,6 +199,11 @@ ssh_key_user                     |          | string  | If this project should u
 > Some fleet types map to resource types (e.g. `gsuite_multi_tenant` fleet is
 > now the `gsuite-domain` resource type), while other fleets are allowed as
 > "variants" of `gcp_project` (see below).
+
+
+> **NOTE:** Cleanup scripts are supported by invitation only. If you think you
+> have a reason to use cleanup scripts, please get in touch with Qwiklabs 
+> engineering and we can discuss the specifics of cleanup scripts.
 
 ###### Variants for GCP Project
 
@@ -302,8 +298,6 @@ account_restrictions.allowed_ec2_instances      | | array   | Array of [EC2 inst
 account_restrictions.allowed_rds_instances      | | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for RDS usage. Default none.
 startup_script.type              | | string  | The type of startup script. Only `cloud_formation` is supported.
 startup_script.path              | | path    | Relative path to a directory tree with the script contents.
-cleanup_script.type              | | string  | The type of cleanup script. Only `cloud_formation` is supported.
-cleanup_script.path              | | path    | Relative path to a directory tree with the script contents.
 user_policy                      | | path    | Relative path to a [JSON policy](https://awspolicygen.s3.amazonaws.com/policygen.html) document.
 
 ```yml
