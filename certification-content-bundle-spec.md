@@ -104,7 +104,7 @@ content_id: qwiklabs-test-content/my-cool-course
 ```yml
 id: step-1
 gated: true
-type: course_template
+type: exam
 content_id: qwiklabs-test-content/my-excellent-exam
 proctor: qwiklabs-live-plus
 ```
