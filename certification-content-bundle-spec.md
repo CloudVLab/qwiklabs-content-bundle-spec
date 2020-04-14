@@ -75,7 +75,7 @@ steps              | ✓        | array      | An array of `steps` (see [Steps](
 
 ### Steps
 
-A certification is composed of multiple `steps`. A step can be either a Course Template or an exam that the user must complete to progress through the certification.
+A certification is composed of multiple `steps`. A step can be either a [CourseTemplate](./course-template-bundle-spec.md) or an [Exam](./exam-bundle-spec.md) that the user must complete to progress through the certification.
 
 #### Gated Steps
 
