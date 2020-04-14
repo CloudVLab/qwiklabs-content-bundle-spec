@@ -22,6 +22,35 @@ description:
   locales:
     en: Prove what you know about VMs in GCP by doing these courses and exams!
 
+objectives:
+  locales:
+    en:
+      - 1st learning objective
+      - 2nd learning objective
+      - 3rd learning objective
+      - etc...
+
+audience:
+  locales:
+    en: >
+      This certification is intended for people who want to test their knowledge
+      of VMs in GCP.
+
+prerequisites:
+  locales:
+    en: >
+      It is recommended to know a little bit about Unix operating systems before
+      beginning this certification.
+
+tags:
+product_tags:
+role_tags:
+domain_tags:
+
+credits: 80
+
+certificate_award: qwiklabs-accredible
+
 steps: ...
 ```
 
@@ -33,6 +62,15 @@ default_locale     | ✓        | string     | Corresponds to the locale that th
 schema_version     | ✓        | integer    | Which version of the certification bundle schema you are using
 title              | ✓        | dictionary | A locale dictionary of the certification title, such as "Virtual Machines in GCP"
 description        |          | dictionary | A locale dictionary of the certification description which describes the contents of the certification
+objectives         |          | dictionary | A locale dictionary of objective arrays
+audience           |          | dictionary | A locale dictionary of audiences
+prerequisites      |          | dictionary | A locale dictionary of prerequisites
+tags               |          | array      | Array of strings to be used as hints in searching, etc.
+product_tags       |          | array      | Array of strings from the "Products" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
+role_tags          |          | array      | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
+domain_tags        |          | array      | Array of strings from the "Domain" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
+credits            |          | integer    | Price of the certification
+certificate_award  | ✓        | string     | A unique identifier for the corresponding award that this certification grants
 steps              | ✓        | array      | An array of `steps` (see [Steps](#steps) below for details)
 
 ### Steps
@@ -41,7 +79,7 @@ A certification is composed of multiple `steps`. A step can be either a Course T
 
 #### Gated Steps
 
-Steps can optionally be marked as "gated". A gated step will be unavailable to the user until all preceding steps are completed, and all succeeding steps will be unavailable to the user until the gated step is complete.
+Steps can optionally be marked as "gated". A gated step and all of its succeeding steps will be unavailable to the user until all preceding steps are completed.
 
 For example, consider the following order of steps, where steps `C` and `E` are gated:
 
@@ -50,17 +88,15 @@ A -- B -- |C| -- D -- |E|
 ```
 
 - At first, only `A` and `B` are available to the user.
-- Once `A` and `B` are completed (in any order), `C` becomes available.
-- Once `C` is completed, `D` becomes available.
-- Once `D` is completed, `E` becomes available.
+- Once `A` and `B` are completed (in any order), `C` and `D` become available.
+- Once `C` and `D` are completed (in any order), `E` becomes available.
 
 #### Course Step Example
 
 ```yml
 id: step-0
-gated: false
-step_type: course
-course_template_id: my-cool-course
+type: course_template
+content_id: qwiklabs-test-content/my-cool-course
 ```
 
 #### Exam Step Example
@@ -68,16 +104,15 @@ course_template_id: my-cool-course
 ```yml
 id: step-1
 gated: true
-step_type: exam
-proctoring: ProctorU
-exam_id: my-excellent-exam
+type: course_template
+content_id: qwiklabs-test-content/my-excellent-exam
+proctor: qwiklabs-live-plus
 ```
 
 attribute          | required | type       | notes
 -------------------| -------- | ---------- | -----------------------------------------
 id                 | ✓        | string     | A unique identifier for this step, to be consistent across revisions
-gated              | ✓        | boolean    | Whether this step should be "gated" (see [Gated Steps](#gated-steps) above for details)
-step_type          | ✓        | enum       | One of ["course", "exam"]
-course_template_id | ✓*       | string     | (*course steps only) Unique identifier of this step's corresponding CourseTemplate
-exam_id            | ✓*       | string     | (*exam steps only) Unique identifier of this step's corresponding Exam
-proctoring         |          | enum       | (exam steps only) Which service to use for proctoring this step's corresponding Exam. One of ["ProctorU", ...TODO(shoffing)]
+gated              |          | boolean    | Whether this step should be "gated" (see [Gated Steps](#gated-steps) above for details); `false` by default
+type               | ✓        | enum       | One of ["course_template", "exam"]
+content_id         | ✓        | string     | Unique identifier of this step's corresponding CourseTemplate or Exam
+proctor            |          | enum       | (exam steps only) Which service to use for proctoring this step's corresponding Exam. One of ["qwiklabs-live-plus", "qwiklabs-record-plus"]
