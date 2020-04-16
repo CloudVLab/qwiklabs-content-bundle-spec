@@ -94,25 +94,22 @@ A -- B -- |C| -- D -- |E|
 #### Course Step Example
 
 ```yml
-id: step-0
 type: course_template
-content_id: qwiklabs-test-content/my-cool-course
+id: qwiklabs-test-content/my-cool-course
 ```
 
 #### Exam Step Example
 
 ```yml
-id: step-1
-gated: true
 type: exam
-content_id: qwiklabs-test-content/my-excellent-exam
+id: qwiklabs-test-content/my-excellent-exam
+gated: true
 proctor: qwiklabs-live-plus
 ```
 
 attribute          | required | type       | notes
 -------------------| -------- | ---------- | -----------------------------------------
-id                 | ✓        | string     | A unique identifier for this step, to be consistent across revisions
-gated              |          | boolean    | Whether this step should be "gated" (see [Gated Steps](#gated-steps) above for details); `false` by default
 type               | ✓        | enum       | One of ["course_template", "exam"]
-content_id         | ✓        | string     | Unique identifier of this step's corresponding CourseTemplate or Exam
+id                 | ✓        | string     | Unique identifier of this step's corresponding CourseTemplate or Exam
+gated              |          | boolean    | Whether this step should be "gated" (see [Gated Steps](#gated-steps) above for details); `false` by default
 proctor            |          | enum       | (exam steps only) Which service to use for proctoring this step's corresponding Exam. One of ["qwiklabs-live-plus", "qwiklabs-record-plus"]
