@@ -49,8 +49,6 @@ domain_tags:
 
 credits: 80
 
-certificate_award: qwiklabs-accredible
-
 steps: ...
 ```
 
@@ -70,7 +68,6 @@ product_tags       |          | array      | Array of strings from the "Products
 role_tags          |          | array      | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 domain_tags        |          | array      | Array of strings from the "Domain" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 credits            |          | integer    | Price of the certification
-certificate_award  | ✓        | string     | A unique identifier for the corresponding award that this certification grants
 steps              | ✓        | array      | An array of `steps` (see [Steps](#steps) below for details)
 
 ### Steps
