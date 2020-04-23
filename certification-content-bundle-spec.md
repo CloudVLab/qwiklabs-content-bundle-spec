@@ -99,7 +99,7 @@ id: qwiklabs-test-content/my-cool-course
 
 ```yml
 type: exam
-id: qwiklabs-test-content/my-excellent-exam
+id: qwiklabs-test-content/my-excellent-exam/1.0
 gated: true
 proctor: qwiklabs-live-plus
 ```
@@ -107,6 +107,6 @@ proctor: qwiklabs-live-plus
 attribute          | required | type       | notes
 -------------------| -------- | ---------- | -----------------------------------------
 type               | ✓        | enum       | One of ["course_template", "exam"]
-id                 | ✓        | string     | Unique identifier of this step's corresponding CourseTemplate or Exam
+id                 | ✓        | string     | Unique identifier and version of this step's corresponding CourseTemplate or Exam
 gated              |          | boolean    | Whether this step should be "gated" (see [Gated Steps](#gated-steps) above for details); `false` by default
 proctor            |          | enum       | (exam steps only) Which service to use for proctoring this step's corresponding Exam. One of ["qwiklabs-live-plus", "qwiklabs-record-plus"]
