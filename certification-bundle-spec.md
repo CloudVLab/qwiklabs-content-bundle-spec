@@ -99,7 +99,7 @@ id: qwiklabs-test-content/my-cool-course
 
 ```yml
 type: exam
-id: qwiklabs-test-content/my-excellent-exam/1.0
+id: qwiklabs-test-content/my-excellent-exam@1.0
 gated: true
 proctor: qwiklabs-live-plus
 ```
