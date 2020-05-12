@@ -333,7 +333,7 @@ attribute        | required | type                       | notes
 -----------------| -------- | ---------------------------| --------------------------------------
 title            | ✓        | locale dictionary          |
 maximum_score    | ✓        | integer                    | The maximum number of points this step can award.
-student_messages | ✓        | array of objects           | The keys are how the messages will be referenced in the code, and the values are locale dictionaries.
+student_messages | ✓        | dictionary of locale dictionaries           | The keys are how the messages will be referenced in the code, and the values are locale dictionaries.
 services         | ✓        | array of resource services | An array of services that will be used in the code block. Each resource type specifies a set of allowed services.
 code             | ✓        | string                     | Code to be executed. See [below](#code) for more information.
 
