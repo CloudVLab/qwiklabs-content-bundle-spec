@@ -4,8 +4,6 @@
 >
 > This is a DRAFT document. We welcome feedback as this format evolves.
 
-Previously (in b6086b8f824aa398c1f4413b92351a4956e744cd), the robust example had some cool ideas for how deployment manager and activity tracking should look in the future. None of it is implemented yet but the ideas may be useful in the future.
-
 ## Changelog
 
 The primary changes made from v1 to v2 are:
@@ -30,7 +28,7 @@ Sometimes it is useful to reference values that are unknown at authoring time. F
 
 A resource reference has the form `[RESOURCE_ID].[RESOURCE_ATTRIBUTE]`. Each environment resource type has an allowed set of attributes that can be referenced, defined in its "Valid resource references" section. When an attribute has type "resource reference", the value should be of this form.
 
-Currently, this can only be used for `student_visible_outputs` and `custom_properties` (of startup/cleanup scripts). In the future, we hope to allow interpolating these resource references into the lab instructions.
+Currently, this can only be used for `student_visible_outputs`, `custom_properties` (of startup/cleanup scripts), and activity tracking `resources` objects. In the future, we hope to allow interpolating these resource references into the lab instructions.
 
 ## `qwiklabs.yaml` Structure
 
@@ -377,20 +375,147 @@ environment:
       reference: primary_user.password
 ```
 
-### Activity Tracking (Alpha)
+### Activity Tracking
 
 Activity tracking is a feature for evaluating a student's performance in a lab by running a script at "checkpoints". These scripts can call APIs relevant to any environment resource to query their current state. For example, the script may inspect and validate the configuration of GCE instances running in `my-project`, to ensure the user is following the instructions properly.
 
-Lab bundles will provisionally support the JSON representation of Activity Tracking currently used in the Qwiklabs web interface. The JSON definition should be stored in file separately from (and referenced directly in) `qwiklabs.yaml`.
+A lab has an Assessment, which in turn contains the Steps (checkpoints).
 
-```yaml
-entity_type: Lab
+#### Assessment
 
-...
+attribute          | required | type    | notes
+-------------------| -------- | --------| --------------------------------------
+passing_percentage | ✓        | integer | The percentage of total points the student must achieve to "pass" the lab.
+steps              | ✓        | array   | An array of [Steps](#steps)
 
-activity_tracking: ./assessment/activity_tracking.json
+```yml
+assessment:
+  passing_percentage: 75
+  steps: ...
 ```
 
-> **Note:** Support for this format should be considered deprecated.
->
-> Further work will be done to define a new DSL for expressing Activity Tracking logic. Exploratory sketches of this DSL can be found in the `./examples` directory of this repository.
+#### Steps
+
+attribute        | required | type                       | notes
+-----------------| -------- | ---------------------------| --------------------------------------
+title            | ✓        | locale dictionary          |
+maximum_score    | ✓        | integer                    | The maximum number of points this step can award.
+student_messages | ✓        | dictionary of locale dictionaries           | The keys are how the messages will be referenced in the code, and the values are locale dictionaries.
+services         | ✓        | array of resource services | An array of services that will be used in the code block. Each resource type specifies a set of allowed services.
+code             | ✓        | string                     | Code to be executed. See [below](#code) for more information.
+
+```yml
+assessment:
+  passing_percentage: 75
+  steps:
+    - title:
+        locales:
+          en: Create a Cloud Storage bucket
+          es: Crear un depósito de almacenamiento en la nube
+      maximum_score: 5
+      student_messages:
+        - success:
+            locales:
+              en:
+                Great job! You created the bucket!
+              es:
+                ¡Gran trabajo! ¡Creaste el cubo!
+        - bucket_missing:
+            locales:
+              en:
+                Oops! No bucket found.
+              es:
+                ¡Uy! No se ha encontrado el cubo.
+        - bucket_misconfigured:
+            locales:
+              en:
+                Hmm. The bucket is there, but it is misconfigured.
+              es:
+                Hmm. El cubo está allí, pero está mal configurado.
+      services:
+        - target_project.StorageV1
+      code: |-
+        def check(handles: handles, resources: resources, maximum_score: maximum_score)
+          storage_handle = handles['target_project.StorageV1']
+
+          # Check for bucket
+          found_bucket = ...
+          unless found_bucket
+            return { score: 0, student_message: 'bucket_missing' }
+          end
+
+          # Check bucket configuration
+          bucket_configured_correctly = ...
+          unless bucket_configured_correctly
+            return { score: 2, student_message: 'bucket_misconfigured' }
+          end
+
+          { score: maximum_score, student_message: 'success' }
+        end
+    - title:
+        locales:
+          en: Copy a file to the bucket
+          es: Copiar un archivo al cubo
+      maximum_score: 5
+      student_messages:
+        - success:
+            locales:
+              en:
+                Great job! You copied the file!
+              es:
+                ¡Gran trabajo! ¡Copiaste el archivo!
+        - file_missing:
+            locales:
+              en:
+                Oops! No file found.
+              es:
+                ¡Uy! No se ha encontrado el archivo.
+        - file_mismatch:
+            locales:
+              en:
+                Hmm. There's a file here, but it doesn't match the source contents.
+              es:
+                Hmm. Hay un archivo aquí, pero no coincide con el contenido de origen.
+      services:
+        - source_project.StorageV1
+        - target_project.StorageV1
+      code: |-
+        def check(handles: handles, resources: resources, maximum_score: maximum_score)
+          target_storage_handle = handles['target_project.StorageV1']
+          source_storage_handle = handles['source_project.StorageV1']
+
+          # Check for file
+          found_file = ...
+          unless found_file
+            return { score: 0, student_message: 'file_missing' }
+          end
+
+          # Check file contents
+          source_contents = ...
+          target_contents = ...
+          unless source_contents == target_contents
+            return { score: 2, student_message: 'file_mismatch' }
+          end
+
+          { score: maximum_score, student_message: 'success' }
+        end
+```
+
+##### Code
+
+The code block must be valid Ruby code. It must have a method called `check`, and may optionally contain helper methods as well.
+
+The method `check` will be called with three keyword arguments:
+- `handles`: A map from `[RESOURCE].[SERVICE]` to a handle to that resource's service. It will only contain handles to services specified in the step's `services` array.
+- `resources`: A map from `[RESOURCE]` (ids) to maps of that resource's [references](#resource-references). For example:
+```
+    {
+        my_primary_project: { project_id: 'some-gcp-project-id', default_zone: 'us-central1-a' },
+        a_cool_user: { username: 'some-username', password: 'hunter2' }
+    }
+```
+- `maximum_score`: The maximum score for the step.
+
+The method `check` should return a single hash with:
+- `:score`: the number of points the student earned.
+- `:student_message`: a key from the step's `student_messages` array, which will be presented to the student in the appropriate locale.
