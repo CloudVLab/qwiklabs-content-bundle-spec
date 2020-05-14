@@ -368,7 +368,7 @@ assessment:
       services:
         - target_project.StorageV1
       code: |-
-        def check(handles, max_score)
+        def check(handles: handles, resources: resources, maximum_score: maximum_score)
           storage_handle = handles['target_project.StorageV1']
 
           # Check for bucket
@@ -383,7 +383,7 @@ assessment:
             return { score: 2, student_message: 'bucket_misconfigured' }
           end
 
-          { score: max_score, student_message: 'success' }
+          { score: maximum_score, student_message: 'success' }
         end
     - title:
         locales:
@@ -413,7 +413,7 @@ assessment:
         - source_project.StorageV1
         - target_project.StorageV1
       code: |-
-        def check(handles, max_score)
+        def check(handles: handles, resources: resources, maximum_score: maximum_score)
           target_storage_handle = handles['target_project.StorageV1']
           source_storage_handle = handles['source_project.StorageV1']
 
@@ -430,7 +430,7 @@ assessment:
             return { score: 2, student_message: 'file_mismatch' }
           end
 
-          { score: max_score, student_message: 'success' }
+          { score: maximum_score, student_message: 'success' }
         end
 ```
 
