@@ -4,8 +4,6 @@
 
 > This is a DRAFT document. We welcome feedback as this format evolves.
 
-Previously (in b6086b8f824aa398c1f4413b92351a4956e744cd), the robust example had some cool ideas for how deployment manager and activity tracking should look in the future. None of it is implemented yet but the ideas may be useful in the future.
-
 ## Changelog
 
 The primary changes made from v1 to v2 are:
@@ -30,7 +28,7 @@ Sometimes it is useful to reference values that are unknown at authoring time. F
 
 A resource reference has the form `[RESOURCE_ID].[RESOURCE_ATTRIBUTE]`. Each environment resource type has an allowed set of attributes that can be referenced, defined in its "Valid resource references" section. When an attribute has type "resource reference", the value should be of this form.
 
-Currently, this can only be used for `student_visible_outputs` and `custom_properties` (of startup/cleanup scripts). In the future, we hope to allow interpolating these resource references into the lab instructions.
+Currently, this can only be used for `student_visible_outputs`, `custom_properties` (of startup/cleanup scripts), and activity tracking `resources` objects. In the future, we hope to allow interpolating these resource references into the lab instructions.
 
 ## `qwiklabs.yaml` Structure
 
@@ -438,9 +436,16 @@ assessment:
 
 The code block must be valid Ruby code. It must have a method called `check`, and may optionally contain helper methods as well.
 
-The method `check` will be called with two arguments:
-- A map from `[RESOURCE].[SERVICE]` to a handle to that resource's service. It will only contain handles to services specified in the step's `services` array.
-- The maximum score for the step.
+The method `check` will be called with three keyword arguments:
+- `handles`: A map from `[RESOURCE].[SERVICE]` to a handle to that resource's service. It will only contain handles to services specified in the step's `services` array.
+- `resources`: A map from `[RESOURCE]` (ids) to maps of that resource's [references](#resource-references). For example:
+```
+    {
+        my_primary_project: { project_id: 'some-gcp-project-id', default_zone: 'us-central1-a' },
+        a_cool_user: { username: 'some-username', password: 'hunter2' }
+    }
+```
+- `maximum_score`: The maximum score for the step.
 
 The method `check` should return a single hash with:
 - `:score`: the number of points the student earned.
