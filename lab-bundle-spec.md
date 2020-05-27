@@ -200,7 +200,7 @@ ssh_key_user                     |          | string  | If this project should u
 
 
 > **NOTE:** Cleanup scripts are supported by invitation only. If you think you
-> have a reason to use cleanup scripts, please get in touch with Qwiklabs 
+> have a reason to use cleanup scripts, please get in touch with Qwiklabs
 > engineering and we can discuss the specifics of cleanup scripts.
 
 ###### Variants for GCP Project
@@ -311,7 +311,7 @@ user_policy                      | | path    | Relative path to a [JSON policy](
     allow_spot_instances: false
     allow_subnet_deletion: false
     allow_vpc_deletion: false
-    allowed_ondemand_instances: []
+    allowed_ec2_instances: []
     allowed_rds_instances: ['db.t2.micro']
 ```
 
@@ -322,6 +322,9 @@ There is only one publically allowed variant for AWS accounts.
 <!-- TODO: Describe the functionality of each variant. -->
 
 - aws_vpc
+- aws_vpc_ml
+- aws_rt53labs_ilt
+- aws_vpc_sts
 
 > __Note for legacy fleet users:__ `aws_account.variant` can be used to specify your lab's fleet.
 
