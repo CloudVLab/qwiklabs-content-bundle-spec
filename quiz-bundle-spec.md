@@ -28,6 +28,7 @@ default_locale     | ✓        | string     | Corresponds to the locale that th
 schema_version     | ✓        | integer    | Which version of the quiz bundle schema you are using
 title              |          | dictionary | A locale dictionary of the quiz title, such as "My Awesome Quiz"
 passing_percentage | ✓        | integer    | The threshold grade that a student needs to achieve in order to count as "passing" the quiz.
+duration           |          | integer    | The maximum time a student is allotted for the quiz, in minutes.
 items              | ✓        | array      | An ordered array of `items` (see below for details) in this quiz - items will appear to students in this order
 
 ### Items
