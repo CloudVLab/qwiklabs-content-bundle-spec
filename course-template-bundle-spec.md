@@ -48,6 +48,10 @@ prerequisites:
   locales:
     en: <p>A basic understanding of serverless architecture is recommended but not required.</p>
 
+trainer_resource_uri:
+  locales:
+    en: http://www.example.com/resource.pdf
+
 tags: [sample, life-changing, gcp]
 product_tags: ['compute engine', 'cloud storage']
 role_tags: ['cloud architect', 'developers backend']
@@ -89,6 +93,7 @@ version                 |          | dictionary  | A locale dictionary of versio
 objectives              |          | dictionary  | A locale dictionary of objectives
 audience                |          | dictionary  | A locale dictionary of audiences
 prerequisites           |          | dictionary  | A locale dictionary of prerequisites
+trainer_resource_uri    |          | dictionary  | A locale dictionary of trainer_resource links
 tags                    |          | array       | Array of strings to be used as hints in searching, etc
 product_tags            |          | array       | Array of strings from the "Products" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 role_tags               |          | array       | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
