@@ -28,7 +28,23 @@ default_locale     | ✓        | string     | Corresponds to the locale that th
 schema_version     | ✓        | integer    | Which version of the quiz bundle schema you are using
 title              |          | dictionary | A locale dictionary of the quiz title, such as "My Awesome Quiz"
 passing_percentage | ✓        | integer    | The threshold grade that a student needs to achieve in order to count as "passing" the quiz.
-items              | ✓        | array      | An ordered array of `items` (see below for details) in this quiz - items will appear to students in this order
+sections           |         | array      | An ordered array of `sections` (see below for details) in this quiz; not allowed if `items` are specified; required if `items` are unspecified.
+items              |         | array      | An ordered array of `items` (see below for details) in a default section of this quiz; not allowed if `sections` are specified; required if `sections` are unspecified.
+
+### Sections
+Sections are groupings of related quiz items.
+
+```yml
+name: Networking
+item_count: 2
+items: ...
+```
+
+attribute          | required | type       | notes
+-------------------| -------- | ---------- | -----------------------------------------
+name               |          | string     | A name for this section
+item_count         |          |            | The number of items to select from this section when composing the quiz displayed to the student. If unspecified, defaults to the total number of specified `items` below.
+items              | ✓        | array      | An ordered array of `items` (see below for details) in this section
 
 ### Items
 Items are polymorphic - i.e. there are several different _item types_ that are defined slightly differently. `items` is an array of dictionaries with appropriate attributes for the given `type`. The allowed values for `type` are:
