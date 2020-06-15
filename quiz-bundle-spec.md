@@ -35,6 +35,7 @@ items              |         | array      | An ordered array of `items` (see bel
 Sections are groupings of related quiz items.
 
 ```yml
+id: section-0
 name: Networking
 item_count: 2
 items: ...
@@ -42,6 +43,7 @@ items: ...
 
 attribute          | required | type       | notes
 -------------------| -------- | ---------- | -----------------------------------------
+id                 | ✓        | string     | A unique identifier for this section
 name               |          | string     | A name for this section
 item_count         |          |            | The number of items to select from this section when composing the quiz displayed to the student. If unspecified, defaults to the total number of specified `items` below.
 items              | ✓        | array      | An ordered array of `items` (see below for details) in this section
