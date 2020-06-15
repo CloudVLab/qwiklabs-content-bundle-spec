@@ -33,7 +33,7 @@ sections           |          | array      | An ordered array of `sections` (see
 items              |          | array      | An ordered array of `items` (see below for details) in a default section of this quiz; not allowed if `sections` are specified; required if `sections` are unspecified.
 
 ### Sections
-Sections are groupings of related quiz items.
+Sections are groupings of related quiz items. Can be used as item banks grouping "equivalent" items.
 
 ```yml
 id: section-0
@@ -46,7 +46,7 @@ attribute          | required | type       | notes
 -------------------| -------- | ---------- | -----------------------------------------
 id                 | ✓        | string     | A unique identifier for this section
 name               |          | string     | A name for this section
-item_count         |          |            | The number of items to select from this section when composing the quiz displayed to the student. If unspecified, defaults to the total number of `items` specified below.
+item_count         |          |            | The number of items to select from this section when composing the quiz displayed to the student. Can be used to indicate the number of items to choose from an item bank. If unspecified, defaults to the total number of `items` specified below.
 items              | ✓        | array      | An ordered array of `items` (see below for details) in this section
 
 ### Items
