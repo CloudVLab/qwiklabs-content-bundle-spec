@@ -284,6 +284,20 @@ permissions | ✓        | array      | Array of project/roles(array) pairs
 
 Note: Even though the spec supports any number of projects with any number roles, Qwiklabs only supports a shell having access to a single project and it must have the `roles/editor` role in that project. This note will be removed when Qwiklabs supports multiple projects and different roles for `cloud_terminal`.
 
+
+##### IT Certification for Linux (it_cert_linux)
+
+> _PROPOSED ONLY: IT Certification for Linux is not yet supported by Qwiklabs runtime._
+
+attribute   | required | type       | notes
+----------- | -------- | ---------- | ----------------------------------------
+No additional attributes
+
+```yml
+  - type: it_cert_linux
+    id: shell
+```
+
 ##### AWS Account (aws_account)
 
 attribute   | required | type       | notes
