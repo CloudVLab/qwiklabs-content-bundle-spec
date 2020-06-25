@@ -46,7 +46,7 @@ attribute          | required | type       | notes
 -------------------| -------- | ---------- | -----------------------------------------
 id                 | ✓        | string     | A unique identifier for this section
 name               |          | string     | A name for this section
-item_count         |          |            | The number of items to select from this section when composing the quiz displayed to the student. Can be used to indicate the number of items to choose from an item bank. If unspecified, defaults to the total number of `items` specified below.
+item_count         |          | integer    | The number of items to select from this section when composing the quiz displayed to the student. Can be used to indicate the number of items to choose from an item bank. If unspecified, defaults to the total number of `items` specified below.
 items              | ✓        | array      | An ordered array of `items` (see below for details) in this section
 
 ### Items
