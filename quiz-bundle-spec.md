@@ -30,7 +30,7 @@ title              |          | dictionary | A locale dictionary of the quiz tit
 passing_percentage | ✓        | integer    | The threshold grade that a student needs to achieve in order to count as "passing" the quiz.
 duration           |          | integer    | The default time a student is allotted for the quiz, in minutes. If unspecified, the quiz will not be timed.
 sections           |          | array      | An ordered array of `sections` (see below for details) in this quiz; not allowed if `items` are specified; required if `items` are unspecified.
-items              |          | array      | An ordered array of `items` (see below for details) in a default section of this quiz; not allowed if `sections` are specified; required if `sections` are unspecified.
+items              |          | array      | An ordered array of `items` (see [below for details](#items)) in a default section of this quiz; not allowed if `sections` are specified; required if `sections` are unspecified.
 
 ### Sections
 Sections are groupings of related quiz items. Can be used as item banks grouping "equivalent" items.
