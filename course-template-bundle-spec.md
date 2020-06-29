@@ -99,8 +99,9 @@ badge                   |          | string      | Link to an image file to be u
 estimated_duration_days |          | integer     | Estimated time to take the course, in days
 max_hot_labs            |          | integer     | Maximum number of hot labs for this course. Pseudo-deprecated legacy field that we would like to remove.
 instructor_resources    |          | array       | Instructor-specific resources. See the [Resource Spec](./resource-spec.md) for full specification.
-resources               |          | array       | See below
-modules                 | ✓        | array       | See below
+resources               |          | array       | See [below](#resources)
+modules                 | ✓        | array       | See [below](#modules)
+retake_policies         |          | array       | See [below](#retake_policies)
 
 ### Modules
 
@@ -182,3 +183,20 @@ activity_options | ✓        | array       | `activity_options` is an array of 
 -- id            | ✓        | string      | Reference to the unique identifier for the activity - `library/slug`.
 prompt           |          | dictionary  | Key is `locales` and each locale is a dictionary mapping locale codes to a prompt describing the step
 optional         |          | boolean     | `true` if the step is *not* required for completion
+
+### Retake Policies
+
+A retake policy defines any required cooldown periods, retake limits, and retake windows applicable to a given `CourseTemplate` activity.
+
+attribute               | required | type        | notes
+----------------------- | -------- | ----------- | -----------------------------------------
+id                      | ✓        | string      | A unique identifier for this retake policy
+activity_type           | ✓        | enum        | One of `Lab` or `Quiz`; the type of retakeable activity to which this retake policy applies
+activity_subtype        |          | string       | Distinguishes a subset of retakeable activities of the given type above to which this retake policy specifically applies (i.e. `graded` for quiz)
+retake_cooldown         |          | array       | An array of `n` number of days specifying the cooldown periods between consecutive retakes; the last number will be the cooldown period for all retakes after the `nth`
+retake_limit            |          | integer     | The total number of attempts allowed for an activity of the given type and subtype above; required if `retake_window` below is specified
+retake_window           |          | integer     | The period (in days) for which the `retake_limit` above applies
+ 
+
+
+
