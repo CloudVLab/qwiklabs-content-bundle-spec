@@ -192,7 +192,7 @@ attribute               | required | type        | notes
 ----------------------- | -------- | ----------- | -----------------------------------------
 id                      | ✓        | string      | A unique identifier for this retake policy
 activity_type           | ✓        | enum        | The type of retakeable activity to which this retake policy applies; one of `Lab` or `Quiz`
-activity_subtype        |          | string      | Distinguishes a subset of a given type of retakeable activity to which this retake policy applies (i.e. `graded` for quiz)
+activity_subtype        |          | string      | Distinguishes a subset of a given type of retakeable activity to which this retake policy applies (e.g. `graded` for quiz)
 retake_cooldown         |          | array       | An array of `n` integers (greater than or equal to 0) specifying the required cooldown periods (in days) between consequent retakes; the last integer will be the cooldown period for all retakes after the `nth`
 retake_limit            |          | integer     | The total number of attempts (greater than 0) allowed for the given type and subtype of retakeable activity; required if `retake_window` below is specified
 retake_window           |          | integer     | An integer (greater than 0) specifying the period (in days) for which the `retake_limit` above applies
