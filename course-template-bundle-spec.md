@@ -168,6 +168,7 @@ steps:
   - id: compute-quiz
     activity_options:
     - type: quiz
+      subtype: 'graded'
       id: compute-quiz
 ```
 
@@ -180,6 +181,7 @@ attribute        | required | type        | notes
 id               | ✓        | string      | A unique identifier for this step
 activity_options | ✓        | array       | `activity_options` is an array of dictionaries with the format:
 -- type          | ✓        | enum        | One of `lab`, `quiz`, `resource`
+-- subtype       |          | string      | A subordinate activity type; allowed `subtype` strings are contingent on the above `type`
 -- id            | ✓        | string      | Reference to the unique identifier for the activity - `library/slug`.
 prompt           |          | dictionary  | Key is `locales` and each locale is a dictionary mapping locale codes to a prompt describing the step
 optional         |          | boolean     | `true` if the step is *not* required for completion
@@ -188,11 +190,37 @@ optional         |          | boolean     | `true` if the step is *not* required
 
 A retake policy defines any required cooldown periods, retake limits, and retake windows applicable to a given `CourseTemplate` activity.
 
+The overall format should look like:
+
+```yml
+retake_policies:
+  - id: default-lab-policy
+    activity_type: Lab
+    retake_cooldown:
+      - 1
+      - 2
+      - 5
+
+  - id: practice-quiz-policy
+    activity_type: Quiz
+    activity_subtype: practice
+    retake_limit: 3
+    retake_window: 1
+
+  - id: graded-quiz-policy
+    activity_type: Quiz
+    activity_subtype: graded
+    retake_cooldown:
+      - 1
+    retake_limit: 3
+    retake_window: 1
+```
+
 attribute               | required | type        | notes
 ----------------------- | -------- | ----------- | -----------------------------------------
 id                      | ✓        | string      | A unique identifier for this retake policy
 activity_type           | ✓        | enum        | The type of retakeable activity to which this retake policy applies; one of `Lab` or `Quiz`
-activity_subtype        |          | string      | Distinguishes a subset of a given type of retakeable activity to which this retake policy applies (e.g. `graded` for quiz)
+activity_subtype        |          | string      | Distinguishes a subset of a given type of retakeable activity to which this retake policy applies (e.g. `graded` for quiz); subtype must match one of the [allowed subtypes](#steps) given on the retakeable activity
 retake_cooldown         |          | array       | An array of `n` integers (greater than or equal to 0) specifying the required cooldown periods (in days) between consequent retakes; the last integer will be the cooldown period for all retakes after the `nth`
 retake_limit            |          | integer     | The total number of attempts (greater than 0) allowed for the given type and subtype of retakeable activity; required if `retake_window` below is specified
 retake_window           |          | integer     | An integer (greater than 0) specifying the period (in days) for which the `retake_limit` above applies
