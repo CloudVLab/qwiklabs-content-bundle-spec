@@ -101,7 +101,7 @@ max_hot_labs            |          | integer     | Maximum number of hot labs fo
 instructor_resources    |          | array       | Instructor-specific resources. See the [Resource Spec](./resource-spec.md) for full specification.
 resources               |          | array       | See [below](#resources)
 modules                 | ✓        | array       | See [below](#modules)
-retake_policies         |          | array       | See [below](#retake_policies)
+retake_policies         |          | array       | See [below](#retake-policies)
 
 ### Modules
 
