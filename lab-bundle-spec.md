@@ -405,8 +405,7 @@ title            | ✓        | locale dictionary          |
 maximum_score    | ✓        | integer                    | The maximum number of points this step can award.
 student_messages | ✓        | dictionary of locale dictionaries           | The keys are how the messages will be referenced in the code, and the values are locale dictionaries.
 services         | ✓        | array of resource services | An array of services that will be used in the code block. Each resource type specifies a set of allowed services.
-method_name      | ✓        | string                     | Name of the
-function/method in code block to be executed..
+method_name      | ✓        | string                     | Name of the function/method in code block to be executed.
 code             | ✓        | string                     | Code to be executed. See [below](#code) for more information.
 
 ```yml
