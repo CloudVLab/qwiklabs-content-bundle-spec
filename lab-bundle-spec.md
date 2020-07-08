@@ -405,6 +405,8 @@ title            | ✓        | locale dictionary          |
 maximum_score    | ✓        | integer                    | The maximum number of points this step can award.
 student_messages | ✓        | dictionary of locale dictionaries           | The keys are how the messages will be referenced in the code, and the values are locale dictionaries.
 services         | ✓        | array of resource services | An array of services that will be used in the code block. Each resource type specifies a set of allowed services.
+method_name      | ✓        | string                     | Name of the
+function/method in code block to be executed..
 code             | ✓        | string                     | Code to be executed. See [below](#code) for more information.
 
 ```yml
@@ -437,6 +439,7 @@ assessment:
                 Hmm. El cubo está allí, pero está mal configurado.
       services:
         - target_project.StorageV1
+      method_name: check
       code: |-
         def check(handles: handles, resources: resources, maximum_score: maximum_score)
           storage_handle = handles['target_project.StorageV1']
@@ -482,6 +485,7 @@ assessment:
       services:
         - source_project.StorageV1
         - target_project.StorageV1
+      method_name: check
       code: |-
         def check(handles: handles, resources: resources, maximum_score: maximum_score)
           target_storage_handle = handles['target_project.StorageV1']
@@ -506,9 +510,9 @@ assessment:
 
 ##### Code
 
-The code block must be valid Ruby code. It must have a method called `check`, and may optionally contain helper methods as well.
+The code block must be valid Ruby code. It must have a method named referenced in `method_name`, and may optionally contain helper methods as well.
 
-The method `check` will be called with three keyword arguments:
+This method will be called with three keyword arguments:
 - `handles`: A map from `[RESOURCE].[SERVICE]` to a handle to that resource's service. It will only contain handles to services specified in the step's `services` array.
 - `resources`: A map from `[RESOURCE]` (ids) to maps of that resource's [references](#resource-references). For example:
 ```
