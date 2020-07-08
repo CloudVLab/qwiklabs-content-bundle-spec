@@ -168,7 +168,7 @@ steps:
   - id: compute-quiz
     activity_options:
     - type: quiz
-      subtype: 'graded'
+      category: 'graded'
       id: compute-quiz
 ```
 
