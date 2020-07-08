@@ -218,7 +218,6 @@ retake_policies:
 
 attribute               | required | type        | notes
 ----------------------- | -------- | ----------- | -----------------------------------------
-id                      | ✓        | string      | A unique identifier for this retake policy
 activity_type           | ✓        | enum        | The type of retakeable activity to which this retake policy applies; one of `Lab` or `Quiz`
 activity_category       |          | string      | Distinguishes a subset of a given type of retakeable activity to which this retake policy applies (e.g. `graded` for quiz); category must match one of the [allowed categories](#steps) given on the retakeable activity
 retake_cooldown         |          | array       | An array of `n` integers (greater than or equal to 0) specifying the required cooldown periods (in days) between consequent retakes; the last integer will be the cooldown period for all retakes after the `nth`; For example, a retake_cooldown of `[1, 2, 5]` would require a student to wait 1 day before their 1st retake, 2 days between their 1st and 2nd retakes, and 3 days between their 2nd and 3rd retakes, 3rd and 4th retakes, and so on.  If a student has waited for the appropriate coooldown period, they will only be allowed to retake the activity given they have not exceeded any retake limit.
