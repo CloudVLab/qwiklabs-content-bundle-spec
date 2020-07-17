@@ -1,31 +1,15 @@
-entity_type: Lab
 schema_version: 2
+entity_type: Lab
+
+id: robust-bundle-v2
 
 default_locale: en
-
-title:
-  locales:
-    en: Robust Lab Example
-    es: Ejemplo de Robust Lab
-
-description:
-  locales:
-    en: Seriously the best lab you've ever taken. Bar none.
-    es: En serio, el mejor lab que has tomado. Sin excepción.
-
 duration: 60
-level: easy-peasy
+level: easy
 tags:
   - sample
   - life-changing
   - gcp
-
-instruction:
-  type: html
-  uri:
-    locales:
-      en: "./instructions/en.html"
-      es: "./instructions/es.html"
 
 resources:
   - type: file
@@ -39,8 +23,8 @@ resources:
         es: Este PDF contiene todos los ejemplos de código para el laboratorio.
     uri:
       locales:
-        en: "./resources/sample-en.pdf"
-        es: "./resources/sample-es.pdf"
+        en: ./resources/sample-en.pdf
+        es: ./resources/sample-es.pdf
   - type: video
     id: intro-video
     title:
@@ -58,6 +42,43 @@ resources:
     duration: 360
 
 environment:
+  resources:
+    - type: gcp_project
+      id: primary_project
+      variant: gcpfree
+      startup_script:
+        type: deployment_manager
+        path: ./startup
+        custom_properties:
+          - key: userNameWindows
+            value: student
+      cleanup_script:
+        type: deployment_manager
+        path: ./cleanup
+        custom_properties:
+          - key: primary_project_zone
+            reference: primary_project.default_zone
+    - type: gcp_user
+      id: primary_user
+      permissions:
+      - project: primary_project
+        roles:
+        - roles/editor
+        - roles/appengine.appAdmin
+        - roles/bigquery.admin
+        - roles/bigquery.user
+    - type: aws_account
+      id: the_account
+      variant: aws_vpc
+      startup_script:
+        type: cloud_formation
+        path: ./lab.template
+      user_policy: ./iam_policy.json
+      account_restrictions:
+        allow_spot_instances: true
+        allow_subnet_deletion: false
+        allow_vpc_deletion: false
+        allowed_rds_instances: ['db.t2.micro']
   student_visible_outputs:
     - label:
         locales:
@@ -72,32 +93,6 @@ environment:
           en: "Password"
       reference: primary_user.password
 
-  resources:
-    - type: gcp_project
-      id: primary_project
-      variant: gcpfree
-      startup_script:
-        type: deployment_manager
-        path: dm_startup.zip
-        custom_properties:
-          - key: userNameWindows
-            value: student
-      cleanup_script:
-        type: deployment_manager
-        path: dm_cleanup.zip
-        custom_properties:
-          - key: primary_project_zone
-            reference: primary_project.default_zone
-    - type: gcp_user
-      id: primary_user
-      permissions:
-      - project: primary_project
-        roles:
-        - roles/editor
-        - roles/appengine.appAdmin
-        - roles/bigquery.admin
-        - roles/bigquery.user
-
 assessment:
   passing_percentage: 75.0
   steps:
@@ -109,39 +104,48 @@ assessment:
     student_messages:
       success:
         locales:
-          en:
-            Great job! You created the bucket!
-          es:
-            ¡Gran trabajo! ¡Creaste el cubo!
+          en: Great job! You created the bucket!
+          es: ¡Gran trabajo! ¡Creaste el cubo!
       bucket_missing:
         locales:
-          en:
-            Oops! No bucket found.
-          es:
-            ¡Uy! No se ha encontrado el cubo.
+          en: Oops! No bucket found.
+          es: ¡Uy! No se ha encontrado el cubo.
       bucket_misconfigured:
         locales:
-          en:
-            Hmm. The bucket is there, but it is misconfigured.
-          es:
-            Hmm. El cubo está allí, pero está mal configurado.
+          en: Hmm. The bucket is there, but it is misconfigured.
+          es: Hmm. El cubo está allí, pero está mal configurado.
     services:
     - primary_project.StorageV1
     code: |-
-      def check(handles: handles, resources: resources, maximum_score: maximum_score)
-        storage_handle = handles['primary_project.StorageV1']
-
-        # Check for bucket
-        found_bucket = ...
-        unless found_bucket
-          return { score: 0, student_message: 'bucket_missing' }
+        def check(handles:, maximum_score:, resources:)
+          storage_handle = handles['primary_project.StorageV1']
+          raise 'Invalid handle' if storage_handle.nil?
+          # Check for bucket, stubbed for testing
+          found_bucket = true
+          unless found_bucket
+            return { score: 0, student_message: 'bucket_missing' }
+          end
+          # Check bucket configuration, stubbed for testing
+          bucket_configured_correctly = true
+          unless bucket_configured_correctly
+            return { score: 2, student_message: 'bucket_misconfigured' }
+          end
+          { score: max_score, student_message: 'success' }
         end
 
-        # Check bucket configuration
-        bucket_configured_correctly = ...
-        unless bucket_configured_correctly
-          return { score: 2, student_message: 'bucket_misconfigured' }
-        end
+title:
+  locales:
+    en: Robust Lab Example
+    es: Ejemplo de Robust Lab
 
-        { score: maximum_score, student_message: 'success' }
-      end
+description:
+  locales:
+    en: Seriously the best lab you've ever taken. Bar none.
+    es: En serio, el mejor lab que has tomado. Sin excepción.
+
+instruction:
+  type: html
+  uri:
+    locales:
+      en: ./instructions/en.html
+      es: ./instructions/es.html
