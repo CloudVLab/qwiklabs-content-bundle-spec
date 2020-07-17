@@ -21,11 +21,11 @@ tags:
   - gcp
 
 instruction:
-  type: markdown
+  type: html
   uri:
     locales:
-      en: "./instructions/en.md"
-      es: "./instructions/es.md"
+      en: "./instructions/en.html"
+      es: "./instructions/es.html"
 
 resources:
   - type: file
@@ -87,7 +87,7 @@ environment:
         path: dm_cleanup.zip
         custom_properties:
           - key: primary_project_zone
-            reference: primary_project.zone
+            reference: primary_project.default_zone
     - type: gcp_user
       id: primary_user
       permissions:
@@ -98,4 +98,50 @@ environment:
         - roles/bigquery.admin
         - roles/bigquery.user
 
-assessment: assessment.yaml
+assessment:
+  passing_percentage: 75.0
+  steps:
+  - title:
+      locales:
+        en: Create a Cloud Storage bucket
+        es: Crear un depósito de almacenamiento en la nube
+    maximum_score: 5
+    student_messages:
+      success:
+        locales:
+          en:
+            Great job! You created the bucket!
+          es:
+            ¡Gran trabajo! ¡Creaste el cubo!
+      bucket_missing:
+        locales:
+          en:
+            Oops! No bucket found.
+          es:
+            ¡Uy! No se ha encontrado el cubo.
+      bucket_misconfigured:
+        locales:
+          en:
+            Hmm. The bucket is there, but it is misconfigured.
+          es:
+            Hmm. El cubo está allí, pero está mal configurado.
+    services:
+    - primary_project.StorageV1
+    code: |-
+      def check(handles: handles, resources: resources, maximum_score: maximum_score)
+        storage_handle = handles['primary_project.StorageV1']
+
+        # Check for bucket
+        found_bucket = ...
+        unless found_bucket
+          return { score: 0, student_message: 'bucket_missing' }
+        end
+
+        # Check bucket configuration
+        bucket_configured_correctly = ...
+        unless bucket_configured_correctly
+          return { score: 2, student_message: 'bucket_misconfigured' }
+        end
+
+        { score: maximum_score, student_message: 'success' }
+      end
