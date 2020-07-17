@@ -386,10 +386,10 @@ A lab has an Assessment, which in turn contains the Steps (checkpoints).
 
 #### Assessment
 
-attribute          | required | type    | notes
--------------------| -------- | --------| --------------------------------------
-passing_percentage | ✓        | float   | The percentage of total points the student must achieve to "pass" the lab.
-steps              | ✓        | array   | An array of [Steps](#steps)
+attribute          | required | type  | notes
+-------------------| -------- | ------| --------------------------------------
+passing_percentage | ✓        | float | The percentage of total points the student must achieve to "pass" the lab.
+steps              | ✓        | array | An array of [Steps](#steps)
 
 ```yml
 assessment:
