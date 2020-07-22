@@ -1,8 +1,6 @@
 schema_version: 2
 entity_type: Lab
 
-id: robust-bundle-v2
-
 default_locale: en
 duration: 60
 level: easy
