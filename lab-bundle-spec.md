@@ -92,6 +92,8 @@ attribute              | required | type        | notes
 title                  | ✓        | locale dictionary |
 description            | ✓        | locale dictionary |
 duration               | ✓        | integer     | Amount of time it should take an average learner to complete the lab (in minutes)
+max_duration           |          | integer     | Maximum amount of time learner will be given to complete the lab (in minutes)
+credits                |          | integer     |
 level                  |          | string      |
 logo                   |          | file path   |
 tags                   |          | array       |
