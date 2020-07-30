@@ -357,7 +357,7 @@ Not all details of the lab environment should be exposed to the lab taker. For e
 
 attribute | required | type               | notes
 ----------| -------- | ------------------ | --------------------------------------
-label     | ✓        | string             | A label identifying to the student what the displayed reference is.
+label     | ✓        | locale dictionary  | A label identifying to the student what the displayed reference is.
 reference | ✓        | resource reference | A [resource reference](#resource-references) for a value to be displayed to the student.
 
 ```yml
