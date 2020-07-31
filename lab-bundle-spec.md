@@ -92,6 +92,7 @@ attribute              | required | type        | notes
 title                  | ✓        | locale dictionary |
 description            | ✓        | locale dictionary |
 duration               | ✓        | integer     | Amount of time it should take an average learner to complete the lab (in minutes)
+credits                |          | integer     |
 level                  |          | string      |
 logo                   |          | file path   |
 tags                   |          | array       |
