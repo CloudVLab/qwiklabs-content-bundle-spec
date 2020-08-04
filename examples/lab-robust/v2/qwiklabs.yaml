@@ -84,12 +84,28 @@ environment:
       reference: primary_project.project_id
     - label:
         locales:
-          en: "Username"
+          en: "GCP Username"
       reference: primary_user.username
     - label:
         locales:
-          en: "Password"
+          en: "GCP Password"
       reference: primary_user.password
+    - label:
+        locales:
+          en: 'AWS Account Number'
+      reference: the_account.account_number
+    - label:
+        locales:
+          en: 'Username'
+      reference: the_account.username
+    - label:
+        locales:
+          en: 'password'
+      reference: the_account.password
+    - label:
+        locales:
+          en: 'AWS Console URL'
+      reference: the_account.console_url
 
 assessment:
   passing_percentage: 75.0

@@ -318,28 +318,30 @@ user_policy                      | | path    | Relative path to a [JSON policy](
 
 ###### Variants for AWS Account
 
-There is only one publically allowed variant for AWS accounts.
+The allowed `aws_account` variants are:
 
 <!-- TODO: Describe the functionality of each variant. -->
 
-- aws_vpc
+- aws_vpc [default]
 - aws_vpc_ml
 - aws_rt53labs_ilt
 - aws_vpc_sts
+- aws_for_gcp
 
-> __Note for legacy fleet users:__ `aws_account.variant` can be used to specify your lab's fleet.
+Note that a lab will only launch on a given deployment if the deployment has an AWS fleet for the designated variant.
+
 
 ###### Valid custom property references
 
 The valid `reference`s for an `aws_account` resource are:
 
-- [AWS_ACCOUNT].account_id
+- [AWS_ACCOUNT].account_number
 - [AWS_ACCOUNT].username
 - [AWS_ACCOUNT].password
 <!-- Legacy display option replacements -->
 - [AWS_ACCOUNT].sts_link
 - [AWS_ACCOUNT].access_key_id
-- [AWS_ACCOUNT].fleet_console_credentials
+- [AWS_ACCOUNT].console_url
 - [AWS_ACCOUNT].rdp_credentials
 - [AWS_ACCOUNT].ssh_credentials
 - [AWS_ACCOUNT].vnc_link
