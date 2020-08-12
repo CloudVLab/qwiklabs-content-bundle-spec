@@ -44,6 +44,7 @@ duration           | ✓        | integer    | The maximum time a student is all
 randomize_items    | ✓        | boolean    | Whether `items` in `forms` should be presented in a random order; `true` by default
 randomize_options  | ✓        | boolean    | Whether `options` in `items` should be presented in a random order; `true` by default
 randomize_prompts  | ✓        | boolean    | Whether `prompts` in `match items` should be presented in a random order; `true` by default
+show_score         |          | boolean    | Whether to show student areas for study if failed exam; `false` by default
 retake_cooldown    | ✓        | array      | An array of `n` number of days specifying the cooldown period between retakes; the last number will be the cooldown period for all retakes after the `nth`
 forms              | ✓        | array      | An array of `forms` (see below for details)
 

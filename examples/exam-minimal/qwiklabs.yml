@@ -8,6 +8,7 @@ duration: 120
 randomize_items: true
 randomize_options: true
 randomize_prompts: true
+show_score: true
 retake_cooldown:
 - 1
 - 7
