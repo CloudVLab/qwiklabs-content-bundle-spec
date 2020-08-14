@@ -268,8 +268,6 @@ No additional attributes
 
 ##### Cloud Terminal (cloud_terminal)
 
-> _PROPOSED ONLY: Cloud Terminal is not yet supported by Qwiklabs runtime._
-
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
 permissions | ✓        | array      | Array of project/roles(array) pairs
@@ -284,6 +282,25 @@ permissions | ✓        | array      | Array of project/roles(array) pairs
 ```
 
 Note: Even though the spec supports any number of projects with any number roles, Qwiklabs only supports a shell having access to a single project and it must have the `roles/editor` role in that project. This note will be removed when Qwiklabs supports multiple projects and different roles for `cloud_terminal`.
+
+##### Linux Terminal (linux_terminal)
+
+attribute           | required | type  | notes
+------------------- | -------- | ------| ----------------------------------------
+permissions         | ✓        | array | Array of project/roles(array) pairs
+startup_script.path |          | path  | Relative path to a directory tree with the script contents.
+
+```yml
+  - type: linux_terminal
+    id: terminal
+    startup_script:
+      path: startup.sh
+```
+###### Valid custom property references
+
+The valid `reference`s for a `linux_terminal` resource are:
+
+- [LINUX_TERMINAL].public_ip
 
 ##### AWS Account (aws_account)
 
@@ -351,6 +368,25 @@ The valid `reference`s for an `aws_account` resource are:
 Qwiklabs regularly syncronizes it's list of EC2 instance types with the AWS platform. We purposefully do not provide a full list of EC2 instance types in this document, because AWS adds and deprecates instance types regularly.
 
 For a complete and up-to-date list of EC2 instance types, see [AWS official documentation](https://aws.amazon.com/ec2/instance-types/)
+
+##### Windows VM (windows_vm)
+
+attribute           | required | type  | notes
+------------------- | -------- | ------| ----------------------------------------
+permissions         | ✓        | array | Array of project/roles(array) pairs
+startup_script.path |          | path  | Relative path to a directory tree with the script contents.
+
+```yml
+  - type: windows_vm
+    id: vm
+    startup_script:
+      path: startup.ps1
+```
+###### Valid custom property references
+
+The valid `reference`s for a `windows_vm` resource are:
+
+- [WINDOWS_VM].public_ip
 
 #### Student Visible Outputs
 
