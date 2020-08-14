@@ -300,7 +300,7 @@ startup_script.path |          | path  | Relative path to a directory tree with 
 
 The valid `reference`s for a `linux_terminal` resource are:
 
-- [LINUX_TERMINAL].public_ip
+- [LINUX_TERMINAL].external_ip
 
 ##### AWS Account (aws_account)
 
@@ -386,7 +386,7 @@ startup_script.path |          | path  | Relative path to a directory tree with 
 
 The valid `reference`s for a `windows_vm` resource are:
 
-- [WINDOWS_VM].public_ip
+- [WINDOWS_VM].external_ip
 
 #### Student Visible Outputs
 
