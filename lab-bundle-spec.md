@@ -287,7 +287,6 @@ Note: Even though the spec supports any number of projects with any number roles
 
 attribute           | required | type  | notes
 ------------------- | -------- | ------| ----------------------------------------
-permissions         | ✓        | array | Array of project/roles(array) pairs
 startup_script.path |          | path  | Relative path to a directory tree with the script contents.
 
 ```yml
@@ -373,7 +372,6 @@ For a complete and up-to-date list of EC2 instance types, see [AWS official docu
 
 attribute           | required | type  | notes
 ------------------- | -------- | ------| ----------------------------------------
-permissions         | ✓        | array | Array of project/roles(array) pairs
 startup_script.path |          | path  | Relative path to a directory tree with the script contents.
 
 ```yml
