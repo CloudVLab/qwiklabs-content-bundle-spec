@@ -387,6 +387,7 @@ startup_script.path |          | path  | Relative path to a directory tree with 
 The valid `reference`s for a `windows_vm` resource are:
 
 - [WINDOWS_VM].external_ip
+- [WINDOWS_VM].student_url (URL a student can open in a separate tab to see the Windows desktop experience)
 
 #### Student Visible Outputs
 
