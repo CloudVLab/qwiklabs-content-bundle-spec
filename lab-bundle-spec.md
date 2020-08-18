@@ -212,8 +212,6 @@ The allowed variants are:
 
 - gcpd [default]
 - gcpfree
-- gcpasl
-- gcpedu
 
 ###### Custom Script Properties
 
@@ -326,7 +324,6 @@ The allowed `aws_account` variants are:
 - aws_vpc_ml
 - aws_rt53labs_ilt
 - aws_vpc_sts
-- aws_for_gcp
 
 Note that a lab will only launch on a given deployment if the deployment has an AWS fleet for the designated variant.
 
