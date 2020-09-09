@@ -229,6 +229,7 @@ The valid `reference`s for the `gcp_project` resource are:
 
 - [PROJECT].project_id
 - [PROJECT].default_zone
+- [PROJECT].console_url
 
 ##### GCP User (gcp_user)
 
@@ -366,6 +367,10 @@ reference | ✓        | resource reference | A [resource reference](#resource-r
 ```yml
 environment:
   student_visible_outputs:
+    - label:
+        locales:
+          en: "Open GCP Console"
+      reference: primary_project.console_url
     - label:
         locales:
           en: "GCP Project"
