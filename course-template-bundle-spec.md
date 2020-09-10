@@ -48,6 +48,17 @@ prerequisites:
   locales:
     en: <p>A basic understanding of serverless architecture is recommended but not required.</p>
 
+# Resources that will not be surfaced to students, but may be referenced by an instructor
+instructor_resources:
+  - title:
+      locales:
+        en: How to teach
+        es: Como enseñar
+    uri:
+      locales:
+        en: https://www.wikihow.com/Teach
+        es: https://www.wikihow.es/enseñar
+
 tags: [sample, life-changing, gcp]
 product_tags: ['compute engine', 'cloud storage']
 role_tags: ['cloud architect', 'developers backend']
@@ -61,9 +72,6 @@ estimated_duration_days: 1
 
 # Pseudo-deprecated legacy field that we would like to remove
 max_hot_labs: 30
-
-# Resources that will not be surfaced to students, but may be referenced by an instructor
-instructor_resources: ...
 
 # Resources that may be referenced below in steps
 resources: ...
@@ -102,6 +110,9 @@ instructor_resources    |          | array       | Instructor-specific resources
 resources               |          | array       | See [below](#resources)
 modules                 | ✓        | array       | See [below](#modules)
 retake_policies         |          | array       | See [below](#retake-policies)
+instructor_resources    |          | array       | Instructor-specific resources. Array of dictionaries with keys `title` and `uri` and values locale dictionaries.
+resources               |          | array       | See below
+modules                 | ✓        | array       | See below
 
 ### Modules
 
