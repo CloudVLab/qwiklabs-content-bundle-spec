@@ -106,13 +106,10 @@ image                   |          | string      | Link to an image file to be u
 badge                   |          | string      | Link to an image file to be used as the badge for the course
 estimated_duration_days |          | integer     | Estimated time to take the course, in days
 max_hot_labs            |          | integer     | Maximum number of hot labs for this course. Pseudo-deprecated legacy field that we would like to remove.
-instructor_resources    |          | array       | Instructor-specific resources. See the [Resource Spec](./resource-spec.md) for full specification.
+instructor_resources    |          | array       | Instructor-specific resources. Array of dictionaries with keys `title` and `uri` and values locale dictionaries.
 resources               |          | array       | See [below](#resources)
 modules                 | ✓        | array       | See [below](#modules)
 retake_policies         |          | array       | See [below](#retake-policies)
-instructor_resources    |          | array       | Instructor-specific resources. Array of dictionaries with keys `title` and `uri` and values locale dictionaries.
-resources               |          | array       | See below
-modules                 | ✓        | array       | See below
 
 ### Modules
 
