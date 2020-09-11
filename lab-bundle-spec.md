@@ -357,6 +357,25 @@ For a complete and up-to-date list of EC2 instance types, see [AWS official docu
 
 Specify which resource properties are given to the lab taker.
 
+For the lab taker to get access to a gcp_project, a `console_url` resource reference must be provided.
+For the lab taker to get access to an aws_account, one of the following resource references must be provided:
+- `console_url`
+- `sts_link`
+- `vnc_link`
+
+All `console_url`, `sts_link`, and `vnc_link` resource references are presented as an button to the lab taker as shown below.
+```yml
+environment:
+  student_visible_outputs:
+    - label:
+        locales:
+          en: "Open Console"
+      reference: project.console_url
+```
+![Open Console](./button.png)
+
+The order of which the labels are placed within the student visible outputs is the order of which the details will appear within the lab control panel.
+
 Not all details of the lab environment should be exposed to the lab taker. For example, a lab may involve a GCP project and two GCP users. The lab taker is expected to log into GCP as one user, and manipulate the IAM privileges of the other. Since the lab taker is not expected to log in as the second user, there is no reason to display the second user's password and doing so may be distracting.
 
 attribute | required | type               | notes
