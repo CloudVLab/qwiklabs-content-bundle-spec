@@ -372,7 +372,7 @@ attribute | required | type               | notes
 label     | ✓        | string             | A label identifying to the student what the displayed reference is.
 reference | ✓        | resource reference | A [resource reference](#resource-references) for a value to be displayed to the student.
 
-Note: the order of which the labels are placed within the student visible outputs is the order of which the details will appear within the lab control panel. For example, the following student visible outputs:
+Note the order of which the labels are placed within the student visible outputs is the order of which the details will appear within the lab control panel. For example, the following student visible outputs:
 ```yml
 environment:
   student_visible_outputs:
