@@ -363,37 +363,32 @@ For the lab taker to get access to an aws_account, one of the following resource
 - `sts_link`
 - `vnc_link`
 
-All `console_url`, `sts_link`, and `vnc_link` resource references are presented as an button to the lab taker. For example, the following label:
-```yml
-- label:
-    locales:
-      en: "Open Console"
-  reference: project.console_url
-```
-will be presented as follows:
+All `console_url`, `sts_link`, and `vnc_link` resource references are presented as an button to the lab taker.
 
-![Open Console](./button.png)
-
-The order of which the labels are placed within the student visible outputs is the order of which the details will appear within the lab control panel.
-
-Not all details of the lab environment should be exposed to the lab taker. For example, a lab may involve a GCP project and two GCP users. The lab taker is expected to log into GCP as one user, and manipulate the IAM privileges of the other. Since the lab taker is not expected to log in as the second user, there is no reason to display the second user's password and doing so may be distracting.
-
-attribute | required | type               | notes
-----------| -------- | ------------------ | --------------------------------------
-label     | ✓        | string             | A label identifying to the student what the displayed reference is.
-reference | ✓        | resource reference | A [resource reference](#resource-references) for a value to be displayed to the student.
-
+The order of which the labels are placed within the student visible outputs is the order of which the details will appear within the lab control panel. For example, the following student visible outputs:
 ```yml
 environment:
   student_visible_outputs:
     - label:
         locales:
-          en: "Open GCP Console"
-      reference: primary_project.console_url
+          en: "AWS Console"
+      reference: aws_account.console_url
     - label:
         locales:
-          en: "GCP Project"
-      reference: primary_project.project_id
+          en: "AWS Username"
+      reference: aws_account.username
+    - label:
+        locales:
+          en: "AWS Password"
+      reference: aws_account.password
+    - label:
+        locales:
+          en: "AWS Account Number"
+      reference: aws_account.account_number
+    - label:
+        locales:
+          en: "GCP Console"
+      reference: my_primary_project.console_url
     - label:
         locales:
           en: "Username"
@@ -404,6 +399,16 @@ environment:
           es: "Contraseña"
       reference: primary_user.password
 ```
+will be presented as follows:
+
+![Lab Control Panel](./lab_control_panel.png)
+
+Not all details of the lab environment should be exposed to the lab taker. For example, a lab may involve a GCP project and two GCP users. The lab taker is expected to log into GCP as one user, and manipulate the IAM privileges of the other. Since the lab taker is not expected to log in as the second user, there is no reason to display the second user's password and doing so may be distracting.
+
+attribute | required | type               | notes
+----------| -------- | ------------------ | --------------------------------------
+label     | ✓        | string             | A label identifying to the student what the displayed reference is.
+reference | ✓        | resource reference | A [resource reference](#resource-references) for a value to be displayed to the student.
 
 ### Activity Tracking
 
