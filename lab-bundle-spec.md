@@ -365,12 +365,10 @@ For the lab taker to get access to an aws_account, one of the following resource
 
 All `console_url`, `sts_link`, and `vnc_link` resource references are presented as an button to the lab taker. For example, the following label:
 ```yml
-environment:
-  student_visible_outputs:
-    - label:
-        locales:
-          en: "Open Console"
-      reference: project.console_url
+- label:
+    locales:
+      en: "Open Console"
+  reference: project.console_url
 ```
 will be presented as follows:
 
