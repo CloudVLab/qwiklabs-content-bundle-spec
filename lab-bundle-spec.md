@@ -365,7 +365,14 @@ For the lab taker to get access to an aws_account, one of the following resource
 
 All `console_url`, `sts_link`, and `vnc_link` resource references are presented as an button to the lab taker.
 
-The order of which the labels are placed within the student visible outputs is the order of which the details will appear within the lab control panel. For example, the following student visible outputs:
+Not all details of the lab environment should be exposed to the lab taker. For example, a lab may involve a GCP project and two GCP users. The lab taker is expected to log into GCP as one user, and manipulate the IAM privileges of the other. Since the lab taker is not expected to log in as the second user, there is no reason to display the second user's password and doing so may be distracting.
+
+attribute | required | type               | notes
+----------| -------- | ------------------ | --------------------------------------
+label     | ✓        | string             | A label identifying to the student what the displayed reference is.
+reference | ✓        | resource reference | A [resource reference](#resource-references) for a value to be displayed to the student.
+
+Note: the order of which the labels are placed within the student visible outputs is the order of which the details will appear within the lab control panel. For example, the following student visible outputs:
 ```yml
 environment:
   student_visible_outputs:
@@ -402,13 +409,6 @@ environment:
 will be presented as follows:
 
 ![Lab Control Panel](./lab_control_panel.png)
-
-Not all details of the lab environment should be exposed to the lab taker. For example, a lab may involve a GCP project and two GCP users. The lab taker is expected to log into GCP as one user, and manipulate the IAM privileges of the other. Since the lab taker is not expected to log in as the second user, there is no reason to display the second user's password and doing so may be distracting.
-
-attribute | required | type               | notes
-----------| -------- | ------------------ | --------------------------------------
-label     | ✓        | string             | A label identifying to the student what the displayed reference is.
-reference | ✓        | resource reference | A [resource reference](#resource-references) for a value to be displayed to the student.
 
 ### Activity Tracking
 
