@@ -391,12 +391,12 @@ environment:
       reference: my_primary_project.console_url
     - label:
         locales:
-          en: "Username"
+          en: "GCP Username"
       reference: primary_user.username
     - label:
         locales:
-          en: "Password"
-          es: "Contraseña"
+          en: "GCP Password"
+          es: "Contraseña GCP"
       reference: primary_user.password
 ```
 will be presented as follows:
