@@ -10,7 +10,7 @@ The primary changes made from v1 to v2 are:
 
 - Adding `environment` as a top level property with two children:
   - `resources` matches the usage of `environment_resources` in v1
-  - `student_visible_outputs` specifies which properties of those resources should be provided to the student (e.g. only display the username and password for the `primary_user` instead of every `gcp_user` created by the lab). All `console_url`, `sts_link`, and `vnc_link` resource references are displayed as a button while the rest are displayed as copyable text. See the [Student Visible Outputs section](#student-visible-outputs) for details.
+  - `student_visible_outputs` specifies which properties of those resources should be provided to the student (e.g. only display the username and password for the `primary_user` instead of every `gcp_user` created by the lab). All `console_url`, `sts_link`, and `vnc_link` resource references are displayed as a button while the rest of the resource references are displayed as copyable text. See the [Student Visible Outputs section](#student-visible-outputs) for details.
 
 - Renaming the `fleet` attribute on the `gcp_project` resource type to `variant`, and allowing for `variant` to be specified on other resource types.
 
