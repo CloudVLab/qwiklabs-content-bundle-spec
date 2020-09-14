@@ -10,7 +10,7 @@ The primary changes made from v1 to v2 are:
 
 - Adding `environment` as a top level property with two children:
   - `resources` matches the usage of `environment_resources` in v1
-  - `student_visible_outputs` specifies which properties of those resources should be provided to the student (e.g. only display the username and password for the `primary_user` instead of every `gcp_user` created by the lab). See the [Student Visible Outputs section](#student-visible-outputs) for details.
+  - `student_visible_outputs` specifies which properties of those resources should be provided to the student (e.g. only display the username and password for the `primary_user` instead of every `gcp_user` created by the lab). All `console_url`, `sts_link`, and `vnc_link` resource references are displayed as a button while the rest are displayed as copyable text. See the [Student Visible Outputs section](#student-visible-outputs) for details.
 
 - Renaming the `fleet` attribute on the `gcp_project` resource type to `variant`, and allowing for `variant` to be specified on other resource types.
 
@@ -19,6 +19,8 @@ The primary changes made from v1 to v2 are:
 - Allowing `custom_properties` to include a `reference` (rather than `value`) that can be filled in from running resources.
 
 - Adding an `ssh_key_user` attribute on the `gcp_project` resource type.
+
+- Adding a `console_url` reference to the `gcp_project` resource type.
 
 ## Concepts
 
@@ -227,9 +229,11 @@ reference |          | resource reference | A [resource reference](#resource-ref
 
 The valid `reference`s for the `gcp_project` resource are:
 
-- [PROJECT].project_id
-- [PROJECT].default_zone
-- [PROJECT].console_url
+reference              | displayed as
+---------------------- | ----------------
+[PROJECT].project_id   | copyable text
+[PROJECT].default_zone | copyable text
+[PROJECT].console_url  | button
 
 ##### GCP User (gcp_user)
 
@@ -253,8 +257,10 @@ The `gcp_user` type could more properly be called `gaia_user`, since that's what
 
 The valid `reference`s for the `gcp_user` resource are:
 
-- [USER].username
-- [USER].password
+reference              | displayed as
+---------------------- | ----------------
+ [USER].username       | copyable text
+ [USER].password       | copyable text
 
 ##### GSuite Domain (gsuite_domain)
 
@@ -335,17 +341,18 @@ Note that a lab will only launch on a given deployment if the deployment has an 
 ###### Valid custom property references
 
 The valid `reference`s for an `aws_account` resource are:
-
-- [AWS_ACCOUNT].account_number
-- [AWS_ACCOUNT].username
-- [AWS_ACCOUNT].password
-<!-- Legacy display option replacements -->
-- [AWS_ACCOUNT].sts_link
-- [AWS_ACCOUNT].access_key_id
-- [AWS_ACCOUNT].console_url
-- [AWS_ACCOUNT].rdp_credentials
-- [AWS_ACCOUNT].ssh_credentials
-- [AWS_ACCOUNT].vnc_link
+<!-- Legacy display option replacements after password resource reference-->
+reference                          | displayed as
+---------------------------------- | -------------------
+[AWS_ACCOUNT].account_number       | copyable text
+[AWS_ACCOUNT].username             | copyable text
+[AWS_ACCOUNT].password             | copyable text
+[AWS_ACCOUNT].access_key_id        | copyable text
+[AWS_ACCOUNT].rdp_credentials      | copyable text
+[AWS_ACCOUNT].ssh_credentials      | copyable text
+[AWS_ACCOUNT].console_url          | button
+[AWS_ACCOUNT].sts_link             | button
+[AWS_ACCOUNT].vnc_link             | button
 
 ###### Valid EC2 Instance Types
 
@@ -357,8 +364,8 @@ For a complete and up-to-date list of EC2 instance types, see [AWS official docu
 
 Specify which resource properties are given to the lab taker.
 
-For the lab taker to get access to a gcp_project, a `console_url` resource reference must be provided.
-For the lab taker to get access to an aws_account, one of the following resource references must be provided:
+For the lab taker to get access to a `gcp_project`, a `console_url` resource reference must be provided.
+For the lab taker to get access to an `aws_account`, one of the following resource references must be provided:
 - `console_url`
 - `sts_link`
 - `vnc_link`
