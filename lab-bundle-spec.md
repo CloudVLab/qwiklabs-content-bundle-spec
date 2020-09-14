@@ -10,7 +10,7 @@ The primary changes made from v1 to v2 are:
 
 - Adding `environment` as a top level property with two children:
   - `resources` matches the usage of `environment_resources` in v1
-  - `student_visible_outputs` specifies which properties of those resources should be provided to the student (e.g. only display the username and password for the `primary_user` instead of every `gcp_user` created by the lab). All `console_url`, `sts_link`, and `vnc_link` resource references are displayed as a button while the rest of the resource references are displayed as copyable text. See the [Student Visible Outputs section](#student-visible-outputs) for details.
+  - `student_visible_outputs` specifies which properties of those resources should be provided to the student (e.g. only display the username and password for the `primary_user` instead of every `gcp_user` created by the lab). All `console_url`, `sts_link`, and `vnc_link` resource references are displayed as buttons while the rest of the resource references are displayed as copyable text. See the [Student Visible Outputs section](#student-visible-outputs) for details.
 
 - Renaming the `fleet` attribute on the `gcp_project` resource type to `variant`, and allowing for `variant` to be specified on other resource types.
 
@@ -20,7 +20,7 @@ The primary changes made from v1 to v2 are:
 
 - Adding an `ssh_key_user` attribute on the `gcp_project` resource type.
 
-- Adding a `console_url` reference to the `gcp_project` resource type.
+- Requiring lab creators to specify exact control panel outputs with `student_visible_outputs`.
 
 ## Concepts
 
@@ -341,7 +341,7 @@ Note that a lab will only launch on a given deployment if the deployment has an 
 ###### Valid custom property references
 
 The valid `reference`s for an `aws_account` resource are:
-<!-- Legacy display option replacements after password resource reference-->
+
 reference                          | displayed as
 ---------------------------------- | -------------------
 [AWS_ACCOUNT].account_number       | copyable text
@@ -364,13 +364,13 @@ For a complete and up-to-date list of EC2 instance types, see [AWS official docu
 
 Specify which resource properties are given to the lab taker.
 
-For the lab taker to get access to a `gcp_project`, a `console_url` resource reference must be provided.
-For the lab taker to get access to an `aws_account`, one of the following resource references must be provided:
+For the lab taker to get access to a `gcp_project`, a `console_url` resource reference must be specified.
+For the lab taker to get access to an `aws_account`, one of the following resource references must be specified:
 - `console_url`
 - `sts_link`
 - `vnc_link`
 
-All `console_url`, `sts_link`, and `vnc_link` resource references are presented as a button to the lab taker. The label provided with the resource reference will be displayed on the button.
+All `console_url`, `sts_link`, and `vnc_link` resource references are presented as a button to the student. The label provided with the resource reference will be displayed on the button.
 
 Not all details of the lab environment should be exposed to the lab taker. For example, a lab may involve a GCP project and two GCP users. The lab taker is expected to log into GCP as one user, and manipulate the IAM privileges of the other. Since the lab taker is not expected to log in as the second user, there is no reason to display the second user's password and doing so may be distracting.
 
