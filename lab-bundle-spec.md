@@ -214,8 +214,6 @@ The allowed variants are:
 
 - gcpd [default]
 - gcpfree
-- gcpasl
-- gcpedu
 
 ###### Custom Script Properties
 
@@ -275,8 +273,6 @@ No additional attributes
 
 ##### Cloud Terminal (cloud_terminal)
 
-> _PROPOSED ONLY: Cloud Terminal is not yet supported by Qwiklabs runtime._
-
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
 permissions | ✓        | array      | Array of project/roles(array) pairs
@@ -291,6 +287,24 @@ permissions | ✓        | array      | Array of project/roles(array) pairs
 ```
 
 Note: Even though the spec supports any number of projects with any number roles, Qwiklabs only supports a shell having access to a single project and it must have the `roles/editor` role in that project. This note will be removed when Qwiklabs supports multiple projects and different roles for `cloud_terminal`.
+
+##### Linux Terminal (linux_terminal)
+
+attribute           | required | type  | notes
+------------------- | -------- | ------| ----------------------------------------
+startup_script.path |          | path  | Relative path to a directory tree with the script contents.
+
+```yml
+  - type: linux_terminal
+    id: terminal
+    startup_script:
+      path: startup.sh
+```
+###### Valid custom property references
+
+The valid `reference`s for a `linux_terminal` resource are:
+
+- [LINUX_TERMINAL].external_ip
 
 ##### AWS Account (aws_account)
 
@@ -333,7 +347,6 @@ The allowed `aws_account` variants are:
 - aws_vpc_ml
 - aws_rt53labs_ilt
 - aws_vpc_sts
-- aws_for_gcp
 
 Note that a lab will only launch on a given deployment if the deployment has an AWS fleet for the designated variant.
 
@@ -359,6 +372,25 @@ reference                          | displayed as
 Qwiklabs regularly syncronizes it's list of EC2 instance types with the AWS platform. We purposefully do not provide a full list of EC2 instance types in this document, because AWS adds and deprecates instance types regularly.
 
 For a complete and up-to-date list of EC2 instance types, see [AWS official documentation](https://aws.amazon.com/ec2/instance-types/)
+
+##### Windows VM (windows_vm)
+
+attribute           | required | type  | notes
+------------------- | -------- | ------| ----------------------------------------
+startup_script.path |          | path  | Relative path to a directory tree with the script contents.
+
+```yml
+  - type: windows_vm
+    id: vm
+    startup_script:
+      path: startup.ps1
+```
+###### Valid custom property references
+
+The valid `reference`s for a `windows_vm` resource are:
+
+- [WINDOWS_VM].external_ip
+- [WINDOWS_VM].student_url (URL a student can open in a separate tab to see the Windows desktop experience)
 
 #### Student Visible Outputs
 
