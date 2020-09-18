@@ -402,7 +402,7 @@ For the lab taker to get access to an `aws_account`, one of the following resour
 - `sts_link`
 - `vnc_link`
 
-All `console_url`, `sts_link`, `vnc_link`, and `student_url` resource references are presented as a button to the student. The label provided with the resource reference will be displayed on the button.
+All `console_url`, `sts_link`, `vnc_link`, and `student_url` resource references are presented as a button to the student. The label provided with the resource reference will be displayed on the button. These labels should be no longer than 20 characters. 
 For `windows_vm` resources, it is strongly recommended that the author specfies a `student_url` reference to improve the user experience.
 
 Not all details of the lab environment should be exposed to the lab taker. For example, a lab may involve a GCP project and two GCP users. The lab taker is expected to log into GCP as one user, and manipulate the IAM privileges of the other. Since the lab taker is not expected to log in as the second user, there is no reason to display the second user's password and doing so may be distracting.
