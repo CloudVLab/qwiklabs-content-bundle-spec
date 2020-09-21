@@ -23,6 +23,10 @@ environment:
   student_visible_outputs:
     - label:
         locales:
+          en: "Open GCP Console"
+      reference: primary_project.console_url
+    - label:
+        locales:
           en: "GCP Project"
       reference: primary_project.project_id
     - label:

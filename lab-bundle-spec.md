@@ -10,7 +10,7 @@ The primary changes made from v1 to v2 are:
 
 - Adding `environment` as a top level property with two children:
   - `resources` matches the usage of `environment_resources` in v1
-  - `student_visible_outputs` specifies which properties of those resources should be provided to the student (e.g. only display the username and password for the `primary_user` instead of every `gcp_user` created by the lab). See the [Student Visible Outputs section](#student-visible-outputs) for details.
+  - `student_visible_outputs` specifies which properties of those resources should be provided to the student (e.g. only display the username and password for the `primary_user` instead of every `gcp_user` created by the lab). All `console_url`, `sts_link`, and `vnc_link` resource references are displayed as buttons while the rest of the resource references are displayed as copyable text. See the [Student Visible Outputs section](#student-visible-outputs) for details.
 
 - Renaming the `fleet` attribute on the `gcp_project` resource type to `variant`, and allowing for `variant` to be specified on other resource types.
 
@@ -19,6 +19,8 @@ The primary changes made from v1 to v2 are:
 - Allowing `custom_properties` to include a `reference` (rather than `value`) that can be filled in from running resources.
 
 - Adding an `ssh_key_user` attribute on the `gcp_project` resource type.
+
+- Requiring lab creators to specify exact control panel outputs with `student_visible_outputs`.
 
 ## Concepts
 
@@ -225,9 +227,11 @@ reference |          | resource reference | A [resource reference](#resource-ref
 
 The valid `reference`s for the `gcp_project` resource are:
 
-- [PROJECT].project_id
-- [PROJECT].default_zone
-- [PROJECT].console_url
+reference              | displayed as
+---------------------- | ----------------
+[PROJECT].project_id   | copyable text
+[PROJECT].default_zone | copyable text
+[PROJECT].console_url  | button
 
 ##### GCP User (gcp_user)
 
@@ -251,8 +255,10 @@ The `gcp_user` type could more properly be called `gaia_user`, since that's what
 
 The valid `reference`s for the `gcp_user` resource are:
 
-- [USER].username
-- [USER].password
+reference              | displayed as
+---------------------- | ----------------
+ [USER].username       | copyable text
+ [USER].password       | copyable text
 
 ##### GSuite Domain (gsuite_domain)
 
@@ -349,16 +355,17 @@ Note that a lab will only launch on a given deployment if the deployment has an 
 
 The valid `reference`s for an `aws_account` resource are:
 
-- [AWS_ACCOUNT].account_number
-- [AWS_ACCOUNT].username
-- [AWS_ACCOUNT].password
-<!-- Legacy display option replacements -->
-- [AWS_ACCOUNT].sts_link
-- [AWS_ACCOUNT].access_key_id
-- [AWS_ACCOUNT].console_url
-- [AWS_ACCOUNT].rdp_credentials
-- [AWS_ACCOUNT].ssh_credentials
-- [AWS_ACCOUNT].vnc_link
+reference                          | displayed as
+---------------------------------- | -------------------
+[AWS_ACCOUNT].account_number       | copyable text
+[AWS_ACCOUNT].username             | copyable text
+[AWS_ACCOUNT].password             | copyable text
+[AWS_ACCOUNT].access_key_id        | copyable text
+[AWS_ACCOUNT].rdp_credentials      | copyable text
+[AWS_ACCOUNT].ssh_credentials      | copyable text
+[AWS_ACCOUNT].console_url          | button
+[AWS_ACCOUNT].sts_link             | button
+[AWS_ACCOUNT].vnc_link             | button
 
 ###### Valid EC2 Instance Types
 
@@ -389,6 +396,15 @@ The valid `reference`s for a `windows_vm` resource are:
 
 Specify which resource properties are given to the lab taker.
 
+For the lab taker to get access to a `gcp_project`, a `console_url` resource reference must be specified.
+For the lab taker to get access to an `aws_account`, one of the following resource references must be specified:
+- `console_url`
+- `sts_link`
+- `vnc_link`
+
+All `console_url`, `sts_link`, `vnc_link`, and `student_url` resource references are presented as a button to the student. The label provided with the resource reference will be displayed on the button. These labels should be no longer than 20 characters. 
+For `windows_vm` resources, it is strongly recommended that the author specfies a `student_url` reference to improve the user experience.
+
 Not all details of the lab environment should be exposed to the lab taker. For example, a lab may involve a GCP project and two GCP users. The lab taker is expected to log into GCP as one user, and manipulate the IAM privileges of the other. Since the lab taker is not expected to log in as the second user, there is no reason to display the second user's password and doing so may be distracting.
 
 attribute | required | type               | notes
@@ -396,27 +412,43 @@ attribute | required | type               | notes
 label     | ✓        | locale dictionary  | A label identifying to the student what the displayed reference is.
 reference | ✓        | resource reference | A [resource reference](#resource-references) for a value to be displayed to the student.
 
+Note the order of which the labels are placed within the student visible outputs is the order of which the details will appear within the lab control panel. For example, the following student visible outputs:
 ```yml
 environment:
   student_visible_outputs:
     - label:
         locales:
-          en: "Open GCP Console"
-      reference: primary_project.console_url
+          en: "AWS Console"
+      reference: aws_account.console_url
     - label:
         locales:
-          en: "GCP Project"
-      reference: primary_project.project_id
+          en: "AWS Username"
+      reference: aws_account.username
     - label:
         locales:
-          en: "Username"
+          en: "AWS Password"
+      reference: aws_account.password
+    - label:
+        locales:
+          en: "AWS Account Number"
+      reference: aws_account.account_number
+    - label:
+        locales:
+          en: "GCP Console"
+      reference: my_primary_project.console_url
+    - label:
+        locales:
+          en: "GCP Username"
       reference: primary_user.username
     - label:
         locales:
-          en: "Password"
-          es: "Contraseña"
+          en: "GCP Password"
+          es: "Contraseña GCP"
       reference: primary_user.password
 ```
+will be presented as follows:
+
+![Lab Control Panel](./lab_control_panel.png)
 
 ### Activity Tracking
 
