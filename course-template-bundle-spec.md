@@ -170,7 +170,7 @@ steps:
     - type: quiz
       category: graded
       id: compute-quiz
-      version: 1.0
+      version: '1.0'
 ```
 
 The order in which steps are listed defines the order they will be displayed. When a step has multiple options, the learner will be expected to do exactly one of the activities.
