@@ -96,6 +96,10 @@ environment:
       reference: primary_user.password
     - label:
         locales:
+          en: "InstanceDns"
+      reference: primary_project.InstanceDns
+    - label:
+        locales:
           en: 'AWS Account Number'
       reference: the_account.account_number
     - label:
