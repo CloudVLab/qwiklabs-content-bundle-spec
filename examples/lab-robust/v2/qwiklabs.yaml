@@ -97,7 +97,7 @@ environment:
     - label:
         locales:
           en: "InstanceDns"
-      reference: primary_project.InstanceDns
+      reference: primary_project.startup_script.InstanceDns
     - label:
         locales:
           en: 'AWS Account Number'
