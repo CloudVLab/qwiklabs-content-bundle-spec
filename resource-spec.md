@@ -55,7 +55,7 @@ resources:
     uri:
       locales:
         en: "./resources/sample-en.pdf"
-        en: "./resources/sample-es.pdf"
+        es: "./resources/sample-es.pdf"
   - type: video
     id: lab-video
     title:
