@@ -363,6 +363,7 @@ reference                          | displayed as
 [AWS_ACCOUNT].username             | copyable text
 [AWS_ACCOUNT].password             | copyable text
 [AWS_ACCOUNT].access_key_id        | copyable text
+[AWS_ACCOUNT].secret_access_key    | copyable text
 [AWS_ACCOUNT].rdp_credentials      | copyable text
 [AWS_ACCOUNT].ssh_credentials      | copyable text
 [AWS_ACCOUNT].console_url          | button
