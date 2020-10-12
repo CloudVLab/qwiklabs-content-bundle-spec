@@ -214,6 +214,10 @@ The allowed variants are:
 
 - gcpd [default]
 - gcpfree
+- gcp_very_low_base
+- gcp_low_extra
+- gpc_medium_extra
+- gcp_high_extra
 
 ###### Custom Script Properties
 
