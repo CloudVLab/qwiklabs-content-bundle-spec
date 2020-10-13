@@ -216,7 +216,7 @@ The allowed variants are:
 - gcpfree
 - gcp_very_low_base
 - gcp_low_extra
-- gpc_medium_extra
+- gcp_medium_extra
 - gcp_high_extra
 
 ###### Custom Script Properties
