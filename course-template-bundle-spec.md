@@ -176,8 +176,9 @@ steps:
   - id: compute-quiz
     activity_options:
     - type: quiz
-      category: 'graded'
+      category: graded
       id: compute-quiz
+      version: '1.0'
 ```
 
 The order in which steps are listed defines the order they will be displayed. When a step has multiple options, the learner will be expected to do exactly one of the activities.
@@ -191,6 +192,7 @@ activity_options | ✓        | array       | `activity_options` is an array of 
 -- type          | ✓        | enum        | One of `lab`, `quiz`, `resource`
 -- category      |          | string      | A subordinate descriptor for an activity of the above `type` used in the context of retakes to indicate the applicable retake policy.
 -- id            | ✓        | string      | Reference to the unique identifier for the activity - `library/slug`.
+-- version       |          | string      | Reference to the semantic version of the activity to which the course step should be frozen.
 prompt           |          | dictionary  | Key is `locales` and each locale is a dictionary mapping locale codes to a prompt describing the step
 optional         |          | boolean     | `true` if the step is *not* required for completion
 
