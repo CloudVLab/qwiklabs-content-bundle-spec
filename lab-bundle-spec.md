@@ -233,7 +233,7 @@ reference              | displayed as
 [PROJECT].default_zone | copyable text
 [PROJECT].console_url  | button
 
-Any custom outputs being generated with a `startup_script` can be reference as [PROJECT].startup_script.<FILL-IN-OUTPUT-NAME>. The output will be displayed as a copyable text if provided within the student_visible_outputs.
+Any custom outputs being generated with a `startup_script` can be reference as [PROJECT].startup_script.[FILL-IN-OUTPUT-NAME]. The output will be displayed as a copyable text if provided within the student_visible_outputs.
 
 ##### GCP User (gcp_user)
 
