@@ -370,6 +370,8 @@ reference                          | displayed as
 [AWS_ACCOUNT].sts_link             | button
 [AWS_ACCOUNT].vnc_link             | button
 
+Any custom outputs being generated with a `startup_script` can be reference as [AWS_ACCOUNT].startup_script.[FILL-IN-OUTPUT-KEY]. The output will be displayed as a copyable text if provided within the student_visible_outputs.
+
 ###### Valid EC2 Instance Types
 
 Qwiklabs regularly syncronizes it's list of EC2 instance types with the AWS platform. We purposefully do not provide a full list of EC2 instance types in this document, because AWS adds and deprecates instance types regularly.
