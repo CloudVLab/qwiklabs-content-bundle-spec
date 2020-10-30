@@ -598,5 +598,5 @@ The method `check` will be called with three keyword arguments:
 
 The method `check` should return a single hash with:
 - `:score`: the number of points the student earned.
-- `:message`: a message for only the lab creator to see when testing each assessment step within the Startup Lab Environment.
+- `:message`: a message for only the lab creator to see when debugging each assessment step.
 - `:student_message`: a key from the step's `student_messages` array, which will be presented to the student in the appropriate locale.
