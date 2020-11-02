@@ -521,16 +521,16 @@ assessment:
           # Check for bucket
           found_bucket = ...
           unless found_bucket
-            return { score: 0, message: 'bucket_missing', student_message: 'bucket_missing' }
+            return { score: 0, message: 'bucket is missing', student_message: 'bucket_missing' }
           end
 
           # Check bucket configuration
           bucket_configured_correctly = ...
           unless bucket_configured_correctly
-            return { score: 2, message: 'bucket_misconfigured', student_message: 'bucket_misconfigured' }
+            return { score: 2, message: 'bucket is misconfigured', student_message: 'bucket_misconfigured' }
           end
 
-          { score: maximum_score, message: 'success', student_message: 'success' }
+          { score: maximum_score, message: 'step completed', student_message: 'success' }
         end
     - title:
         locales:
@@ -567,17 +567,17 @@ assessment:
           # Check for file
           found_file = ...
           unless found_file
-            return { score: 0, message: 'file_missing', student_message: 'file_missing' }
+            return { score: 0, message: 'file is missing', student_message: 'file_missing' }
           end
 
           # Check file contents
           source_contents = ...
           target_contents = ...
           unless source_contents == target_contents
-            return { score: 2, message: 'file_mismatch', student_message: 'file_mismatch' }
+            return { score: 2, message: 'file mismatch', student_message: 'file_mismatch' }
           end
 
-          { score: maximum_score, message: 'success', student_message: 'success' }
+          { score: maximum_score, message: 'step completed', student_message: 'success' }
         end
 ```
 
