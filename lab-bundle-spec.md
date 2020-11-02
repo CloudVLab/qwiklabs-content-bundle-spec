@@ -10,7 +10,7 @@ The primary changes made from v1 to v2 are:
 
 - Adding `environment` as a top level property with two children:
   - `resources` matches the usage of `environment_resources` in v1
-  - `student_visible_outputs` specifies which properties of those resources should be provided to the student (e.g. only display the username and password for the `primary_user` instead of every `gcp_user` created by the lab). All `console_url`, `sts_link`, and `vnc_link` resource references are displayed as buttons while the rest of the resource references are displayed as copyable text. See the [Student Visible Outputs section](#student-visible-outputs) for details.
+  - `student_visible_outputs` specifies which properties of those resources should be provided to the student (e.g. only display the username and password for the `primary_user` instead of every `gcp_user` created by the lab). All `console_url`, `sts_link`, `vnc_link`, and `student_url` resource references are displayed as buttons while the rest of the resource references are displayed as copyable text. See the [Student Visible Outputs section](#student-visible-outputs) for details.
 
 - Renaming the `fleet` attribute on the `gcp_project` resource type to `variant`, and allowing for `variant` to be specified on other resource types.
 
@@ -521,16 +521,16 @@ assessment:
           # Check for bucket
           found_bucket = ...
           unless found_bucket
-            return { score: 0, student_message: 'bucket_missing' }
+            return { score: 0, message: 'bucket_missing', student_message: 'bucket_missing' }
           end
 
           # Check bucket configuration
           bucket_configured_correctly = ...
           unless bucket_configured_correctly
-            return { score: 2, student_message: 'bucket_misconfigured' }
+            return { score: 2, message: 'bucket_misconfigured', student_message: 'bucket_misconfigured' }
           end
 
-          { score: maximum_score, student_message: 'success' }
+          { score: maximum_score, message: 'success', student_message: 'success' }
         end
     - title:
         locales:
@@ -567,17 +567,17 @@ assessment:
           # Check for file
           found_file = ...
           unless found_file
-            return { score: 0, student_message: 'file_missing' }
+            return { score: 0, message: 'file_missing', student_message: 'file_missing' }
           end
 
           # Check file contents
           source_contents = ...
           target_contents = ...
           unless source_contents == target_contents
-            return { score: 2, student_message: 'file_mismatch' }
+            return { score: 2, message: 'file_mismatch', student_message: 'file_mismatch' }
           end
 
-          { score: maximum_score, student_message: 'success' }
+          { score: maximum_score, message: 'success', student_message: 'success' }
         end
 ```
 
@@ -598,4 +598,5 @@ The method `check` will be called with three keyword arguments:
 
 The method `check` should return a single hash with:
 - `:score`: the number of points the student earned.
+- `:message`: a message for only the lab creator to see when debugging each assessment step.
 - `:student_message`: a key from the step's `student_messages` array, which will be presented to the student in the appropriate locale.
