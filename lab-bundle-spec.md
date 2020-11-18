@@ -151,7 +151,7 @@ See [Resource Spec](./resource-spec.md) for details.
 
 The sandbox learning environment is a key feature of Qwiklabs. As the author of a lab, you need to tell us which cloud accounts to provision for a learner, and what resources we should create in that account before handing it over to the learner.
 
-The properties of each environment resource will depend on their type, e.g. AWS Accounts and GSuite Users require different configuration data. However, there are three properties that all resources have regardless of type:
+The properties of each environment resource will depend on their type, e.g. AWS Accounts and Google Workspace admin users require different configuration data. However, there are three properties that all resources have regardless of type:
 
 attribute | required | type   | notes
 --------- | -------- | ------ | -----------------------------------------
@@ -198,7 +198,7 @@ ssh_key_user                     |          | string  | If this project should u
 > analog in content bundles.
 >
 > Some fleet types map to resource types (e.g. `gsuite_multi_tenant` fleet is
-> now the `gsuite-domain` resource type), while other fleets are allowed as
+> now the `google_workspace_domain` resource type), while other fleets are allowed as
 > "variants" of `gcp_project` (see below).
 
 
@@ -262,16 +262,27 @@ reference              | displayed as
  [USER].username       | copyable text
  [USER].password       | copyable text
 
-##### GSuite Domain (gsuite_domain)
+##### Google Workspace Domain (google_workspace_domain)
 
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
 No additional attributes
 
 ```yml
-- type: gsuite_domain
+- type: google_workspace_domain
   id: primary_domain
 ```
+
+###### Valid resource references
+
+The valid `reference`s for the `google_workspace_domain` resource are:
+
+reference               | displayed as
+----------------------- | ----------------
+[DOMAIN].console_url    | button
+[DOMAIN].admin_username | copyable text
+[DOMAIN].admin_password | copyable text
+
 
 ##### Cloud Terminal (cloud_terminal)
 
