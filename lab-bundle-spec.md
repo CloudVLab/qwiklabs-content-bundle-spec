@@ -241,9 +241,10 @@ Any custom outputs being generated with a `startup_script` can be reference as [
 
 ##### GCP User (gcp_user)
 
-attribute   | required | type       | notes
------------ | -------- | ---------- | ----------------------------------------
-permissions |          | array      | Array of project/roles(array) pairs
+attribute           | required | type       | notes
+------------------- | -------- | ---------- | ----------------------------------------
+permissions         |          | array      | Array of project/roles(array) pairs
+has_workspace_state |          | boolean    | Set to `true` if this user will be used for Google Workspace activities (like Drive or Calendar)
 
 ```yml
   - type: gcp_user
