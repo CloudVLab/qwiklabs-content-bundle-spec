@@ -380,7 +380,7 @@ reference                          | displayed as
 [AWS_ACCOUNT].access_key_id        | copyable text
 [AWS_ACCOUNT].secret_access_key    | copyable text
 [AWS_ACCOUNT].rdp_credentials      | copyable text
-[AWS_ACCOUNT].ssh_credentials      | copyable text
+[AWS_ACCOUNT].ssh_key              | copyable text
 [AWS_ACCOUNT].console_url          | button
 [AWS_ACCOUNT].sts_link             | button
 [AWS_ACCOUNT].vnc_link             | button
