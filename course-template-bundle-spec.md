@@ -103,7 +103,7 @@ role_tags               |          | array       | Array of strings from the "Ro
 domain_tags             |          | array       | Array of strings from the "Domain" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 level                   |          | integer     | Integer between 1 and 4, with 1 being the easiest
 image                   |          | string      | Link to an image file to be used as the image for the course
-badge                   |          | string      | Link to an image file to be used as the badge for the course
+badge                   |          | string      | Link to an image file to be used as the badge for the course, at least 640px x 640px.
 estimated_duration_days |          | integer     | Estimated time to take the course, in days
 max_hot_labs            |          | integer     | Maximum number of hot labs for this course. Pseudo-deprecated legacy field that we would like to remove.
 instructor_resources    |          | array       | Instructor-specific resources. Array of dictionaries with keys `title` and `uri` and values locale dictionaries.
