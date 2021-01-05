@@ -288,6 +288,11 @@ reference               | displayed as
 [DOMAIN].admin_password | copyable text
 
 
+
+
+
+#### BumperBoats Resources
+
 ##### Cloud Terminal (cloud_terminal)
 
 attribute   | required | type       | notes
@@ -317,13 +322,46 @@ startup_script.path |          | path  | Relative path to a directory tree with 
     startup_script:
       path: startup.sh
 ```
+###### Variants for Linux Terminal
+
+The allowed `linux_terminal` variants are:
+- it_cert [default]  (access to internet via shared Cloud NAT IP address)
+- it_cert_extra (gets an external IP address for labs using a web server; and two hard disks)
+
 ###### Valid custom property references
 
 The valid `reference`s for a `linux_terminal` resource are:
 
 - [LINUX_TERMINAL].external_ip
 
-##### AWS Account (aws_account)
+##### Windows VM (windows_vm)
+
+attribute           | required | type  | notes
+------------------- | -------- | ------| ----------------------------------------
+startup_script.path |          | path  | Relative path to a directory tree with the script contents.
+
+```yml
+  - type: windows_vm
+    variant: it_cert
+    id: vm
+    startup_script:
+      path: startup.ps1
+```
+
+###### Variants for Windows VM
+
+The allowed `windows_vm` variants are:
+- it_cert [default]  (access to internet via shared Cloud NAT IP address)
+- it_cert_extra (gets an external IP address for labs using a web server; and two hard disks)
+
+###### Valid custom property references
+
+The valid `reference`s for a `windows_vm` resource are:
+
+- [WINDOWS_VM].external_ip
+- [WINDOWS_VM].student_url (URL a student can open in a separate tab to see the Windows desktop experience)
+
+#### AWS Account (aws_account)
 
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
@@ -393,26 +431,7 @@ Qwiklabs regularly syncronizes it's list of EC2 instance types with the AWS plat
 
 For a complete and up-to-date list of EC2 instance types, see [AWS official documentation](https://aws.amazon.com/ec2/instance-types/)
 
-##### Windows VM (windows_vm)
-
-attribute           | required | type  | notes
-------------------- | -------- | ------| ----------------------------------------
-startup_script.path |          | path  | Relative path to a directory tree with the script contents.
-
-```yml
-  - type: windows_vm
-    id: vm
-    startup_script:
-      path: startup.ps1
-```
-###### Valid custom property references
-
-The valid `reference`s for a `windows_vm` resource are:
-
-- [WINDOWS_VM].external_ip
-- [WINDOWS_VM].student_url (URL a student can open in a separate tab to see the Windows desktop experience)
-
-#### Student Visible Outputs
+### Student Visible Outputs
 
 Specify which resource properties are given to the lab taker.
 
