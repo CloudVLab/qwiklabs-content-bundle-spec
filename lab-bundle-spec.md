@@ -288,10 +288,7 @@ reference               | displayed as
 [DOMAIN].admin_password | copyable text
 
 
-
-
-
-#### BumperBoats Resources
+#### Virtual Machine Resources
 
 ##### Cloud Terminal (cloud_terminal)
 
@@ -325,8 +322,8 @@ startup_script.path |          | path  | Relative path to a directory tree with 
 ###### Variants for Linux Terminal
 
 The allowed `linux_terminal` variants are:
-- it_cert [default]  (access to internet via shared Cloud NAT IP address)
-- it_cert_extra (gets an external IP address for labs using a web server; and two hard disks)
+- it_cert [default]  (can initiate internet connection via shared Cloud NAT IP address, no unsolicited inbound requests)
+- it_cert_extra (gets an external IP address for labs using a web server on port 80; and two hard disks)
 
 ###### Valid custom property references
 
@@ -351,8 +348,8 @@ startup_script.path |          | path  | Relative path to a directory tree with 
 ###### Variants for Windows VM
 
 The allowed `windows_vm` variants are:
-- it_cert [default]  (access to internet via shared Cloud NAT IP address)
-- it_cert_extra (gets an external IP address for labs using a web server; and two hard disks)
+- it_cert [default]  (can initiate internet connection via shared Cloud NAT IP address, no unsolicited inbound requests)
+- it_cert_extra (gets an external IP address for labs using a web server on port 80; and two hard disks)
 
 ###### Valid custom property references
 
