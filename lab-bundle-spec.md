@@ -546,7 +546,7 @@ assessment:
       services:
         - target_project.StorageV1
       code: |-
-        def check(handles: handles, resources: resources, maximum_score: maximum_score)
+        def check(handles:, resources:, maximum_score:)
           storage_handle = handles['target_project.StorageV1']
 
           # Check for bucket
@@ -591,7 +591,7 @@ assessment:
         - source_project.StorageV1
         - target_project.StorageV1
       code: |-
-        def check(handles: handles, resources: resources, maximum_score: maximum_score)
+        def check(handles:, resources:, maximum_score:)
           target_storage_handle = handles['target_project.StorageV1']
           source_storage_handle = handles['source_project.StorageV1']
 
