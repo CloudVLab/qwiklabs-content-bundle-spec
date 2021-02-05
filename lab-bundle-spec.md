@@ -331,6 +331,34 @@ The valid `reference`s for a `linux_terminal` resource are:
 
 - [LINUX_TERMINAL].external_ip
 
+#### Looker Instance (looker_instance)
+
+attribute           | required | type  | notes
+------------------- | -------- | ------| ----------------------------------------
+permissions         | ✓        | array | Array of project/roles(array) pairs
+startup_script.path |          | path  | Relative path to a directory tree with the script contents.
+
+```yml
+  - type: looker_instance
+    id: looker
+    permissions:
+      - project: my_primary_project
+        roles:
+          - roles/editor
+    startup_script:
+      path: startup.sh
+```
+
+Note: Even though the spec supports any number of projects with any number roles, Qwiklabs only supports a Looker instance having access to a single project and it must have the `roles/editor` role in that project. This note will be removed when Qwiklabs supports multiple projects and different roles for `looker_instance`.
+
+###### Valid custom property references
+
+The valid `reference`s for a `looker_instance` resource are:
+
+- [LOOKER_INSTANCE].developer_username (The username of a user on the Looker instance with the Developer role)
+- [LOOKER_INSTANCE].developer_password (The password of a user on the Looker instance with the Developer role)
+- [LOOKER_INSTANCE].student_url (URL a student can open in a separate tab to see the Windows desktop experience)
+
 ##### Windows VM (windows_vm)
 
 attribute           | required | type  | notes
