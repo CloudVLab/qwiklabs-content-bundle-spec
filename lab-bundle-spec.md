@@ -331,6 +331,126 @@ The valid `reference`s for a `linux_terminal` resource are:
 
 - [LINUX_TERMINAL].external_ip
 
+#### Looker Instance (looker_instance)
+
+attribute           | required | type  | notes
+------------------- | -------- | ------| ----------------------------------------
+permissions         | ✓        | array | Array of project/roles(array) pairs
+startup_script.path |          | path  | Relative path to a directory tree with the script contents.
+
+```yml
+  - type: looker_instance
+    id: looker
+    permissions:
+      - project: my_primary_project
+        roles:
+          - roles/editor
+    startup_script:
+      path: startup.sh
+```
+
+Note: Even though the spec supports any number of projects with any number roles, Qwiklabs only supports a Looker instance having access to a single project and it must have the `roles/editor` role in that project. This note will be removed when Qwiklabs supports multiple projects and different roles for `looker_instance`.
+
+###### Valid custom property references
+
+The valid `reference`s for a `looker_instance` resource are:
+
+- [LOOKER_INSTANCE].developer_username (The username of a user on the Looker instance with the Developer role)
+- [LOOKER_INSTANCE].developer_password (The password of a user on the Looker instance with the Developer role)
+- [LOOKER_INSTANCE].student_url (URL a student can open in a separate tab to see the Looker interface)
+
+###### Activity Tracking
+
+Student progress on Looker instances can be inspected with the
+`RunRemoteCommand` handle. Assuming your resource ID is `looker`, the following
+activity tracking sectio would check if a student has created at least one Look.
+
+```yaml
+assessment:
+  passing_percentage: 100
+  steps:
+  - title:
+      locales:
+        en: Create a Look
+    maximum_score: 100
+    student_messages:
+      success:
+        locales:
+          en: Great job! You created a Look in Looker!
+      make_a_look:
+        locales:
+          en: Please make a Look from any Explore.
+    services:
+    - looker.RunRemoteCommand
+    code: |-
+      def check(handles:, maximum_score:, resources:)
+        looker = handles['looker.RunRemoteCommand']
+        response = looker.run_remote_command 'lcurl GET /api/3.1/looks'
+        looks = JSON.parse(response.stdout)
+        if looks.count > 0
+          { score: maximum_score, student_message: 'success' }
+        else
+          { score: 0, student_message: 'make_a_look' }
+        end
+      end
+```
+
+All commands specified in `run_remote_command` get executed from the home
+directory where Looker is running.
+
+All `looker_instance` resources come with an extra `lcurl` command to make it
+easier to use the Looker API. `lcurl` is a light wrapper around `curl` that
+generates a Looker access token from pre-specified API credentials and adds
+them to a `curl` request. `lcurl`'s syntax is:
+
+```
+lcurl <HTTP_VERB> <API_PATH> [EXTRA_CURL_OPTIONS]
+```
+
+Activity tracking should not mutate the state of a resource so the `GET` verb
+is the only verb that should be used in activity tracking.
+
+For more info on the Looker API, check out the [Looker API 3.1 Reference](https://docs.looker.com/reference/api-and-integration/api-reference/v3.1).
+
+###### Startup Scripts
+
+Startup scripts are executed from `/home/looker` which is the directory where
+Looker is installed. In addition to a standard, self-hosted Looker instance,
+there is also a folder called `all-lookml/` with three folder in it:
+
+* qwiklabs-flights - A clone of https://github.com/llooker/qwiklabs-flights.git
+* qwiklabs-ecommerce - A clone of https://github.com/llooker/qwiklabs-ecommerce.git
+* qwiklabs-ecommerce-adv - A clone of https://github.com/llooker/qwiklabs-ecommerce-adv.git
+
+If you'd like to use one or more of these projects in your lab, copy them to
+the `models/` folder with commands like:
+
+```bash
+mv all-lookml/qwiklabs-flights models/
+mv all-lookml/qwiklabs-ecommerce models/
+mv all-lookml/qwiklabs-ecommerce-adv models/
+```
+
+The LookML projects are already configured so no additional API calls are
+needed. However, you can use `lcurl` in startup scripts the same way you
+use it in activity tracking. Notably, startup scripts should modify the state
+of a `looker_instance` so they will generally use `POST` and other HTTP verbs.
+
+```bash
+lcurl POST /api/3.1/folders --data '{"name": "Sample top-level folder", "parent_id": 1}'
+```
+
+[`jq`](https://stedolan.github.io/jq/) is also installed on all
+`looker_instance`s. This is useful for parsing the output of one `lcurl`
+command to feed it into another one.
+
+```bash
+# Create a new user and assign it the auto-generated Developer role.
+DEVELOPER_USER_ID=$(lcurl POST /api/3.1/users --data '{"first_name": "Developer", "last_name": "Student", "email": "looker-developer@qwiklabs.net"}' | jq -r '.id')
+DEVELOPER_ROLE_ID=$(lcurl GET /api/3.1/roles | jq -r '.[] | select (.name == "Developer") | .id')
+lcurl PUT /api/3.1/roles/${DEVELOPER_ROLE_ID}/users --data "[\"${DEVELOPER_USER_ID}\"]"
+```
+
 ##### Windows VM (windows_vm)
 
 attribute           | required | type  | notes
