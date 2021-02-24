@@ -451,6 +451,35 @@ DEVELOPER_ROLE_ID=$(lcurl GET /api/3.1/roles | jq -r '.[] | select (.name == "De
 lcurl PUT /api/3.1/roles/${DEVELOPER_ROLE_ID}/users --data "[\"${DEVELOPER_USER_ID}\"]"
 ```
 
+#### IDE (ide)
+
+attribute                | required | type  | notes
+------------------------ | -------- | ------| ----------------------------------------
+startup_script.path      |          | path  | Relative path to a directory tree with the script contents.
+student_files.path       |          | path  | Relative path to a directory tree with the student file contents.
+student_test_files.path  |          | path  | Relative path to a directory tree with the student test file contents.
+
+```yml
+  - type: ide
+    id: ide
+    startup_script:
+      path: startup/startup.sh
+    student_files:
+      - path: student_files/main.py
+    student_test_files:
+      - path: student_test_files/main_test.py
+```
+
+###### Student Files
+
+Student files specified in the qwiklabs.yaml will be added the student's home directory `/home/project`.
+
+###### Startup Scripts
+
+Startup scripts are executed from `/home/theia` which is the directory where
+IDE is installed.
+
+
 ##### Windows VM (windows_vm)
 
 attribute           | required | type  | notes
