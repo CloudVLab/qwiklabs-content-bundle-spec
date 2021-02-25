@@ -120,10 +120,11 @@ instruction:
 
 - `html`
 - `pdf`
+- 'md'
 
-HTML is the preferred format for stored instructions. PDFs will be displayed embedded in the learner interface, but will lack any navigation or interactive functionality.
+MD or HTML are the preferred formats for stored instructions. PDFs will be displayed embedded in the learner interface, but will lack any navigation or interactive functionality.
 
-##### Qwiklabs supported HTML
+##### Qwiklabs supported HTML/MD
 
 There are benefits to formating lab instructions as HTML.
 
@@ -138,6 +139,31 @@ However, we will not accept arbitrary HTML. Your input will be heavily scrubbed.
 - All scripting will be removed.
 
 See the Instruction part of the [HTML spec](./html/html-spec.md) for details.
+
+### Fragments
+
+- In HTML/MD instruction files you can optionally add fragments.
+- Fragments are reusable pieces of instructions that you would use in multiple lab instructions files.
+
+The syntax is:
+
+```
+![[/<folder>/<file_name>]]
+```
+
+where <folder> is the relative folder path where the fragment is and <file_name>
+is the sub folder where the fragment file resides. The name convention for the
+fragment file is <locale>.md or <locale>.html where locale is the two-letter
+locale for the fragment.
+
+For example:
+
+```
+![[/fragment/gcpconsole]]
+```
+
+will include a fragment that resides in /fragment/gcpconsole/en.md for English
+locale and /fragment/gcpconsole/es.md for Spanish locale.
 
 ### Resources
 
