@@ -1,4 +1,4 @@
-# Qwiklabs Lab Bundle Specification
+# GitHub Lab Bundle Specification
 
 > **Version 2**
 >
@@ -41,13 +41,9 @@ entity_type: Lab
 schema_version: 2
 default_locale: en
 
-title:
-  locales:
-    en: Best Lab Ever
+title: Best Lab Ever
 
-description:
-  locales:
-    en: "No, seriously. It's the best lab ever. You're going to love it!"
+description: "No, seriously. It's the best lab ever. You're going to love it!"
 
 duration: 60
 level: intro
@@ -91,8 +87,8 @@ The lab bundle MUST specify a `default_locale`. It corresponds to the locale tha
 
 attribute              | required | type        | notes
 ---------------------- | -------- | ----------- | -----------------------------------------
-title                  | ✓        | locale dictionary |
-description            | ✓        | locale dictionary |
+title                  | ✓        | string |
+description            | ✓        | string |
 duration               | ✓        | integer     | Amount of time it should take an average learner to complete the lab (in minutes)
 credits                |          | integer     |
 level                  |          | string      |
@@ -105,15 +101,12 @@ legacy_display_options |          | array       | Elements to hide/show in ql-la
 attribute | required | type              | notes
 --------- | -------- | ----------------- | -----------------------------------------
 type      | ✓        | enum              | [See list of valid types below]
-uri       | ✓        | locale dictionary | Within the locale dictionary, the values are paths to files in the bundle.
+uri       | ✓        | string            | Paths to files in the bundle
 
 ```yml
 instruction:
   type: html
-  uri:
-    locales:
-      en: instructions/en.html
-      es: instructions/es.html
+  uri: instructions/en.html
 ```
 
 #### Valid types
@@ -152,7 +145,7 @@ The syntax is:
 ```
 
 where <folder> is the relative folder path where the fragment is and <file_name>
-is the sub folder where the fragment file resides. The name convention for the
+is the sub folder where the fragment file resides. The naming convention for the
 fragment file is <locale>.md or <locale>.html where locale is the two-letter
 locale for the fragment.
 
@@ -162,8 +155,8 @@ For example:
 ![[/fragment/gcpconsole]]
 ```
 
-will include a fragment that resides in /fragment/gcpconsole/en.md for English
-locale and /fragment/gcpconsole/es.md for Spanish locale.
+will include a fragment that resides in /fragment/gcpconsole/en.md for
+the English locale and /fragment/gcpconsole/es.md for the Spanish locale.
 
 ### Resources
 
@@ -395,17 +388,11 @@ activity tracking sectio would check if a student has created at least one Look.
 assessment:
   passing_percentage: 100
   steps:
-  - title:
-      locales:
-        en: Create a Look
+  - title: Create a Look
     maximum_score: 100
     student_messages:
-      success:
-        locales:
-          en: Great job! You created a Look in Looker!
-      make_a_look:
-        locales:
-          en: Please make a Look from any Explore.
+      success: Great job! You created a Look in Looker!
+      make_a_look: Please make a Look from any Explore.
     services:
     - looker.RunRemoteCommand
     code: |-
@@ -591,41 +578,26 @@ Not all details of the lab environment should be exposed to the lab taker. For e
 
 attribute | required | type               | notes
 ----------| -------- | ------------------ | --------------------------------------
-label     | ✓        | locale dictionary  | A label identifying to the student what the displayed reference is.
+label     | ✓        | string             | A label identifying to the student what the displayed reference is.
 reference | ✓        | resource reference | A [resource reference](#resource-references) for a value to be displayed to the student.
 
 Note the order of which the labels are placed within the student visible outputs is the order of which the details will appear within the lab control panel. For example, the following student visible outputs:
 ```yml
 environment:
   student_visible_outputs:
-    - label:
-        locales:
-          en: "AWS Console"
+    - label: "AWS Console"
       reference: aws_account.console_url
-    - label:
-        locales:
-          en: "AWS Username"
+    - label: "AWS Username"
       reference: aws_account.username
-    - label:
-        locales:
-          en: "AWS Password"
+    - label: "AWS Password"
       reference: aws_account.password
-    - label:
-        locales:
-          en: "AWS Account Number"
+    - label: "AWS Account Number"
       reference: aws_account.account_number
-    - label:
-        locales:
-          en: "GCP Console"
+    - label: "GCP Console"
       reference: my_primary_project.console_url
-    - label:
-        locales:
-          en: "GCP Username"
+    - label: "GCP Username"
       reference: primary_user.username
-    - label:
-        locales:
-          en: "GCP Password"
-          es: "Contraseña GCP"
+    - label: "GCP Password"
       reference: primary_user.password
 ```
 will be presented as follows:
@@ -646,30 +618,12 @@ qwiklabs.yml:
 assessment:
   passing_percentage: 75
   steps:
-    - title:
-        locales:
-          en: Create a Cloud Storage bucket
-          es: Crear un depósito de almacenamiento en la nube
+    - title: Create a Cloud Storage bucket
       maximum_score: 5
       student_messages:
-        - success:
-            locales:
-              en:
-                Great job! You created the bucket!
-              es:
-                ¡Gran trabajo! ¡Creaste el cubo!
-        - bucket_missing:
-            locales:
-              en:
-                Oops! No bucket found.
-              es:
-                ¡Uy! No se ha encontrado el cubo.
-        - bucket_misconfigured:
-            locales:
-              en:
-                Hmm. The bucket is there, but it is misconfigured.
-              es:
-                Hmm. El cubo está allí, pero está mal configurado.
+        - success: Great job! You created the bucket!
+        - bucket_missing: Oops! No bucket found.
+        - bucket_misconfigured: Hmm. The bucket is there, but it is misconfigured.
       services:
         - target_project.StorageV1
       code: |-
@@ -702,30 +656,12 @@ assessment.yml:
 ```yml
 passing_percentage: 75
 steps:
-  - title:
-      locales:
-        en: Create a Cloud Storage bucket
-        es: Crear un depósito de almacenamiento en la nube
+  - title: Create a Cloud Storage bucket
     maximum_score: 5
     student_messages:
-      - success:
-          locales:
-            en:
-              Great job! You created the bucket!
-            es:
-              ¡Gran trabajo! ¡Creaste el cubo!
-      - bucket_missing:
-          locales:
-            en:
-              Oops! No bucket found.
-            es:
-              ¡Uy! No se ha encontrado el cubo.
-      - bucket_misconfigured:
-          locales:
-            en:
-              Hmm. The bucket is there, but it is misconfigured.
-            es:
-              Hmm. El cubo está allí, pero está mal configurado.
+      - success: Great job! You created the bucket!
+      - bucket_missing: Oops! No bucket found.
+      - bucket_misconfigured: Hmm. The bucket is there, but it is misconfigured.
     services:
       - target_project.StorageV1
     method_name: check1
@@ -768,9 +704,9 @@ assessment:
 
 attribute        | required | type                       | notes
 -----------------| -------- | ---------------------------| --------------------------------------
-title            | ✓        | locale dictionary          |
+title            | ✓        | string                     |
 maximum_score    | ✓        | integer                    | The maximum number of points this step can award.
-student_messages | ✓        | dictionary of locale dictionaries           | The keys are how the messages will be referenced in the code, and the values are locale dictionaries.
+student_messages | ✓        | dictionary                 | The keys are how the messages will be referenced in the code, and the values are strings to be displayed.
 services         | ✓        | array of resource services | An array of services that will be used in the code block. Each resource type specifies a set of allowed services.
 code             | ✓        | string                     | Code to be executed. See [below](#code) for more information.
 
@@ -778,30 +714,12 @@ code             | ✓        | string                     | Code to be executed
 assessment:
   passing_percentage: 75
   steps:
-    - title:
-        locales:
-          en: Create a Cloud Storage bucket
-          es: Crear un depósito de almacenamiento en la nube
+    - title: Create a Cloud Storage bucket
       maximum_score: 5
       student_messages:
-        - success:
-            locales:
-              en:
-                Great job! You created the bucket!
-              es:
-                ¡Gran trabajo! ¡Creaste el cubo!
-        - bucket_missing:
-            locales:
-              en:
-                Oops! No bucket found.
-              es:
-                ¡Uy! No se ha encontrado el cubo.
-        - bucket_misconfigured:
-            locales:
-              en:
-                Hmm. The bucket is there, but it is misconfigured.
-              es:
-                Hmm. El cubo está allí, pero está mal configurado.
+        - success: Great job! You created the bucket!
+        - bucket_missing: Oops! No bucket found.
+        - bucket_misconfigured: Hmm. The bucket is there, but it is misconfigured.
       services:
         - target_project.StorageV1
       code: |-
@@ -822,30 +740,12 @@ assessment:
 
           { score: maximum_score, message: 'step completed', student_message: 'success' }
         end
-    - title:
-        locales:
-          en: Copy a file to the bucket
-          es: Copiar un archivo al cubo
+    - title: Copy a file to the bucket
       maximum_score: 5
       student_messages:
-        - success:
-            locales:
-              en:
-                Great job! You copied the file!
-              es:
-                ¡Gran trabajo! ¡Copiaste el archivo!
-        - file_missing:
-            locales:
-              en:
-                Oops! No file found.
-              es:
-                ¡Uy! No se ha encontrado el archivo.
-        - file_mismatch:
-            locales:
-              en:
-                Hmm. There's a file here, but it doesn't match the source contents.
-              es:
-                Hmm. Hay un archivo aquí, pero no coincide con el contenido de origen.
+        - success: Great job! You copied the file!
+        - file_missing: Oops! No file found.
+        - file_mismatch: Hmm. There's a file here, but it doesn't match the source contents.
       services:
         - source_project.StorageV1
         - target_project.StorageV1
