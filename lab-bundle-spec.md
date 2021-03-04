@@ -50,7 +50,7 @@ description:
     en: "No, seriously. It's the best lab ever. You're going to love it!"
 
 duration: 60
-max_duration: 60
+max_duration: 90
 level: intro
 tags: [sample, life-changing, gcp]
 
