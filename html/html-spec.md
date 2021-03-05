@@ -126,7 +126,7 @@ directly within lab instructions using the `<ql-variable>` component.
 
   This attribute is optional. It defaults to `____`.
 
-### Markdown Syntax
+### Markdown Syntax (GitHub integration only)
 
 Instead of writing out the full HTML form of `<ql-variable>`, a Markdown
 shorthand syntax is available using triple curly braces (`{{{}}}`) surrounding
