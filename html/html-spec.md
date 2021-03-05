@@ -6,7 +6,8 @@ Before rendering, Qwiklabs will aggressively sanitize the provided HTML.
 - Remove all style tags.
 - Remove all tags, classes, and attributes that are not explicitly allowed.
 
-The allowed tags, classes, and attributes depend on the context. We currently have two contexts: restricted, and instruction.
+The allowed tags, classes, and attributes depend on the context.
+We currently have two contexts: restricted, and instruction.
 
 ## Instruction HTML
 
@@ -108,7 +109,75 @@ Result:
 ![example preview](./images/ql-code-02.png)
 
 ## `<ql-variable>`
-TODO: add documentation
+
+Lab outputs such as usernames, passwords, project IDs, etc. can be rendered
+directly within lab instructions using the `<ql-variable>` component.
+
+### Attributes for `<ql-variable>`
+
+- `key: string`
+
+  The lab output key that this variable should render within the instructions.
+
+- `placeholder: string = '____'`
+
+  Before a lab is started, this variable will render this placeholder value in
+  place of the currently unknown actual value.
+
+  This attribute is optional. It defaults to `____`.
+
+### Markdown Syntax (GitHub integration only)
+
+Instead of writing out the full HTML form of `<ql-variable>`, a Markdown
+shorthand syntax is available using triple curly braces (`{{{}}}`) surrounding
+the key. A custom placeholder may optionally be included following a
+vertical pipe character (`|`).
+
+See the next section for examples of what this looks like.
+
+### Examples
+
+A variable rendered within instructions using the default placeholder.
+
+HTML form:
+```html
+Sign in with your username <ql-variable key="username"></ql-variable> to begin.
+```
+
+Equivalent Markdown form:
+```md
+Sign in with your username {{{ username }}} to begin.
+```
+
+Result (lab not started):
+
+![example preview](./images/ql-variable-01.png)
+
+Result (lab started):
+
+![example preview](./images/ql-variable-03.png)
+
+---
+
+A variable rendered within instructions with a custom placeholder.
+
+HTML form:
+```html
+Sign in with your username <ql-variable key="username" placeholder="(username)"></ql-variable> to begin.
+```
+
+Equivalent Markdown form:
+```md
+Sign in with your username {{{ username | (username) }}} to begin.
+```
+
+Result (lab not started, showing custom placeholder):
+
+![example preview](./images/ql-variable-02.png)
+
+Result (lab started, same as the previous example):
+
+![example preview](./images/ql-variable-03.png)
 
 ## `<ql-activity-tracking>`
 TODO: add documentation
