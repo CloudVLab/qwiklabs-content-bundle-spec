@@ -1,28 +1,64 @@
-# GitHub Lab Bundle Specification
+# GitHub Bundles
 
-> **Version 2**
+> **Version 1**
 >
 > This is a DRAFT document. We welcome feedback as this format evolves.
 
-## Changelog
-
-The primary changes made from v1 to v2 are:
-
-- Adding `environment` as a top level property with two children:
-  - `resources` matches the usage of `environment_resources` in v1
-  - `student_visible_outputs` specifies which properties of those resources should be provided to the student (e.g. only display the username and password for the `primary_user` instead of every `gcp_user` created by the lab). All `console_url`, `sts_link`, `vnc_link`, and `student_url` resource references are displayed as buttons while the rest of the resource references are displayed as copyable text. See the [Student Visible Outputs section](#student-visible-outputs) for details.
-
-- Renaming the `fleet` attribute on the `gcp_project` resource type to `variant`, and allowing for `variant` to be specified on other resource types.
-
-- Replacing the `dm_template` attribute on the `gcp_project` resource type with a `startup_script` and an invitation-only `cleanup_script`.
-
-- Allowing `custom_properties` to include a `reference` (rather than `value`) that can be filled in from running resources.
-
-- Adding an `ssh_key_user` attribute on the `gcp_project` resource type.
-
-- Requiring lab creators to specify exact control panel outputs with `student_visible_outputs`.
-
 ## Concepts
+
+The Qwiklabs Bundle Spec provides an interchange format for qwiklabs resources
+(_entities_) across our ecosystem. The spec is used extensively to support
+our content distribution and processes across many customer deployments and
+has allowed us a great deal of systemization and automation.
+
+While not
+explicitly referenced in the spec, perhaps the most important contribution
+is the notion of "universal" content identifiers (content_id)
+that let us easily reference and report on particular pieces of content across
+multiple systems and databases. These
+identifiers are always included as a required parameter for requests made to
+our PublisherApi to create, update or delete content. Though the content_id is
+required, the bundle spec does not actually specify how they should be
+constructed, rather that is up to a particular integrator to determine for
+themselves.
+
+At Qwiklabs we view content management for labs, quizzes, quests and courses
+much like software source control management and so we have decided to use
+GitHub as our CMS/persistence layer ontop of the Qwiklabs Bundle Spec.
+
+
+### GitWhisperer Integration
+
+GitWhisperer is our integration layer for content creators and helps with
+content management in many critical ways by
+- generating content_ids and inferring base fields based on the Git repo layout
+- using QL_OWNER files to assign lab ownership on Qwiklabs staging deployments
+- simplifying the translation pipeline
+- compiling instructions from Markdown to HTML so production applications can be unified for rendering
+- handling common instruction fragments
+- compiling Activity Tracking assessments from individual base "step" files
+
+For GitHub integration, the base repository (e.g. gcp-spl-content) has
+directories for each of the supported entity types, (e.g. labs, learning_paths,
+quizzes) and additionally a "/fragments" directory that contains common
+instruction sections that are included by reference, such as "copyright".
+The `content_id` from GitWhisperer concatenates the repo name,
+which we commonly
+call "library" and the directory name for a particular lab which we call the
+lab "slug". In this way, GitWhisperer assigns both a `content_id` and the
+base `entity` type through examining the directy structure of the repository.
+
+The other special file is `QL_OWNER` which contains the email address of the
+user on the target staging deployment to assign ownership and edit priveleges.
+
+
+### V2 Labs
+
+For a particular entity type, such as V2 Labs, the GitHub bundle files will
+differ in common ways from those specified in the Qwiklabs Bundle Spec
+interchange format. The reason for this is to simplify localization and
+content management for the authoring team and is illustrated below.
+
 
 ### Resource References
 
