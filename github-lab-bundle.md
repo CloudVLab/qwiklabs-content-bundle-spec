@@ -72,7 +72,7 @@ Currently, this can only be used for `student_visible_outputs`, `custom_properti
 
 Here's a sample `qwiklabs.yaml` file, with all nested details removed to make it easier to see the general file structure.
 
-```yml
+```yaml
 entity_type: Lab
 schema_version: 2
 default_locale: en
@@ -139,7 +139,7 @@ attribute | required | type              | notes
 type      | ✓        | enum              | [See list of valid types below]
 uri       | ✓        | string            | Paths to files in the bundle
 
-```yml
+```yaml
 instruction:
   type: html
   uri: instructions/en.html
@@ -214,7 +214,7 @@ type      | ✓        | enum   | [See list of valid types]
 id        |          | string | Identifier that can be used throughout project bundle.
 variant   |          | string | The subtype resource being requested. Each type below lists its valid variants and specifies which is the default.
 
-```yml
+```yaml
 environment:
   resources:
     - type: gcp_project
@@ -237,7 +237,7 @@ startup_script.path              |          | path    | Relative path to a direc
 startup_script.custom_properties |          | array   | Array of pairs. See below for details.
 ssh_key_user                     |          | string  | If this project should use a user's SSH key, the id of that user.
 
-```yml
+```yaml
 - type: gcp_project
   id: secondary_project
   variant: gcpfree
@@ -300,7 +300,7 @@ attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
 permissions |          | array      | Array of project/roles(array) pairs
 
-```yml
+```yaml
   - type: gcp_user
     id: primary_user
     permissions:
@@ -327,7 +327,7 @@ attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
 No additional attributes
 
-```yml
+```yaml
 - type: google_workspace_domain
   id: primary_domain
 ```
@@ -351,7 +351,7 @@ attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
 permissions | ✓        | array      | Array of project/roles(array) pairs
 
-```yml
+```yaml
   - type: cloud_terminal
     id: shell
     permissions:
@@ -368,7 +368,7 @@ attribute           | required | type  | notes
 ------------------- | -------- | ------| ----------------------------------------
 startup_script.path |          | path  | Relative path to a directory tree with the script contents.
 
-```yml
+```yaml
   - type: linux_terminal
     id: terminal
     startup_script:
@@ -393,7 +393,7 @@ attribute           | required | type  | notes
 permissions         | ✓        | array | Array of project/roles(array) pairs
 startup_script.path |          | path  | Relative path to a directory tree with the script contents.
 
-```yml
+```yaml
   - type: looker_instance
     id: looker
     permissions:
@@ -506,7 +506,7 @@ attribute           | required | type  | notes
 ------------------- | -------- | ------| ----------------------------------------
 startup_script.path |          | path  | Relative path to a directory tree with the script contents.
 
-```yml
+```yaml
   - type: windows_vm
     variant: it_cert
     id: vm
@@ -541,7 +541,7 @@ startup_script.type              | | string  | The type of startup script. Only 
 startup_script.path              | | path    | Relative path to a directory tree with the script contents.
 user_policy                      | | path    | Relative path to a [JSON policy](https://awspolicygen.s3.amazonaws.com/policygen.html) document.
 
-```yml
+```yaml
 - type: aws_account
   id: the_account
   variant: aws_vpc
@@ -618,7 +618,7 @@ label     | ✓        | string             | A label identifying to the student
 reference | ✓        | resource reference | A [resource reference](#resource-references) for a value to be displayed to the student.
 
 Note the order of which the labels are placed within the student visible outputs is the order of which the details will appear within the lab control panel. For example, the following student visible outputs:
-```yml
+```yaml
 environment:
   student_visible_outputs:
     - label: "AWS Console"
@@ -648,9 +648,9 @@ A lab has an Assessment, which in turn contains the Steps (checkpoints).
 
 There are two options to configure Activity Tracking:
 
-1. All inline in the qwiklabs.yml file as below:
-qwiklabs.yml:
-```yml
+1. All inline in the qwiklabs.yaml file as below:
+qwiklabs.yaml:
+```yaml
 assessment:
   passing_percentage: 75
   steps:
@@ -684,12 +684,12 @@ assessment:
 
 2. By breaking the Activity Tracking into a separate file and putting all the
    code segments into a folder as below:
-qwiklabs.yml:
-```yml
-  assessment: assessment.yml
+qwiklabs.yaml:
+```yaml
+  assessment: assessment.yaml
 ```
-assessment.yml:
-```yml
+assessment.yaml:
+```yaml
 passing_percentage: 75
 steps:
   - title: Create a Cloud Storage bucket
@@ -730,7 +730,7 @@ attribute          | required | type    | notes
 passing_percentage | ✓        | integer | The percentage of total points the student must achieve to "pass" the lab.
 steps              | ✓        | array   | An array of [Steps](#steps)
 
-```yml
+```yaml
 assessment:
   passing_percentage: 75
   steps: ...
@@ -746,7 +746,7 @@ student_messages | ✓        | dictionary                 | The keys are how th
 services         | ✓        | array of resource services | An array of services that will be used in the code block. Each resource type specifies a set of allowed services.
 code             | ✓        | string                     | Code to be executed. See [below](#code) for more information.
 
-```yml
+```yaml
 assessment:
   passing_percentage: 75
   steps:
