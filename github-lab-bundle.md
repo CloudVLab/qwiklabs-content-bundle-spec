@@ -49,7 +49,7 @@ lab "slug". In this way, GitWhisperer assigns both a `content_id` and the
 base `entity` type through examining the directy structure of the repository.
 
 The other special file is `QL_OWNER` which contains the email address of the
-user on the target staging deployment to assign ownership and edit priveleges.
+user on the target staging deployment to assign ownership and edit privileges.
 
 
 ### V2 Labs
