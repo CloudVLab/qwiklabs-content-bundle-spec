@@ -149,7 +149,7 @@ instruction:
 
 - `html`
 - `pdf`
-- 'md'
+- `md`
 
 MD or HTML are the preferred formats for stored instructions. PDFs will be displayed embedded in the learner interface, but will lack any navigation or interactive functionality.
 
