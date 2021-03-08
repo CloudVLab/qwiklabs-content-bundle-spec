@@ -13,26 +13,26 @@ has allowed us a great deal of systemization and automation.
 
 While not
 explicitly referenced in the spec, perhaps the most important contribution
-is the notion of "universal" content identifiers (content_id)
+is the notion of "universal" content identifiers (`content_id`)
 that let us easily reference and report on particular pieces of content across
 multiple systems and databases. These
 identifiers are always included as a required parameter for requests made to
-our PublisherApi to create, update or delete content. Though the content_id is
+our PublisherApi to create, update or delete content. Though the `content_id` is
 required, the bundle spec does not actually specify how they should be
 constructed, rather that is up to a particular integrator to determine for
 themselves.
 
 At Qwiklabs we view content management for labs, quizzes, quests and courses
 much like software source control management and so we have decided to use
-GitHub as our CMS/persistence layer ontop of the Qwiklabs Bundle Spec.
+GitHub as our CMS/persistence layer on top of the Qwiklabs Bundle Spec.
 
 
-### GitWhisperer Integration
+## GitWhisperer Integration
 
 GitWhisperer is our integration layer for content creators and helps with
 content management in many critical ways by
 - generating content_ids and inferring base fields based on the Git repo layout
-- using QL_OWNER files to assign lab ownership on Qwiklabs staging deployments
+- using **QL_OWNER** files to assign lab ownership on Qwiklabs staging deployments
 - simplifying the translation pipeline
 - compiling instructions from Markdown to HTML so production applications can be unified for rendering
 - handling common instruction fragments
@@ -48,11 +48,11 @@ call "library" and the directory name for a particular lab which we call the
 lab "slug". In this way, GitWhisperer assigns both a `content_id` and the
 base `entity` type through examining the directy structure of the repository.
 
-The other special file is `QL_OWNER` which contains the email address of the
+The other special file is **QL_OWNER** which contains the email address of the
 user on the target staging deployment to assign ownership and edit privileges.
 
 
-### V2 Labs
+## V2 Labs
 
 For a particular entity type, such as V2 Labs, the GitHub bundle files will
 differ in common ways from those specified in the Qwiklabs Bundle Spec
@@ -119,6 +119,13 @@ Two properties are critical for specifying your lab bundle:
 
 The lab bundle MUST specify a `default_locale`. It corresponds to the locale that the lab is originally authored in. Authoring tools can use this as a hint to notify localizers when content in the default locale is updated. Also, it provides a hint to the learner interface about which locale to display if an instruction/resource is not localized for the learner's current locale.
 
+Add an additional locale specific file of the form "qwiklabs.xx.yaml"
+for each locale to be included. For example, Japanese entries would be in a
+file named "qwiklabs.ja.yaml".
+Within a single piece of content, be sure to use consistent `ids` across
+all the "qwiklabs.xx.yaml" files for data that contains lists of objects.
+
+
 ### Lab attributes
 
 attribute              | required | type        | notes
@@ -151,7 +158,7 @@ instruction:
 - `pdf`
 - `md`
 
-MD or HTML are the preferred formats for stored instructions. PDFs will be displayed embedded in the learner interface, but will lack any navigation or interactive functionality.
+Markdown (MD) or HTML are the preferred formats for stored instructions. PDFs will be displayed embedded in the learner interface, but will lack any navigation or interactive functionality.
 
 ##### Qwiklabs supported HTML/MD
 
