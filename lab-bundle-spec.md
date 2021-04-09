@@ -294,9 +294,10 @@ reference               | displayed as
 
 ##### Cloud Terminal (cloud_terminal)
 
-attribute   | required | type       | notes
------------ | -------- | ---------- | ----------------------------------------
-permissions | ✓        | array      | Array of project/roles(array) pairs
+attribute           | required | type       | notes
+------------------- | -------- | ---------- | ----------------------------------------
+permissions         | ✓        | array      | Array of project/roles(array) pairs
+startup_script.path |          | path       | Relative path to a directory tree with the script contents.
 
 ```yml
   - type: cloud_terminal
@@ -305,9 +306,98 @@ permissions | ✓        | array      | Array of project/roles(array) pairs
       - project: my_primary_project
         roles:
           - roles/editor
+    startup_script:
+      path: startup.sh
 ```
 
-Note: Even though the spec supports any number of projects with any number roles, Qwiklabs only supports a shell having access to a single project and it must have the `roles/editor` role in that project. This note will be removed when Qwiklabs supports multiple projects and different roles for `cloud_terminal`.
+Note: Due to a limitation in Qwiklabs, you must specify `roles/editor` on exactly one project when creating a `cloud_terminal` resource. _However_, this role is ignored and students will always get `roles/owner`, `roles/storage.admin`, and `roles/bigquery.admin`. The spec will be updated when these limitations are fixed.
+
+###### Activity Tracking
+
+Student progress on `cloud_terminal` instances can be inspected by either:
+
+* Regular activity tracking on the student's project
+* Directly running commands on the student's `cloud_terminal` instance with the `RunRemoteCommand` handle
+
+Assuming the resources in your lab looked like:
+
+```yaml
+- type: gcp_project
+  id: project
+- type: cloud_terminal
+  id: terminal
+  permissions:
+    - project: project
+      roles:
+        - roles/editor
+```
+
+You could check that a student created a VM in the project with either of these activity tracking snippets:
+
+```yaml
+assessment:
+  passing_percentage: 100
+  steps:
+  - title:
+      locales:
+        en: Create a VM
+    maximum_score: 100
+    student_messages:
+      success:
+        locales:
+          en: Great job! You created a VM in GCP!
+      make_a_vm:
+        locales:
+          en: Please make a VM by running gcloud compute instances create
+    services:
+    - project.ComputeV1
+    code: |-
+      def check(handles:, maximum_score:, resources:)
+        compute = handles['project.ComputeV1']
+        instances = compute.list_aggregated_instances&.items
+        if instances.count > 0
+          { score: maximum_score, student_message: 'success' }
+        else
+          { score: 0, student_message: 'make_a_vm' }
+        end
+      end
+```
+
+```yaml
+assessment:
+  passing_percentage: 100
+  steps:
+  - title:
+      locales:
+        en: Create a VM
+    maximum_score: 100
+    student_messages:
+      success:
+        locales:
+          en: Great job! You created a VM in GCP!
+      make_a_vm:
+        locales:
+          en: Please make a VM by running gcloud compute instances create
+    services:
+    - terminal.RunRemoteCommand
+    code: |-
+      def check(handles:, maximum_score:, resources:)
+        looker = handles['looker.RunRemoteCommand']
+        response = looker.run_remote_command 'gcloud compute instances list --format json'
+        instances = JSON.parse(response.stdout)
+        if instances.count > 0
+          { score: maximum_score, student_message: 'success' }
+        else
+          { score: 0, student_message: 'make_a_vm' }
+        end
+      end
+```
+
+For more information on using `gcloud`, please consult the [official documentation on the Google Cloud SDK](https://cloud.google.com/sdk/gcloud).
+
+###### Startup Scripts
+
+Startup scripts are executed from `/home/student` as the `student` user (the same user the student uses `cloud_terminal` as). Startup scripts can do everything students can do including modifying the terminal (create files or running `git clone`) or modify the associated GCP project by running `gcloud`, `gsutil`, and `kubectl` commands.
 
 ##### Linux Terminal (linux_terminal)
 
@@ -365,7 +455,7 @@ The valid `reference`s for a `looker_instance` resource are:
 
 Student progress on Looker instances can be inspected with the
 `RunRemoteCommand` handle. Assuming your resource ID is `looker`, the following
-activity tracking sectio would check if a student has created at least one Look.
+activity tracking section would check if a student has created at least one Look.
 
 ```yaml
 assessment:
