@@ -130,7 +130,8 @@ all the "qwiklabs.xx.yaml" files for data that contains lists of objects.
 
 attribute              | required | type        | notes
 ---------------------- | -------- | ----------- | -----------------------------------------
-title                  | ✓        | string |
+title                  | ✓        | string | Unique Lab title that a student
+sees
 description            | ✓        | string |
 duration               | ✓        | integer     | Amount of time it should take an average learner to complete the lab (in minutes)
 credits                |          | integer     |
