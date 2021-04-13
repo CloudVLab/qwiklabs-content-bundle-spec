@@ -382,7 +382,7 @@ assessment:
     - terminal.RunRemoteCommand
     code: |-
       def check(handles:, maximum_score:, resources:)
-        terminal = handles['looker.RunRemoteCommand']
+        terminal = handles['terminal.RunRemoteCommand']
         response = terminal.run_remote_command 'gcloud compute instances list --format json'
         instances = JSON.parse(response.stdout)
         if instances.count > 0
