@@ -139,13 +139,13 @@ However, we will not accept arbitrary HTML. Your input will be heavily scrubbed.
 - All styling will be removed.
 - All scripting will be removed.
 
-See the Instruction part of the [HTML spec](./html/html-spec.md) for details.
+See the Instruction part of the [HTML spec](../html/html-spec.md) for details.
 
 ### Resources
 
 Resources are additional materials that learners may refer to while taking this lab.
 
-See [Resource Spec](./resource-spec.md) for details.
+See [Resource Spec](../resource-spec.md) for details.
 
 ### Environment
 
