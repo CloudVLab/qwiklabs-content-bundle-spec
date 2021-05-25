@@ -459,7 +459,6 @@ attribute                | required | type  | notes
 ------------------------ | -------- | ------| ----------------------------------------
 startup_script.path      |          | path  | Relative path to a directory tree with the script contents.
 student_files.path       |          | path  | Relative path to a directory tree with the student file contents.
-student_test_files.path  |          | path  | Relative path to a directory tree with the student test file contents.
 
 ```yml
   - type: ide
@@ -468,8 +467,6 @@ student_test_files.path  |          | path  | Relative path to a directory tree 
       path: startup/startup.sh
     student_files:
       - path: student_files/main.py
-    student_test_files:
-      - path: student_test_files/main_test.py
 ```
 
 ###### Student Files
@@ -481,6 +478,9 @@ Student files specified in the qwiklabs.yaml will be added the student's home di
 Startup scripts are executed from `/home/theia` which is the directory where
 IDE is installed.
 
+###### File open on startup
+
+If there is a `main.py` student file, it will be visible to the student at lab startup.
 
 ##### Windows VM (windows_vm)
 
