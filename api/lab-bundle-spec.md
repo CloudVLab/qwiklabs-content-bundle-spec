@@ -458,7 +458,7 @@ lcurl PUT /api/3.1/roles/${DEVELOPER_ROLE_ID}/users --data "[\"${DEVELOPER_USER_
 attribute                | required | type  | notes
 ------------------------ | -------- | ------| ----------------------------------------
 startup_script.path      |          | path  | Relative path to a directory tree with the script contents.
-student_files.path       |          | path  | Relative path to a directory tree with the student file contents.
+student_files            |          | path  | Relative path to a directory student file contents.
 
 ```yml
   - type: ide
@@ -466,7 +466,7 @@ student_files.path       |          | path  | Relative path to a directory tree 
     startup_script:
       path: startup/startup.sh
     student_files:
-      - path: student_files/main.py
+      - path: student_files
 ```
 
 ###### Student Files
