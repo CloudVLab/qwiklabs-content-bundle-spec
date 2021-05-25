@@ -5,7 +5,8 @@ This repo houses specs for Qwiklabs content bundles. Each supported bundle type 
 ## Notable Files and Folders
 
 * `/examples/`: A list of example bundles (of any type)
-* `lab-bundle-spec.md`: A formal-ish specification for `Lab` bundles
+* `/api/`: Files that define the api version of the bundles
+* `github-lab-bundle-spec.md`: A formal-ish specification for `Lab` bundles
 * `course-template-bundle-spec.md`: A formal-ish specification for `CourseTemplate` bundles
 * `html-spec.md`: A document outlining what constitutes valid HTML in a content bundle (e.g. what is required, what is forbidden, etc.)
 

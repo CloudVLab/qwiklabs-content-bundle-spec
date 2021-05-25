@@ -50,6 +50,7 @@ description:
     en: "No, seriously. It's the best lab ever. You're going to love it!"
 
 duration: 60
+max_duration: 90
 level: intro
 tags: [sample, life-changing, gcp]
 
@@ -94,6 +95,7 @@ attribute              | required | type        | notes
 title                  | ✓        | locale dictionary |
 description            | ✓        | locale dictionary |
 duration               | ✓        | integer     | Amount of time it should take an average learner to complete the lab (in minutes)
+max_duration           |          | integer     | Maximum duration time of a lab, displayed in student timer (in minutes)
 credits                |          | integer     |
 level                  |          | string      |
 logo                   |          | file path   |
@@ -137,13 +139,13 @@ However, we will not accept arbitrary HTML. Your input will be heavily scrubbed.
 - All styling will be removed.
 - All scripting will be removed.
 
-See the Instruction part of the [HTML spec](./html/html-spec.md) for details.
+See the Instruction part of the [HTML spec](../html/html-spec.md) for details.
 
 ### Resources
 
 Resources are additional materials that learners may refer to while taking this lab.
 
-See [Resource Spec](./resource-spec.md) for details.
+See [Resource Spec](../resource-spec.md) for details.
 
 ### Environment
 

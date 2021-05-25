@@ -19,7 +19,9 @@ schema_version: 1
 default_locale: en
 
 # Versions should be considered decorators, and are not used as a source of truth for revision history.
-version: ver. 2
+version:
+  locales:
+    en: ver. 2
 
 # one of ["Self-paced", "Bootcamp/Workshop", "Instructor-led"]
 classroom_type: Instructor-led
@@ -111,7 +113,7 @@ attribute               | required | type        | notes
 entity_type             | ✓        | string      | Must be `ClassroomTemplate`
 schema_version          | ✓        | integer     |
 default_locale          | ✓        | enum        | Must be a valid locale code
-version                 |          | string      | Version string used as content decorator
+version                 |          | dictionary  | Version string used as content decorator from default locale
 classroom_type          |          | enum        | One of ["Self-paced", "Bootcamp/Workshop", "Instructor-led"]
 course_code             |          | string      | Id for Course, e.g. T_AHYXXX-I, usually determined by Training Ops. Not the same as the Git "slug"
 title                   | ✓        | dictionary  | A locale dictionary of titles
