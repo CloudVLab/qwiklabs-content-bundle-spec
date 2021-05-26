@@ -330,6 +330,10 @@ reference              | displayed as
  [USER].password       | copyable text
  [USER].docs_url       | button
  [USER].sheets_url     | button
+ [USER].slides_url     | button
+ [USER].gmail_url      | button
+ [USER].drive_url      | button
+ [USER].calendar_url   | button
 
 ##### Google Workspace Domain (google_workspace_domain)
 
