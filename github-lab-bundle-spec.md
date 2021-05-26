@@ -328,6 +328,8 @@ reference              | displayed as
 ---------------------- | ----------------
  [USER].username       | copyable text
  [USER].password       | copyable text
+ [USER].docs_url       | button
+ [USER].sheets_url     | button
 
 ##### Google Workspace Domain (google_workspace_domain)
 
