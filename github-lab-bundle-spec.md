@@ -338,6 +338,28 @@ reference              | displayed as
  [USER].calendar_url   | button
   
 All of the URLs will take the student to a new page where they can sign in with their temporary credentials and then get redirected to the requested Workspace service. When signing in, the temporary email address will be pre-filled but the student will still need to enter a password. If there are multiple temporary students in a lab (rare), we recommend creating different buttons for each one so each sign-in experience has the correct pre-filled email address.
+  
+For example, when creating a multi-user lab where two different users should do different things in Google Docs, the `environment` section in `qwiklabs.yaml` should look something like:
+  
+```
+environment:
+  resources:
+    - type: gcp_user
+      id: user_1
+    - type: gcp_user
+      id: user_2
+  student_visible_outputs:
+    - label: "Open Docs as First User"
+      reference: user_1.docs_url
+    - label: "Open Calendar as Second User"
+      reference: user_2.docs_url
+    - label: "First User Email"
+      reference: user_1.username
+    - label: "Second User Email"
+      reference: user_2.username
+    - label: "Password (for both users)"
+      reference: user_1.password
+```
 
 ##### Google Workspace Domain (google_workspace_domain)
 
