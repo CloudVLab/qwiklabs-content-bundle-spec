@@ -351,7 +351,7 @@ environment:
   student_visible_outputs:
     - label: "Open Docs as First User"
       reference: user_1.docs_url
-    - label: "Open Calendar as Second User"
+    - label: "Open Docs as Second User"
       reference: user_2.docs_url
     - label: "First User Email"
       reference: user_1.username
