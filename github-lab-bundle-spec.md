@@ -301,6 +301,8 @@ reference              | displayed as
 [PROJECT].console_url  | button
 
 Any custom outputs being generated with a `startup_script` can be reference as [PROJECT].startup_script.[FILL-IN-OUTPUT-NAME]. The output will be displayed as a copyable text if provided within the student_visible_outputs.
+  
+The `console_url` reference will take a student to a page where they can sign in with their temporary Google account credentials and then get redirected to the Google Cloud Console. For labs with a single user (very common), the student's temporary email address will be pre-filled for them.
 
 ##### GCP User (gcp_user)
 
@@ -334,6 +336,8 @@ reference              | displayed as
  [USER].gmail_url      | button
  [USER].drive_url      | button
  [USER].calendar_url   | button
+  
+All of the URLs will take the student to a new page where they can sign in with their temporary credentials and then get redirected to the requested Workspace service. When signing in, the temporary email address will be pre-filled but the student will still need to enter a password. If there are multiple temporary students in a lab (rare), we recommend creating different buttons for each one so each sign-in experience has the correct pre-filled email address.
 
 ##### Google Workspace Domain (google_workspace_domain)
 
