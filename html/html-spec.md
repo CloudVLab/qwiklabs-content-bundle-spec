@@ -204,7 +204,50 @@ TODO: add documentation
 TODO: add documentation
 
 ## `<ql-video>`
-TODO: add documentation
+
+Videos can be inserted, either with a link to the direct video file source or as a YouTube video ID.
+
+Details:
+
+Attribute | Type | Required | Description
+--- | --- | --- | ---
+src | string | true* | A URL that leads directly to a video file.
+youtubeId | string | true* | The ID of the YouTube video to embed. <br/> (the part of the URL after `?v=`)
+width | integer | false | Display width of the video, in pixels.
+height | integer | false | Display height of the video, in pixels.
+loop | boolean | false | Whether to loop this video automatically.
+autoplay | boolean | false | Whether to play this video immediately on page load.
+controls | boolean | false | Whether to show video playback and volume controls. <br/> Only applicable to videos using `src`.
+lang | string | false | Subtitle preference for YouTube videos (2-letter language code)
+ 
+
+\* One of `src` or `youtubeId` must be present, but not both.
+
+#### Direct Source Videos
+
+Source:
+```html
+<ql-video src="vid/test_video.mp4" controls></ql-video>
+<ql-video src="vid/test_video.mp4" autoplay loop width="100" height="100"></ql-video>
+```
+
+Rendered:
+
+<ql-video src="vid/test_video.mp4" controls></ql-video>
+
+<ql-video src="vid/test_video.mp4" autoplay loop width="100" height="100"></ql-video>
+
+#### YouTube Videos
+```html
+<ql-video youtubeId="ew-r46FmzSM"></ql-video>
+<ql-video youtubeId="ew-r46FmzSM" width="960" height="540"></ql-video>
+```
+
+Rendered:
+
+<ql-video youtubeId="ew-r46FmzSM"></ql-video>
+
+<ql-video youtubeId="ew-r46FmzSM" width="960" height="540"></ql-video>
 
 # Features
 
