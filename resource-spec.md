@@ -17,8 +17,8 @@ attribute      | required | type        | notes
 type           | ✓        | enum        | [See list of valid types below]
 id             |          | string      | Identifier that can be used throughout project bundle
 title          | ✓        | dictionary  | Key is `locales` and each locale is a dictionary mapping locale codes to localized titles
-description    |          | string      | Key is `locales` and each locale is a dictionary mapping locale codes to localized descriptions
-uri            |          | string      | Key is `locales` and each locale is a dictionary mapping locale codes to localized uris.
+description    |          | dictionary  | Key is `locales` and each locale is a dictionary mapping locale codes to localized descriptions
+uri            |          | dictionary  | Key is `locales` and each locale is a dictionary mapping locale codes to localized uris.
 
 ## Videos
 Videos have the following additional attributes:
