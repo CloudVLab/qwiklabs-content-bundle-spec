@@ -91,7 +91,7 @@ Result:
 A `<ql-code-block>` on its own without tabs, in "output mode".
 
 ```html
-<ql-code-block lang="json" output>
+<ql-code-block language="json" output>
   {
     "id": 321,
     "age": 6,
