@@ -81,6 +81,11 @@ Renders pre-formatted and syntax-highlighted code blocks.
 
   ![example with trim](./images/ql-code-block-02.png)
 
+- `wrap: boolean`
+
+  By default, code blocks do not wrap their contents. Setting this attribute
+  will wrap text within the code block.
+
 - `tabTitle: string|null`
 
   This is not relevant when using `<ql-code-block>` as a standalone element.
