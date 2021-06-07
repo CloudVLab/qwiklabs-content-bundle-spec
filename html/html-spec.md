@@ -45,6 +45,11 @@ Renders pre-formatted and syntax-highlighted code blocks.
 
   If not specified, the language will be automatically inferred.
 
+- `wrap: boolean`
+
+  By default, code blocks do not wrap their contents. Setting this attribute
+  will wrap text within the code block.
+
 - `tabTitle: string|null`
 
   This is not relevant when using `<ql-code-block>` as a standalone element.
@@ -91,7 +96,7 @@ Result:
 A `<ql-code-block>` on its own without tabs, in "output mode".
 
 ```html
-<ql-code-block lang="json" output>
+<ql-code-block language="json" output>
   {
     "id": 321,
     "age": 6,
