@@ -69,7 +69,6 @@ Renders pre-formatted and syntax-highlighted code blocks.
   Setting the `trim` attribute will remove all leading and trailing empty lines,
   as well as "dedent" the code to the left.
 
-
   ```html
   <ql-code-block language="python" trim>
     def add(a, b):
