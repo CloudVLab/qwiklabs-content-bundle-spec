@@ -44,6 +44,9 @@ Renders pre-formatted and syntax-highlighted code blocks.
   Language of this code block.
 
   If not specified, the language will be automatically inferred.
+  
+  See [the highlight.js docs](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md)
+  for a list of supported languages.
 
 - `noWrap: boolean`
 
