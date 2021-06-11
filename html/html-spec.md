@@ -44,11 +44,42 @@ Renders pre-formatted and syntax-highlighted code blocks.
   Language of this code block.
 
   If not specified, the language will be automatically inferred.
+  
+  See [the highlight.js docs](https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md)
+  for a list of supported languages.
 
-- `wrap: boolean`
+- `noWrap: boolean`
 
-  By default, code blocks do not wrap their contents. Setting this attribute
-  will wrap text within the code block.
+  By default, code blocks wrap their contents. Setting this attribute will
+  make code blocks _not_ wrap text within themselves. Instead, a horizontal
+  scrollbar will appear to view the full contents.
+
+- `trim: boolean`
+
+  By default, all white-space within the code block will be preserved as-is.
+  For example, the following will be rendered with unexpected empty lines
+  and leading spaces:
+
+  ```html
+  <ql-code-block language="python">
+    def add(a, b):
+      return a + b
+  </ql-code-block>
+  ```
+
+  ![example without trim](./images/ql-code-block-01.png)
+
+  Setting the `trim` attribute will remove all leading and trailing empty lines,
+  as well as "dedent" the code to the left.
+
+  ```html
+  <ql-code-block language="python" trim>
+    def add(a, b):
+      return a + b
+  </ql-code-block>
+  ```
+
+  ![example with trim](./images/ql-code-block-02.png)
 
 - `tabTitle: string|null`
 
