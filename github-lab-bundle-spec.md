@@ -85,9 +85,6 @@ duration: 60
 level: intro
 tags: [sample, life-changing, gcp]
 
-# The primary instruction content for this lab
-instruction: ...
-
 # Other resources the learner may access while taking this lab
 resources: ...
 
@@ -142,16 +139,13 @@ legacy_display_options |          | array       | Elements to hide/show in ql-la
 
 ### Instructions
 
-attribute | required | type              | notes
---------- | -------- | ----------------- | -----------------------------------------
-type      | ✓        | enum              | [See list of valid types below]
-uri       | ✓        | string            | Paths to files in the bundle
+Place your instruction files under "instructions" folder. Name of the file MUST be same as the locale key.
 
-```yaml
-instruction:
-  type: html
-  uri: instructions/en.html
 ```
+my-lab/instructions/en.md
+my-lab/instructions/es.html
+```
+You can only have one file per locale.
 
 #### Valid types
 
