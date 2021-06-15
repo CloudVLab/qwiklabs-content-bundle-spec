@@ -141,6 +141,7 @@ legacy_display_options |          | array       | Elements to hide/show in ql-la
 
 Place your instruction files under "instructions" folder. Name of the file MUST be same as the locale key.
 
+Your folder structure may look like:
 ```
 my-lab/instructions/en.md
 my-lab/instructions/es.html
