@@ -48,6 +48,9 @@ prerequisites:
   locales:
     en: <p>A basic understanding of serverless architecture is recommended but not required.</p>
 
+course_surveys:
+  - my-library/new-cloud-training-survey-fayoci
+
 # Resources that will not be surfaced to students, but may be referenced by an instructor
 instructor_resources:
   - title:
@@ -106,6 +109,7 @@ image                   |          | string      | Link to an image file to be u
 badge                   |          | string      | Link to an image file to be used as the badge for the course, at least 640px x 640px.
 estimated_duration_days |          | integer     | Estimated time to take the course, in days
 max_hot_labs            |          | integer     | Maximum number of hot labs for this course. Pseudo-deprecated legacy field that we would like to remove.
+course_surveys          |          | array       | Array of course survey 'library/slug' 
 instructor_resources    |          | array       | Instructor-specific resources. Array of dictionaries with keys `title` and `uri` and values locale dictionaries.
 resources               |          | array       | See [below](#resources)
 modules                 | ✓        | array       | See [below](#modules)
