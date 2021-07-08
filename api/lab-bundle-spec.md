@@ -158,7 +158,7 @@ The properties of each environment resource will depend on their type, e.g. AWS 
 attribute | required | type   | notes
 --------- | -------- | ------ | -----------------------------------------
 type      | ✓        | enum   | [See list of valid types]
-id        |          | string | Identifier that can be used throughout project bundle.
+id        | ✓        | string | Identifier that can be used throughout project bundle.
 variant   |          | string | The subtype resource being requested. Each type below lists its valid variants and specifies which is the default.
 
 ```yml
