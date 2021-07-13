@@ -179,7 +179,7 @@ environment:
 
 attribute                        | required | type    | notes
 ---------------------------------| -------- | ------- | --------------------------------------
-startup_script.type              |          | string  | The type of startup script. Only `deployment_manager` is supported.
+startup_script.type              | ✓        | string  | The type of startup script. Only `deployment_manager` and `qwiklabs` are supported.
 startup_script.path              |          | path    | Relative path to a directory tree with the script contents.
 startup_script.custom_properties |          | array   | Array of pairs. See below for details.
 ssh_key_user                     |          | string  | If this project should use a user's SSH key, the id of that user.
