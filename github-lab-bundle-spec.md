@@ -331,6 +331,7 @@ reference              | displayed as
  [USER].gmail_url      | button
  [USER].drive_url      | button
  [USER].calendar_url   | button
+ [USER].app_sheet_url  | button
   
 All of the URLs will take the student to a new page where they can sign in with their temporary credentials and then get redirected to the requested Workspace service. When signing in, the temporary email address will be pre-filled but the student will still need to enter a password. If there are multiple temporary students in a lab (rare), we recommend creating different buttons for each one so each sign-in experience has the correct pre-filled email address.
   
