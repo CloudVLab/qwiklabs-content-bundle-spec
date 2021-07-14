@@ -54,33 +54,6 @@ Renders pre-formatted and syntax-highlighted code blocks.
   make code blocks _not_ wrap text within themselves. Instead, a horizontal
   scrollbar will appear to view the full contents.
 
-- `trim: boolean`
-
-  By default, all white-space within the code block will be preserved as-is.
-  For example, the following will be rendered with unexpected empty lines
-  and leading spaces:
-
-  ```html
-  <ql-code-block language="python">
-    def add(a, b):
-      return a + b
-  </ql-code-block>
-  ```
-
-  ![example without trim](./images/ql-code-block-01.png)
-
-  Setting the `trim` attribute will remove all leading and trailing empty lines,
-  as well as "dedent" the code to the left.
-
-  ```html
-  <ql-code-block language="python" trim>
-    def add(a, b):
-      return a + b
-  </ql-code-block>
-  ```
-
-  ![example with trim](./images/ql-code-block-02.png)
-
 - `tabTitle: string|null`
 
   This is not relevant when using `<ql-code-block>` as a standalone element.
@@ -101,6 +74,61 @@ Renders pre-formatted and syntax-highlighted code blocks.
 
   Use this property to set this block as "output", instead of "input".
 
+### Indentation
+
+Code block indentation is determined by the amount of indentation preceding the
+closing tag. Take the following example:
+
+```html
+  <ql-code-block language="js">
+  console.log("some code in here");
+  console.log("some more code here");
+
+  if (2 + 2 == 4) {
+    [1, 2, 3].forEach(console.log);
+  }
+  </ql-code-block>
+```
+
+The closing tag above is preceded by two spaces. Every line will be "dedented"
+by exactly those two spaces, to produce the following output:
+
+```js
+console.log("some code in here");
+console.log("some more code here");
+
+if (2 + 2 == 4) {
+  [1, 2, 3].forEach(console.log);
+}
+```
+
+If the indentation of the closing tag does not match the indentation of the
+start of every line in the code block (not including lines that are empty or
+only whitespace), the code will not be dedented.
+For example:
+
+```html
+  <ql-code-block language="js">
+  console.log("some code in here");
+  console.log("some more code here");
+
+  if (2 + 2 == 4) {
+    [1, 2, 3].forEach(console.log);
+  }
+    </ql-code-block>
+```
+
+Would be rendered as:
+
+```js
+  console.log("some code in here");
+  console.log("some more code here");
+
+  if (2 + 2 == 4) {
+    [1, 2, 3].forEach(console.log);
+  }
+```
+
 ### Examples
 
 Two tabs of code blocks, one with a custom title.
@@ -108,12 +136,12 @@ Two tabs of code blocks, one with a custom title.
 ```html
 <ql-code>
   <ql-code-block language="js">
-    console.log("some code in here");
-    console.log("some more code here");
-    [1, 2, 3].forEach(console.log);
+  console.log("some code in here");
+  console.log("some more code here");
+  [1, 2, 3].forEach(console.log);
   </ql-code-block>
   <ql-code-block language="python" tabTitle="this tab has a custom title!">
-    print("some code in here")
+  print("some code in here")
   </ql-code-block>
 </ql-code>
 ```
@@ -128,15 +156,15 @@ A `<ql-code-block>` on its own without tabs, in "output mode".
 
 ```html
 <ql-code-block language="json" output>
-  {
-    "id": 321,
-    "age": 6,
-    "breed": "Daschund",
-    "weight": {
-      "value": 23,
-      "unit": "lb"
-    }
+{
+  "id": 321,
+  "age": 6,
+  "breed": "Daschund",
+  "weight": {
+    "value": 23,
+    "unit": "lb"
   }
+}
 </ql-code-block>
 ```
 
