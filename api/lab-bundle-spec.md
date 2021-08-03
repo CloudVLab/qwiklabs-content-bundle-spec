@@ -216,6 +216,7 @@ The allowed variants are:
 
 - gcpd [default]
 - gcpfree
+- gcpondemand
 - gcp_very_low_base
 - gcp_low_extra
 - gcp_medium_extra
