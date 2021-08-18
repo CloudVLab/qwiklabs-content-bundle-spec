@@ -183,11 +183,15 @@ startup_script.type              | ✓        | string  | The type of startup sc
 startup_script.path              |          | path    | Relative path to a directory tree with the script contents.
 startup_script.custom_properties |          | array   | Array of pairs. See below for details.
 ssh_key_user                     |          | string  | If this project should use a user's SSH key, the id of that user.
+allowed_locations                |          | array   | List of GCP regions or zones to set a default zone from.
 
 ```yml
 - type: gcp_project
   id: secondary_project
   variant: gcpfree
+  allowed_locations:
+    - us-central1
+    - europe-west1-b
   startup_script:
     type: deployment_manager
     path: dm_startup.zip
@@ -207,6 +211,25 @@ ssh_key_user                     |          | string  | If this project should u
 > **NOTE:** Cleanup scripts are supported by invitation only. If you think you
 > have a reason to use cleanup scripts, please get in touch with Qwiklabs
 > engineering and we can discuss the specifics of cleanup scripts.
+
+Every GCP project has a default zone set. When no zone is specified (either in
+a gcloud command or API call), GCP will try to use this default zone in that
+call. For example, attempting to create a GCE VM without specifying a location
+will create a VM in this location. You can set this default zone by specifying
+values in `allowed_locations`. When a student launches a lab, Qwiklabs will set
+their default zone to a random value from this list. If a region is specified,
+Qwiklabs will randomly pick a zone in that region.
+
+If a lab does not have particular region/zone requirements, we strongly
+recommend specifying at least two whole regions in this list. Unless you have
+a reason not to, we recommend `['us-west1', 'us-central1', 'us-east1']` as a good
+starting point.
+
+For backward compatibility, if `allowed_locations` is not specified, we always
+set the default zone to `us-central1-a`. This is usually not an ideal value so
+we recommend always setting `allowed_locations` (even in the unlikely event
+that `us-central1-a` is the one and only zone you want this resource to default
+to).
 
 ###### Variants for GCP Project
 
@@ -602,17 +625,18 @@ The valid `reference`s for a `windows_vm` resource are:
 
 #### AWS Account (aws_account)
 
-attribute   | required | type       | notes
------------ | -------- | ---------- | ----------------------------------------
-account_restrictions.allow_dedicated_instances  | | boolean | Should the account allow users to create [Dedicated Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html). Default false.
-account_restrictions.allow_spot_instances       | | boolean | Should the account allow users to create [Spot Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html) functionality. Default false.
-account_restrictions.allow_subnet_deletion      | | boolean | Default false.
-account_restrictions.allow_vpc_deletion         | | boolean | Default false.
-account_restrictions.allowed_ec2_instances      | | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for any EC2 product (e.g. dedicated, spot, on-demand). Default none.
-account_restrictions.allowed_rds_instances      | | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for RDS usage. Default none.
-startup_script.type              | | string  | The type of startup script. Only `cloud_formation` is supported.
-startup_script.path              | | path    | Relative path to a directory tree with the script contents.
-user_policy                      | | path    | Relative path to a [JSON policy](https://awspolicygen.s3.amazonaws.com/policygen.html) document.
+attribute                                       | required | type       | notes
+----------------------------------------------- | -------- | ---------- | ----------------------------------------
+account_restrictions.allow_dedicated_instances  |          | boolean    | Should the account allow users to create [Dedicated Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html). Default false.
+account_restrictions.allow_spot_instances       |          | boolean    | Should the account allow users to create [Spot Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html) functionality. Default false.
+account_restrictions.allow_subnet_deletion      |          | boolean    | Default false.
+account_restrictions.allow_vpc_deletion         |          | boolean    | Default false.
+account_restrictions.allowed_ec2_instances      |          | array      | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for any EC2 product (e.g. dedicated, spot, on-demand). Default none.
+account_restrictions.allowed_rds_instances      |          | array      | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for RDS usage. Default none.
+startup_script.type                             |          | string     | The type of startup script. Only `cloud_formation` is supported.
+startup_script.path                             |          | path       | Relative path to a directory tree with the script contents.
+user_policy                                     |          | path       | Relative path to a [JSON policy](https://awspolicygen.s3.amazonaws.com/policygen.html) document.
+allowed_locations                               |          | array      | List of AWS regions to set as the default for this account.
 
 ```yml
 - type: aws_account
@@ -629,7 +653,13 @@ user_policy                      | | path    | Relative path to a [JSON policy](
     allow_vpc_deletion: false
     allowed_ec2_instances: []
     allowed_rds_instances: ['db.t2.micro']
+  allowed_locations: ['us-east-1', 'us-central-1']
 ```
+
+`allowed_locations` lets you specify the default AWS region for this AWS
+account. If multiple regions are specified, Qwiklabs will randomly pick one
+every time a student launches a lab. If no locations are specified, Qwiklabs
+will select a default region based on that customer's static default region.
 
 ###### Variants for AWS Account
 
