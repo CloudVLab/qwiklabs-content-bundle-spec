@@ -7,6 +7,7 @@ description: En serio, el mejor lab que has tomado. Sin excepción.
 
 resources:
   - type: file
+    id: sample-pdf
     title: Ejemplo de PDF
     description: Este PDF contiene todos los ejemplos de código para el laboratorio.
     uri: resources/sample-es.pdf

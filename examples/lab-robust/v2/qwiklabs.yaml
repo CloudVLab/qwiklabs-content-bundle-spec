@@ -13,6 +13,7 @@ tags:
 
 resources:
   - type: file
+    id: sample-pdf
     title: Sample PDF
     description: This PDF contains all of the code samples for the lab.
     uri: resources/sample-en.pdf
@@ -28,6 +29,7 @@ environment:
     - type: gcp_project
       id: primary_project
       variant: gcpfree
+      ssh_key_user: primary_user
       startup_script:
         type: deployment_manager
         path: ./startup
@@ -40,6 +42,8 @@ environment:
         custom_properties:
           - key: primary_project_zone
             reference: primary_project.default_zone
+      allowed_locations:
+      - us-central1-a
     - type: gcp_user
       id: primary_user
       permissions:
@@ -61,6 +65,7 @@ environment:
         allow_subnet_deletion: false
         allow_vpc_deletion: false
         allowed_rds_instances: ['db.t2.micro']
+      allowed_locations: ['us-east-1', 'us-central-1']
   student_visible_outputs:
     - label: Open GCP Console
       reference: primary_project.console_url
@@ -82,7 +87,7 @@ environment:
       reference: the_account.console_url
 
 assessment:
-  passing_percentage: 75.0
+  passing_percentage: 75
   steps:
   - title: Create a Cloud Storage bucket
     maximum_score: 5
@@ -92,20 +97,4 @@ assessment:
       bucket_misconfigured: Hmm. The bucket is there, but it is misconfigured.
     services:
     - primary_project.StorageV1
-    code: |-
-        def check(handles:, maximum_score:, resources:)
-          storage_handle = handles['primary_project.StorageV1']
-          raise 'Invalid handle' if storage_handle.nil?
-          # Check for bucket, stubbed for testing
-          found_bucket = true
-          unless found_bucket
-            return { score: 0, message: 'bucket is missing' ,student_message: 'bucket_missing' }
-          end
-          # Check bucket configuration, stubbed for testing
-          bucket_configured_correctly = true
-          unless bucket_configured_correctly
-            return { score: 2, message: 'bucket is misconfigured', student_message: 'bucket_misconfigured' }
-          end
-          { score: max_score, message: 'step completed', student_message: 'success' }
-        end
-
+    method_name: step_one_check # Refers to "assessments/step_one_check.rb"
