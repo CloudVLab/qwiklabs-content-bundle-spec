@@ -33,6 +33,7 @@ environment:
 assessment:
   steps:
   - title: Crear un depósito de almacenamiento en la nube
+    locale_id: create_bucket
     student_messages:
       success: ¡Gran trabajo! ¡Creaste el cubo!
       bucket_missing: ¡Uy! No se ha encontrado el cubo.

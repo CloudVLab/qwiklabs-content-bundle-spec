@@ -28,7 +28,7 @@ environment:
   resources:
     - type: gcp_project
       id: primary_project
-      variant: gcpfree
+      variant: gcpd
       ssh_key_user: primary_user
       startup_script:
         type: deployment_manager
@@ -90,6 +90,7 @@ assessment:
   passing_percentage: 75
   steps:
   - title: Create a Cloud Storage bucket
+    locale_id: create_bucket
     maximum_score: 5
     student_messages:
       success: Great job! You created the bucket!
