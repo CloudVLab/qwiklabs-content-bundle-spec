@@ -1,4 +1,4 @@
-def check(handles:, maximum_score:, resources:)
+def step_one_check(handles:, maximum_score:, resources:)
   storage_handle = handles['primary_project.StorageV1']
   raise 'Invalid handle' if storage_handle.nil?
   # Check for bucket, stubbed for testing
