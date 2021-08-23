@@ -5,115 +5,115 @@ default_locale: en
 duration: 60
 level: easy
 tags:
-  - sample
-  - life-changing
-  - gcp
+- sample
+- life-changing
+- gcp
 
 resources:
-  - type: file
-    title:
-      locales:
-        en: Sample PDF
-        es: Ejemplo de PDF
-    description:
-      locales:
-        en: This PDF contains all of the code samples for the lab.
-        es: Este PDF contiene todos los ejemplos de código para el laboratorio.
-    uri:
-      locales:
-        en: ./resources/sample-en.pdf
-        es: ./resources/sample-es.pdf
-  - type: video
-    id: intro-video
-    title:
-      locales:
-        en: Welcome to GCP!
-        es: ¡Bienvenido a GCP!
-    uri:
-      locales:
-        en: https://www.youtu.be/oHg5SJYRHA0
-        es: https://www.youtu.be/7jjoyy7_RCk
-    description:
-      locales:
-        en: Overview of Google Cloud Platform
-        es: Descripción general de Google Cloud Platform
-    duration: 360
+- type: file
+  title:
+    locales:
+      en: Sample PDF
+      es: Ejemplo de PDF
+  description:
+    locales:
+      en: This PDF contains all of the code samples for the lab.
+      es: Este PDF contiene todos los ejemplos de código para el laboratorio.
+  uri:
+    locales:
+      en: ./resources/sample-en.pdf
+      es: ./resources/sample-es.pdf
+- type: video
+  id: intro-video
+  title:
+    locales:
+      en: Welcome to GCP!
+      es: ¡Bienvenido a GCP!
+  uri:
+    locales:
+      en: https://www.youtu.be/oHg5SJYRHA0
+      es: https://www.youtu.be/7jjoyy7_RCk
+  description:
+    locales:
+      en: Overview of Google Cloud Platform
+      es: Descripción general de Google Cloud Platform
+  duration: 360
 
 environment:
   resources:
-    - type: gcp_project
-      id: primary_project
-      variant: gcpfree
-      startup_script:
-        type: deployment_manager
-        path: ./startup
-        custom_properties:
-          - key: userNameWindows
-            value: student
-      cleanup_script:
-        type: deployment_manager
-        path: ./cleanup
-        custom_properties:
-          - key: primary_project_zone
-            reference: primary_project.default_zone
-    - type: gcp_user
-      id: primary_user
-      permissions:
-      - project: primary_project
-        roles:
-        - roles/editor
-        - roles/appengine.appAdmin
-        - roles/bigquery.admin
-        - roles/bigquery.user
-    - type: aws_account
-      id: the_account
-      variant: aws_vpc
-      startup_script:
-        type: cloud_formation
-        path: ./lab.template
-      user_policy: ./iam_policy.json
-      account_restrictions:
-        allow_spot_instances: true
-        allow_subnet_deletion: false
-        allow_vpc_deletion: false
-        allowed_rds_instances: ['db.t2.micro']
+  - type: gcp_project
+    id: primary_project
+    variant: gcpfree
+    startup_script:
+      type: deployment_manager
+      path: ./startup
+      custom_properties:
+      - key: userNameWindows
+        value: student
+    cleanup_script:
+      type: deployment_manager
+      path: ./cleanup
+      custom_properties:
+      - key: primary_project_zone
+        reference: primary_project.default_zone
+  - type: gcp_user
+    id: primary_user
+    permissions:
+    - project: primary_project
+      roles:
+      - roles/editor
+      - roles/appengine.appAdmin
+      - roles/bigquery.admin
+      - roles/bigquery.user
+  - type: aws_account
+    id: the_account
+    variant: aws_vpc
+    startup_script:
+      type: cloud_formation
+      path: ./lab.template
+    user_policy: ./iam_policy.json
+    account_restrictions:
+      allow_spot_instances: true
+      allow_subnet_deletion: false
+      allow_vpc_deletion: false
+      allowed_rds_instances: ['db.t2.micro']
   student_visible_outputs:
-    - label:
-        locales:
-          en: "Open GCP Console"
-      reference: primary_project.console_url
-    - label:
-        locales:
-          en: "GCP Project"
-      reference: primary_project.project_id
-    - label:
-        locales:
-          en: "GCP Username"
-      reference: primary_user.username
-    - label:
-        locales:
-          en: "GCP Password"
-      reference: primary_user.password
-    - label:
-        locales:
-          en: "InstanceDns"
-      reference: primary_project.startup_script.InstanceDns
-    - label:
-        locales:
-          en: 'AWS Account Number'
-      reference: the_account.account_number
-    - label:
-        locales:
-          en: 'Username'
-      reference: the_account.username
-    - label:
-        locales:
-          en: 'password'
-      reference: the_account.password
-    - label:
-        locales:
-          en: 'AWS Console URL'
-      reference: the_account.console_url
+  - label:
+      locales:
+        en: "Open GCP Console"
+    reference: primary_project.console_url
+  - label:
+      locales:
+        en: "GCP Project"
+    reference: primary_project.project_id
+  - label:
+      locales:
+        en: "GCP Username"
+    reference: primary_user.username
+  - label:
+      locales:
+        en: "GCP Password"
+    reference: primary_user.password
+  - label:
+      locales:
+        en: "InstanceDns"
+    reference: primary_project.startup_script.InstanceDns
+  - label:
+      locales:
+        en: 'AWS Account Number'
+    reference: the_account.account_number
+  - label:
+      locales:
+        en: 'Username'
+    reference: the_account.username
+  - label:
+      locales:
+        en: 'password'
+    reference: the_account.password
+  - label:
+      locales:
+        en: 'AWS Console URL'
+    reference: the_account.console_url
 
 assessment:
   passing_percentage: 75.0

@@ -4,14 +4,18 @@
 
 > **Note: For Interim Use Only**
 >
-> This specification is for existing Qwiklabs platform users that are currently using the `ClassroomTemplate` model. It should be used to help transition from `ClassroomTemplates` to [`CourseTemplates`](./course-template-bundle-spec.md). If you are not currently using `ClassroomTemplates`, please use `CourseTemplates` instead.
-
+> This specification is for existing Qwiklabs platform users that are currently
+> using the `ClassroomTemplate` model. It should be used to help transition from
+> `ClassroomTemplates` to [`CourseTemplates`](./course-template-bundle-spec.md).
+> If you are not currently using `ClassroomTemplates`, please use
+> `CourseTemplates` instead.
 
 ## `qwiklabs.yaml` Structure
 
-Here's a sample `qwiklabs.yaml` file with all nested details removed to make it easier to see the general file structure.
+Here's a sample `qwiklabs.yaml` file with all nested details removed to make it
+easier to see the general file structure.
 
-```yml
+```yaml
 entity_type: ClassroomTemplate
 schema_version: 1
 
@@ -103,62 +107,69 @@ modules: ...
 
 ```
 
-Note that all of the main chunks of localized content (title, description, objectives, audience, prerequisites, etc.) are HTML content that may be displayed in various contexts. All of these chunks will be sanitized according to the restricted set in the [HTML spec](./html-spec.md).
+Note that all of the main chunks of localized content (title, description,
+objectives, audience, prerequisites, etc.) are HTML content that may be
+displayed in various contexts. All of these chunks will be sanitized according
+to the restricted set in the [HTML spec](./html/html-spec.md).
 
 ### Attribute specification
+
 The full specification is as follows:
 
-attribute               | required | type        | notes
------------------------ | -------- | ----------- | -----------------------------------------
-entity_type             | ✓        | string      | Must be `ClassroomTemplate`
-schema_version          | ✓        | integer     |
-default_locale          | ✓        | enum        | Must be a valid locale code
-version                 |          | dictionary  | Version string used as content decorator from default locale
-classroom_type          |          | enum        | One of ["Self-paced", "Bootcamp/Workshop", "Instructor-led"]
-course_code             |          | string      | Id for Course, e.g. T_AHYXXX-I, usually determined by Training Ops. Not the same as the Git "slug"
-title                   | ✓        | dictionary  | A locale dictionary of titles
-description             | ✓        | dictionary  | A locale dictionary of descriptions
-objectives              |          | dictionary  | A locale dictionary of objectives
-audience                |          | dictionary  | A locale dictionary of audiences
-prerequisites           |          | dictionary  | A locale dictionary of prerequisites
-outline                 |          | dictionary  | A locale dictionary of outline elements usually formatted as a JSON string
-external_content_url    |          | dictionary  | A locale dictionary of URL's to Coursera (or other) external content
-tags                    |          | array       | Array of strings to be used as hints in searching, etc.
-product_tags            |          | array       | Array of strings from the "Products" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
-role_tags               |          | array       | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
-domain_tags             |          | array       | Array of strings from the "Domain" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
-level                   |          | integer     | Integer between 1 and 4, with 1 being the easiest
-course_surveys          |          | array       | Array of course survey 'library/slugs'
-estimated_duration_days |          | integer     | Estimated time to take the course, in days
-estimated_duration      |          | integer     | Estimated time to take the course, in minutes
-lock_activity_position  |          | boolean     | Allow lab order to be changed by the trainer
-max_hot_labs            |          | integer     | Maximum number of hot labs for this course.
-enable_drm              |          | boolean     | Enable DRM on instructions if supported
-resource_limit_check    |          | boolean     | Check classroom for fraud
-student_resources       |          | array       | Student-specific instructions. See the [Resource Spec](./resource-spec.md) for full specification.
-instructor_resources    |          | array       | Instructor-specific instructions. See the [Resource Spec](./resource-spec.md) for full specification.
-modules                 |          | array       | See below
+attribute               | required | type       | notes
+----------------------- | -------- | ---------- | -----
+entity_type             | ✓        | string     | Must be `ClassroomTemplate`
+schema_version          | ✓        | integer    |
+default_locale          | ✓        | enum       | Must be a valid locale code
+version                 |          | dictionary | Version string used as content decorator from default locale
+classroom_type          |          | enum       | One of ["Self-paced", "Bootcamp/Workshop", "Instructor-led"]
+course_code             |          | string     | Id for Course, e.g. T_AHYXXX-I, usually determined by Training Ops. Not the same as the Git "slug"
+title                   | ✓        | dictionary | A locale dictionary of titles
+description             | ✓        | dictionary | A locale dictionary of descriptions
+objectives              |          | dictionary | A locale dictionary of objectives
+audience                |          | dictionary | A locale dictionary of audiences
+prerequisites           |          | dictionary | A locale dictionary of prerequisites
+outline                 |          | dictionary | A locale dictionary of outline elements usually formatted as a JSON string
+external_content_url    |          | dictionary | A locale dictionary of URL's to Coursera (or other) external content
+tags                    |          | array      | Array of strings to be used as hints in searching, etc.
+product_tags            |          | array      | Array of strings from the "Products" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
+role_tags               |          | array      | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
+domain_tags             |          | array      | Array of strings from the "Domain" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
+level                   |          | integer    | Integer between 1 and 4, with 1 being the easiest
+course_surveys          |          | array      | Array of course survey 'library/slugs'
+estimated_duration_days |          | integer    | Estimated time to take the course, in days
+estimated_duration      |          | integer    | Estimated time to take the course, in minutes
+lock_activity_position  |          | boolean    | Allow lab order to be changed by the trainer
+max_hot_labs            |          | integer    | Maximum number of hot labs for this course.
+enable_drm              |          | boolean    | Enable DRM on instructions if supported
+resource_limit_check    |          | boolean    | Check classroom for fraud
+student_resources       |          | array      | Student-specific instructions. See the [Resource Spec](./resource-spec.md) for full specification.
+instructor_resources    |          | array      | Instructor-specific instructions. See the [Resource Spec](./resource-spec.md) for full specification.
+modules                 |          | array      | See below
 
 ### Modules
 
-A `ClassroomTemplate` presents labs to the learner in a specific order. To keep some compatibilty with other "bundle entities" we will use a simple collection of steps, each with one lab activity.
+A `ClassroomTemplate` presents labs to the learner in a specific order. To keep
+some compatibility with other "bundle entities" we will use a simple collection
+of steps, each with one lab activity.
 
-attribute               | required | type        | notes
------------------------ | -------- | ----------- | -----------------------------------------
-id                      | ✓        | string      | A unique identifier for this module
-steps                   |          | array       | See below
+attribute | required | type   | notes
+--------- | -------- | ------ | -----------------------------------
+id        | ✓        | string | A unique identifier for this module
+steps     |          | array  | See below
 
 ### Steps
 
-For a ClassroomTemplate, a step consists of one activity option. The valid activity type is:
+For a ClassroomTemplate, a step consists of one activity option. The valid
+activity type is:
 
-* `lab`
+*   `lab`
 
 Where `lab` references content defined elsewhere in the library.
 
 The overall format should look like:
 
-```yml
+```yaml
 steps:
   - id: intro-lab
     activity_options:

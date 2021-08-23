@@ -4,13 +4,17 @@
 >
 > This is a DRAFT document. We welcome feedback as this format evolves.
 
-Previously (in b6086b8f824aa398c1f4413b92351a4956e744cd), the robust example had some cool ideas for how deployment manager and activity tracking should look in the future. None of it is implemented yet but the ideas may be useful in the future.
+Previously (in b6086b8f824aa398c1f4413b92351a4956e744cd), the robust example had
+some cool ideas for how deployment manager and activity tracking should look in
+the future. None of it is implemented yet but the ideas may be useful in the
+future.
 
 ## `qwiklabs.yaml` Structure
 
-Here's a sample `qwiklabs.yaml` file, with all nested details removed to make it easier to see the general file structure.
+Here's a sample `qwiklabs.yaml` file, with all nested details removed to make it
+easier to see the general file structure.
 
-```yml
+```yaml
 entity_type: Lab
 schema_version: 1
 default_locale: en
@@ -55,17 +59,23 @@ assessment: ...
 
 Two properties are critical for specifying your lab bundle:
 
-- `entity_type`
+-   `entity_type`
 
-  This should be set to `Lab` for lab bundles. For other entity types such as `CourseTemplate` or `Quiz` please see their own bundle spec.
+    This should be set to `Lab` for lab bundles. For other entity types such as
+    `CourseTemplate` or `Quiz` please see their own bundle spec.
 
-- `schema_version`
+-   `schema_version`
 
-  This notes which version of this spec the bundle is using. Currently, the only valid value is `1` but this will change as new features get added.
+    This notes which version of this spec the bundle is using. Currently, the
+    only valid value is `1` but this will change as new features get added.
 
 ### Default Locale
 
-The lab bundle MUST specify a `default_locale`. It corresponds to the locale that the lab is originally authored in. Authoring tools can use this as a hint to notify localizers when content in the default locale is updated. Also, it provides a hint to the learner interface about which locale to display if an instruction/resource is not localized for the learner's current locale.
+The lab bundle MUST specify a `default_locale`. It corresponds to the locale
+that the lab is originally authored in. Authoring tools can use this as a hint
+to notify localizers when content in the default locale is updated. Also, it
+provides a hint to the learner interface about which locale to display if an
+instruction/resource is not localized for the learner's current locale.
 
 ### Lab attributes
 
@@ -89,7 +99,7 @@ attribute | required | type       | notes
 type      | ✓        | enum       | [See list of valid types below]
 locales   | ✓        | dictionary | Keys are locale codes, the values are paths to files in the bundle.
 
-```yml
+```yaml
 instruction:
   type: html
   locales:
@@ -99,45 +109,58 @@ instruction:
 
 #### Valid instruction types
 
-- `html`
-- `pdf`
+*   `html`
+*   `pdf`
 
-HTML is the preferred format for stored instructions. PDFs will be displayed embedded in the learner interface, but will lack any navigation or interactive functionality.
+HTML is the preferred format for stored instructions. PDFs will be displayed
+embedded in the learner interface, but will lack any navigation or interactive
+functionality.
 
 ##### Qwiklabs supported HTML
 
-There are benefits to formating lab instructions as HTML.
+There are benefits to formatting lab instructions as HTML.
 
-- Instruction styling will be updated automatically as the Qwiklabs interface evolves.
-- Qwiklabs will help users navigate within your instruction document with a table of contents or direct links. It will also remember the learner's location in the document if they leave the page.
-- Authors can specify interactive elements that will be displayed inline with your instructions in the learner's interface (quizzes, checkpoints, etc).
+*   Instruction styling will be updated automatically as the Qwiklabs interface
+    evolves.
+*   Qwiklabs will help users navigate within your instruction document with a
+    table of contents or direct links. It will also remember the learner's
+    location in the document if they leave the page.
+*   Authors can specify interactive elements that will be displayed inline with
+    your instructions in the learner's interface (quizzes, checkpoints, etc).
 
 However, we will not accept arbitrary HTML. Your input will be heavily scrubbed.
 
-- Only a standard subset of HTML elements will be supported (`<h1>`, `<p>`, `<strong>`, etc). All other tags will be stripped out of displayed content.
-- All styling will be removed.
-- All scripting will be removed.
+*   Only a standard subset of HTML elements will be supported (`<h1>`, `<p>`,
+    `<strong>`, etc). All other tags will be stripped out of displayed content.
+*   All styling will be removed.
+*   All scripting will be removed.
 
-See the Instruction part of the [HTML spec](./html-spec.md) for details.
+See the Instruction part of the [HTML spec](../html/html-spec.md) for details.
 
 ### Resources
 
-Resources are additional materials that learners may refer to while taking this lab.
+Resources are additional materials that learners may refer to while taking this
+lab.
 
-See [Resource Spec](./resource-spec.md) for details.
+See [Resource Spec](../resource-spec.md) for details.
 
 ### Environment Resources
 
-The sandbox learning environment is a key feature of Qwiklabs. As the author of a lab, you need to tell us which cloud accounts to provision for a learner, and what resources we should create in that account before handing it over to the learner.
+The sandbox learning environment is a key feature of Qwiklabs. As the author of
+a lab, you need to tell us which cloud accounts to provision for a learner, and
+what resources we should create in that account before handing it over to the
+learner.
 
-The properties of each environment resource will depend on their type, i.e. AWS Accounts and GSuite Users require different configuration data. However, there are two properties that all resources have regardless of type:
+The properties of each environment resource will depend on their type, i.e. AWS
+Accounts and GSuite Users require different configuration data. However, there
+are two properties that all resources have regardless of type:
 
 attribute | required | type   | notes
 --------- | -------- | ------ | -----------------------------------------
 type      | ✓        | enum   | [See list of valid types]
 id        |          | string | Identifier that can be used throughout project bundle
 
-```yml
+```yaml
 environment_resources:
   - type: gcp_project
     id: my_primary_project
@@ -164,7 +187,7 @@ dm_template.script            |          | path    | Relative path to a Deployme
 dm_template.custom_properties |          | array   | Array of key/value pairs.
 fleet                         |          | enum*   | Specify a Qwiklabs fleet to pull the project from.
 
-```yml
+```yaml
 - type: gcp_project
   id: secondary_project
   fleet: gcpfree
@@ -179,18 +202,17 @@ fleet                         |          | enum*   | Specify a Qwiklabs fleet to
 >
 > The existing concept of Qwiklabs' Fleets does not have a single analog in
 > content bundles. Notice that some fleet types map to resource types (e.g.
-> `gsuite_multi_tenant` fleet is now the `gsuite-domain` resource type).
-> However other fleets are "variants" of the same resource type (e.g.
-> "free", "ASL", and "standard" GCP projects). Therefore, not all fleet names that
-> an experienced Qwiklabs author may be familiar with, are allowed in the `fleet`
-> field.
+> `gsuite_multi_tenant` fleet is now the `gsuite-domain` resource type). However
+> other fleets are "variants" of the same resource type (e.g. "free", "ASL", and
+> "standard" GCP projects). Therefore, not all fleet names that an experienced
+> Qwiklabs author may be familiar with, are allowed in the `fleet` field.
 >
 > Presently, authors are allowed to specify one of the following fleet types for
 > a gcp_project:
 >
-> - gcpd [default]
-> - gcpfree
-> - gcpasl
+> *   gcpd \[default\]
+> *   gcpfree
+> *   gcpasl
 >
 > Future versions of the Content Bundle spec may use different terminology for
 > resource_type variations to avoid conflation.
@@ -201,7 +223,7 @@ attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
 permissions |          | array      | Array of project/roles(array) pairs
 
-```yml
+```yaml
   - type: gcp_user
     id: primary_user
     permissions:
@@ -217,7 +239,7 @@ attribute   | required | type       | notes
 ----------- | -------- | ---------- | ----------------------------------------
 No additional attributes
 
-```yml
+```yaml
 - type: gsuite_domain
   id: primary_domain
 ```
