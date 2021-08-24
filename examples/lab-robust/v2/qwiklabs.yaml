@@ -1,6 +1,8 @@
 schema_version: 2
 entity_type: Lab
 
+title: Robust Lab Example
+description: Seriously the best lab you've ever taken. Bar none.
 default_locale: en
 duration: 60
 level: easy
@@ -11,39 +13,22 @@ tags:
 
 resources:
   - type: file
-    title:
-      locales:
-        en: Sample PDF
-        es: Ejemplo de PDF
-    description:
-      locales:
-        en: This PDF contains all of the code samples for the lab.
-        es: Este PDF contiene todos los ejemplos de código para el laboratorio.
-    uri:
-      locales:
-        en: ./resources/sample-en.pdf
-        es: ./resources/sample-es.pdf
+    id: sample-pdf
+    title: Sample PDF
+    description: This PDF contains all of the code samples for the lab.
+    uri: resources/sample-en.pdf
   - type: video
     id: intro-video
-    title:
-      locales:
-        en: Welcome to GCP!
-        es: ¡Bienvenido a GCP!
-    uri:
-      locales:
-        en: https://www.youtu.be/oHg5SJYRHA0
-        es: https://www.youtu.be/7jjoyy7_RCk
-    description:
-      locales:
-        en: Overview of Google Cloud Platform
-        es: Descripción general de Google Cloud Platform
-    duration: 360
+    title: Welcome to GCP!
+    uri: https://www.youtu.be/oHg5SJYRHA0
+    description: Overview of Google Cloud Platform
 
 environment:
   resources:
     - type: gcp_project
       id: primary_project
-      variant: gcpfree
+      variant: gcpd
+      ssh_key_user: primary_user
       startup_script:
         type: deployment_manager
         path: ./startup
@@ -56,6 +41,8 @@ environment:
         custom_properties:
           - key: primary_project_zone
             reference: primary_project.default_zone
+      allowed_locations:
+      - us-central1-a
     - type: gcp_user
       id: primary_user
       permissions:
@@ -77,97 +64,37 @@ environment:
         allow_subnet_deletion: false
         allow_vpc_deletion: false
         allowed_rds_instances: ['db.t2.micro']
+      allowed_locations: ['us-east-1', 'us-central-1']
   student_visible_outputs:
-    - label:
-        locales:
-          en: "Open GCP Console"
+    - label: Open GCP Console
       reference: primary_project.console_url
-    - label:
-        locales:
-          en: "GCP Project"
+    - label: GCP Project
       reference: primary_project.project_id
-    - label:
-        locales:
-          en: "GCP Username"
+    - label: GCP Username
       reference: primary_user.username
-    - label:
-        locales:
-          en: "GCP Password"
+    - label: GCP Password
       reference: primary_user.password
-    - label:
-        locales:
-          en: "InstanceDns"
+    - label: InstanceDns
       reference: primary_project.startup_script.InstanceDns
-    - label:
-        locales:
-          en: 'AWS Account Number'
+    - label: AWS Account Number
       reference: the_account.account_number
-    - label:
-        locales:
-          en: 'Username'
+    - label: Username
       reference: the_account.username
-    - label:
-        locales:
-          en: 'password'
+    - label: password
       reference: the_account.password
-    - label:
-        locales:
-          en: 'AWS Console URL'
+    - label: AWS Console URL
       reference: the_account.console_url
 
 assessment:
-  passing_percentage: 75.0
+  passing_percentage: 75
   steps:
-  - title:
-      locales:
-        en: Create a Cloud Storage bucket
-        es: Crear un depósito de almacenamiento en la nube
+  - title: Create a Cloud Storage bucket
+    locale_id: create_bucket
     maximum_score: 5
     student_messages:
-      success:
-        locales:
-          en: Great job! You created the bucket!
-          es: ¡Gran trabajo! ¡Creaste el cubo!
-      bucket_missing:
-        locales:
-          en: Oops! No bucket found.
-          es: ¡Uy! No se ha encontrado el cubo.
-      bucket_misconfigured:
-        locales:
-          en: Hmm. The bucket is there, but it is misconfigured.
-          es: Hmm. El cubo está allí, pero está mal configurado.
+      success: Great job! You created the bucket!
+      bucket_missing: Oops! No bucket found.
+      bucket_misconfigured: Hmm. The bucket is there, but it is misconfigured.
     services:
     - primary_project.StorageV1
-    code: |-
-        def check(handles:, maximum_score:, resources:)
-          storage_handle = handles['primary_project.StorageV1']
-          raise 'Invalid handle' if storage_handle.nil?
-          # Check for bucket, stubbed for testing
-          found_bucket = true
-          unless found_bucket
-            return { score: 0, message: 'bucket is missing' ,student_message: 'bucket_missing' }
-          end
-          # Check bucket configuration, stubbed for testing
-          bucket_configured_correctly = true
-          unless bucket_configured_correctly
-            return { score: 2, message: 'bucket is misconfigured', student_message: 'bucket_misconfigured' }
-          end
-          { score: max_score, message: 'step completed', student_message: 'success' }
-        end
-
-title:
-  locales:
-    en: Robust Lab Example
-    es: Ejemplo de Robust Lab
-
-description:
-  locales:
-    en: Seriously the best lab you've ever taken. Bar none.
-    es: En serio, el mejor lab que has tomado. Sin excepción.
-
-instruction:
-  type: html
-  uri:
-    locales:
-      en: ./instructions/en.html
-      es: ./instructions/es.html
+    method_name: step_one_check # Refers to "assessments/step_one_check.rb"
