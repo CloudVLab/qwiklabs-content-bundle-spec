@@ -16,19 +16,27 @@ resources:
     title: ¡Bienvenido a GCP!
     uri: https://www.youtu.be/7jjoyy7_RCk
     description: Descripción general de Google Cloud Platform
-    duration: 360
 
 environment:
   student_visible_outputs:
-  - label: Abra la consola de GCP
-  - label: Proyecto GCP
-  - label: Nombre de usuario de GCP
-  - label: Contraseña de GCP
-  - label: InstanceDns
-  - label: Número de cuenta de AWS
-  - label: nombre de usuario
-  - label: clave
-  - label: URL de la consola de AWS
+    - label: Abra la consola de GCP
+      reference: primary_project.console_url
+    - label: Proyecto GCP
+      reference: primary_project.project_id
+    - label: Nombre de usuario de GCP
+      reference: primary_user.username
+    - label: Contraseña de GCP
+      reference: primary_user.password
+    - label: InstanceDns
+      reference: primary_project.startup_script.InstanceDns
+    - label: Número de cuenta de AWS
+      reference: the_account.account_number
+    - label: nombre de usuario
+      reference: the_account.username
+    - label: clave
+      reference: the_account.password
+    - label: URL de la consola de AWS
+      reference: the_account.console_url
 
 assessment:
   steps:

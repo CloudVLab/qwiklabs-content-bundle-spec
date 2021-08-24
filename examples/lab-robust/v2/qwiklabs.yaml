@@ -22,7 +22,6 @@ resources:
     title: Welcome to GCP!
     uri: https://www.youtu.be/oHg5SJYRHA0
     description: Overview of Google Cloud Platform
-    duration: 360
 
 environment:
   resources:
