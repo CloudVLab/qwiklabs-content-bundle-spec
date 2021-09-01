@@ -129,6 +129,30 @@ Would be rendered as:
   }
 ```
 
+### Escaping Content
+
+The contents of code blocks must be
+[HTML-escaped](https://www.w3.org/International/questions/qa-escapes#use)
+in order to render correctly.
+
+This is most relevant for HTML/XML contents, for example:
+
+```html
+<ql-code-block language="html">
+&lt;h1&gt;What is a monad?&lt;/h1&gt;
+&lt;p&gt;A monad is just a monoid in the category of endofunctors.&lt;/p&gt;
+&lt;img src="monad.png" alt="Monad diagram"&gt;
+</ql-code-block>
+```
+
+will render as:
+
+```html
+<h1>What is a monad?</h1>
+<p>A monad is just a monoid in the category of endofunctors.</p>
+<img src="monad.png" alt="Monad diagram">
+```
+
 ### Examples
 
 Two tabs of code blocks, one with a custom title.
