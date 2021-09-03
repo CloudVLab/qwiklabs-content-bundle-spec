@@ -74,6 +74,11 @@ Renders pre-formatted and syntax-highlighted code blocks.
 
   Use this property to set this block as "output", instead of "input".
 
+- `templated: boolean`
+
+  Allows the use of templated variables in this code block.
+  See [Templated Variables](#templated-variables) below.
+
 ### Indentation
 
 Code block indentation is determined by the amount of indentation preceding the
@@ -149,6 +154,46 @@ will render as:
 
 ![example preview](./images/ql-code-block-01.png)
 
+### Templated Variables
+
+Much like [\<ql-variable>](#ql-variable), Lab outputs such as usernames,
+passwords, project IDs, etc. can be rendered directly within code blocks using
+the `templated` attribute.
+
+Code blocks marked as `templated` will allow the usage of triple curly braces
+within the code content. The curly braces must contain the output `key` to be
+rendered, and optionally may contain a `placeholder` that is rendered before the
+lab is started and data is available.
+
+```
+{{{key}}}
+{{{key|placeholder}}}
+```
+
+For example, say you want to use the user's username and password in a snippet
+of Python. See the following example:
+
+```html
+<ql-code-block language="python" templated>
+def init_api():
+  # Logs into Cool API with your username {{{project_1.user_1.username}}}
+  api = CoolApi.login(
+    '{{{project_1.user_1.username|your_username}}}',
+    '{{{project_1.user_1.username|your_password}}}',
+  )
+  return api
+</ql-code-block>
+```
+
+When the lab page is first opened, only the placeholders will be shown:
+
+![example preview](./images/ql-code-block-02.png)
+
+After the lab has been started and provisioned, the code block will be updated
+to include the lab outputs:
+
+![example preview](./images/ql-code-block-03.png)
+
 ### Markdown Syntax (GitHub integration only)
 
 Code blocks can be rendered with Markdown using triple back ticks:
@@ -214,8 +259,9 @@ Result:
 
 ## `<ql-variable>`
 
-Lab outputs such as usernames, passwords, project IDs, etc. can be rendered
-directly within lab instructions using the `<ql-variable>` component.
+Much like a [templated \<ql-code-block>](#templated-variables), Lab outputs such
+as usernames, passwords, project IDs, etc. can be rendered directly within lab
+instructions using the `<ql-variable>` component.
 
 ### Attributes for `<ql-variable>`
 
