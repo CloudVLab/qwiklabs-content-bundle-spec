@@ -147,11 +147,7 @@ This is most relevant for HTML/XML content, for example:
 
 will render as:
 
-```html
-<h1>What is a monad?</h1>
-<p>A monad is just a monoid in the category of endofunctors.</p>
-<img src="monad.png" alt="Monad diagram">
-```
+![example preview](./images/ql-code-block-01.png)
 
 ### Examples
 
