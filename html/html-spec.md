@@ -135,7 +135,7 @@ The contents of code blocks must be
 [HTML-escaped](https://www.w3.org/International/questions/qa-escapes#use)
 in order to render correctly.
 
-This is most relevant for HTML/XML contents, for example:
+This is most relevant for HTML/XML content, for example:
 
 ```html
 <ql-code-block language="html">
