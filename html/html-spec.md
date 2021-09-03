@@ -129,6 +129,46 @@ Would be rendered as:
   }
 ```
 
+### Escaping Content
+
+The contents of code blocks must be
+[HTML-escaped](https://www.w3.org/International/questions/qa-escapes#use)
+in order to render correctly.
+
+This is most relevant for HTML/XML content, for example:
+
+```html
+<ql-code-block language="html">
+&lt;h1&gt;What is a monad?&lt;/h1&gt;
+&lt;p&gt;A monad is just a monoid in the category of endofunctors.&lt;/p&gt;
+&lt;img src="monad.png" alt="Monad diagram"&gt;
+</ql-code-block>
+```
+
+will render as:
+
+![example preview](./images/ql-code-block-01.png)
+
+### Markdown Syntax (GitHub integration only)
+
+Code blocks can be rendered with Markdown using triple back ticks:
+
+    ```javascript
+    console.log('hello world!');
+    ```
+
+Code block properties can be easily utilized in Markdown as well:
+
+    ```python output noWrap
+    print('this will be styled as an output code block and will not wrap lines.')
+    ```
+
+When rendering a code block through Markdown, HTML-escaping the contents is not
+necessary and will be handled automatically.
+
+Also, Markdown code blocks without an explicit `language` specified will be
+rendered with `language="plaintext"`.
+
 ### Examples
 
 Two tabs of code blocks, one with a custom title.
