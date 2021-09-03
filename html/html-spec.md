@@ -149,6 +149,26 @@ will render as:
 
 ![example preview](./images/ql-code-block-01.png)
 
+### Markdown Syntax (GitHub integration only)
+
+Code blocks can be rendered with Markdown using triple back ticks:
+
+    ```javascript
+    console.log('hello world!');
+    ```
+
+Code block properties can be easily utilized in Markdown as well:
+
+    ```python output noWrap
+    print('this will be styled as an output code block and will not wrap lines.')
+    ```
+
+When rendering a code block through Markdown, HTML-escaping the contents is not
+necessary and will be handled automatically.
+
+Also, Markdown code blocks without an explicit `language` specified will be
+rendered with `language="plaintext"`.
+
 ### Examples
 
 Two tabs of code blocks, one with a custom title.
