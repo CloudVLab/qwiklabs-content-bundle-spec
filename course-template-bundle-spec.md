@@ -6,9 +6,10 @@
 
 ## `qwiklabs.yaml` Structure
 
-Here's a sample `qwiklabs.yaml` file with all nested details removed to make it easier to see the general file structure.
+Here's a sample `qwiklabs.yaml` file with all nested details removed to make it
+easier to see the general file structure.
 
-```yml
+```yaml
 entity_type: CourseTemplate
 schema_version: 1
 
@@ -84,67 +85,81 @@ modules: ...
 
 ```
 
-Note that all of the main chunks of localized content (title, description, objectives, audience, and prerequisites) are HTML content that may be displayed in various contexts. All of these chunks will be sanitized according to the restricted set in the [HTML spec](./html-spec.md).
+Note that all of the main chunks of localized content (title, description,
+objectives, audience, and prerequisites) are HTML content that may be displayed
+in various contexts. All of these chunks will be sanitized according to the
+restricted set in the [HTML spec](./html/html-spec.md).
 
 ### Attribute specification
+
 The full specification is as follows:
 
-attribute               | required | type        | notes
------------------------ | -------- | ----------- | -----------------------------------------
-entity_type             | ✓        | string      | Must be `CourseTemplate`
-schema_version          | ✓        | integer     |
-default_locale          | ✓        | enum        | Must be a valid locale code
-title                   | ✓        | dictionary  | A locale dictionary of titles
-description             |          | dictionary  | A locale dictionary of descriptions
-version                 |          | dictionary  | A locale dictionary of version strings. These version strings should be considered decorators, and are not used as a source of truth for revision history.
-objectives              |          | dictionary  | A locale dictionary of objectives
-audience                |          | dictionary  | A locale dictionary of audiences
-prerequisites           |          | dictionary  | A locale dictionary of prerequisites
-tags                    |          | array       | Array of strings to be used as hints in searching, etc
-product_tags            |          | array       | Array of strings from the "Products" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
-role_tags               |          | array       | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
-domain_tags             |          | array       | Array of strings from the "Domain" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
-level                   |          | integer     | Integer between 1 and 4, with 1 being the easiest
-image                   |          | string      | Link to an image file to be used as the image for the course
-badge                   |          | string      | Link to an image file to be used as the badge for the course, at least 640px x 640px.
-estimated_duration_days |          | integer     | Estimated time to take the course, in days
-max_hot_labs            |          | integer     | Maximum number of hot labs for this course. Pseudo-deprecated legacy field that we would like to remove.
-course_surveys          |          | array       | Array of course survey 'library/slug' 
-instructor_resources    |          | array       | Instructor-specific resources. Array of dictionaries with keys `title` and `uri` and values locale dictionaries.
-resources               |          | array       | See [below](#resources)
-modules                 | ✓        | array       | See [below](#modules)
-retake_policies         |          | array       | See [below](#retake-policies)
+attribute               | required | type       | notes
+----------------------- | -------- | ---------- | -----
+entity_type             | ✓        | string     | Must be `CourseTemplate`
+schema_version          | ✓        | integer    |
+default_locale          | ✓        | enum       | Must be a valid locale code
+title                   | ✓        | dictionary | A locale dictionary of titles
+description             |          | dictionary | A locale dictionary of descriptions
+version                 |          | dictionary | A locale dictionary of version strings. These version strings should be considered decorators, and are not used as a source of truth for revision history.
+objectives              |          | dictionary | A locale dictionary of objectives
+audience                |          | dictionary | A locale dictionary of audiences
+prerequisites           |          | dictionary | A locale dictionary of prerequisites
+tags                    |          | array      | Array of strings to be used as hints in searching, etc
+product_tags            |          | array      | Array of strings from the "Products" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
+role_tags               |          | array      | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
+domain_tags             |          | array      | Array of strings from the "Domain" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
+level                   |          | integer    | Integer between 1 and 4, with 1 being the easiest
+image                   |          | string     | Link to an image file to be used as the image for the course
+badge                   |          | string     | Link to an image file to be used as the badge for the course, at least 640px x 640px.
+estimated_duration_days |          | integer    | Estimated time to take the course, in days
+max_hot_labs            |          | integer    | Maximum number of hot labs for this course. Pseudo-deprecated legacy field that we would like to remove.
+course_surveys          |          | array      | Array of course survey 'library/slug'
+instructor_resources    |          | array      | Instructor-specific resources. Array of dictionaries with keys `title` and `uri` and values locale dictionaries.
+resources               |          | array      | See [below](#resources)
+modules                 | ✓        | array      | See [below](#modules)
+retake_policies         |          | array      | See [below](#retake-policies)
 
 ### Modules
 
-The meat of a `CourseTemplate` is an ordered list of modules, each of which is a collection of steps, defining what a learner needs to do to complete the course. A module has a `title`, `description`, and array of `steps`. The full specification is as follows:
+The meat of a `CourseTemplate` is an ordered list of modules, each of which is a
+collection of steps, defining what a learner needs to do to complete the course.
+A module has a `title`, `description`, and array of `steps`. The full
+specification is as follows:
 
-attribute               | required | type        | notes
------------------------ | -------- | ----------- | -----------------------------------------
-id                      | ✓        | string      | A unique identifier for this module
-title                   | ✓        | dictionary  | A locale dictionary of titles
-description             |          | dictionary  | A locale dictionary of descriptions
-steps                   | ✓        | array       | See below
+attribute   | required | type       | notes
+----------- | -------- | ---------- | -----------------------------------
+id          | ✓        | string     | A unique identifier for this module
+title       | ✓        | dictionary | A locale dictionary of titles
+description |          | dictionary | A locale dictionary of descriptions
+steps       | ✓        | array      | See below
 
 ### Resources
 
-While heavyweight activities like labs and quizzes must be defined elsewhere in the library, we allow simpler resources to be specified directly in `qwiklabs.yaml`. They can then be referenced in the `steps` just like labs and quizzes.
+While heavyweight activities like labs and quizzes must be defined elsewhere in
+the library, we allow simpler resources to be specified directly in
+`qwiklabs.yaml`. They can then be referenced in the `steps` just like labs and
+quizzes.
 
-For details on how to specify resources, see the [Resource Spec](./resource-spec.md).
+For details on how to specify resources, see the
+[Resource Spec](./resource-spec.md).
 
 ### Steps
 
-A step consists of a set of one or more activity options, along with some metadata. Valid activity types are:
+A step consists of a set of one or more activity options, along with some
+metadata. Valid activity types are:
 
-* `lab`
-* `quiz`
-* `resource`
+*   `lab`
+*   `quiz`
+*   `resource`
 
-`lab` and `quiz` will reference content defined elsewhere in the library, and `resource` will reference content defined elsewhere in the same `qwiklabs.yaml` file.
+`lab` and `quiz` will reference content defined elsewhere in the library, and
+`resource` will reference content defined elsewhere in the same `qwiklabs.yaml`
+file.
 
 The overall format should look like:
 
-```yml
+```yaml
 steps:
   - id: overview-video
     activity_options:
@@ -185,28 +200,31 @@ steps:
       version: '1.0'
 ```
 
-The order in which steps are listed defines the order they will be displayed. When a step has multiple options, the learner will be expected to do exactly one of the activities.
+The order in which steps are listed defines the order they will be displayed.
+When a step has multiple options, the learner will be expected to do exactly one
+of the activities.
 
 The full specification for a step is as follows:
 
-attribute        | required | type        | notes
----------------- | -------- | ----------- | -----------------------------------------
-id               | ✓        | string      | A unique identifier for this step
-activity_options | ✓        | array       | `activity_options` is an array of dictionaries with the format:
--- type          | ✓        | enum        | One of `lab`, `quiz`, `resource`
--- category      |          | string      | A subordinate descriptor for an activity of the above `type` used in the context of retakes to indicate the applicable retake policy.
--- id            | ✓        | string      | Reference to the unique identifier for the activity - `library/slug`.
--- version       |          | string      | Reference to the semantic version of the activity to which the course step should be frozen.
-prompt           |          | dictionary  | Key is `locales` and each locale is a dictionary mapping locale codes to a prompt describing the step
-optional         |          | boolean     | `true` if the step is *not* required for completion
+attribute        | required | type       | notes
+---------------- | -------- | ---------- | -----
+id               | ✓        | string     | A unique identifier for this step
+activity_options | ✓        | array      | `activity_options` is an array of dictionaries with the format:
+-- type          | ✓        | enum       | One of `lab`, `quiz`, `resource`
+-- category      |          | string     | A subordinate descriptor for an activity of the above `type` used in the context of retakes to indicate the applicable retake policy.
+-- id            | ✓        | string     | Reference to the unique identifier for the activity - `library/slug`.
+-- version       |          | string     | Reference to the semantic version of the activity to which the course step should be frozen.
+prompt           |          | dictionary | Key is `locales` and each locale is a dictionary mapping locale codes to a prompt describing the step
+optional         |          | boolean    | `true` if the step is *not* required for completion
 
 ### Retake Policies
 
-A retake policy defines any required cooldown periods, retake limits, and retake windows applicable to a given `CourseTemplate` activity.
+A retake policy defines any required cooldown periods, retake limits, and retake
+windows applicable to a given `CourseTemplate` activity.
 
 The overall format should look like:
 
-```yml
+```yaml
 retake_policies:
   - id: default-lab-policy
     activity_type: Lab
@@ -230,10 +248,10 @@ retake_policies:
     retake_window: 1
 ```
 
-attribute               | required | type        | notes
------------------------ | -------- | ----------- | -----------------------------------------
-activity_type           | ✓        | enum        | The type of retakeable activity to which this retake policy applies; one of `Lab` or `Quiz`
-activity_category       |          | string      | Distinguishes a subset of a given type of retakeable activity to which this retake policy applies (e.g. `graded` for quiz); category must match one of the categories given on a retakeable activity
-retake_cooldown         |          | array       | An array of `n` integers (greater than or equal to 0) specifying the required cooldown periods (in days) between consequent retakes; the last integer will be the cooldown period for all retakes after the `nth`; For example, a retake_cooldown of `[1, 2, 5]` would require a student to wait 1 day before their 1st retake, 2 days between their 1st and 2nd retakes, and 3 days between their 2nd and 3rd retakes, 3rd and 4th retakes, and so on.  If a student has waited for the appropriate coooldown period, they will only be allowed to retake the activity given they have not exceeded any retake limit.
-retake_limit            |          | integer     | The total number of attempts (greater than 0) allowed for the given type and subtype of retakeable activity; required if `retake_window` below is  specified. For example, a retake_limit of `3` would indicate a student will *not* be allowed to retake the activity after a total of 3 attempts. If a student is within the retake_limit, they will only be allowed to retake the activity given they have waited for the appropriate cooldown period.
-retake_window           |          | integer     | An integer (greater than 0) specifying the period (in days) for which the `retake_limit` above applies. For example, a retake_limit of `3` paired with a retake_window of `1` would indicate a student can retake the activity as long as no more than 3 attempts are made within a 1 day period.
+attribute         | required | type    | notes
+----------------- | -------- | ------- | -----
+activity_type     | ✓        | enum    | The type of retakeable activity to which this retake policy applies; one of `Lab` or `Quiz`
+activity_category |          | string  | Distinguishes a subset of a given type of retakeable activity to which this retake policy applies (e.g. `graded` for quiz); category must match one of the categories given on a retakeable activity
+retake_cooldown   |          | array   | An array of `n` integers (greater than or equal to 0) specifying the required cooldown periods (in days) between consequent retakes; the last integer will be the cooldown period for all retakes after the `nth`; For example, a retake_cooldown of `[1, 2, 5]` would require a student to wait 1 day before their 1st retake, 2 days between their 1st and 2nd retakes, and 3 days between their 2nd and 3rd retakes, 3rd and 4th retakes, and so on. If a student has waited for the appropriate coooldown period, they will only be allowed to retake the activity given they have not exceeded any retake limit.
+retake_limit      |          | integer | The total number of attempts (greater than 0) allowed for the given type and subtype of retakeable activity; required if `retake_window` below is specified. For example, a retake_limit of `3` would indicate a student will *not* be allowed to retake the activity after a total of 3 attempts. If a student is within the retake_limit, they will only be allowed to retake the activity given they have waited for the appropriate cooldown period.
+retake_window     |          | integer | An integer (greater than 0) specifying the period (in days) for which the `retake_limit` above applies. For example, a retake_limit of `3` paired with a retake_window of `1` would indicate a student can retake the activity as long as no more than 3 attempts are made within a 1 day period.
