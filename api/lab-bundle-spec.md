@@ -92,7 +92,6 @@ environment:
   #  e.g. gcp project, username, password. etc.
   student_visible_outputs: ...
 
-
 # Checkpoint evaluation and quiz data
 assessment: ...
 ```
@@ -224,13 +223,28 @@ environment:
 
 ##### GCP Project (gcp_project)
 
-attribute                        | required | type   | notes
--------------------------------- | -------- | ------ | -----
-startup_script.type              | ✓        | string | The type of startup script. Only `deployment_manager` and `qwiklabs` are supported.
-startup_script.path              |          | path   | Relative path to a directory tree with the script contents.
-startup_script.custom_properties |          | array  | Array of pairs. See below for details.
-ssh_key_user                     |          | string | If this project should use a user's SSH key, the id of that user.
-allowed_locations                |          | array  | List of GCP regions or zones to set a default zone from.
+| attribute      | required | type                              | notes                                                             |
+| -------------- | -------- | --------------------------------- | ----------------------------------------------------------------- |
+| startup_script |          | [startup_script](#startup-script) | A startup script object. See below for details.                   |
+| ssh_key_user   |          | string                            | If this project should use a user's SSH key, the id of that user. |
+| allowed_locations                |          | array  | List of GCP regions or zones to set a default zone from.
+
+
+###### Startup Script (startup_script)
+
+| attribute         | required | type                                             | notes                                                                               |
+| ----------------- | -------- | ------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| type              | ✓        | string                                           | The type of startup script. Only `deployment_manager` and `qwiklabs` are supported. |
+| path              | ✓        | path                                             | Relative path to a directory tree with the script contents.                         |
+| custom_properties |          | [custom_properties](#custom-script-properties)[] | Array of custom property objects. See below for details.                            |
+
+###### Custom Script Properties
+
+| attribute | required | type                                       | notes                                                                      |
+| --------- | -------- | ------------------------------------------ | -------------------------------------------------------------------------- |
+| key       | ✓        | string                                     | How the property will be referenced within the script.                     |
+| value     |          | string                                     | A value to be passed into the script.                                      |
+| reference |          | [resource reference](#resource-references) | A [resource reference](#resource-references) to be passed into the script. |
 
 ```yaml
 - type: gcp_project
@@ -290,14 +304,6 @@ The allowed variants are:
 *   gcp_medium_extra
 *   gcp_high_extra
 
-###### Custom Script Properties
-
-attribute | required | type               | notes
---------- | -------- | ------------------ | -----
-key       | ✓        | string             | How the property will be referenced within the script.
-value     |          | string             | A value to be passed into the script.
-reference |          | resource reference | A [resource reference](#resource-references) to be passed into the script.
-
 ###### Valid resource references
 
 The valid `reference`s for the `gcp_project` resource are:
@@ -314,18 +320,41 @@ a copyable text if provided within the student_visible_outputs.
 
 ##### GCP User (gcp_user)
 
-attribute   | required | type  | notes
------------ | -------- | ----- | -----------------------------------
-permissions |          | array | Array of project/roles(array) pairs
+| attribute      | required | type                              | notes                                           |
+| -------------- | -------- | --------------------------------- | ----------------------------------------------- |
+| permissions    |          | array                             | Array of project/roles(array) pairs             |
+| startup_script |          | [startup_script](#startup-script) | A startup script object. See below for details. |
 
-```yaml
-  - type: gcp_user
-    id: primary_user
-    permissions:
-      - project: my_primary_project
-        roles:
-          - roles/editor
-          - roles/bigquery.admin
+###### Startup Script (startup_script)
+
+| attribute         | required | type                                             | notes                                                                               |
+| ----------------- | -------- | ------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| type              | ✓        | string                                           | The type of startup script. Only `deployment_manager` and `qwiklabs` are supported. |
+| path              | ✓        | path                                             | Relative path to a directory tree with the script contents.                         |
+| custom_properties |          | [custom_properties](#custom-script-properties)[] | Array of custom property objects. See below for details.                            |
+
+###### Custom Script Properties
+
+| attribute | required | type                                       | notes                                                                      |
+| --------- | -------- | ------------------------------------------ | -------------------------------------------------------------------------- |
+| key       | ✓        | string                                     | How the property will be referenced within the script.                     |
+| value     |          | string                                     | A value to be passed into the script.                                      |
+| reference |          | [resource reference](#resource-references) | A [resource reference](#resource-references) to be passed into the script. |
+
+```yml
+- type: gcp_user
+  id: primary_user
+  permissions:
+    - project: my_primary_project
+      roles:
+        - roles/editor
+        - roles/bigquery.admin
+  startup_script:
+    type: qwiklabs
+    path: startup_dir
+    custom_properties:
+      - key: userNameWindows
+        value: student
 ```
 
 The `gcp_user` type could more properly be called `gaia_user`, since that's what
@@ -465,59 +494,59 @@ activity tracking snippets:
 assessment:
   passing_percentage: 100
   steps:
-  - title:
-      locales:
-        en: Create a VM
-    maximum_score: 100
-    student_messages:
-      success:
+    - title:
         locales:
-          en: Great job! You created a VM in GCP!
-      make_a_vm:
-        locales:
-          en: Please make a VM by running gcloud compute instances create
-    services:
-    - project.ComputeV1
-    code: |-
-      def check(handles:, maximum_score:, resources:)
-        compute = handles['project.ComputeV1']
-        instances = compute.list_aggregated_instances&.items
-        if instances.count > 0
-          { score: maximum_score, student_message: 'success' }
-        else
-          { score: 0, student_message: 'make_a_vm' }
+          en: Create a VM
+      maximum_score: 100
+      student_messages:
+        success:
+          locales:
+            en: Great job! You created a VM in GCP!
+        make_a_vm:
+          locales:
+            en: Please make a VM by running gcloud compute instances create
+      services:
+        - project.ComputeV1
+      code: |-
+        def check(handles:, maximum_score:, resources:)
+          compute = handles['project.ComputeV1']
+          instances = compute.list_aggregated_instances&.items
+          if instances.count > 0
+            { score: maximum_score, student_message: 'success' }
+          else
+            { score: 0, student_message: 'make_a_vm' }
+          end
         end
-      end
 ```
 
 ```yaml
 assessment:
   passing_percentage: 100
   steps:
-  - title:
-      locales:
-        en: Create a VM
-    maximum_score: 100
-    student_messages:
-      success:
+    - title:
         locales:
-          en: Great job! You created a VM in GCP!
-      make_a_vm:
-        locales:
-          en: Please make a VM by running gcloud compute instances create
-    services:
-    - terminal.RunRemoteCommand
-    code: |-
-      def check(handles:, maximum_score:, resources:)
-        terminal = handles['terminal.RunRemoteCommand']
-        response = terminal.run_remote_command 'gcloud compute instances list --format json'
-        instances = JSON.parse(response.stdout)
-        if instances.count > 0
-          { score: maximum_score, student_message: 'success' }
-        else
-          { score: 0, student_message: 'make_a_vm' }
+          en: Create a VM
+      maximum_score: 100
+      student_messages:
+        success:
+          locales:
+            en: Great job! You created a VM in GCP!
+        make_a_vm:
+          locales:
+            en: Please make a VM by running gcloud compute instances create
+      services:
+        - terminal.RunRemoteCommand
+      code: |-
+        def check(handles:, maximum_score:, resources:)
+          terminal = handles['terminal.RunRemoteCommand']
+          response = terminal.run_remote_command 'gcloud compute instances list --format json'
+          instances = JSON.parse(response.stdout)
+          if instances.count > 0
+            { score: maximum_score, student_message: 'success' }
+          else
+            { score: 0, student_message: 'make_a_vm' }
+          end
         end
-      end
 ```
 
 For more information on using `gcloud`, please consult the
@@ -605,30 +634,30 @@ Look.
 assessment:
   passing_percentage: 100
   steps:
-  - title:
-      locales:
-        en: Create a Look
-    maximum_score: 100
-    student_messages:
-      success:
+    - title:
         locales:
-          en: Great job! You created a Look in Looker!
-      make_a_look:
-        locales:
-          en: Please make a Look from any Explore.
-    services:
-    - looker.RunRemoteCommand
-    code: |-
-      def check(handles:, maximum_score:, resources:)
-        looker = handles['looker.RunRemoteCommand']
-        response = looker.run_remote_command 'lcurl GET /api/3.1/looks'
-        looks = JSON.parse(response.stdout)
-        if looks.count > 0
-          { score: maximum_score, student_message: 'success' }
-        else
-          { score: 0, student_message: 'make_a_look' }
+          en: Create a Look
+      maximum_score: 100
+      student_messages:
+        success:
+          locales:
+            en: Great job! You created a Look in Looker!
+        make_a_look:
+          locales:
+            en: Please make a Look from any Explore.
+      services:
+        - looker.RunRemoteCommand
+      code: |-
+        def check(handles:, maximum_score:, resources:)
+          looker = handles['looker.RunRemoteCommand']
+          response = looker.run_remote_command 'lcurl GET /api/3.1/looks'
+          looks = JSON.parse(response.stdout)
+          if looks.count > 0
+            { score: maximum_score, student_message: 'success' }
+          else
+            { score: 0, student_message: 'make_a_look' }
+          end
         end
-      end
 ```
 
 All commands specified in `run_remote_command` get executed from the home
@@ -904,7 +933,10 @@ environment:
       reference: primary_user.password
 ```
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c334621 (Add gcp user startup script info)
 will be presented as follows:
 
 ![Lab Control Panel](./lab_control_panel.png)
@@ -955,22 +987,16 @@ assessment:
       student_messages:
         - success:
             locales:
-              en:
-                Great job! You created the bucket!
-              es:
-                ¡Gran trabajo! ¡Creaste el cubo!
+              en: Great job! You created the bucket!
+              es: ¡Gran trabajo! ¡Creaste el cubo!
         - bucket_missing:
             locales:
-              en:
-                Oops! No bucket found.
-              es:
-                ¡Uy! No se ha encontrado el cubo.
+              en: Oops! No bucket found.
+              es: ¡Uy! No se ha encontrado el cubo.
         - bucket_misconfigured:
             locales:
-              en:
-                Hmm. The bucket is there, but it is misconfigured.
-              es:
-                Hmm. El cubo está allí, pero está mal configurado.
+              en: Hmm. The bucket is there, but it is misconfigured.
+              es: Hmm. El cubo está allí, pero está mal configurado.
       services:
         - target_project.StorageV1
       code: |-
@@ -999,22 +1025,16 @@ assessment:
       student_messages:
         - success:
             locales:
-              en:
-                Great job! You copied the file!
-              es:
-                ¡Gran trabajo! ¡Copiaste el archivo!
+              en: Great job! You copied the file!
+              es: ¡Gran trabajo! ¡Copiaste el archivo!
         - file_missing:
             locales:
-              en:
-                Oops! No file found.
-              es:
-                ¡Uy! No se ha encontrado el archivo.
+              en: Oops! No file found.
+              es: ¡Uy! No se ha encontrado el archivo.
         - file_mismatch:
             locales:
-              en:
-                Hmm. There's a file here, but it doesn't match the source contents.
-              es:
-                Hmm. Hay un archivo aquí, pero no coincide con el contenido de origen.
+              en: Hmm. There's a file here, but it doesn't match the source contents.
+              es: Hmm. Hay un archivo aquí, pero no coincide con el contenido de origen.
       services:
         - source_project.StorageV1
         - target_project.StorageV1
