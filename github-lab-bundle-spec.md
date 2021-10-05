@@ -91,6 +91,7 @@ title: Best Lab Ever
 description: "No, seriously. It's the best lab ever. You're going to love it!"
 
 duration: 60
+max_duration: 90
 level: intro
 tags: [sample, life-changing, gcp]
 
@@ -147,6 +148,7 @@ attribute              | required | type              | notes
 title                  | ✓        | string            | Unique Lab title that a student sees
 description            | ✓        | string            |
 duration               | ✓        | integer           | Amount of time it should take an average learner to complete the lab (in minutes)
+max_duration           |          | integer           | Maximum duration time of a lab, displayed in student timer (in minutes)
 credits                |          | integer           |
 level                  |          | string            |
 logo                   |          | file path         |
@@ -168,7 +170,7 @@ You can only have one file per locale.
 attribute | required | type              | notes
 --------- | -------- | ----------------- | -----
 type      | ✓        | enum              | [See list of valid types below]
-uri       | ✓        | locale dictionary | Within the locale dictionary, the values are paths to files in the bundle.
+uri       | ✓        | string            | Relative path to a file
 
 ```yaml
 instruction:
@@ -296,7 +298,7 @@ allowed_locations                |          | array  | List of GCP regions or zo
     - europe-west1-b
   startup_script:
     type: deployment_manager
-    path: dm_startup.zip
+    path: dm_startup_dir
     custom_properties:
       - key: userNameWindows
         value: student
@@ -463,7 +465,7 @@ reference               | displayed as
 attribute           | required | type  | notes
 ------------------- | -------- | ----- | -----
 permissions         | ✓        | array | Array of project/roles(array) pairs
-startup_script.path |          | path  | Relative path to a directory tree with the script contents.
+startup_script.path |          | path  | Relative path to a file with the script contents.
 
 ```yaml
   - type: cloud_terminal
@@ -568,7 +570,7 @@ running `git clone`) or modify the associated GCP project by running `gcloud`,
 
 attribute           | required | type | notes
 ------------------- | -------- | ---- | -----
-startup_script.path |          | path | Relative path to a directory tree with the script contents.
+startup_script.path |          | path | Relative path to a file with the script contents.
 
 ```yaml
   - type: linux_terminal
@@ -597,7 +599,7 @@ The valid `reference`s for a `linux_terminal` resource are:
 attribute           | required | type  | notes
 ------------------- | -------- | ----- | -----
 permissions         | ✓        | array | Array of project/roles(array) pairs
-startup_script.path |          | path  | Relative path to a directory tree with the script contents.
+startup_script.path |          | path  | Relative path to a file with the script contents.
 
 ```yaml
   - type: looker_instance
@@ -722,7 +724,7 @@ lcurl PUT /api/3.1/roles/${DEVELOPER_ROLE_ID}/users --data "[\"${DEVELOPER_USER_
 
 attribute           | required | type | notes
 ------------------- | -------- | ---- | -----
-startup_script.path |          | path | Relative path to a directory tree with the script contents.
+startup_script.path |          | path | Relative path to a file with the script contents.
 student_files       |          | path | Relative path to a directory student file contents.
 
 ```yaml
@@ -753,7 +755,7 @@ startup.
 
 attribute           | required | type | notes
 ------------------- | -------- | ---- | -----
-startup_script.path |          | path | Relative path to a directory tree with the script contents.
+startup_script.path |          | path | Relative path to a file with the script contents.
 
 ```yaml
   - type: windows_vm
@@ -791,7 +793,7 @@ account_restrictions.allow_vpc_deletion        |          | boolean | Default fa
 account_restrictions.allowed_ec2_instances     |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for any EC2 product (e.g. dedicated, spot, on-demand). Default none.
 account_restrictions.allowed_rds_instances     |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for RDS usage. Default none.
 startup_script.type                            |          | string  | The type of startup script. Only `cloud_formation` is supported.
-startup_script.path                            |          | path    | Relative path to a directory tree with the script contents.
+startup_script.path                            |          | path    | Relative path to a file with the script contents.
 user_policy                                    |          | path    | Relative path to a [JSON policy](https://awspolicygen.s3.amazonaws.com/policygen.html) document.
 allowed_locations                              |          | array   | List of AWS regions to set as the default for this account.
 
@@ -968,14 +970,9 @@ assessment:
         end
 ```
 
-1.  By breaking the Activity Tracking into a separate file and putting all the
-    code segments into a folder as below: qwiklabs.yaml:
-
-```yaml
-  assessment: assessment.yaml
-```
-
-assessment.yaml:
+1.  Or putting all the code segments as separate files into a folder (assessments/)
+    and then referencing the
+    method name as below: qwiklabs.yaml:
 
 ```yaml
 

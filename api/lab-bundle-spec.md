@@ -241,7 +241,7 @@ allowed_locations                |          | array  | List of GCP regions or zo
     - europe-west1-b
   startup_script:
     type: deployment_manager
-    path: dm_startup.zip
+    path: dm_startup_dir
     custom_properties:
       - key: userNameWindows
         value: student
@@ -418,7 +418,7 @@ reference               | displayed as
 attribute           | required | type  | notes
 ------------------- | -------- | ----- | -----
 permissions         | ✓        | array | Array of project/roles(array) pairs
-startup_script.path |          | path  | Relative path to a directory tree with the script contents.
+startup_script.path |          | path  | Relative path to a file with the script contents.
 
 ```yaml
   - type: cloud_terminal
@@ -535,7 +535,7 @@ running `git clone`) or modify the associated GCP project by running `gcloud`,
 
 attribute           | required | type | notes
 ------------------- | -------- | ---- | -----
-startup_script.path |          | path | Relative path to a directory tree with the script contents.
+startup_script.path |          | path | Relative path to a file with the script contents.
 
 ```yaml
   - type: linux_terminal
@@ -564,7 +564,7 @@ The valid `reference`s for a `linux_terminal` resource are:
 attribute           | required | type  | notes
 ------------------- | -------- | ----- | -----
 permissions         | ✓        | array | Array of project/roles(array) pairs
-startup_script.path |          | path  | Relative path to a directory tree with the script contents.
+startup_script.path |          | path  | Relative path to a file with the script contents.
 
 ```yaml
   - type: looker_instance
@@ -695,7 +695,7 @@ lcurl PUT /api/3.1/roles/${DEVELOPER_ROLE_ID}/users --data "[\"${DEVELOPER_USER_
 
 attribute           | required | type | notes
 ------------------- | -------- | ---- | -----
-startup_script.path |          | path | Relative path to a directory tree with the script contents.
+startup_script.path |          | path | Relative path to a file with the script contents.
 student_files       |          | path | Relative path to a directory student file contents.
 
 ```yaml
@@ -726,7 +726,7 @@ startup.
 
 attribute           | required | type | notes
 ------------------- | -------- | ---- | -----
-startup_script.path |          | path | Relative path to a directory tree with the script contents.
+startup_script.path |          | path | Relative path to a file with the script contents.
 
 ```yaml
   - type: windows_vm
@@ -764,7 +764,7 @@ account_restrictions.allow_vpc_deletion        |          | boolean | Default fa
 account_restrictions.allowed_ec2_instances     |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for any EC2 product (e.g. dedicated, spot, on-demand). Default none.
 account_restrictions.allowed_rds_instances     |          | array   | Array of [EC2 instance types](#valid-eC2-instance-types) that are valid for RDS usage. Default none.
 startup_script.type                            |          | string  | The type of startup script. Only `cloud_formation` is supported.
-startup_script.path                            |          | path    | Relative path to a directory tree with the script contents.
+startup_script.path                            |          | path    | Relative path to a file with the script contents.
 user_policy                                    |          | path    | Relative path to a [JSON policy](https://awspolicygen.s3.amazonaws.com/policygen.html) document.
 allowed_locations                              |          | array   | List of AWS regions to set as the default for this account.
 
