@@ -265,6 +265,7 @@ reference              | displayed as
 ---------------------- | ----------------
  [USER].username       | copyable text
  [USER].password       | copyable text
+ [USER].ssh_key        | PEM and PPK download buttons
 
 ##### Google Workspace Domain (google_workspace_domain)
 
