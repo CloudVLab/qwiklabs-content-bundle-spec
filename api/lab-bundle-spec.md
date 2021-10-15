@@ -158,7 +158,7 @@ instruction:
 
 HTML is the preferred format for stored instructions. PDFs will be displayed
 embedded in the learner interface, but will lack any navigation or interactive
-functionality. 
+functionality.
 
 ##### Qwiklabs supported markup
 
@@ -340,6 +340,7 @@ reference             | displayed as
 --------------------- | -------------
 [USER].username       | copyable text
 [USER].password       | copyable text
+[USER].ssh_key        | PEM and PPK download buttons
 [USER].docs_url       | button
 [USER].sheets_url     | button
 [USER].slides_url     | button
