@@ -234,8 +234,9 @@ allowed_locations                |          | array  | List of GCP regions or zo
 
 ```yaml
 - type: gcp_project
-  id: secondary_project
+  id: my_primary_project
   variant: gcpfree
+  ssh_key_user: primary_user
   allowed_locations:
     - us-central1
     - europe-west1-b
@@ -245,6 +246,12 @@ allowed_locations                |          | array  | List of GCP regions or zo
     custom_properties:
       - key: userNameWindows
         value: student
+      - key: userName
+        reference: primary_user.local_username
+      - key: userPassword
+        reference: primary_user.password
+      - key: sshPubKey
+        reference: primary_user.ssh_key
 ```
 
 > **NOTE:** The existing concept of Qwiklabs' Fleets does not have a single
@@ -257,6 +264,9 @@ allowed_locations                |          | array  | List of GCP regions or zo
 > **NOTE:** Cleanup scripts are supported by invitation only. If you think you
 > have a reason to use cleanup scripts, please get in touch with Qwiklabs
 > engineering and we can discuss the specifics of cleanup scripts.
+
+> **NOTE:** To be able to use `userName`, `userPassword`, or `sshPubKey` within
+> a startup script, the variable must be passed in as custom property
 
 Every GCP project has a default zone set. When no zone is specified (either in a
 gcloud command or API call), GCP will try to use this default zone in that call.
@@ -339,7 +349,9 @@ The valid `reference`s for the `gcp_user` resource are:
 reference             | displayed as
 --------------------- | -------------
 [USER].username       | copyable text
+[USER].local_username | NA
 [USER].password       | copyable text
+[USER].ssh_key        | PEM and PPK download buttons
 [USER].docs_url       | button
 [USER].sheets_url     | button
 [USER].slides_url     | button
@@ -347,6 +359,9 @@ reference             | displayed as
 [USER].drive_url      | button
 [USER].calendar_url   | button
 [USER].app_sheet_url  | button
+
+> **Note:** `[USER].local_username` is only meant to be used as a custom
+> property within a startup script.
 
 All of the URLs will take the student to a new page where they can sign in with
 their temporary credentials and then get redirected to the requested Workspace
