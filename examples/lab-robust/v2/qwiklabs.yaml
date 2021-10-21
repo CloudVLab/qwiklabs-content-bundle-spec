@@ -35,6 +35,12 @@ environment:
       custom_properties:
       - key: userNameWindows
         value: student
+      - key: userName
+        reference: primary_user.local_username
+      - key: userPassword
+        reference: primary_user.password
+      - key: sshPubKey
+        reference: primary_user.ssh_key
     cleanup_script:
       type: deployment_manager
       path: ./cleanup
@@ -84,6 +90,8 @@ environment:
     reference: the_account.password
   - label: AWS Console URL
     reference: the_account.console_url
+  - label: SSH Key
+    reference: primary_user.ssh_key
 
 assessment:
   passing_percentage: 75
