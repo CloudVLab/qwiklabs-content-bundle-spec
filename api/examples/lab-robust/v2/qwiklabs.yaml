@@ -50,6 +50,12 @@ environment:
       custom_properties:
       - key: userNameWindows
         value: student
+      - key: userName
+        reference: primary_user.local_username
+      - key: userPassword
+        reference: primary_user.password
+      - key: sshPubKey
+        reference: primary_user.public_key
     cleanup_script:
       type: deployment_manager
       path: ./cleanup

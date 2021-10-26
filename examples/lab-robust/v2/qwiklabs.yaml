@@ -40,7 +40,7 @@ environment:
       - key: userPassword
         reference: primary_user.password
       - key: sshPubKey
-        reference: primary_user.ssh_key
+        reference: primary_user.public_key
     cleanup_script:
       type: deployment_manager
       path: ./cleanup
