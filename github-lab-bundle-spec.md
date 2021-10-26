@@ -308,7 +308,7 @@ allowed_locations                |          | array  | List of GCP regions or zo
       - key: userPassword
         reference: primary_user.password
       - key: sshPubKey
-        reference: primary_user.ssh_key
+        reference: primary_user.public_key
 ```
 
 > **NOTE:** The existing concept of Qwiklabs' Fleets does not have a single
@@ -409,6 +409,7 @@ reference             | displayed as
 [USER].local_username | NA
 [USER].password       | copyable text
 [USER].ssh_key        | PEM and PPK download buttons
+[USER].public_key     | NA
 [USER].docs_url       | button
 [USER].sheets_url     | button
 [USER].slides_url     | button
@@ -417,8 +418,8 @@ reference             | displayed as
 [USER].calendar_url   | button
 [USER].app_sheet_url  | button
 
-> **Note:** `[USER].local_username` is only meant to be used as a custom
-> property within a startup script.
+> **Note:** `[USER].local_username` and `[USER].public_key` are only meant to be
+> used as custom properties within a startup script.
 
 All of the URLs will take the student to a new page where they can sign in with
 their temporary credentials and then get redirected to the requested Workspace
