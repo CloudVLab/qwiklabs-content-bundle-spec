@@ -1,8 +1,17 @@
+{# Environment provided properties #}
+{% set password = properties["userPassword"] %}
+{% set username = properties["userName"] %}
+{% set zone = properties["zone"] %}
+{% set sshpubkey = properties["sshPubKey"] %}
+
 resources:
 - name: good-vm
   type: vm-type.jinja
   properties:
-    zone: {{ properties["zone"] }}
+    password: {{ password }}
+    username: {{ username }}
+    sshpubkey: {{ sshpubkey }}
+    zone: {{ zone }}
 
 outputs:
 - name: InstanceDns
