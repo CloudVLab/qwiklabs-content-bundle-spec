@@ -96,6 +96,9 @@ enable_drm: false
 # Check classroom for fraud
 resource_limit_check: false
 
+# Classroom can be scheduled
+published: true
+
 # Instructions that will be surfaced to students
 student_resources: ...
 
@@ -143,6 +146,7 @@ lock_activity_position  |          | boolean    | Allow lab order to be changed 
 max_hot_labs            |          | integer    | Maximum number of hot labs for this course.
 enable_drm              |          | boolean    | Enable DRM on instructions if supported
 resource_limit_check    |          | boolean    | Check classroom for fraud
+published               |          | boolean    | Classroom can be scheduled
 student_resources       |          | array      | Student-specific instructions. See the [Resource Spec](./resource-spec.md) for full specification.
 instructor_resources    |          | array      | Instructor-specific instructions. See the [Resource Spec](./resource-spec.md) for full specification.
 modules                 |          | array      | See below
