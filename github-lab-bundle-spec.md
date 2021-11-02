@@ -7,7 +7,7 @@
 
 
 The Qwiklabs Bundle Spec provides an interchange format for qwiklabs resources
-(_entities_) across our ecosystem. The spec is used extensively to support our
+(*entities*) across our ecosystem. The spec is used extensively to support our
 content distribution and processes across many customer deployments and has
 allowed us a great deal of systemization and automation.
 
@@ -281,13 +281,11 @@ environment:
 
 ##### GCP Project (gcp_project)
 
-attribute                        | required | type   | notes
--------------------------------- | -------- | ------ | -----
-startup_script.type              | ✓        | string | The type of startup script. Only `deployment_manager` and `qwiklabs` are supported.
-startup_script.path              |          | path   | Relative path to a directory tree with the script contents.
-startup_script.custom_properties |          | array  | Array of pairs. See below for details.
-ssh_key_user                     |          | string | If this project should use a user's SSH key, the id of that user.
-allowed_locations                |          | array  | List of GCP regions or zones to set a default zone from.
+attribute                        | required | type                                                     | notes
+-------------------------------- | -------- | -------------------------------------------------------- | -----
+startup_script                   |          | [GCP Startup Script](#gcp-startup-script-startup-script) | GCP startup script object. GCP Projects support startup scripts of type `deployment_manager` and `qwiklabs`.
+ssh_key_user                     |          | string                                                   | If this project should use a user's SSH key, the id of that user.
+allowed_locations                |          | array                                                    | List of GCP regions or zones to set a default zone from.
 
 ```yaml
 - type: gcp_project
@@ -357,14 +355,6 @@ The allowed variants are:
 *   gcp_medium_extra
 *   gcp_high_extra
 
-###### Custom Script Properties
-
-attribute | required | type               | notes
---------- | -------- | ------------------ | -----
-key       | ✓        | string             | How the property will be referenced within the script.
-value     |          | string             | A value to be passed into the script.
-reference |          | resource reference | A [resource reference](#resource-references) to be passed into the script.
-
 ###### Valid resource references
 
 The valid `reference`s for the `gcp_project` resource are:
@@ -375,15 +365,12 @@ reference              | displayed as
 [PROJECT].default_zone | copyable text
 [PROJECT].console_url  | button
 
-Any custom outputs being generated with a `startup_script` can be reference as
-[PROJECT].startup_script.[FILL-IN-OUTPUT-NAME]. The output will be displayed as
-a copyable text if provided within the student_visible_outputs.
-
 ##### GCP User (gcp_user)
 
-attribute   | required | type  | notes
------------ | -------- | ----- | -----------------------------------
-permissions |          | array | Array of project/roles(array) pairs
+attribute       | required | type                                                     | notes
+--------------- | -------- | -------------------------------------------------------- | -----------------------------------
+startup_script  |          | [GCP Startup Script](#gcp-startup-script-startup-script) | GCP startup script object. GCP Users only support startup scripts of type `qwiklabs`.
+permissions     |          | array                                                    | Array of project/roles(array) pairs
 
 ```yaml
   - type: gcp_user
@@ -393,6 +380,18 @@ permissions |          | array | Array of project/roles(array) pairs
         roles:
           - roles/editor
           - roles/bigquery.admin
+    startup_script:
+    type: qwiklabs
+    path: ql_script_dir
+    custom_properties:
+      - key: userNameWindows
+        value: student
+      - key: userName
+        reference: primary_user.local_username
+      - key: userPassword
+        reference: primary_user.password
+      - key: sshPubKey
+        reference: primary_user.public_key
 ```
 
 The `gcp_user` type could more properly be called `gaia_user`, since that's what
@@ -452,6 +451,36 @@ environment:
       reference: user_1.password
 ```
 
+##### GCP Startup Script (startup_script)
+
+attribute                        | required | type                                                                           | notes
+-------------------------------- | -------- | ------------------------------------------------------------------------------ | -----
+type                             | ✓        | string                                                                         | The type of startup script. Only `deployment_manager` and `qwiklabs` are supported.
+path                             | ✓        | path                                                                           | Relative path to a directory tree with the script contents.
+custom_properties                |          | [Custom Script Properties](#custom-script-properties-custom-properties) array  | Array of custom script property objects.
+
+Any custom outputs being generated with a `startup_script` can be reference as
+[PROJECT/USER].startup_script.[FILL-IN-OUTPUT-NAME]. The output will be
+displayed as a copyable text if provided within the student_visible_outputs.
+
+See [GCP Project](#gcp-project-gcp-project) or [GCP User](#gcp-user-gcp-user)
+for examples.
+
+Every GCP project or GCP user may have one startup script associated with it.
+
+##### Custom Script Properties (custom_properties)
+
+attribute | required | type                                       | notes
+--------- | -------- | ------------------------------------------ | -----
+key       | ✓        | string                                     | How the property will be referenced within the script.
+value     |          | string                                     | A static value to be passed into the script.
+reference |          | [resource reference](#resource-references) | A resource reference object to be passed into the script.
+
+Custom script properties are passed into the script as input. A custom script
+property must have a key and either a value or a reference associated with it.
+For examples please see the [GCP project](#gcp-project-gcp-project) or
+[GCP user](#gcp-user-gcp-user) resource.
+
 ##### Google Workspace Domain (google_workspace_domain)
 
 attribute | required | type | notes
@@ -495,7 +524,7 @@ startup_script.path |          | path  | Relative path to a file with the script
 ```
 
 Note: Due to a limitation in Qwiklabs, you must specify `roles/editor` on
-exactly one project when creating a `cloud_terminal` resource. _However_, this
+exactly one project when creating a `cloud_terminal` resource. *However*, this
 role is ignored and students will always get `roles/owner`,
 `roles/storage.admin`, and `roles/bigquery.admin`. The spec will be updated when
 these limitations are fixed.
