@@ -26,14 +26,15 @@ entire content bundle should be less than 100MB.
 attribute   | required | type       | notes
 ----------- | -------- | ---------- | -----
 type        | ✓        | enum       | [See list of valid types below]
-id          |          | string     | Identifier that can be used throughout project bundle
+id          |          | string     | Identifier that can be used throughout project bundle and translation pipeline
 title       | ✓        | dictionary | Key is `locales` and each locale is a dictionary mapping locale codes to localized titles
 description |          | dictionary | Key is `locales` and each locale is a dictionary mapping locale codes to localized descriptions
 uri         |          | dictionary | Key is `locales` and each locale is a dictionary mapping locale codes to localized uris.
 
-## Videos
+## Videos for Courses
 
-Videos have the following additional attributes:
+Videos for general container entities (non-labs) have the following additional
+attributes:
 
 attribute      | required | type       | notes
 -------------- | -------- | ---------- | -----
