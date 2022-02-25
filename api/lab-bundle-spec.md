@@ -218,6 +218,7 @@ environment:
       variant: gcpfree
     - type: gcp_user
       id: primary_user
+      variant: gcp_only
     - type: gcp_user
       id: secondary_user
 ```
@@ -340,6 +341,16 @@ permissions     |          | array                                              
 The `gcp_user` type could more properly be called `gaia_user`, since that's what
 it provisions. However, the term `gaia` is less well-known, so we stick with
 `gcp`.
+  
+
+###### Variants for GCP User
+
+The allowed variants are:
+
+*   `default` [default] - Has access to GCP and Workspace services (like Drive)
+*   `basic` - Deprecated. Please use `default` instead
+*   `gcp_only` - Only has access to GCP (Cloud Console, Cloud Shell, and Data
+    Studio)
 
 ###### Valid resource references for gcp_user
 
@@ -379,8 +390,10 @@ environment:
   resources:
     - type: gcp_user
       id: user_1
+      variant: default
     - type: gcp_user
       id: user_2
+      variant: default
   student_visible_outputs:
     - label:
         locales:
