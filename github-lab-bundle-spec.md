@@ -275,6 +275,7 @@ environment:
       variant: gcpfree
     - type: gcp_user
       id: primary_user
+      variant: gcp_only
     - type: gcp_user
       id: secondary_user
 ```
@@ -397,6 +398,16 @@ permissions     |          | array                                              
 The `gcp_user` type could more properly be called `gaia_user`, since that's what
 it provisions. However, the term `gaia` is less well-known, so we stick with
 `gcp`.
+  
+
+###### Variants for GCP User
+
+The allowed variants are:
+
+*   `default` [default] - Has access to GCP and Workspace services (like Drive)
+*   `basic` - Deprecated. Please use `default` instead
+*   `gcp_only` - Only has access to GCP (Cloud Console, Cloud Shell, and Data
+    Studio)
 
 ###### Valid resource references for gcp_user
 
@@ -436,8 +447,10 @@ environment:
   resources:
     - type: gcp_user
       id: user_1
+      variant: default
     - type: gcp_user
       id: user_2
+      variant: default
   student_visible_outputs:
     - label: "Open Docs as First User"
       reference: user_1.docs_url
@@ -979,7 +992,9 @@ may inspect and validate the configuration of GCE instances running in
 A lab has an Assessment, which in turn contains the Steps (checkpoints).
 
 
-There are two options to configure Activity Tracking:
+There are two options to configure Activity Tracking, our preference is 2)
+where separate '.rb' files are used for each assessment method, but will
+retain backwards compatibility with 1):
 
 1.  All inline in the qwiklabs.yaml file as below: qwiklabs.yaml:
 
@@ -1015,7 +1030,7 @@ assessment:
         end
 ```
 
-1.  Or putting all the code segments as separate files into a folder (assessments/)
+2.  Or putting all the code segments as separate files into a folder (assessments/)
     and then referencing the
     method name as below: qwiklabs.yaml:
 
