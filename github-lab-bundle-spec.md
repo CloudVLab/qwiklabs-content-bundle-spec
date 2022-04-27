@@ -922,6 +922,65 @@ this document, because AWS adds and deprecates instance types regularly.
 For a complete and up-to-date list of EC2 instance types, see
 [AWS official documentation](https://aws.amazon.com/ec2/instance-types/)
 
+##### Azure Resource Group (azure_resource_group)
+
+```yaml
+  - type: azure_resource_group
+    id: rg_1
+    variant: default
+```
+
+###### Variants for Azure Resource Groups
+
+The allowed variants are:
+
+*   `default` - Currently the only variant that enforce a set number of virtual
+    machine types.
+
+###### Valid resource references for azure_resource_group
+
+The valid `reference`s for the `azure_resource_group` resource are:
+
+reference             | displayed as
+--------------------- | -------------
+[USER].console_url    | button
+
+##### Azure User (azure_user)
+
+attribute       | required | type                                                     | notes
+--------------- | -------- | -------------------------------------------------------- | -----------------------------------
+permissions     |          | array                                                    | Array of resource group/roles(array) pairs
+
+```yaml
+  - type: azure_user
+    id: primary_azure_user
+    permissions:
+      - resource_group: my_primary_rg
+        roles:
+          - virtual_machine_contributor_custom
+```
+
+###### Variants for Azure User
+
+The allowed variants are:
+
+*   `default` - Currently the only variant.
+
+The allowed permission roles:
+
+*   `virtual_machine_contributor_custom` - Similar to the built-in role
+    [Virtual Machine Contributor](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#virtual-machine-contributor)
+    with additional permissions for `Microsoft.Network` and `Microsoft.Compute`.
+
+###### Valid resource references for azure_user
+
+The valid `reference`s for the `azure_user` resource are:
+
+reference             | displayed as
+--------------------- | -------------
+[USER].username       | copyable text
+[USER].password       | copyable text
+
 ### Student Visible Outputs
 
 Specify which resource properties are given to the lab taker.
