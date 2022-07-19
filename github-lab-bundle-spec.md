@@ -360,11 +360,12 @@ The allowed variants are:
 
 The valid `reference`s for the `gcp_project` resource are:
 
-reference              | displayed as
----------------------- | -------------
-[PROJECT].project_id   | copyable text
-[PROJECT].default_zone | copyable text
-[PROJECT].console_url  | button
+reference                | displayed as
+------------------------ | -------------
+[PROJECT].project_id     | copyable text
+[PROJECT].default_zone   | copyable text
+[PROJECT].default_region | copyable text
+[PROJECT].console_url    | button
 
 ##### GCP User (gcp_user)
 
