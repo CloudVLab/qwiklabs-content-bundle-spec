@@ -143,5 +143,4 @@ rationale | ✓        | dictionary | A locale dictionary for an explanation of 
 is_answer | ✓        | boolean    | `true` if this option is an answer, and `false` if it is a distractor (unused for `match` type)
 
 ### Include images in the quiz
-example yaml file to include images in the quiz (can be stem, options and prompts)
-https://github.com/CloudVLab/gcp-it-cert-content/blob/main/quizzes/course_1-practice-quiz-binary/qwiklabs.yaml#L118
+[Example yaml file](https://github.com/CloudVLab/gcp-it-cert-content/blob/main/quizzes/course_1-practice-quiz-binary/qwiklabs.yaml#L118) that includes images in the quiz (can be in stem, options and prompts)
