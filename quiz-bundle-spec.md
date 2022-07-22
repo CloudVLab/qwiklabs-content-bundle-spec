@@ -29,7 +29,7 @@ will be sanitized according to the restricted set in the
 attribute          | required | type       | notes
 ------------------ | -------- | ---------- | -----
 default_locale     | ✓        | string     | Corresponds to the locale that the quiz is authored in. Authoring tools can use this as a hint to notify localizers when content in the default locale is updated. Also, it provides a hint to the learner interface about which locale to display if an instruction/resource is not localized for the learner's current locale.
-schema_version     | ✓        | integer    | Which version of the quiz bundle schema you are using
+schema_version     | ✓        | integer    | Which version of thehttps://github.com/CloudVLab/gcp-it-cert-content/blob/main/quizzes/course_1-practice-quiz-binary/qwiklabs.yaml#L118 quiz bundle schema you are using
 title              |          | dictionary | A locale dictionary of the quiz title, such as "My Awesome Quiz"
 passing_percentage | ✓        | integer    | The threshold grade that a student needs to achieve in order to count as "passing" the quiz.
 duration           |          | integer    | The default time a student is allotted for the quiz, in minutes. If unspecified, the quiz will not be timed.
@@ -141,3 +141,7 @@ id        | ✓        | string     | A unique ID for this Option
 title     | ✓        | dictionary | A locale dictionary for the content of this option, such as "Blue"
 rationale | ✓        | dictionary | A locale dictionary for an explanation of why this option is correct or incorrect (optional for `match` type)
 is_answer | ✓        | boolean    | `true` if this option is an answer, and `false` if it is a distractor (unused for `match` type)
+
+
+### Include images in the quiz
+example quiz yaml file to include images in the stem and options/prompts: https://github.com/CloudVLab/gcp-it-cert-content/blob/main/quizzes/course_1-practice-quiz-binary/qwiklabs.yaml#L118
