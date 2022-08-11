@@ -216,6 +216,8 @@ environment:
     - type: gcp_project
       id: secondary_project
       variant: gcpfree
+    - type: gcp_folder
+      id: my_primary_folder
     - type: gcp_user
       id: primary_user
       variant: gcp_only
@@ -227,6 +229,7 @@ environment:
 
 attribute                        | required | type                                                     | notes
 -------------------------------- | -------- | -------------------------------------------------------- | -----
+parent                           |          | string                                                   | If this project should reside inside a specific folder, the id of that folder.
 startup_script                   |          | [GCP Startup Script](#gcp-startup-script-startup-script) | GCP startup script object. GCP Projects support startup scripts of type `deployment_manager` and `qwiklabs`.
 ssh_key_user                     |          | string                                                   | If this project should use a user's SSH key, the id of that user.
 allowed_locations                |          | array                                                    | List of GCP regions or zones to set a default zone from.
@@ -234,6 +237,7 @@ allowed_locations                |          | array                             
 ```yaml
 - type: gcp_project
   id: my_primary_project
+  parent: my_primary_folder
   variant: gcpfree
   ssh_key_user: primary_user
   allowed_locations:
@@ -315,7 +319,7 @@ reference                | displayed as
 attribute       | required | type                                                     | notes
 --------------- | -------- | -------------------------------------------------------- | -----------------------------------
 startup_script  |          | [GCP Startup Script](#gcp-startup-script-startup-script) | GCP startup script object. GCP Users only support startup scripts of type `qwiklabs`.
-permissions     |          | array                                                    | Array of project/roles(array) pairs
+permissions     |          | array                                                    | Array of project/roles(array) pairs and/or folder/roles(array) pairs
 
 ```yaml
   - type: gcp_user
@@ -325,6 +329,9 @@ permissions     |          | array                                              
         roles:
           - roles/editor
           - roles/bigquery.admin
+      - folder: my_primary_folder
+        roles:
+          - roles/compute.xpnAdmin
     startup_script:
     type: qwiklabs
     path: ql_script_dir
@@ -349,7 +356,6 @@ it provisions. However, the term `gaia` is less well-known, so we stick with
 The allowed variants are:
 
 *   `default` [default] - Has access to GCP and Workspace services (like Drive)
-*   `basic` - Deprecated. Please use `default` instead
 *   `gcp_only` - Only has access to GCP (Cloud Console, Cloud Shell, and Data
     Studio)
 
@@ -416,6 +422,39 @@ environment:
         locales:
           en: "Password (for both users)"
       reference: user_1.password
+```
+##### Google Folder (gcp_folder)
+
+No additional attributes for this resource
+
+```yaml
+- type: gcp_folder
+  id: my_primary_folder
+```
+
+When working with folders, the users could be assigned the required roles on the
+folders similar to projects. Below is an example for assigning a user a specific
+role (roles/compute.xpnAdmin) on the folder resource 'my_primary_folder'.
+
+```yaml
+  - type: gcp_user
+    id: primary_user
+    permissions:
+      - folder: my_primary_folder
+        roles:
+          - roles/compute.xpnAdmin
+```
+
+The projects resources could also be associated with a specific folder by
+specifying the `parent` attribute in the `gcp_project` resource. For example, if
+you want to create a project 'my_primary_project' under folder
+'my_primary_folder', then you can specify the parent attribute in the project
+resource definition as following:
+
+```yaml
+- type: gcp_project
+  id: my_primary_project
+  parent: my_primary_folder
 ```
 
 ##### GCP Startup Script (startup_script)

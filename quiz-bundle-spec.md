@@ -141,3 +141,4 @@ id        | ✓        | string     | A unique ID for this Option
 title     | ✓        | dictionary | A locale dictionary for the content of this option, such as "Blue"
 rationale | ✓        | dictionary | A locale dictionary for an explanation of why this option is correct or incorrect (optional for `match` type)
 is_answer | ✓        | boolean    | `true` if this option is an answer, and `false` if it is a distractor (unused for `match` type)
+fixedPlace |          | boolean    | `true` if this option should be fixed in place when shuffling the answer (this is treated as `false` if it's missing)
