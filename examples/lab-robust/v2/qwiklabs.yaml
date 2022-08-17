@@ -25,8 +25,11 @@ resources:
 
 environment:
   resources:
+  - type: gcp_folder
+    id: primary_folder
   - type: gcp_project
     id: primary_project
+    parent: primary_folder
     variant: gcpd
     ssh_key_user: primary_user
     startup_script:
@@ -58,6 +61,9 @@ environment:
       - roles/appengine.appAdmin
       - roles/bigquery.admin
       - roles/bigquery.user
+    - folder: primary_folder
+      roles:
+      - roles/compute.xpnAdmin
   - type: aws_account
     id: the_account
     variant: aws_vpc
@@ -92,6 +98,10 @@ environment:
     reference: the_account.console_url
   - label: SSH Key
     reference: primary_user.ssh_key
+  - label: GCP Folder Name
+    reference: primary_folder.folder_name
+  - label: GCP Folder Display Name
+    reference: primary_folder.display_name
 
 assessment:
   passing_percentage: 75

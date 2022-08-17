@@ -504,6 +504,13 @@ resource definition as following:
   parent: my_primary_folder
 ```
 
+The valid `reference`s for the `gcp_folder` resource are:
+
+reference                | displayed as
+------------------------ | -------------
+[FOLDER].folder_name     | copyable text
+[FOLDER].display_name    | copyable text
+
 ##### GCP Startup Script (startup_script)
 
 attribute                        | required | type                                                                           | notes
