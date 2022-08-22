@@ -64,6 +64,7 @@ appropriate attributes for the given `type`. The allowed values for `type` are:
 *   `multiple-choice`
 *   `multiple-select`
 *   `true-false`
+*   `reflective-text-answer`
 *   `match`
 
 #### multiple-choice Items
@@ -103,6 +104,18 @@ stem            | ✓        | dictionary | A locale dictionary of text that ask
 answer          | ✓        | boolean    | The correct answer. `true` for "True", `false` for "False"
 true_rationale  | ✓        | dictionary | A locale dictionary for the text that explains why "True" is correct or incorrect
 false_rationale | ✓        | dictionary | A locale dictionary for the text that explains why "False" is correct or incorrect
+
+#### reflective-text-answer
+
+A quiz item that has a free-text question. No matter what a learner answers, it will always be correct as long as the answer has more than five words.
+
+attribute | required | type       | notes
+--------- | -------- | ---------- | -----
+id        | ✓        | string     | A unique identifier for this item
+type      | ✓        | string     | The item type, which is always `reflective-text-answer`
+stem      | ✓        | dictionary | A locale dictionary for the text that asks the question, such as "What skills do you already have that can help you on your journey to becoming a UX designer?"
+rationale | ✓        | dictionary | A locale dictionary for the text that responses to the learner's written text, such as "Thank you for reflecting on the skills you bring to this certificate program."
+
 
 #### match Items
 
