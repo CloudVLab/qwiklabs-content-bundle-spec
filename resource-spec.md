@@ -38,8 +38,8 @@ attributes:
 
 attribute      | required | type       | notes
 -------------- | -------- | ---------- | -----
-video_id       | ✓        | dictionary | Key is `locales` and each locale is a dictionary mapping locale codes to localized video_ids.
-video_provider | ✓        | string     | The video provider.
+video_id       | ✓        | dictionary | Key is `locales` and each locale is a dictionary mapping locale codes to localized video_ids as defined by the video provider. For example, a YouTube video_id has the form dQw4w9WgXcQ
+video_provider | ✓        | string     | The video provider, e.g. YouTube
 duration       | ✓        | integer    | The duration of the video (in seconds).
 
 ## Example
