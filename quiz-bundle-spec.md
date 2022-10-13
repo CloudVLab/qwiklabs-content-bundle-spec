@@ -32,7 +32,7 @@ default_locale     | ✓        | string     | Corresponds to the locale that th
 schema_version     | ✓        | integer    | Which version of the quiz bundle schema you are using
 title              |          | dictionary | A locale dictionary of the quiz title, such as "My Awesome Quiz"
 passing_percentage | ✓        | integer    | The threshold grade that a student needs to achieve in order to count as "passing" the quiz.
-fixed_place        |          | boolean    | `true` if this option should be fixed in place when shuffling the items (this is treated as `false` if it's missing).
+fixed_place        |          | boolean    | `true` if the items should be presented in a fixed order rather than shuffled (this is treated as `false` if it's missing).
 duration           |          | integer    | The default time a student is allotted for the quiz, in minutes. If unspecified, the quiz will not be timed.
 sections           |          | array      | An ordered array of `sections` (see [below for details](#sections)) in this quiz; not allowed if `items` are specified; required if `items` are unspecified.
 items              |          | array      | An ordered array of `items` (see [below for details](#items)) in a default section of this quiz; not allowed if `sections` are specified; required if `sections` are unspecified.
