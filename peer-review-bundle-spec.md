@@ -45,8 +45,39 @@ entity_type             | ✓        | string     | Must be `PeerReview`
 schema_version          | ✓        | integer    |
 default_locale          | ✓        | enum       | Must be a valid locale code
 title                   | ✓        | dictionary | A locale dictionary of titles
+instruction             | ✓        | dictionary | See [below](#Instructions)
 review_criterial        | ✓        | dictionary | A locale dictionary of review criterial
 prompts                 | ✓        | array      | See [below](#Prompts)
+
+
+
+### Instructions
+
+attribute | required | type              | notes
+--------- | -------- | ----------------- | -----
+type      | ✓        | enum              | [See list of valid types below]
+uri       | ✓        | locale dictionary | Within the locale dictionary, the values are paths to files in the bundle.
+
+```yaml
+instruction:
+  type: html
+  uri:
+    locales:
+      en: instructions/en.html
+      es: instructions/es.html
+```
+
+#### Valid types
+
+
+*   `html`
+*   `pdf`
+
+
+HTML is the preferred format for stored instructions. PDFs will be displayed
+embedded in the learner interface, but will lack any navigation or interactive
+functionality. 
+
 
 ### Prompts
 
