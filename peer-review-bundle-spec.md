@@ -108,7 +108,7 @@ A rubrics that has multiple options and each option associate with points.
 attribute | required | type       | notes
 --------- | -------- | ---------- | -----
 id        | ✓        | string     | A unique identifier for this rubric
-type      | ✓        | string     | The item type, which is always `multiple-choice`
+type      | ✓        | string     | The rubric type, which is always `multiple-choice`
 stem      | ✓        | dictionary | A locale dictionary of the text that asks the question, such as "The email includes the subject line, greeting, body and closing?"
 options   | ✓        | array      | An array of `options` (see below for details);
 
@@ -119,7 +119,7 @@ A rubrics that has two predefined options: true and false. Each option associate
 attribute     | required | type       | notes
 ---------     | -------- | ---------- | -----
 id            | ✓        | string     | A unique identifier for this rubric
-type          | ✓        | string     | The item type, which is always `true-false`
+type          | ✓        | string     | The rubric type, which is always `true-false`
 stem          | ✓        | dictionary | A locale dictionary of the text that asks the question, such as "All parts of the big picture storyboard template are filled out."
 true_points   | ✓        | integer    | Usually is 1
 false_points  | ✓        | integer    | Usually is 0
@@ -130,8 +130,8 @@ A rubric that has a ungraded-text question. No matter what a learner answers, it
 
 attribute | required | type       | notes
 --------- | -------- | ---------- | -----
-id        | ✓        | string     | A unique identifier for this item
-type      | ✓        | string     | The item type, which is always `ungraded-text`
+id        | ✓        | string     | A unique identifier for this rubric
+type      | ✓        | string     | The rubric type, which is always `ungraded-text`
 stem      | ✓        | dictionary | A locale dictionary for the text that asks the question, such as "Provide constructive feedback for your classmates on their submission."
 
 
