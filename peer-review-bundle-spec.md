@@ -31,7 +31,7 @@ prompts: ...
 
 ```
 
-Note that all of the main chunks of localized content (title, review_criteria, text, stem and option) are HTML content that may be displayed
+Note that all of the main chunks of localized content (title, review_criteria, text, stem and title) are HTML content that may be displayed
 in various contexts. All of these chunks will be sanitized according to the
 restricted set in the [HTML spec](./html/html-spec.md).
 
@@ -45,13 +45,13 @@ entity_type             | ✓        | string     | Must be `PeerReview`
 schema_version          | ✓        | integer    |
 default_locale          | ✓        | enum       | Must be a valid locale code
 title                   | ✓        | dictionary | A locale dictionary of titles
-instruction             | ✓        | dictionary | See [below](#Instructions)
+instruction             | ✓        | dictionary | See [below](#Instruction)
 review_criterial        | ✓        | dictionary | A locale dictionary of review criterial
 prompts                 | ✓        | array      | See [below](#Prompts)
 
 
 
-### Instructions
+### Instruction
 
 attribute | required | type              | notes
 --------- | -------- | ----------------- | -----
@@ -103,7 +103,7 @@ appropriate attributes for the given `type`. The allowed values for `type` are:
 
 #### multiple-choice Rubrics
 
-A rubrics that has multiple options and each option associate with points.
+A rubric that has multiple options and each option associate with points.
 
 attribute | required | type       | notes
 --------- | -------- | ---------- | -----
@@ -114,7 +114,7 @@ options   | ✓        | array      | An array of `options` (see below for detai
 
 #### true-false Rubrics
 
-A rubrics that has two predefined options: true and false. Each option associate with points.
+A rubric that has two predefined options: true and false. Each option associate with points.
 
 attribute     | required | type       | notes
 ---------     | -------- | ---------- | -----
@@ -138,7 +138,7 @@ stem      | ✓        | dictionary | A locale dictionary for the text that asks
 ### Option
 
 `multiple-choice` has an `options` array which contains all of the options that the user may
-choose from. Options are defined below:
+choose from. Option are defined below:
 
 attribute | required | type       | notes
 --------- | -------- | ---------- | -----
