@@ -84,12 +84,12 @@ functionality.
 A prompts defines what a learner needs to do to complete the activity, and have multiple rubrics to help the other leaners work. The full
 specification is as follows:
 
-attribute   | required | type       | notes
------------ | -------- | ---------- | -----------------------------------
-id          | ✓        | string     | A unique identifier for this module
-text        | ✓        | dictionary | A locale dictionary of text
-types       |          | array      | Array of strings from "URL", "File upload", "Rich text"
-rubrics     | ✓        | array      | See below
+attribute            | required | type       | notes
+-----------          | -------- | ---------- | -----------------------------------
+id                   | ✓        | string     | A unique identifier for this module
+text                 | ✓        | dictionary | A locale dictionary of text
+response_types       |          | array      | Array of strings from "URL", "File upload", "Rich text"
+rubrics              | ✓        | array      | See below
 
 ### Rubrics
 
