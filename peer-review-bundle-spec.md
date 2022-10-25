@@ -143,5 +143,5 @@ choose from. Options are defined below:
 attribute | required | type       | notes
 --------- | -------- | ---------- | -----
 id        | ✓        | string     | A unique ID for this Option
-title     | ✓        | dictionary | A locale dictionary for the content of this option, such as "Blue"
+title     | ✓        | dictionary | A locale dictionary for the content of this option, such as "The email includes 2-3 of these elements."
 points    | ✓        | integer    | 
