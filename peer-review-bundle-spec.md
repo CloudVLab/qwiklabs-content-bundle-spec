@@ -48,6 +48,9 @@ title                   | ✓        | dictionary | A locale dictionary of title
 instruction             | ✓        | dictionary | See [below](#Instruction)
 review_criterial        | ✓        | dictionary | A locale dictionary of review criterial
 prompts                 | ✓        | array      | See [below](#Prompts)
+objectives              |          | dictionary | A locale dictionary of objectives
+duration                |          | integer    | The estimate time for student to submit their answer, in minutes. If unspecified, the peer review will not be timed.
+
 
 
 
