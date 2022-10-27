@@ -1,4 +1,4 @@
-# Qwiklabs PeerReview Bundle Specification
+# Qwiklabs PeerAssignment Bundle Specification
 
 **Version 1**
 
@@ -10,7 +10,7 @@ Here's a sample `qwiklabs.yaml` file with all nested details removed to make it
 easier to see the general file structure.
 
 ```yaml
-entity_type: PeerReview
+entity_type: PeerAssignment
 schema_version: 1
 
 default_locale: en
@@ -19,7 +19,7 @@ title:
   locales:
     en: Create storyboards for your portfolio project
 
-# The primary instruction content for this peer review
+# The primary instruction content for this peer assignment
 instruction: ...
 
 review_criteria:
@@ -31,15 +31,13 @@ prompts: ...
 
 ```
 
-Note that all of the main chunks of localized content (title, review_criteria, text, stem and title) are HTML content that may be displayed
-in various contexts. All of these chunks will be sanitized according to the
-restricted set in the [HTML spec](./html/html-spec.md).
+Note that all of the main chunks of localized content (title, review_criteria, text, stem and title) are HTML content that may be displayed in various contexts. All of these chunks will be sanitized according to the restricted set in the [HTML spec](./html/html-spec.md).
 
 
 ### Default Locale
 
-The peer review bundle MUST specify a `default_locale`. It corresponds to the locale
-that the peer review is originally authored in. Authoring tools can use this as a hint
+The peer assignment bundle MUST specify a `default_locale`. It corresponds to the locale
+that the peer assignment is originally authored in. Authoring tools can use this as a hint
 to notify localizers when content in the default locale is updated. Also, it
 provides a hint to the learner interface about which locale to display if an
 instruction/resource is not localized for the learner's current locale.
@@ -51,15 +49,15 @@ The full specification is as follows:
 
 attribute               | required | type       | notes
 ----------------------- | -------- | ---------- | -----
-entity_type             | ✓        | string     | Must be `PeerReview`
+entity_type             | ✓        | string     | Must be `PeerAssignment`
 schema_version          | ✓        | integer    |
 default_locale          | ✓        | enum       | Must be a valid locale code
 title                   | ✓        | dictionary | A locale dictionary of titles
 instruction             | ✓        | dictionary | See [below](#Instruction)
 review_criterial        | ✓        | dictionary | A locale dictionary of review criterial
 prompts                 | ✓        | array      | See [below](#Prompts)
+duration                | ✓        | integer    | The estimate time for student to submit their answer, in minutes.
 objectives              |          | dictionary | A locale dictionary of objectives
-duration                |          | integer    | The estimate time for student to submit their answer, in minutes. If unspecified, the peer review will not be timed.
 
 
 
@@ -85,9 +83,9 @@ instruction:
 
 *   `html`
 *   `pdf`
+*   `md`
 
-
-HTML is the preferred format for stored instructions. PDFs will be displayed
+Markdown (MD) or HTML are the preferred formats for stored instructions. PDFs will be displayed
 embedded in the learner interface, but will lack any navigation or interactive
 functionality. 
 
@@ -106,9 +104,7 @@ rubrics              | ✓        | array      | See below
 
 ### Rubrics
 
-Rubrics are used for peers to evaluate other learner submission. Rubrics are polymorphic - i.e. there are several different _rubric types_ that are
-defined slightly differently. `rubrics` is an array of dictionaries with
-appropriate attributes for the given `type`. The allowed values for `type` are:
+Rubrics are used for peers to evaluate other learner submission. Rubrics are polymorphic - i.e. there are several different _rubric types_ that are defined slightly differently. `rubrics` is an array of dictionaries with appropriate attributes for the given `type`. The allowed values for `type` are:
 
 *   `multiple-choice`
 *   `true-false`
