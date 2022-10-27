@@ -35,6 +35,16 @@ Note that all of the main chunks of localized content (title, review_criteria, t
 in various contexts. All of these chunks will be sanitized according to the
 restricted set in the [HTML spec](./html/html-spec.md).
 
+
+### Default Locale
+
+The peer review bundle MUST specify a `default_locale`. It corresponds to the locale
+that the peer review is originally authored in. Authoring tools can use this as a hint
+to notify localizers when content in the default locale is updated. Also, it
+provides a hint to the learner interface about which locale to display if an
+instruction/resource is not localized for the learner's current locale.
+
+
 ### Attribute specification
 
 The full specification is as follows:
@@ -84,14 +94,14 @@ functionality.
 
 ### Prompts
 
-A prompts defines what a learner needs to do to complete the activity, and have multiple rubrics to help the other learners work. The full
+A prompt defines what a learner needs to do to complete the activity, and have multiple rubrics to help the other learners work. The full
 specification is as follows:
 
 attribute            | required | type       | notes
 -----------          | -------- | ---------- | -----------------------------------
 id                   | ✓        | string     | A unique identifier for this module
 text                 | ✓        | dictionary | A locale dictionary of text
-response_types       |          | array      | Array of strings from "URL", "File upload", "Rich text"
+response_types       | ✓        | array      | Array of strings from "URL", "File upload", "Rich text"
 rubrics              | ✓        | array      | See below
 
 ### Rubrics
