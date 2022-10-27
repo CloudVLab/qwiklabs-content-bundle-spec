@@ -57,7 +57,7 @@ schema_version          | ✓        | integer    |
 default_locale          | ✓        | enum       | Must be a valid locale code
 title                   | ✓        | string     | Unique PeerReview title that a student sees
 instruction             | ✓        | dictionary | See [below](#Instruction)
-review_criterial        | ✓        | string     |
+review_criterial        | ✓        | text       |
 prompts                 | ✓        | array      | See [below](#Prompts)
 objectives              |          | text       | PeerReview objectives
 duration                |          | integer    | The estimate time for student to submit their answer, in minutes. If unspecified, the peer review will not be timed.
