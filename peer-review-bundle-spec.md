@@ -84,7 +84,7 @@ functionality.
 
 ### Prompts
 
-A prompts defines what a learner needs to do to complete the activity, and have multiple rubrics to help the other leaners work. The full
+A prompts defines what a learner needs to do to complete the activity, and have multiple rubrics to help the other learners work. The full
 specification is as follows:
 
 attribute            | required | type       | notes
