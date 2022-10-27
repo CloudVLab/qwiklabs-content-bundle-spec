@@ -151,7 +151,7 @@ stem      | ✓        | dictionary | A locale dictionary for the text that asks
 ### Option
 
 `multiple-choice` has an `options` array which contains all of the options that the user may
-choose from. Option are defined below:
+choose from. Option is defined below:
 
 attribute | required | type       | notes
 --------- | -------- | ---------- | -----
