@@ -58,7 +58,7 @@ review_criterial        | ✓        | dictionary | A locale dictionary of revie
 prompts                 | ✓        | array      | See [below](#Prompts)
 duration                | ✓        | integer    | The estimate time for student to submit their answer, in minutes.
 objectives              |          | dictionary | A locale dictionary of objectives
-
+passing_score           |          | integer    | if none, default is 0
 
 
 
@@ -98,7 +98,7 @@ specification is as follows:
 attribute            | required | type       | notes
 -----------          | -------- | ---------- | -----------------------------------
 id                   | ✓        | string     | A unique identifier for this module
-text                 | ✓        | dictionary | A locale dictionary of text
+stem                 | ✓        | dictionary | A locale dictionary of text
 response_types       | ✓        | array      | Array of strings from "URL", "File upload", "Rich text"
 rubrics              | ✓        | array      | See below
 
