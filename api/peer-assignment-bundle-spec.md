@@ -54,7 +54,7 @@ schema_version          | ✓        | integer    |
 default_locale          | ✓        | enum       | Must be a valid locale code
 title                   | ✓        | dictionary | A locale dictionary of titles
 instruction             | ✓        | dictionary | See [below](#Instruction)
-review_criterial        | ✓        | dictionary | A locale dictionary of review criterial
+review_criteria         | ✓        | dictionary | A locale dictionary of review criterial
 prompts                 | ✓        | array      | See [below](#Prompts)
 duration                | ✓        | integer    | The estimate time for student to submit their answer, in minutes.
 objectives              |          | dictionary | A locale dictionary of objectives

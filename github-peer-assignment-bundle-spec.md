@@ -55,7 +55,7 @@ schema_version          | ✓        | integer    |
 default_locale          | ✓        | enum       | Must be a valid locale code
 title                   | ✓        | string     | Unique PeerAssignment title that a student sees
 instruction             | ✓        | dictionary | See [below](#Instruction)
-review_criterial        | ✓        | string     |
+review_criteria         | ✓        | string     |
 prompts                 | ✓        | array      | See [below](#Prompts)
 duration                | ✓        | integer    | The estimate time for student to submit their answer, in minutes.
 objectives              |          | string     | PeerAssignment objectives
