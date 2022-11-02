@@ -92,7 +92,7 @@ description: "No, seriously. It's the best lab ever. You're going to love it!"
 
 duration: 60
 max_duration: 90
-level: intro
+level: introductory
 tags: [sample, life-changing, gcp]
 
 
@@ -150,7 +150,7 @@ description            | ✓        | string            |
 duration               | ✓        | integer           | Amount of time it should take an average learner to complete the lab (in minutes)
 max_duration           |          | integer           | Maximum duration time of a lab, displayed in student timer (in minutes)
 credits                |          | integer           |
-level                  |          | string            |
+level                  |          | enum              | One of ['introductory', 'intermediate', 'advanced']
 logo                   |          | file path         |
 tags                   |          | array             |
 legacy_display_options |          | array             | Elements to hide/show in ql-lab-control-panel widget
