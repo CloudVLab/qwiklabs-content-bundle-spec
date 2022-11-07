@@ -32,7 +32,6 @@ default_locale     | ✓        | string     | Corresponds to the locale that th
 schema_version     | ✓        | integer    | Which version of the quiz bundle schema you are using
 title              |          | dictionary | A locale dictionary of the quiz title, such as "My Awesome Quiz"
 passing_percentage | ✓        | integer    | The threshold grade that a student needs to achieve in order to count as "passing" the quiz.
-fixed_place        |          | boolean    | `true` if the items should be presented in a fixed order rather than shuffled (this is treated as `false` if it's missing).
 duration           |          | integer    | The default time a student is allotted for the quiz, in minutes. If unspecified, the quiz will not be timed.
 sections           |          | array      | An ordered array of `sections` (see [below for details](#sections)) in this quiz; not allowed if `items` are specified; required if `items` are unspecified.
 items              |          | array      | An ordered array of `items` (see [below for details](#items)) in a default section of this quiz; not allowed if `sections` are specified; required if `sections` are unspecified.
@@ -65,7 +64,6 @@ appropriate attributes for the given `type`. The allowed values for `type` are:
 *   `multiple-choice`
 *   `multiple-select`
 *   `true-false`
-*   `reflective-text`
 *   `match`
 
 #### multiple-choice Items
@@ -105,18 +103,6 @@ stem            | ✓        | dictionary | A locale dictionary of text that ask
 answer          | ✓        | boolean    | The correct answer. `true` for "True", `false` for "False"
 true_rationale  | ✓        | dictionary | A locale dictionary for the text that explains why "True" is correct or incorrect
 false_rationale | ✓        | dictionary | A locale dictionary for the text that explains why "False" is correct or incorrect
-
-#### reflective-text
-
-A quiz item that has a free-text question. No matter what a learner answers, it will always be correct as long as the answer has more than five words.
-
-attribute | required | type       | notes
---------- | -------- | ---------- | -----
-id        | ✓        | string     | A unique identifier for this item
-type      | ✓        | string     | The item type, which is always `reflective-text`
-stem      | ✓        | dictionary | A locale dictionary for the text that asks the question, such as "What skills do you already have that can help you on your journey to becoming a UX designer?"
-feedback  | ✓        | dictionary | A locale dictionary for the text that responses to the learner's written text, such as "Thank you for reflecting on the skills you bring to this certificate program."
-
 
 #### match Items
 
