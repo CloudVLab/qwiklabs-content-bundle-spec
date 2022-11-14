@@ -349,7 +349,6 @@ permissions     |          | array                                              
 The `gcp_user` type could more properly be called `gaia_user`, since that's what
 it provisions. However, the term `gaia` is less well-known, so we stick with
 `gcp`.
-  
 
 ###### Variants for GCP User
 
@@ -423,6 +422,7 @@ environment:
           en: "Password (for both users)"
       reference: user_1.password
 ```
+
 ##### Google Folder (gcp_folder)
 
 No additional attributes for this resource
@@ -464,7 +464,7 @@ reference                | displayed as
 [FOLDER].folder_name     | copyable text
 [FOLDER].display_name    | copyable text
 
-##### GCP Startup Script (startup_script)
+##### GCP Startup Script (startup_script) {#gcp-startup-script-startup-script}
 
 attribute                        | required | type                                                                           | notes
 -------------------------------- | -------- | ------------------------------------------------------------------------------ | -----
@@ -942,10 +942,22 @@ For a complete and up-to-date list of EC2 instance types, see
 
 ##### Azure Resource Group (azure_resource_group)
 
+attribute       | required | type                                                     | notes
+--------------- | -------- | -------------------------------------------------------- | -----------------------------------
+startup_script  |          | [Azure Startup Script](#azure-startup-script-startup-script) | Azure startup script object. Azure resource groups support startup scripts of type `qwiklabs`.
+
 ```yaml
   - type: azure_resource_group
     id: rg_1
     variant: default
+    startup_script:
+      type: qwiklabs
+      path: startup_dir
+      custom_properties:
+        - key: name
+          value: student
+        - key: userPassword
+          reference: primary_user.password
 ```
 
 ###### Variants for Azure Resource Groups
@@ -998,6 +1010,33 @@ reference             | displayed as
 --------------------- | -------------
 [USER].username       | copyable text
 [USER].password       | copyable text
+
+##### Azure Startup Script (startup_script) {#azure-startup-script-startup-script}
+
+attribute                        | required | type                                                                           | notes
+-------------------------------- | -------- | ------------------------------------------------------------------------------ | -----
+type                             | ✓        | string                                                                         | The type of startup script. Only `qwiklabs` is supported.
+path                             | ✓        | path                                                                           | Relative path to a directory tree with the script contents.
+custom_properties                |          | [Custom Script Properties](#custom-script-properties-custom-properties) array  | Array of custom script property objects.
+
+Any custom outputs being generated with a `startup_script` can be reference as
+[RESOURCE_GROUP].startup_script.[FILL-IN-OUTPUT-NAME]. The output will be
+displayed as a copyable text if provided within the student_visible_outputs.
+
+Every Azure resource group may have one startup script associated with it.
+
+##### Custom Script Properties (custom_properties)
+
+attribute | required | type                                       | notes
+--------- | -------- | ------------------------------------------ | -----
+key       | ✓        | string                                     | How the property will be referenced within the script.
+value     |          | string                                     | A static value to be passed into the script.
+reference |          | [resource reference](#resource-references) | A resource reference object to be passed into the script.
+
+Custom script properties are passed into the script as input. A custom script
+property must have a key and either a value or a reference associated with it.
+For examples please see the
+[Azure resource group](#azure-resource-group-azure_resource_group) resource.
 
 ### Student Visible Outputs
 
