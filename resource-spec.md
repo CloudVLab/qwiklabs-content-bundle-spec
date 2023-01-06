@@ -27,9 +27,9 @@ attribute   | required | type       | notes
 ----------- | -------- | ---------- | -----
 type        | ✓        | enum       | [See list of valid types below]
 id          |          | string     | Identifier that can be used throughout project bundle and translation pipeline
-title       | ✓        | dictionary | Key is `locales` and each locale is a dictionary mapping locale codes to localized titles
-description |          | dictionary | Key is `locales` and each locale is a dictionary mapping locale codes to localized descriptions
-uri         |          | dictionary | Key is `locales` and each locale is a dictionary mapping locale codes to localized uris.
+title       | ✓        | dictionary | Localized title of the resource
+description |          | dictionary | Localized description of the resource
+uri         |          | dictionary | Localized URI of the resource
 
 ## Videos for Courses
 
@@ -38,7 +38,7 @@ attributes:
 
 attribute      | required | type       | notes
 -------------- | -------- | ---------- | -----
-video_id       | ✓        | dictionary | Key is `locales` and each locale is a dictionary mapping locale codes to localized video_ids as defined by the video provider. For example, a YouTube video_id has the form dQw4w9WgXcQ
+video_id       | ✓        | dictionary | Localized video_ids as defined by the video provider. For example, a YouTube video_id has the form dQw4w9WgXcQ
 video_provider | ✓        | string     | The video provider, e.g. YouTube
 duration       | ✓        | integer    | The duration of the video (in seconds).
 
@@ -48,48 +48,21 @@ duration       | ✓        | integer    | The duration of the video (in seconds
 resources:
   - type: link
     id: repo-link
-    title:
-      locales:
-        en: Self-referential Github Repo
-        es: Auto-referencial Github Repo
-    uri:
-      locales:
-        en: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
-        es: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
+    title: Self-referential Github Repo
+    uri: https://github.com/CloudVLab/qwiklabs-lab-bundle-spec/tree/v1-prerelease
   - type: file
-    title:
-      locales:
-        en: Sample PDF
-        es: Ejemplo de PDF
-    description:
-      locales:
-        en: This PDF contains all of the code samples for the lab.
-        es: Este PDF contiene todos los ejemplos de código para el laboratorio.
-    uri:
-      locales:
-        en: "./resources/sample-en.pdf"
-        es: "./resources/sample-es.pdf"
+    title: Sample PDF
+    description: This PDF contains all of the code samples for the lab.
+    uri: "./resources/sample-en.pdf"
   - type: video
     id: lab-video
-    title:
-      locales:
-        en: Welcome to GCP!
-        es: ¡Bienvenido a GCP!
-    uri:
-        locales:
-          en: https://youtu.be/oHg5SJYRHA0
-          es: https://youtu.be/7jjoyy7_RCk
+    title: Welcome to GCP!
+    uri: https://youtu.be/oHg5SJYRHA0
     duration: 120
   - type: video
     id: course-video
-    title:
-      locales:
-        en: Welcome to GCP!
-        es: ¡Bienvenido a GCP!
-    video_id:
-        locales:
-          en: oHg5SJYRHA0
-          es: 7jjoyy7_RCk
+    title: Welcome to GCP!
+    video_id: oHg5SJYRHA0
     video_provider: YouTube
     duration: 360
 ```
