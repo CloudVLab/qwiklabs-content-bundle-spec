@@ -1,0 +1,121 @@
+entity_type: PeerAssignment
+schema_version: 1
+
+default_locale: en
+
+title:
+  locales:
+    en: Robust Peer Assignment Example
+    es: Ejemplo de Robust Peer Assignment
+
+review_criteria:
+  locales:
+    en: Just the basics, nothing more.
+    es: Solo lo básico, nada más.
+
+duration: 120
+
+instruction:
+  type: html
+  uri:
+    locales:
+      en: "./instructions/en.html"
+      es: "./instructions/es.html"
+
+objectives:
+  locales:
+    en: Learn how to do a peer assignment.
+    es: Aprende a hacer una tarea entre compañeros.
+
+passing_score: 5
+
+prompts:
+- id: prompt-1
+  stem:
+    locales:
+      en: Upload a big picture storyboard.
+      es: Cargue el guión gráfico general.
+  response_types:
+  - File Upload
+  rubric_items:
+  - type: multiple-choice
+    id: prompt-1-rubric-1
+    stem:
+      locales:
+        en: The template is filled out.
+        es: La plantilla está llena.
+    options:
+    - id: prompt-1-rubric-1-option-1
+      title:
+        locales:
+          en: 0 parts of the template are filled out.
+          es: Se completan 0 partes de la plantilla.
+      points: 0
+    - id: prompt-1-rubric-1-option-2
+      title:
+        locales:
+          en: Some parts of the template are filled out.
+          es: Algunas partes de la plantilla están llenas.
+      points: 1
+    - id: prompt-1-rubric-1-option-3
+      title:
+        locales:
+          en: All parts of the template are filled out.
+          es: Todas las partes de la plantilla están llenas.
+      points: 2
+  - type: true-false
+    id: prompt-1-rubric-2
+    stem:
+      locales:
+        en: The big picture storyboard is clearly focused on a user.
+        es: El guión gráfico general está claramente centrado en un usuario.
+    true_points: 1
+    false_points: 0
+- id: prompt-2
+  stem:
+    locales:
+      en: Upload a close-up storyboard.
+      es: Cargue un guión gráfico de primer plano.
+  response_types:
+  - File Upload
+  - URL
+  rubric_items:
+  - type: multiple-choice
+    id: prompt-2-rubric-1
+    stem:
+      locales:
+        en: The template is filled out.
+        es: La plantilla está llena.
+    options:
+    - id: prompt-2-rubric-1-option-1
+      title:
+        locales:
+          en: 0 parts of the template are filled out.
+          es: La plantilla está llena.
+      points: 0
+    - id: prompt-2-rubric-1-option-2
+      title:
+        locales:
+          en: Some parts of the template are filled out.
+          es: Algunas partes de la plantilla están llenas.
+      points: 1
+    - id: prompt-2-rubric-1-option-3
+      title:
+        locales:
+          en: All parts of the template are filled out.
+          es: Todas las partes de la plantilla están llenas.
+      points: 2
+  - type: true-false
+    id: prompt-2-rubric-2
+    stem:
+      locales:
+        en: The close-up storyboard is clearly focused on a user.
+        es: El guión gráfico de primer plano está claramente centrado en un usuario.
+    true_points: 1
+    false_points: 0
+  - type: ungraded-text
+    id: prompt-2-rubric-3
+    stem:
+      locales:
+        en: Provide feedback on the close-up storyboard.
+        es: Proporcione comentarios sobre el guión gráfico de primer plano.

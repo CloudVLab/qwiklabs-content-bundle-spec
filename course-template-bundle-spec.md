@@ -151,11 +151,12 @@ metadata. Valid activity types are:
 
 *   `lab`
 *   `quiz`
+*   `peer_assignment`
 *   `resource`
 
-`lab` and `quiz` will reference content defined elsewhere in the library, and
-`resource` will reference content defined elsewhere in the same `qwiklabs.yaml`
-file.
+`lab`, `quiz` and `peer_assignment` will reference content defined elsewhere in
+the library, and `resource` will reference content defined elsewhere in the same
+`qwiklabs.yaml` file.
 
 The overall format should look like:
 
@@ -198,6 +199,11 @@ steps:
       category: graded
       id: compute-quiz
       version: '1.0'
+
+  - id: peer-assignment
+    activity_options:
+    - type: peer_assignment
+      id: peer-assignment
 ```
 
 The order in which steps are listed defines the order they will be displayed.

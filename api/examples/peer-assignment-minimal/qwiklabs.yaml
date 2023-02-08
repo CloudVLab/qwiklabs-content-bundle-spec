@@ -1,0 +1,57 @@
+entity_type: PeerAssignment
+schema_version: 1
+
+default_locale: en
+
+title:
+  locales:
+    en: Minimal Peer Assignment Example
+
+review_criteria:
+  locales:
+    en: Just the basics, nothing more.
+
+duration: 120
+
+instruction:
+  type: html
+  uri:
+    locales:
+      en: "./instructions/en.html"
+
+prompts:
+- id: prompt-1
+  stem:
+    locales:
+      en: Upload a big picture storyboard.
+  response_types:
+  - File Upload
+  rubric_items:
+  - type: multiple-choice
+    id: prompt-1-rubric-1
+    stem:
+      locales:
+        en: The template is filled out.
+    options:
+    - id: prompt-1-rubric-1-option-1
+      title:
+        locales:
+          en: 0 parts of the template are filled out.
+      points: 0
+    - id: prompt-1-rubric-1-option-2
+      title:
+        locales:
+          en: Some parts of the template are filled out.
+      points: 1
+    - id: prompt-1-rubric-1-option-3
+      title:
+        locales:
+          en: All parts of the template are filled out.
+      points: 2
+  - type: true-false
+    id: prompt-1-rubric-2
+    stem:
+      locales:
+        en: The big picture storyboard is clearly focused on a user.
+    true_points: 1
+    false_points: 0

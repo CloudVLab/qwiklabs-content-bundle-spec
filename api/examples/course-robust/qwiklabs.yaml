@@ -187,6 +187,12 @@ modules:
     - type: quiz
       id: bigquery-quiz
 
+  - id: peer-assignment
+    activity_options:
+    - type: peer_assignment
+      id: peer-assignment
+
+
 - id: outro-module
   title:
     locales:
