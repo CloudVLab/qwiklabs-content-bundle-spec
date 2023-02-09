@@ -55,11 +55,6 @@ resources:
     description: This PDF contains all of the code samples for the lab.
     uri: "./resources/sample-en.pdf"
   - type: video
-    id: lab-video
-    title: Welcome to GCP!
-    uri: https://youtu.be/oHg5SJYRHA0
-    duration: 120
-  - type: video
     id: course-video
     title: Welcome to GCP!
     video_id: oHg5SJYRHA0
