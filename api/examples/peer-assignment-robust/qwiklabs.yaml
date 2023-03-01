@@ -36,7 +36,7 @@ prompts:
       en: Upload a big picture storyboard.
       es: Cargue el guión gráfico general.
   response_types:
-  - File Upload
+  - file_upload
   rubric_items:
   - type: multiple-choice
     id: prompt-1-rubric-1
@@ -77,8 +77,8 @@ prompts:
       en: Upload a close-up storyboard.
       es: Cargue un guión gráfico de primer plano.
   response_types:
-  - File Upload
-  - URL
+  - file_upload
+  - url
   rubric_items:
   - type: multiple-choice
     id: prompt-2-rubric-1
