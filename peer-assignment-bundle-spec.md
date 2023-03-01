@@ -125,7 +125,7 @@ attribute      | required | type              | notes
 -------------- | -------- | ----------------- | -----
 id             | ✓        | string            | A unique identifier for this module
 stem           | ✓        | string            | Prompt text
-response_types | ✓        | string | Array of strings from: "URL", "File upload", "Rich text"
+response_types | ✓        | enum   | One of: "url", "file_upload", "rich_text"
 rubric_items   | ✓        | array  | Array of rubric items. See [below](#rubric_item) 
 
 ### Rubric Item

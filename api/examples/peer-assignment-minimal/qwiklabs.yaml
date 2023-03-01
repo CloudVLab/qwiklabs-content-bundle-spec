@@ -25,7 +25,7 @@ prompts:
     locales:
       en: Upload a big picture storyboard.
   response_types:
-  - File Upload
+  - file_upload
   rubric_items:
   - type: multiple-choice
     id: prompt-1-rubric-1
