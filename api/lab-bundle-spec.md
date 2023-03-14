@@ -827,6 +827,41 @@ is installed.
 If there is a `main.py` student file, it will be visible to the student at lab
 startup.
 
+#### Jupyter Notebook (jupyter_notebook)
+
+attribute           | required | type | notes
+------------------- | -------- | ---- | -----
+startup_script.path |          | path | Relative path to a file with the script contents.
+student_files       |          | path | Relative path to a directory student file contents.
+
+```yaml
+  - type: jupyter_notebook
+    id: notebook
+    startup_script:
+      path: startup/startup.sh
+    student_files:
+      - path: student_files
+```
+
+<!-- TODO(b/273306870): Replace the jovyan work directory with a qwiklabs work directory. -->
+
+###### Student Files
+
+Student files specified in the qwiklabs.yaml will be added to the directory
+`/home/jovyan/work`. This work folder is viewable in the Jupyter Notebook.
+
+<!-- TODO(b/273306870): Replace the jovyan work directory with a qwiklabs work directory. -->
+
+###### Startup Scripts
+
+Startup scripts are executed from `/home/jovyan` which is the directory where
+Jupyter Notebook is installed.
+
+###### File open on startup
+
+If there is a `main.ipynb` student file, it will be opened in the Jupyter
+Notebook at lab startup.
+
 ##### Windows VM (windows_vm)
 
 attribute           | required | type | notes

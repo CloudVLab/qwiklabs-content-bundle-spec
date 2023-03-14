@@ -13,3 +13,7 @@ following exceptions:
 *   `entity_type` should be set to `GameTemplate`.
 *   `GameTemplate` does not have a `max_hot_labs` field.
 *   `GameTemplate` does not have an `instructor_resources` section.
+*   For `GameTemplate`s, if a step only contains activities with the type
+    `resource`, the step will be optional by default. If you would like the step
+    to be required, this can be overridden by setting `optional: false` for the
+    step.
