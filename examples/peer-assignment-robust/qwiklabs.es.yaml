@@ -1,0 +1,76 @@
+# qwiklabs.es.yaml for Spanish localization
+# There is no need to copy everything over from qwiklabs.yaml.
+# Only locale specific attributes need to go in here.
+
+title: Ejemplo de Robust Peer Assignment
+
+review_criteria: Solo lo básico, nada más.
+
+instruction:
+  type: html
+  uri: "./instructions/es.html"
+
+objectives: Aprende a hacer una tarea entre compañeros.
+
+prompts:
+- id: prompt-1
+  stem: Cargue el guión gráfico general.
+  response_types:
+  - file_upload
+  - url
+  rubric_items:
+  - type: multiple-choice
+    id: prompt-1-rubric-1
+    stem: La plantilla está llena.
+    options:
+    - id: prompt-1-rubric-1-option-1
+      title: Se completan 0 partes de la plantilla.
+      points: 0
+    - id: prompt-1-rubric-1-option-2
+      title: Algunas partes de la plantilla están llenas.
+      points: 1
+    - id: prompt-1-rubric-1-option-3
+      title: Todas las partes de la plantilla están llenas.
+      points: 2
+  - type: true-false
+    id: prompt-1-rubric-2
+    stem: El guión gráfico general está claramente centrado en un usuario.
+    true_points: 1
+    false_points: 0
+- id: prompt-2
+  stem: Cargue un guión gráfico de primer plano.
+  response_types:
+  - file_upload
+  - url
+  rubric_items:
+  - type: multiple-choice
+    id: prompt-2-rubric-1
+    stem: La plantilla está llena.
+    options:
+    - id: prompt-2-rubric-1-option-1
+      title: La plantilla está llena.
+      points: 0
+    - id: prompt-2-rubric-1-option-2
+      title: Algunas partes de la plantilla están llenas.
+      points: 1
+    - id: prompt-2-rubric-1-option-3
+      title: Todas las partes de la plantilla están llenas.
+      points: 2
+  - type: true-false
+    id: prompt-2-rubric-2
+    stem: El guión gráfico de primer plano está claramente centrado en un usuario.
+    true_points: 1
+    false_points: 0
+  - type: ungraded-text
+    id: prompt-2-rubric-3
+    stem: Proporcione comentarios sobre el guión gráfico de primer plano.
+
+exemplars:
+- id: examplar-1
+  prompt_responses:
+  - id: prompt-response-1
+    response_type: url
+    response_content: http://www.google.com
+  - id: prompt-response-2
+    response_type: rich_text
+    response_content: This is my rich text answer in spanish
