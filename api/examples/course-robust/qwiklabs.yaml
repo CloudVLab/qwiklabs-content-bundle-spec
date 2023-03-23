@@ -47,7 +47,8 @@ badge: gcp-intro-course-badge.png
 estimated_duration_days: 1
 
 instructor_resources:
-- title:
+- id: how-to-teach
+  title:
     locales:
       en: How to teach
       es: Como enseñar
@@ -55,6 +56,13 @@ instructor_resources:
     locales:
       en: https://www.wikihow.com/Teach
       es: https://www.wikihow.es/enseñar
+- id: how-to-teach-well
+  title:
+    locales:
+      en: How to teach well
+  uri:
+    locales:
+      en: https://www.wikihow.com/TeachingWell
 
 resources:
 - type: video
@@ -104,8 +112,17 @@ resources:
       en: resources/storage_options_en.pdf
       es: resources/storage_options_es.pdf
 
+course_surveys:
+- survey-f59d1335-ul5lc0
+- survey-ul5lc0
+- survey-f59d1335
+
 modules:
 - id: intro-module
+  objectives:
+    locales:
+      en: Objective for intro module
+      es: Objective for intro module in Spanish
   title:
     locales:
       en: Introduction
@@ -131,6 +148,10 @@ modules:
       id: intro-to-gcp
 
 - id: learn-compute
+  objectives:
+    locales:
+      en: Objective for learn module
+      es: Objective for learn module in Spanish
   title:
     locales:
       en: Learn about compute
@@ -154,6 +175,10 @@ modules:
         en: Learn more about one of these common compute resources.
         es: Obtenga más información sobre uno de estos recursos informáticos comunes.
 - id: learn-storage
+  objectives:
+    locales:
+      en: Objective for learn module
+      es: Objective for learn module in Spanish
   title:
     locales:
       en: Learn about storage
@@ -165,7 +190,7 @@ modules:
       id: storage-options
 
   - id: learn-storage
-    activitiy_options:
+    activity_options:
     - type: lab
       id: intro-to-datastore
     - type: lab
@@ -186,14 +211,19 @@ modules:
     activity_options:
     - type: quiz
       id: bigquery-quiz
+      category: graded
+      version: '1.0'
 
   - id: peer-assignment
     activity_options:
     - type: peer_assignment
       id: peer-assignment
 
-
 - id: outro-module
+  objectives:
+    locales:
+      en: Objective for outro module
+      es: Objective for outro module in Spanish
   title:
     locales:
       en: Finish up
@@ -212,3 +242,23 @@ modules:
     activity_options:
     - type: resource
       id: outro-video
+
+retake_policies:
+- activity_type: 'Quiz'
+  retake_cooldown:
+  - 1
+- activity_type: 'Quiz'
+  activity_category: 'practice'
+  retake_limit: 3
+  retake_window: 1
+- activity_type: 'Quiz'
+  activity_category: 'graded'
+  retake_cooldown:
+  - 1
+  retake_limit: 3
+  retake_window: 1
+- activity_type: 'Lab'
+  retake_cooldown:
+  - 1
+  - 2
+  - 5

@@ -1,0 +1,359 @@
+entity_type: Lab
+schema_version: 2
+
+default_locale: en
+
+title:
+  locales:
+    en: Robust Lab Example
+    es: Ejemplo de Robust Lab
+
+description:
+  locales:
+    en: Seriously the best lab you've ever taken. Bar none.
+    es: En serio, el mejor lab que has tomado. Sin excepción.
+
+duration: 60
+max_duration: 90
+level: introductory
+tags:
+- sample
+- life-changing
+- gcp
+product_tags: ['app engine', 'kubernetes engine', 'cloud functions']
+role_tags: ['cloud architect', 'developers backend', 'developers frontend']
+domain_tags:
+- infrastructure
+- application development
+- data
+
+instruction:
+  type: html
+  uri:
+    locales:
+      en: "./instructions/en.html"
+      es: "./instructions/es.html"
+
+resources:
+- type: file
+  title:
+    locales:
+      en: Sample PDF
+      es: Ejemplo de PDF
+  description:
+    locales:
+      en: This PDF contains all of the code samples for the lab.
+      es: Este PDF contiene todos los ejemplos de código para el laboratorio.
+  uri:
+    locales:
+      en: "./resources/sample-en.pdf"
+      es: "./resources/sample-es.pdf"
+- type: video
+  id: intro-video
+  title:
+    locales:
+      en: Welcome to GCP!
+      es: ¡Bienvenido a GCP!
+  uri:
+    locales:
+      en: https://youtube.com/oHg5SJYRHA0
+      es: https://youtube.com/7jjoyy7_RCk
+  description:
+    locales:
+      en: Overview of Google Cloud Platform
+      es: Descripción general de Google Cloud Platform
+
+environment:
+  resources:
+  - type: gcp_project
+    id: my_primary_project
+    variant: gcpfree
+    allowed_locations:
+    - us-east1
+    - us-central1-a
+    startup_script:
+      type: deployment_manager
+      path: startup_script
+      custom_properties:
+      - key: userNameWindows
+        value: student
+      - key: Project ID
+        reference: my_primary_project.project_id
+      - key: Default Zone
+        reference: my_primary_project.default_zone
+      - key: Default Region
+        reference: my_primary_project.default_region
+      - key: username
+        reference: gcp_user.username
+      - key: userName
+        reference: gcp_user.local_username
+      - key: password
+        reference: gcp_user.password
+      - key: AWS Account Number
+        reference: the_account.account_number
+    parent: my_primary_folder
+  - type: gcp_project
+    id: my_secondary_project
+    variant: gcp_low_extra
+    startup_script:
+      type: qwiklabs
+      path: startup_script
+      custom_properties:
+      - key: userNameWindows
+        value: student
+    cleanup_script:
+      type: qwiklabs
+      path: cleanup_script
+  - type: gcp_user
+    id: user_0
+    permissions:
+    - project: project_0
+      roles:
+      - roles/editor
+      - roles/appengine.appAdmin
+      - roles/bigquery.admin
+      - roles/bigquery.user
+    - folder: my_primary_folder
+      roles:
+      - roles/compute.xpnAdmin
+  - type: gsuite_domain
+    id: primary_domain
+  - type: cloud_terminal
+    id: shell
+    permissions:
+    - project: my_primary_project
+      roles:
+      - roles/editor
+  - type: linux_terminal
+    id: no-script-linux
+    variant: it_cert_extra
+  - type: linux_terminal
+    id: script-linux
+    startup_script:
+      path: startup.sh
+  - type: windows_vm
+    id: no-script-windows
+    variant: it_cert
+  - type: windows_vm
+    id: script-windows
+    startup_script:
+      path: startup.bat
+  - type: aws_account
+    id: the_account
+    variant: aws_vpc
+    allowed_locations:
+    - us-east-1
+    - us-central-1
+    startup_script:
+      type: cloud_formation
+      path: lab.template
+      custom_properties:
+      - key: userNameWindows
+        value: student
+      - key: Project ID
+        reference: my_primary_project.project_id
+      - key: GCP Username
+        reference: gcp_user.username
+      - key: GCP password
+        reference: gcp_user.password
+      - key: AWS Account Number
+        reference: the_account.account_number
+      - key: AWS SSH private key
+        reference: the_account.ssh_key
+    user_policy: student_policy.json
+    account_restrictions:
+      allow_dedicated_instances: false
+      allow_spot_instances: false
+      allow_subnet_deletion: false
+      allowed_rds_instances: ['db.t2.micro']
+  - type: google_workspace_domain
+    id: my_domain
+  - type: looker_instance
+    id: looker
+    permissions:
+    - project: my_primary_project
+      roles:
+      - roles/editor
+    startup_script:
+      path: startup.sh
+  - type: ide
+    id: ide
+    startup_script:
+      path: startup.sh
+    student_files:
+    - path: student_files/main.py
+  - type: azure_resource_group
+    id: rg_1
+    variant: default
+    startup_script:
+      type: qwiklabs
+      path: startup_script
+      custom_properties:
+      - key: key
+        value: student
+  - type: azure_user
+    id: a_user_1
+    variant: default
+    permissions:
+    - resource_group: rg_1
+      roles:
+      - reader
+  - type: azure_user
+    id: a_user_2
+  - type: gcp_folder
+    id: my_primary_folder
+
+  student_visible_outputs:
+  - label:
+      locales:
+        en: "Open Azure Console"
+        es: "Abrir La Consola Azure"
+    reference: rg_1.console_url
+  - label:
+      locales:
+        en: "Azure Resource Group"
+    reference: rg_1.resource_group_name
+  - label:
+      locales:
+        en: "Azure Username"
+        es: "Nombre de usuario Azure"
+    reference: a_user_1.username
+  - label:
+      locales:
+        en: "Azure Password"
+    reference: a_user_1.password
+  - label:
+      locales:
+        en: "Resource Group Location"
+    reference: rg_1.startup_script.location
+  - label:
+      locales:
+        en: "Open GCP Console"
+        es: "Abrir La Consola GCP"
+    reference: my_primary_project.console_url
+  - label:
+      locales:
+        en: "GCP Project"
+        es: "Proyecto GCP"
+    reference: my_primary_project.project_id
+  - label:
+      locales:
+        en: "GCP Folder Name"
+        es: "Nombre de carpeta de GCP"
+    reference: my_primary_folder.folder_name
+  - label:
+      locales:
+        en: "GCP Folder Display Name"
+        es: "Nombre para mostrar de la carpeta GCP"
+    reference: my_primary_folder.display_name
+  - label:
+      locales:
+        en: "Username"
+        es: "Nombre de usuario"
+    reference: user_0.username
+  - label:
+      locales:
+        en: "SSH Key"
+        es: "Clave SSH"
+    reference: user_0.ssh_key
+  - label:
+      locales:
+        en: "RDP Session"
+    reference: script-windows.student_url
+  - label:
+      locales:
+        en: "Public IP"
+    reference: script-linux.external_ip
+  - label:
+      locales:
+        en: "InstanceDns"
+    reference: my_primary_project.startup_script.InstanceDns
+  - label:
+      locales:
+        en: "InstanceId"
+    reference: the_account.startup_script.InstanceId
+  - label:
+      locales:
+        en: "Open AWS Console"
+        es: "Abrir La Consola AWS"
+    reference: the_account.console_url
+  - label:
+      locales:
+        en: "AWS Access Key ID"
+    reference: the_account.access_key_id
+  - label:
+      locales:
+        en: "AWS Secret Access Key"
+    reference: the_account.secret_access_key
+  - label:
+      locales:
+        en: "Workspace Console"
+    reference: my_domain.console_url
+  - label:
+      locales:
+        en: "Workspace Admin User"
+    reference: my_domain.admin_username
+  - label:
+      locales:
+        en: "Workspace Admin Password"
+    reference: my_domain.admin_password
+  - label:
+      locales:
+        en: "Open Looker"
+    reference: looker_instance.student_url
+  - label:
+      locales:
+        en: "Looker Developer Username"
+    reference: looker_instance.developer_username
+  - label:
+      locales:
+        en: "Looker Developer Password"
+    reference: looker_instance.developer_password
+
+assessment:
+  passing_percentage: 75
+  steps:
+  - title:
+      locales:
+        en: Create a Cloud Storage bucket
+        es: Crear un depósito de almacenamiento en la nube
+    maximum_score: 5
+    student_messages:
+      success:
+        locales:
+          en:
+            Great job! You created the bucket!
+          es:
+            ¡Gran trabajo! ¡Creaste el cubo!
+      bucket_missing:
+        locales:
+          en:
+            Oops! No bucket found.
+          es:
+            ¡Uy! No se ha encontrado el cubo.
+      bucket_misconfigured:
+        locales:
+          en:
+            Hmm. The bucket is there, but it is misconfigured.
+          es:
+            Hmm. El cubo está allí, pero está mal configurado.
+    services:
+    - my_primary_project.StorageV1
+    code: |-
+      def check(handles: handles, resources: resources, maximum_score: maximum_score)
+        storage_handle = handles['my_primary_project.StorageV1']
+
+        # Check for bucket
+        found_bucket = ...
+        unless found_bucket
+          return { score: 0, student_message: 'bucket_missing' }
+        end
+
+        # Check bucket configuration
+        bucket_configured_correctly = ...
+        unless bucket_configured_correctly
+          return { score: 2, student_message: 'bucket_misconfigured' }
+        end
+
+        { score: maximum_score, student_message: 'success' }
+      end

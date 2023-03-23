@@ -1,0 +1,19 @@
+entity_type: Quiz
+schema_version: 1
+
+passing_percentage: 100
+default_locale: en
+
+items:
+- type: true-false
+  id: item-1
+  stem:
+    locales:
+      en: Direct democracy is a form of government where a single leader has ultimate ruling authority.
+  answer: false
+  true_rationale:
+    locales:
+      en: Sorry! A single leader having ultimate authority describes an autocracy.
+  false_rationale:
+    locales:
+      en: Right! That form of government would be closer to an autocracy, not democracy.

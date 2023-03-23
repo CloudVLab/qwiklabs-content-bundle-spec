@@ -1,0 +1,31 @@
+schema_version: 1
+entity_type: LearningPath
+
+id: my-library/basic-learning-path
+default_locale: en
+
+title:
+  locales:
+    en: Good Path
+
+description:
+  locales:
+    en: My learning path description
+
+modules:
+- id: my-module
+  title:
+    locales:
+      en: My Module
+      es: Mi módulo
+  steps:
+  - id: my-first-step
+    activity_options:
+    - type: lab
+      id: my-library/a-lab
+    - type: lab
+      id: my-other-library/another-lab
+  - id: my-second-step
+    activity_options:
+    - type: quiz
+      id: my-library/a-quiz

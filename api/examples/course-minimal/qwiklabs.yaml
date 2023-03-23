@@ -14,8 +14,8 @@ description:
 
 version:
   locales:
-    en: 2
-    es: 1
+    en: "2"
+    es: "1"
 
 objectives:
   locales:
@@ -45,6 +45,9 @@ image: gcp-intro-course-image.png
 badge: gcp-intro-course-badge.png
 
 estimated_duration_days: 1
+
+course_surveys:
+- survey-f59d1335-ul5lc0
 
 modules:
 - id: module-1

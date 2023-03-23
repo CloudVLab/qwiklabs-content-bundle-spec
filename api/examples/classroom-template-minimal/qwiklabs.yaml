@@ -1,0 +1,28 @@
+schema_version: 1
+entity_type: ClassroomTemplate
+
+id: my-library/basic-classroom-template
+default_locale: en
+version:
+  locales:
+    en: ver 2.0
+
+title:
+  locales:
+    en: Good Classroom
+
+description:
+  locales:
+    en: My classroom template description
+
+modules:
+- id: my-module
+  steps:
+  - id: my-first-step
+    activity_options:
+    - type: lab
+      id: my-library/a-lab
+  - id: my-second-step
+    activity_options:
+    - type: lab
+      id: my-other-library/another-lab

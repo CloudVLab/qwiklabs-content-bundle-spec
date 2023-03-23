@@ -1,0 +1,159 @@
+entity_type: Quiz
+schema_version: 1
+
+passing_percentage: 67
+default_locale: en
+
+sections:
+- id: section-1
+  name: Section 1
+  item_count: 2
+  items:
+  - type: multiple-choice
+    id: item-1
+    stem:
+      locales:
+        en: Who won the Nobel Prize for discovering the cause of the photoelectric effect?
+        fr: Qui a remporté le prix Nobel pour avoir découvert la cause de l'effet photoélectrique?
+    options:
+    - title:
+        locales:
+          en: Albert Einstein
+          fr: Albert Einstein
+      id: item-1-option-1
+      is_answer: true
+      rationale:
+        locales:
+          en: Correct! Albert Einstein won the Nobel Prize in 1922 for work that forms the foundation for how modern solar panels work.
+          fr: Correct! Albert Einstein a reçu le prix Nobel en 1922 pour des travaux qui constituent le fondement du fonctionnement des panneaux solaires modernes.
+    - title:
+        locales:
+          en: Francis Crick
+          fr: Francis Crick
+      id: item-1-option-2
+      is_answer: false
+      rationale:
+        locales:
+          en: While Crick did win a Nobel Prize, it was for his discovery of DNA along with James Watson.
+          fr: Bien que Crick ait remporté un prix Nobel, c'était pour sa découverte de l'ADN avec James Watson.
+    - title:
+        locales:
+          en: Rosalind Franklin
+          fr: Rosalind Franklin
+      id: item-1-option-3
+      is_answer: false
+      rationale:
+        locales:
+          en: Sorry! While her work was instrumental in discovering DNA, Rosalind Franklin never won a Nobel Prize.
+          fr: Désolé! Alors que son travail a joué un rôle déterminant dans la découverte de l'ADN, Rosalind Franklin n'a jamais remporté de prix Nobel.
+    - title:
+        locales:
+          en: Max Planck
+          fr: Max Planck
+      id: item-1-option-4
+      is_answer: false
+      rationale:
+        locales:
+          en: Max Planck won the Nobel Price in Physics in 1918 for his work on quantum theory, and while his work was used in the discovery of the photoelectric effect, he actually rejected the initial theory.
+          fr: Max Planck a remporté le prix Nobel de physique en 1918 pour ses travaux sur la théorie quantique. Bien que ses travaux aient servi à la découverte de l'effet photoélectrique, il a en réalité rejeté la théorie initiale.
+    - title:
+        locales:
+          en: All of the above
+          fr: Tout ce qui précède
+      id: item-1-option-5
+      is_answer: false
+      rationale:
+        locales:
+          en: Some of the answers are incorrect. Try again!
+          fr: Certaines des réponses sont incorrectes. Réessayer!
+      fixedPlace: true
+  - type: multiple-select
+    id: item-2
+    stem:
+      locales:
+        en: Which of the following is a state in the United States?
+        fr: Lequel des États suivants est un État aux États-Unis?
+    options:
+    - title:
+        locales:
+          en: Massachusetts
+          fr: Massachusetts
+      id: item-2-option-1
+      is_answer: true
+      rationale:
+        locales:
+          en: Yep! Massachusetts is located in the Northeast.
+          fr: Oui! Le Massachusetts est situé dans le nord-est.
+    - title:
+        locales:
+          en: Manitoba
+          fr: Manitoba
+      id: item-2-option-2
+      is_answer: false
+      rationale:
+        locales:
+          en: Sorry! Manitoba is a Canadian province, though it does share a border with the Midwest United States.
+          fr: Désolé! Le Manitoba est une province canadienne, même s'il partage une frontière avec le Midwest américain.
+    - title:
+        locales:
+          en: Oregon
+          fr: l'Oregon
+      id: item-2-option-3
+      is_answer: true
+      rationale:
+        locales:
+          en: Yep! Oregon is a state in the Pacific Northwest.
+          fr: Oui! L'Oregon est un état du nord-ouest du Pacifique.
+    - title:
+        locales:
+          en: Washington, D.C.
+          fr: Washington, D.C.
+      id: item-2-option-4
+      is_answer: false
+      rationale:
+        locales:
+          en: Washington, D.C. is specifically mentioned in the U.S. Constitution as as a district administered by the federal government for the purpose of being the Seat of the Government of the United States. It lacks several of the rights states have, such as full representation in Congress.
+          fr: Washington, DC, est expressément mentionné dans la Constitution américaine comme un district administré par le gouvernement fédéral dans le but d’être le siège du gouvernement des États-Unis. Il manque plusieurs des droits des États, tels que la pleine représentation au Congrès.
+  - type: true-false
+    id: item-3
+    stem:
+      locales:
+        en: Direct democracy is a form of government where a single leader has ultimate ruling authority.
+        fr: La démocratie directe est une forme de gouvernement où un seul chef a l'autorité suprême.
+    answer: false
+    true_rationale:
+      locales:
+        en: Sorry! A single leader having ultimate authority describes an autocracy.
+        fr: Désolé! Un seul chef ayant l'autorité ultime décrit une autocratie.
+    false_rationale:
+      locales:
+        en: Right! That form of government would be closer to an autocracy, not democracy.
+        fr: C'est ça! Cette forme de gouvernement serait plus proche d'une autocratie, pas d'une démocratie.
+  - type: match
+    id: item-4
+    lead_in:
+      locales:
+        en: Match the following cities to their states.
+        fr: Faites correspondre les villes suivantes à leurs États.
+    stems:
+    - title:
+        locales:
+          en: San Francisco
+          fr: San Francisco
+      answer: item-4-option-0
+    - title:
+        locales:
+          en: Nashville
+          fr: Nashville
+      answer: item-4-option-1
+    options:
+    - id: item-4-option-0
+      title:
+        locales:
+          en: Tennessee
+          fr: Tennessee
+    - id: item-4-option-1
+      title:
+        locales:
+          en: California
+          fr: Californie

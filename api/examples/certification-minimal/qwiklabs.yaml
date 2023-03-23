@@ -1,0 +1,39 @@
+entity_type: Certification
+schema_version: 1
+
+default_locale: en
+
+title:
+  locales:
+    en: Basic Certification
+
+description:
+  locales:
+    en: An English description of a basic certification.
+
+audience:
+  locales:
+    en: The intended audience of a basic certification.
+
+prerequisites:
+  locales:
+    en: Prerequisites for a basic certification.
+
+credits: 80
+
+steps:
+- type: course_template
+  id: alexandria/course-template-1@1.0
+- type: course_template
+  id: alexandria/course-template-1
+- type: course_template
+  id: alexandria/course-template-2@1.0
+- type: exam
+  id: alexandria/exam-1
+  gated: true
+- type: course_template
+  id: alexandria/course-template-3@1.0
+- type: exam
+  id: alexandria/exam-2@1.0
+  proctor: qwiklabs-live-plus
+  gated: true
