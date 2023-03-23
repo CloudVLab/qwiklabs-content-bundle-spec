@@ -1,0 +1,154 @@
+entity_type: Lab
+schema_version: 1
+
+default_locale: en
+
+title:
+  locales:
+    en: Robust Lab Example
+    es: Ejemplo de Robust Lab
+
+description:
+  locales:
+    en: Seriously the best lab you've ever taken. Bar none.
+    es: En serio, el mejor lab que has tomado. Sin excepción.
+
+credits: 5
+duration: 60
+level: introductory
+tags:
+- sample
+- life-changing
+- gcp
+product_tags: ['app engine', 'kubernetes engine', 'cloud functions']
+role_tags: ['cloud architect', 'developers backend', 'developers frontend']
+domain_tags:
+- infrastructure
+- application development
+- data
+
+instruction:
+  type: markdown
+  locales:
+    en: "./instructions/en.md"
+    es: "./instructions/es.md"
+
+resources:
+- type: file
+  title:
+    locales:
+      en: Sample PDF
+      es: Ejemplo de PDF
+  description:
+    locales:
+      en: This PDF contains all of the code samples for the lab.
+      es: Este PDF contiene todos los ejemplos de código para el laboratorio.
+  uri:
+    locales:
+      en: "./resources/sample-en.pdf"
+      es: "./resources/sample-es.pdf"
+- type: video
+  id: intro-video
+  title:
+    locales:
+      en: Welcome to GCP!
+      es: ¡Bienvenido a GCP!
+  uri:
+    locales:
+      en: https://youtube.com/oHg5SJYRHA0
+      es: https://youtube.com/7jjoyy7_RCk
+  description:
+    locales:
+      en: Overview of Google Cloud Platform
+      es: Descripción general de Google Cloud Platform
+
+environment_resources:
+- type: gcp_project
+  id: my_primary_project
+  fleet: gcpfree
+  dm_script: dm.zip
+- type: gcp_user
+  id: user_0
+  permissions:
+  - project: project_0
+    roles:
+    - roles/editor
+    - roles/appengine.appAdmin
+    - roles/bigquery.admin
+    - roles/bigquery.user
+- type: gcp_user
+  id: gcp-only-user
+  variant: gcp_only
+- type: gcp_user
+  id: default-user
+  variant: default
+
+assessment:
+  name: 'BigQuery: Qwik Start - Web User Interface'
+  description: "This lab has following steps:\r\n\r\n1. Create a dataset\r\n2. Load
+    the data into a new table"
+  pass_percent: 75
+  notify: false
+  score_completion_only: false
+  steps:
+  - title: Create a new dataset
+    points: 5
+    max: 30
+    interval: 30
+    multi_region: false
+    api: GCP
+    services:
+    - BigqueryV2
+    method_name: steponecheck
+    code: |
+      def steponecheck(handles, points)
+        bq = handles[:BigqueryV2]
+        ret_hash = {done: false, score: 0}
+        datasets = bq.list_datasets&.datasets || []
+        if datasets.count > 0
+          ret_hash[:score] += 2
+          datasets.each do |dataset|
+            if dataset.dataset_reference.dataset_id == 'babynames'
+              ret_hash[:score] += 3
+            end
+          end
+        end
+        if ret_hash[:score] == points
+          ret_hash = { :done => true, :score => points }
+        end
+        ret_hash
+      end
+  - title: Upload the table
+    points: 5
+    max: 30
+    interval: 30
+    multi_region: false
+    api: GCP
+    services:
+    - BigqueryV2
+    method_name: steptwocheck
+    code: |
+      def steptwocheck(handles, points)
+        bq = handles[:BigqueryV2]
+        ret_hash = {done: false, score: 0}
+        datasets = bq.list_datasets&.datasets || []
+        if datasets.count > 0
+          datasets.each do |dataset|
+            if dataset.dataset_reference.dataset_id == 'babynames'
+              tables = bq.list_tables('babynames')&.tables || []
+              if tables.count > 0
+              ret_hash[:score] += 2
+                tables.each do |table|
+                  if table.table_reference.table_id == 'names_2014'
+                    ret_hash[:score] += 3
+                  end
+                end
+              end
+            end
+          end
+        end
+        if ret_hash[:score] == points
+          ret_hash = { :done => true, :score => points }
+        end
+        ret_hash
+      end

@@ -1,0 +1,51 @@
+schema_version: 1
+entity_type: GameTemplate
+
+id: my-library/basic-game-template
+default_locale: en
+
+title:
+  locales:
+    en: Fun Game
+
+resources:
+- type: video
+  id: a-resource
+  title:
+    locales:
+      en: Welcome to GCP!
+      es: ¡Bienvenido a GCP!
+  video_provider: YouTube
+  video_id:
+    locales:
+      en: oHg5SJYRHA0
+      es: 7jjoyy7_RCk
+  duration: 360
+
+modules:
+- id: my-module
+  title:
+    locales:
+      en: My Module
+      es: Mi módulo
+  steps:
+  - id: my-first-step
+    activity_options:
+    - type: lab
+      id: my-library/a-lab
+    - type: lab
+      id: my-other-library/another-lab
+  - id: my-second-step
+    activity_options:
+    - type: quiz
+      id: my-library/a-quiz
+- id: my-other-module
+  title:
+    locales:
+      en: My Other Module
+      es: Mi otro módulo
+  steps:
+  - id: my-other-step
+    activity_options:
+    - type: resource
+      id: a-resource

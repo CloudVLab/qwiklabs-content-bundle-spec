@@ -1,0 +1,23 @@
+entity_type: Lab
+schema_version: 1
+
+default_locale: en
+
+title:
+  locales:
+    en: Minialist Lab Example
+
+description:
+  locales:
+    en: Just the basics, nothing more.
+
+duration: 20
+level: introductory
+
+instruction:
+  type: html
+  locales:
+    en: './instruction.html'
+
+environment_resources:
+- type: gcp_project_and_user

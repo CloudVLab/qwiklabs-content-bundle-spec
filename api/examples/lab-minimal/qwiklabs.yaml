@@ -1,0 +1,36 @@
+entity_type: Lab
+schema_version: 2
+
+default_locale: en
+
+title:
+  locales:
+    en: Minimal Lab V2 Example
+
+description:
+  locales:
+    en: Just the basics, nothing more.
+
+duration: 20
+level: introductory
+
+instruction:
+  type: html
+  uri:
+    locales:
+      en: "./instructions/en.html"
+
+environment:
+  resources:
+  - type: gcp_project
+    id: my_primary_project
+    variant: gcpfree
+  - type: gcp_user
+    id: user_0
+    permissions:
+    - project: project_0
+      roles:
+      - roles/editor
+      - roles/appengine.appAdmin
+      - roles/bigquery.admin
+      - roles/bigquery.user

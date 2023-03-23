@@ -1,0 +1,1177 @@
+entity_type: CourseSurvey
+name: Google Cloud Learning | Evaluation
+slug: google-cloud-learning-evaluation-tga
+library: gcp-training-content
+locales:
+- locale: en
+  item_pools:
+  - group: core
+    items:
+    - stem: Overall, how satisfied or dissatisfied were you with this training?
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: 9b6fdc0970e654c33b8e4fc17d4474fb
+      optional: true
+      item_label:
+      - Very dissatisfied
+      - Somewhat dissatisfied
+      - Neither dissatisfied nor satisfied
+      - Somewhat satisfied
+      - Very satisfied
+      include_na: false
+    - stem: Please explain your answer to the question above, being as specific as
+        possible.
+      item_type: short_answer
+      position: 2
+      hint: ''
+      fingerprint: d8822f389c2af427db196d99cc3d7c63
+      optional: true
+      item_label: []
+      include_na: false
+    - stem: 'Please rate the distribution of the lecture (slide deck, reading(s),
+        video(s)) and interactive parts of the training (labs, hands-on activities
+        and/or group exercises):'
+      item_type: likert
+      position: 3
+      hint: ''
+      fingerprint: 5fa49520d2b0ccc49b174bbd600b28fa
+      optional: true
+      item_label:
+      - Too many interactive parts
+      - Slightly too many interactive parts
+      - Balanced between interactive parts and lectures
+      - Slightly too much lecture
+      - Too much lecture
+      include_na: true
+    - stem: The interactive parts of the training (labs, hands-on activities and/or
+        group exercises) increased my understanding of the subject matter.
+      item_type: likert
+      position: 4
+      hint: ''
+      fingerprint: 8ef68a8e9d969a31f921c2df46a559cd
+      optional: true
+      item_label:
+      - Strongly disagree
+      - Somewhat disagree
+      - Neither agree nor disagree
+      - Somewhat agree
+      - Strongly agree
+      include_na: true
+    - stem: The lecture parts (slide deck, reading(s), video(s)) of the training increased
+        my understanding of the subject matter.
+      item_type: likert
+      position: 5
+      hint: ''
+      fingerprint: 12983cc1a37b69fa227ac1414da48190
+      optional: true
+      item_label:
+      - Strongly disagree
+      - Somewhat disagree
+      - Neither agree nor disagree
+      - Somewhat agree
+      - Strongly agree
+      include_na: true
+    - stem: What additional feedback do you have about this course, such as what you
+        found valuable or want to see improved?
+      item_type: short_answer
+      position: 6
+      hint: ''
+      fingerprint: 9da4ede028e15ee93d223d02c41c9ef4
+      optional: true
+      item_label: []
+      include_na: false
+  - group: instructor_led
+    items:
+    - stem: 'Please rate the instructor’s communication skills: '
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: '058f7e893e730299d4545354cc94fcd7'
+      optional: true
+      item_label:
+      - Very bad
+      - Bad
+      - Average
+      - Good
+      - Very good
+      include_na: false
+    - stem: 'Please rate the instructor’s knowledge of the subject:'
+      item_type: likert
+      position: 2
+      hint: ''
+      fingerprint: 8ff52eb92f727aec7abc1e4c46aaf404
+      optional: true
+      item_label:
+      - Very bad
+      - Bad
+      - Average
+      - Good
+      - Very good
+      include_na: false
+  - group: on_demand
+    items: []
+- locale: es
+  item_pools:
+  - group: core
+    items:
+    - stem: En general, ¿cuál es su nivel de satisfacción con esta capacitación?
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: 9b6fdc0970e654c33b8e4fc17d4474fb
+      optional: true
+      item_label:
+      - Muy insatisfecho
+      - Algo insatisfecho
+      - Ni insatisfecho ni satisfecho
+      - Algo satisfecho
+      - Muy satisfecho
+      include_na: false
+    - stem: Explique su respuesta a la pregunta anterior; sea lo más específico posible
+      item_type: short_answer
+      position: 2
+      hint: ''
+      fingerprint: d8822f389c2af427db196d99cc3d7c63
+      optional: true
+      item_label: []
+      include_na: false
+    - stem: 'Califique la distribución de la clase (presentación de diapositivas,
+        lecturas, videos) y las partes interactivas de la capacitación (labs, actividades
+        prácticas o ejercicios en grupo):'
+      item_type: likert
+      position: 3
+      hint: ''
+      fingerprint: 5fa49520d2b0ccc49b174bbd600b28fa
+      optional: true
+      item_label:
+      - Demasiadas partes interactivas
+      - Apenas demasiadas partes interactivas
+      - Distribución equilibrada entre las partes interactivas y las clases
+      - Apenas demasiadas clases
+      - Demasiadas clases
+      include_na: true
+    - stem: Las partes interactivas de la capacitación (labs, actividades prácticas
+        o ejercicios en grupo) mejoraron mi comprensión del tema
+      item_type: likert
+      position: 4
+      hint: ''
+      fingerprint: 8ef68a8e9d969a31f921c2df46a559cd
+      optional: true
+      item_label:
+      - Totalmente en desacuerdo
+      - Algo en desacuerdo
+      - Ni de acuerdo ni en desacuerdo
+      - Algo de acuerdo
+      - Totalmente de acuerdo
+      include_na: true
+    - stem: Las clases de la capacitación (presentación de diapositivas, lecturas,
+        videos) mejoraron mi comprensión del tema
+      item_type: likert
+      position: 5
+      hint: ''
+      fingerprint: 12983cc1a37b69fa227ac1414da48190
+      optional: true
+      item_label:
+      - Totalmente en desacuerdo
+      - Algo en desacuerdo
+      - Ni de acuerdo ni en desacuerdo
+      - Algo de acuerdo
+      - Totalmente de acuerdo
+      include_na: true
+    - stem: "¿Qué comentarios adicionales tiene sobre este curso, como lo que consideró
+        valioso o desea ver mejorado?"
+      item_type: short_answer
+      position: 6
+      hint: ''
+      fingerprint: 9da4ede028e15ee93d223d02c41c9ef4
+      optional: true
+      item_label: []
+      include_na: false
+  - group: instructor_led
+    items:
+    - stem: 'Califique las habilidades comunicativas del instructor: '
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: '058f7e893e730299d4545354cc94fcd7'
+      optional: true
+      item_label:
+      - Muy malas
+      - Malas
+      - Promedio
+      - Buenas
+      - Muy buenas
+      include_na: false
+    - stem: 'Califique el conocimiento del instructor sobre el tema:'
+      item_type: likert
+      position: 2
+      hint: ''
+      fingerprint: 8ff52eb92f727aec7abc1e4c46aaf404
+      optional: true
+      item_label:
+      - Muy malo
+      - Malo
+      - Promedio
+      - Bueno
+      - Muy bueno
+      include_na: false
+  - group: on_demand
+    items: []
+- locale: fr
+  item_pools:
+  - group: core
+    items:
+    - stem: Globalement, êtes-vous satisfait ou non de cette formation?
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: 9b6fdc0970e654c33b8e4fc17d4474fb
+      optional: true
+      item_label:
+      - Très insatisfait
+      - Plutôt insatisfait
+      - Ni satisfait, ni insatisfait
+      - Plutôt satisfait
+      - Très satisfait
+      include_na: false
+    - stem: Veuillez expliquer votre réponse à la question ci-dessus, en étant aussi
+        précis que possible.
+      item_type: short_answer
+      position: 2
+      hint: ''
+      fingerprint: d8822f389c2af427db196d99cc3d7c63
+      optional: true
+      item_label: []
+      include_na: false
+    - stem: 'Évaluez l''équilibre entre les parties théoriques (présentation, lectures,
+        vidéos) et interactives (ateliers, activités pratiques et/ou exercices en
+        groupe) de la formation:'
+      item_type: likert
+      position: 3
+      hint: ''
+      fingerprint: 5fa49520d2b0ccc49b174bbd600b28fa
+      optional: true
+      item_label:
+      - Parties interactives trop importantes
+      - Parties interactives légèrement trop importantes
+      - Bon équilibre entre les parties théoriques et interactives
+      - Parties théoriques légèrement trop importantes
+      - Parties théoriques trop importantes
+      include_na: true
+    - stem: Les parties interactives de la formation (ateliers, activités pratiques
+        et/ou exercices en groupe) m'ont permis de mieux comprendre le sujet abordé.
+      item_type: likert
+      position: 4
+      hint: ''
+      fingerprint: 8ef68a8e9d969a31f921c2df46a559cd
+      optional: true
+      item_label:
+      - Pas du tout d'accord
+      - Pas vraiment d'accord
+      - Ni d'accord, ni pas d'accord
+      - Assez d'accord
+      - Tout à fait d'accord
+      include_na: true
+    - stem: Les parties théoriques (présentation, lectures, vidéos) de la formation
+        m'ont permis de mieux comprendre le sujet abordé.
+      item_type: likert
+      position: 5
+      hint: ''
+      fingerprint: 12983cc1a37b69fa227ac1414da48190
+      optional: true
+      item_label:
+      - Pas du tout d'accord
+      - Pas vraiment d'accord
+      - Ni d'accord, ni pas d'accord
+      - Assez d'accord
+      - Tout à fait d'accord
+      include_na: true
+    - stem: Avez-vous d'autres commentaires à faire sur ce cours, par exemple sur
+        ce que vous avez apprécié ou sur les éléments à améliorer?
+      item_type: short_answer
+      position: 6
+      hint: ''
+      fingerprint: 9da4ede028e15ee93d223d02c41c9ef4
+      optional: true
+      item_label: []
+      include_na: false
+  - group: instructor_led
+    items:
+    - stem: 'Veuillez évaluer les compétences de communication du formateur:'
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: '058f7e893e730299d4545354cc94fcd7'
+      optional: true
+      item_label:
+      - Très mauvaises
+      - Mauvaises
+      - Ni bonnes, ni mauvaises
+      - Bonnes
+      - Très bonnes
+      include_na: false
+    - stem: 'Évaluez les connaissances du formateur sur le sujet:'
+      item_type: likert
+      position: 2
+      hint: ''
+      fingerprint: 8ff52eb92f727aec7abc1e4c46aaf404
+      optional: true
+      item_label:
+      - Très mauvaises
+      - Mauvaises
+      - Ni bonnes, ni mauvaises
+      - Bonnes
+      - Très bonnes
+      include_na: false
+  - group: on_demand
+    items: []
+- locale: id
+  item_pools:
+  - group: core
+    items:
+    - stem: Secara keseluruhan, seberapa puas atau tidak puaskah Anda dengan pelatihan
+        ini?
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: 9b6fdc0970e654c33b8e4fc17d4474fb
+      optional: true
+      item_label:
+      - Sangat tidak puas
+      - Agak tidak puas
+      - Netral
+      - Agak puas
+      - Sangat puas
+      include_na: false
+    - stem: Mohon jelaskan jawaban Anda untuk pertanyaan di atas sedetail mungkin.
+      item_type: short_answer
+      position: 2
+      hint: ''
+      fingerprint: d8822f389c2af427db196d99cc3d7c63
+      optional: true
+      item_label: []
+      include_na: false
+    - stem: 'Mohon berikan nilai untuk distribusi bagian presentasi (dek slide, pembacaan,
+        video) dan bagian interaktif pelatihan (lab, aktivitas langsung, dan/atau
+        latihan kelompok):'
+      item_type: likert
+      position: 3
+      hint: ''
+      fingerprint: 5fa49520d2b0ccc49b174bbd600b28fa
+      optional: true
+      item_label:
+      - Terlalu banyak bagian interaktif
+      - Agak terlalu banyak bagian interaktif
+      - Bagian interaktif dan presentasi imbang
+      - Agak terlalu banyak presentasi
+      - Terlalu banyak presentasi
+      include_na: true
+    - stem: Bagian-bagian interaktif dari pelatihan (lab, aktivitas langsung, dan/atau
+        latihan kelompok) meningkatkan pemahaman saya tentang materi pokok.
+      item_type: likert
+      position: 4
+      hint: ''
+      fingerprint: 8ef68a8e9d969a31f921c2df46a559cd
+      optional: true
+      item_label:
+      - Sangat tidak setuju
+      - Agak tidak setuju
+      - Netral
+      - Agak setuju
+      - Sangat setuju
+      include_na: true
+    - stem: Bagian-bagian presentasi (dek slide, pembacaan, video) dari pelatihan
+        meningkatkan pemahaman saya tentang materi pokok.
+      item_type: likert
+      position: 5
+      hint: ''
+      fingerprint: 12983cc1a37b69fa227ac1414da48190
+      optional: true
+      item_label:
+      - Sangat tidak setuju
+      - Agak tidak setuju
+      - Netral
+      - Agak setuju
+      - Sangat setuju
+      include_na: true
+    - stem: Masukan apa lagi yang ingin Anda sampaikan untuk kursus ini, misalnya
+        hal yang menurut Anda penting atau yang perlu ditingkatkan?
+      item_type: short_answer
+      position: 6
+      hint: ''
+      fingerprint: 9da4ede028e15ee93d223d02c41c9ef4
+      optional: true
+      item_label: []
+      include_na: false
+  - group: instructor_led
+    items:
+    - stem: 'Mohon berikan nilai untuk kemampuan komunikasi instruktur:'
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: '058f7e893e730299d4545354cc94fcd7'
+      optional: true
+      item_label:
+      - Sangat buruk
+      - Buruk
+      - Cukup
+      - Baik
+      - Sangat baik
+      include_na: false
+    - stem: 'Mohon berikan nilai untuk pengetahuan instruktur tentang materi:'
+      item_type: likert
+      position: 2
+      hint: ''
+      fingerprint: 8ff52eb92f727aec7abc1e4c46aaf404
+      optional: true
+      item_label:
+      - Sangat buruk
+      - Buruk
+      - Cukup
+      - Baik
+      - Sangat baik
+      include_na: false
+  - group: on_demand
+    items: []
+- locale: it
+  item_pools:
+  - group: core
+    items:
+    - stem: Complessivamente, qual è il tuo grado di soddisfazione o insoddisfazione
+        riguardo a questo corso di formazione?
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: 9b6fdc0970e654c33b8e4fc17d4474fb
+      optional: true
+      item_label:
+      - Molto insoddisfatto
+      - Piuttosto insoddisfatto
+      - Né insoddisfatto né soddisfatto
+      - Piuttosto soddisfatto
+      - Molto soddisfatto
+      include_na: false
+    - stem: Motiva la tua risposta alla domanda precedente nel modo più dettagliato
+        possibile.
+      item_type: short_answer
+      position: 2
+      hint: ''
+      fingerprint: d8822f389c2af427db196d99cc3d7c63
+      optional: true
+      item_label: []
+      include_na: false
+    - stem: 'Valuta l''equilibrio tra lezione (diapositive, letture, video) e parti
+        interattive del corso di formazione (lab, attività pratiche e/o esercitazioni
+        di gruppo):'
+      item_type: likert
+      position: 3
+      hint: ''
+      fingerprint: 5fa49520d2b0ccc49b174bbd600b28fa
+      optional: true
+      item_label:
+      - Le parti interattive erano eccessivamente preponderanti
+      - Le parti interattive erano leggermente preponderanti
+      - Le parti interattive e la lezione erano equilibrate
+      - La lezione era leggermente preponderante
+      - La lezione era eccessivamente preponderante
+      include_na: true
+    - stem: Le parti interattive del corso di formazione (lab, attività pratiche e/o
+        esercitazioni di gruppo) hanno migliorato la mia comprensione dell’argomento
+        trattato.
+      item_type: likert
+      position: 4
+      hint: ''
+      fingerprint: 8ef68a8e9d969a31f921c2df46a559cd
+      optional: true
+      item_label:
+      - Totalmente in disaccordo
+      - Abbastanza in disaccordo
+      - Né in disaccordo né d'accordo
+      - Abbastanza d'accordo
+      - Totalmente d'accordo
+      include_na: true
+    - stem: Le parti del corso in cui veniva esposta la lezione (diapositive, letture,
+        video) hanno migliorato la mia comprensione degli argomenti trattati.
+      item_type: likert
+      position: 5
+      hint: ''
+      fingerprint: 12983cc1a37b69fa227ac1414da48190
+      optional: true
+      item_label:
+      - Totalmente in disaccordo
+      - Abbastanza in disaccordo
+      - Né in disaccordo né d'accordo
+      - Abbastanza d'accordo
+      - Totalmente d'accordo
+      include_na: true
+    - stem: Vuoi aggiungere il tuo feedback su questo corso, ad esempio cosa hai trovato
+        utile o quali miglioramenti andrebbero apportati?
+      item_type: short_answer
+      position: 6
+      hint: ''
+      fingerprint: 9da4ede028e15ee93d223d02c41c9ef4
+      optional: true
+      item_label: []
+      include_na: false
+  - group: instructor_led
+    items:
+    - stem: 'Valuta le competenze comunicative dell''istruttore:'
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: '058f7e893e730299d4545354cc94fcd7'
+      optional: true
+      item_label:
+      - Pessime
+      - Scarse
+      - Medie
+      - Buone
+      - Ottime
+      include_na: false
+    - stem: 'Valuta la conoscenza dell’argomento mostrata dall’istruttore:'
+      item_type: likert
+      position: 2
+      hint: ''
+      fingerprint: 8ff52eb92f727aec7abc1e4c46aaf404
+      optional: true
+      item_label:
+      - Pessime
+      - Scarse
+      - Medie
+      - Buone
+      - Ottime
+      include_na: false
+  - group: on_demand
+    items: []
+- locale: ja
+  item_pools:
+  - group: core
+    items:
+    - stem: このトレーニングの全体的な満足度を教えてください。
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: 9b6fdc0970e654c33b8e4fc17d4474fb
+      optional: true
+      item_label:
+      - 非常に不満
+      - やや不満
+      - どちらでもない
+      - やや満足
+      - 非常に満足
+      include_na: false
+    - stem: 質問 1 の回答を選択した理由について、できるだけ具体的にご記入ください。
+      item_type: short_answer
+      position: 2
+      hint: ''
+      fingerprint: d8822f389c2af427db196d99cc3d7c63
+      optional: true
+      item_label: []
+      include_na: false
+    - stem: トレーニングの講義部分（スライド、講義資料、動画）とインタラクティブな部分（ラボ、ハンズオン アクティビティ、グループ演習）の配分に対する評価を教えてください。
+      item_type: likert
+      position: 3
+      hint: ''
+      fingerprint: 5fa49520d2b0ccc49b174bbd600b28fa
+      optional: true
+      item_label:
+      - インタラクティブな部分が多すぎる
+      - インタラクティブな部分がやや多い
+      - インタラクティブな部分と講義部分のバランスが取れている
+      - 講義部分がやや多い
+      - 講義部分が多すぎる
+      include_na: true
+    - stem: トレーニングのインタラクティブな部分（ラボ、ハンズオン アクティビティ、グループ演習）は、対象分野の理解に役立ちましたか。
+      item_type: likert
+      position: 4
+      hint: ''
+      fingerprint: 8ef68a8e9d969a31f921c2df46a559cd
+      optional: true
+      item_label:
+      - ほとんどそう思わない
+      - あまりそう思わない
+      - どちらでもない
+      - ややそう思う
+      - かなりそう思う
+      include_na: true
+    - stem: トレーニングの講義部分（スライド、講義資料、動画）は、対象分野の理解に役立ちましたか。
+      item_type: likert
+      position: 5
+      hint: ''
+      fingerprint: 12983cc1a37b69fa227ac1414da48190
+      optional: true
+      item_label:
+      - ほとんどそう思わない
+      - あまりそう思わない
+      - どちらでもない
+      - ややそう思う
+      - かなりそう思う
+      include_na: true
+    - stem: その他に、このコースについてご意見があればご記入ください（役に立った点や改善が必要な点など）。
+      item_type: short_answer
+      position: 6
+      hint: ''
+      fingerprint: 9da4ede028e15ee93d223d02c41c9ef4
+      optional: true
+      item_label: []
+      include_na: false
+  - group: instructor_led
+    items:
+    - stem: 講師のコミュニケーション スキルに対する評価を教えてください。
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: '058f7e893e730299d4545354cc94fcd7'
+      optional: true
+      item_label:
+      - 非常に劣っている
+      - 劣っている
+      - 平均的
+      - 優れている
+      - 非常に優れている
+      include_na: false
+    - stem: 対象分野についての講師の知識に対する評価を教えてください。
+      item_type: likert
+      position: 2
+      hint: ''
+      fingerprint: 8ff52eb92f727aec7abc1e4c46aaf404
+      optional: true
+      item_label:
+      - 非常に劣っている
+      - 劣っている
+      - 平均的
+      - 優れている
+      - 非常に優れている
+      include_na: false
+  - group: on_demand
+    items: []
+- locale: ko
+  item_pools:
+  - group: core
+    items:
+    - stem: 전반적으로 이 교육에 얼마나 만족하셨나요?
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: 9b6fdc0970e654c33b8e4fc17d4474fb
+      optional: true
+      item_label:
+      - 매우 불만족스러움
+      - 다소 불만족스러움
+      - 만족스럽지도 불만족스럽지도 않음
+      - 다소 만족스러움
+      - 매우 만족스러움
+      include_na: false
+    - stem: 위의 질문에 제공해 주신 답변에 관해 가능한 한 자세히 설명해 주시기 바랍니다.
+      item_type: short_answer
+      position: 2
+      hint: ''
+      fingerprint: d8822f389c2af427db196d99cc3d7c63
+      optional: true
+      item_label: []
+      include_na: false
+    - stem: 고육에서 강의(슬라이드 자료, 읽기 자료, 동영상) 및 상호작용형 요소(실험실, 실습 활동, 그룹 연습) 가 얼마나 잘 배분되었는지
+        평가해 주세요.
+      item_type: likert
+      position: 3
+      hint: ''
+      fingerprint: 5fa49520d2b0ccc49b174bbd600b28fa
+      optional: true
+      item_label:
+      - 상호작용형 요소가 너무 많음
+      - 상호작용형 요소가 다소 많음
+      - 상호작용형 요소와 강의가 균형을 이룸
+      - 강의가 다소 많음
+      - 강의가 너무 많음
+      include_na: true
+    - stem: 교육에서 상호작용형 요소(실험실, 실습 활동, 그룹 연습) 덕분에 주제를 더욱 효과적으로 이해할 수 있었습니다.
+      item_type: likert
+      position: 4
+      hint: ''
+      fingerprint: 8ef68a8e9d969a31f921c2df46a559cd
+      optional: true
+      item_label:
+      - 매우 동의하지 않음
+      - 다소 동의하지 않음
+      - 동의하지도 동의하지 않지도 않음
+      - 다소 동의함
+      - 매우 동의함
+      include_na: true
+    - stem: 교육에서 강의 요소(슬라이드 자료, 읽기 자료, 동영상) 덕분에 주제를 더욱 효과적으로 이해할 수 있었습니다.
+      item_type: likert
+      position: 5
+      hint: ''
+      fingerprint: 12983cc1a37b69fa227ac1414da48190
+      optional: true
+      item_label:
+      - 매우 동의하지 않음
+      - 다소 동의하지 않음
+      - 동의하지도 동의하지 않지도 않음
+      - 다소 동의함
+      - 매우 동의함
+      include_na: true
+    - stem: 이 강의와 관련해 다른 의견이 있으신가요? 강의에서 좋았던 점이나 개선이 필요한 점 등을 알려 주세요.
+      item_type: short_answer
+      position: 6
+      hint: ''
+      fingerprint: 9da4ede028e15ee93d223d02c41c9ef4
+      optional: true
+      item_label: []
+      include_na: false
+  - group: instructor_led
+    items:
+    - stem: 강사의 커뮤니케이션 기술을 평가해 주세요.
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: '058f7e893e730299d4545354cc94fcd7'
+      optional: true
+      item_label:
+      - 매우 나쁨
+      - 나쁨
+      - 보통
+      - 좋음
+      - 매우 좋음
+      include_na: false
+    - stem: 강사가 주제에 관해 얼마나 풍부한 지식을 갖고 있는지 평가해 주세요.
+      item_type: likert
+      position: 2
+      hint: ''
+      fingerprint: 8ff52eb92f727aec7abc1e4c46aaf404
+      optional: true
+      item_label:
+      - 매우 나쁨
+      - 나쁨
+      - 보통
+      - 좋음
+      - 매우 좋음
+      include_na: false
+  - group: on_demand
+    items: []
+- locale: pl
+  item_pools:
+  - group: core
+    items:
+    - stem: Ogólnie rzecz biorąc, czy szkolenie było satysfakcjonujące?
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: 9b6fdc0970e654c33b8e4fc17d4474fb
+      optional: true
+      item_label:
+      - Zdecydowanie niesatysfakcjonujące
+      - Raczej niesatysfakcjonujące
+      - Ani satysfakcjonujące, ani niesatysfakcjonujące
+      - Dość satysfakcjonujące
+      - Zdecydowanie satysfakcjonujące
+      include_na: false
+    - stem: Rozwiń swoją odpowiedź do poprzedniego pytania tak szczegółowo, na ile
+        to możliwe.
+      item_type: short_answer
+      position: 2
+      hint: ''
+      fingerprint: d8822f389c2af427db196d99cc3d7c63
+      optional: true
+      item_label: []
+      include_na: false
+    - stem: Oceń proporcje między wykładami [pokaz(y) slajdów, tekst(y), wideo] a
+        częściami interaktywnymi szkolenia (moduły, zadania praktyczne lub ćwiczenia
+        grupowe).
+      item_type: likert
+      position: 3
+      hint: ''
+      fingerprint: 5fa49520d2b0ccc49b174bbd600b28fa
+      optional: true
+      item_label:
+      - Zdecydowanie za dużo części interaktywnych
+      - Nieco za dużo części interaktywnych
+      - Wyważone proporcje między częściami interaktywnymi a wykładami
+      - Nieco za dużo wykładów
+      - Zdecydowanie za dużo wykładów
+      include_na: true
+    - stem: Interaktywne części szkolenia (moduły, zadania praktyczne lub ćwiczenia
+        grupowe) pomogły mi w lepszym zrozumieniu zagadnienia.
+      item_type: likert
+      position: 4
+      hint: ''
+      fingerprint: 8ef68a8e9d969a31f921c2df46a559cd
+      optional: true
+      item_label:
+      - Zdecydowanie się nie zgadzam
+      - Częściowo się nie zgadzam
+      - Ani się zgadzam, ani się nie zgadzam
+      - Częściowo się zgadzam
+      - Zdecydowanie się zgadzam
+      include_na: true
+    - stem: Części szkolenia w formie wykładów [pokaz(y) slajdów, tekst(y), wideo]
+        pomogły mi w lepszym zrozumieniu zagadnienia.
+      item_type: likert
+      position: 5
+      hint: ''
+      fingerprint: 12983cc1a37b69fa227ac1414da48190
+      optional: true
+      item_label:
+      - Zdecydowanie się nie zgadzam
+      - Częściowo się nie zgadzam
+      - Ani się zgadzam, ani się nie zgadzam
+      - Częściowo się zgadzam
+      - Zdecydowanie się zgadzam
+      include_na: true
+    - stem: Czy masz dodatkowe uwagi do tego szkolenia? Czy któreś elementy były szczególnie
+        wartościowe albo wymagają ulepszenia?
+      item_type: short_answer
+      position: 6
+      hint: ''
+      fingerprint: 9da4ede028e15ee93d223d02c41c9ef4
+      optional: true
+      item_label: []
+      include_na: false
+  - group: instructor_led
+    items:
+    - stem: Oceń poziom komunikatywności prowadzącego.
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: '058f7e893e730299d4545354cc94fcd7'
+      optional: true
+      item_label:
+      - Bardzo niski
+      - Niski
+      - Przeciętny
+      - Wysoki
+      - Bardzo wysoki
+      include_na: false
+    - stem: Oceń poziom wiedzy prowadzącego z zakresu omawianej dziedziny.
+      item_type: likert
+      position: 2
+      hint: ''
+      fingerprint: 8ff52eb92f727aec7abc1e4c46aaf404
+      optional: true
+      item_label:
+      - Bardzo niski
+      - Niski
+      - Przeciętny
+      - Wysoki
+      - Bardzo wysoki
+      include_na: false
+  - group: on_demand
+    items: []
+- locale: pt_BR
+  item_pools:
+  - group: core
+    items:
+    - stem: De maneira geral, o quanto você está satisfeito ou insatisfeito com este
+        treinamento?
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: 9b6fdc0970e654c33b8e4fc17d4474fb
+      optional: true
+      item_label:
+      - Muito insatisfeito
+      - Um pouco insatisfeito
+      - Nem insatisfeito nem satisfeito
+      - Um pouco satisfeito
+      - Muito satisfeito
+      include_na: false
+    - stem: Explique sua resposta à pergunta acima da maneira mais específica possível.
+      item_type: short_answer
+      position: 2
+      hint: ''
+      fingerprint: d8822f389c2af427db196d99cc3d7c63
+      optional: true
+      item_label: []
+      include_na: false
+    - stem: 'Avalie a distribuição das lições (apresentação, leituras, vídeos) e das
+        partes interativas do treinamento (laboratórios, atividades práticas e/ou
+        exercícios em grupo):'
+      item_type: likert
+      position: 3
+      hint: ''
+      fingerprint: 5fa49520d2b0ccc49b174bbd600b28fa
+      optional: true
+      item_label:
+      - Grande excesso de partes interativas
+      - Algum excesso de partes interativas
+      - Equilíbrio entre partes interativas e lições
+      - Algum excesso de lições
+      - Grande excesso de lições
+      include_na: true
+    - stem: As partes interativas do treinamento (laboratórios, atividades práticas
+        e/ou exercícios em grupo) melhoraram meu entendimento do assunto.
+      item_type: likert
+      position: 4
+      hint: ''
+      fingerprint: 8ef68a8e9d969a31f921c2df46a559cd
+      optional: true
+      item_label:
+      - Discordo totalmente
+      - Discordo parcialmente
+      - Nem concordo nem discordo
+      - Concordo parcialmente
+      - Concordo totalmente
+      include_na: true
+    - stem: A parte das lições (apresentação, leituras, vídeos) do treinamento melhorou
+        meu entendimento do assunto.
+      item_type: likert
+      position: 5
+      hint: ''
+      fingerprint: 12983cc1a37b69fa227ac1414da48190
+      optional: true
+      item_label:
+      - Discordo totalmente
+      - Discordo parcialmente
+      - Nem concordo nem discordo
+      - Concordo parcialmente
+      - Concordo totalmente
+      include_na: true
+    - stem: Você tem outro feedback sobre este curso, como pontos que considerou positivos
+        ou que precisam melhorar?
+      item_type: short_answer
+      position: 6
+      hint: ''
+      fingerprint: 9da4ede028e15ee93d223d02c41c9ef4
+      optional: true
+      item_label: []
+      include_na: false
+  - group: instructor_led
+    items:
+    - stem: 'Avalie as habilidades de comunicação do instrutor:'
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: '058f7e893e730299d4545354cc94fcd7'
+      optional: true
+      item_label:
+      - Muito ruins
+      - Ruins
+      - Médias
+      - Boas
+      - Muito boas
+      include_na: false
+    - stem: 'Avalie o conhecimento do instrutor sobre o assunto:'
+      item_type: likert
+      position: 2
+      hint: ''
+      fingerprint: 8ff52eb92f727aec7abc1e4c46aaf404
+      optional: true
+      item_label:
+      - Muito ruim
+      - Ruim
+      - Médio
+      - Bom
+      - Muito bom
+      include_na: false
+  - group: on_demand
+    items: []
+- locale: tr
+  item_pools:
+  - group: core
+    items:
+    - stem: Genel olarak bu eğitimden ne derece memnun kalıp kalmadığınızı belirtin.
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: 9b6fdc0970e654c33b8e4fc17d4474fb
+      optional: true
+      item_label:
+      - Hiç memnun kalmadım
+      - Kısmen memnun kalmadım
+      - Ne memnun kaldım ne de memnun kalmadım
+      - Kısmen memnun kaldım
+      - Çok memnun kaldım
+      include_na: false
+    - stem: Lütfen yukarıdaki soruya verdiğiniz yanıtı olabildiğince ayrıntılı olarak
+        açıklayın.
+      item_type: short_answer
+      position: 2
+      hint: ''
+      fingerprint: d8822f389c2af427db196d99cc3d7c63
+      optional: true
+      item_label: []
+      include_na: false
+    - stem: 'Lütfen dersler (slayt sunusu, okumalar, videolar) ile eğitimin interaktif
+        bölümlerinin (laboratuvarlar, uygulamalı aktiviteler ve/veya grup alıştırmaları)
+        dağılımını değerlendirin:'
+      item_type: likert
+      position: 3
+      hint: ''
+      fingerprint: 5fa49520d2b0ccc49b174bbd600b28fa
+      optional: true
+      item_label:
+      - Çok fazla interaktif bölüm vardı
+      - Nispeten fazla interaktif bölüm vardı
+      - İnteraktif bölümler ile derslerin dağılımı dengeliydi
+      - Nispeten fazla ders vardı
+      - Çok fazla ders vardı
+      include_na: true
+    - stem: Eğitimin interaktif bölümleri (laboratuvarlar, uygulamalı aktiviteler
+        ve/veya grup alıştırmaları) ilgili konu hakkında anlayışımı güçlendirdi.
+      item_type: likert
+      position: 4
+      hint: ''
+      fingerprint: 8ef68a8e9d969a31f921c2df46a559cd
+      optional: true
+      item_label:
+      - Kesinlikle katılmıyorum
+      - Kısmen katılmıyorum
+      - Ne katılıyorum ne de katılmıyorum
+      - Kısmen katılıyorum
+      - Kesinlikle katılıyorum
+      include_na: true
+    - stem: Eğitimdeki ders bölümleri (slayt sunusu, okumalar, videolar) ilgili konu
+        hakkında anlayışımı güçlendirdi.
+      item_type: likert
+      position: 5
+      hint: ''
+      fingerprint: 12983cc1a37b69fa227ac1414da48190
+      optional: true
+      item_label:
+      - Kesinlikle katılmıyorum
+      - Kısmen katılmıyorum
+      - Ne katılıyorum ne de katılmıyorum
+      - Kısmen katılıyorum
+      - Kesinlikle katılıyorum
+      include_na: true
+    - stem: Bu kursla ilgili başka hangi geri bildirimlerde (ör. değerli bulduğunuz
+        veya iyileştirilmesini istediğiniz noktalar) bulunmak istersiniz?
+      item_type: short_answer
+      position: 6
+      hint: ''
+      fingerprint: 9da4ede028e15ee93d223d02c41c9ef4
+      optional: true
+      item_label: []
+      include_na: false
+  - group: instructor_led
+    items:
+    - stem: 'Lütfen eğitmeninizin iletişim becerilerini derecelendirin:'
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: '058f7e893e730299d4545354cc94fcd7'
+      optional: true
+      item_label:
+      - Çok kötü
+      - Kötü
+      - Normal
+      - İyi
+      - Çok iyi
+      include_na: false
+    - stem: 'Lütfen eğitmeninizin ilgili konu hakkında bilgisini derecelendirin:'
+      item_type: likert
+      position: 2
+      hint: ''
+      fingerprint: 8ff52eb92f727aec7abc1e4c46aaf404
+      optional: true
+      item_label:
+      - Çok kötü
+      - Kötü
+      - Normal
+      - İyi
+      - Çok iyi
+      include_na: false
+  - group: on_demand
+    items: []
+- locale: zh
+  item_pools:
+  - group: core
+    items:
+    - stem: 总体而言，您对本次培训的满意度如何？
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: 9b6fdc0970e654c33b8e4fc17d4474fb
+      optional: true
+      item_label:
+      - 非常不满意
+      - 不太满意
+      - 说不好
+      - 还算满意
+      - 非常满意
+      include_na: false
+    - stem: 请阐述一下您对上述问题的回答，越具体越好。
+      item_type: short_answer
+      position: 2
+      hint: ''
+      fingerprint: d8822f389c2af427db196d99cc3d7c63
+      optional: true
+      item_label: []
+      include_na: false
+    - stem: 请对培训中讲座部分（幻灯片、阅读材料、视频）和互动部分（实验、实操活动和/或小组练习）的分配情况进行评价：
+      item_type: likert
+      position: 3
+      hint: ''
+      fingerprint: 5fa49520d2b0ccc49b174bbd600b28fa
+      optional: true
+      item_label:
+      - 互动部分过多
+      - 互动部分有点多
+      - 互动和讲座部分分配均衡
+      - 讲座部分有点多
+      - 讲座部分过多
+      include_na: true
+    - stem: 培训的互动部分（实验、实操活动和/或小组练习）加深了我对培训主题的理解。
+      item_type: likert
+      position: 4
+      hint: ''
+      fingerprint: 8ef68a8e9d969a31f921c2df46a559cd
+      optional: true
+      item_label:
+      - 非常不赞同
+      - 不太赞同
+      - 说不好
+      - 比较赞同
+      - 非常赞同
+      include_na: true
+    - stem: 培训的讲座部分（幻灯片、阅读材料、视频）加深了我对培训主题的理解。
+      item_type: likert
+      position: 5
+      hint: ''
+      fingerprint: 12983cc1a37b69fa227ac1414da48190
+      optional: true
+      item_label:
+      - 非常不赞同
+      - 不太赞同
+      - 说不好
+      - 比较赞同
+      - 非常赞同
+      include_na: true
+    - stem: 对于本课程，您还有什么其他反馈？例如：您觉得什么地方比较有价值，或者什么地方需要改进？
+      item_type: short_answer
+      position: 6
+      hint: ''
+      fingerprint: 9da4ede028e15ee93d223d02c41c9ef4
+      optional: true
+      item_label: []
+      include_na: false
+  - group: instructor_led
+    items:
+    - stem: 请对讲师的沟通技能进行评价：
+      item_type: likert
+      position: 1
+      hint: ''
+      fingerprint: '058f7e893e730299d4545354cc94fcd7'
+      optional: true
+      item_label:
+      - 非常差
+      - 差
+      - 一般
+      - 好
+      - 非常好
+      include_na: false
+    - stem: 请评价讲师对培训主题的了解：
+      item_type: likert
+      position: 2
+      hint: ''
+      fingerprint: 8ff52eb92f727aec7abc1e4c46aaf404
+      optional: true
+      item_label:
+      - 非常差
+      - 差
+      - 一般
+      - 好
+      - 非常好
+      include_na: false
+  - group: on_demand
+    items: []
