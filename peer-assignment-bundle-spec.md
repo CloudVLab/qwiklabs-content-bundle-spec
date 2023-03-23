@@ -22,6 +22,8 @@ duration: 120
 instruction: ...
 
 prompts: ...
+
+exemplars: ...
 ```
 
 Note that all of the main chunks of localized content (title, review_criteria,
@@ -60,6 +62,7 @@ objectives             |          | string            | Objectives of the assign
 duration               | ✓        | integer           | Estimated amount of time it should take an average learner to complete the assignment (in minutes)
 passing_score          |          | integer           | If none, default is 0
 prompts                | ✓        | array             | See [below](#prompt)
+exemplars              |          | array             | See [below](#exemplar)
 
 ### Instructions
 
@@ -126,7 +129,9 @@ attribute      | required | type              | notes
 id             | ✓        | string            | A unique identifier for this module
 stem           | ✓        | string            | Prompt text
 response_types | ✓        | enum   | One of: "url", "file_upload", "rich_text"
-rubric_items   | ✓        | array  | Array of rubric items. See [below](#rubric_item) 
+rubric_items   | ✓        | array  | Array of rubric items. See [below](#rubric_item)
+
+Note: We do not allow more than 2 prompts in one peer assignment.
 
 ### Rubric Item
 
@@ -178,3 +183,24 @@ attribute    | required | type              | notes
 id           | ✓        | string            | A unique identifier for this option.
 title        | ✓        | string            | e.g. _"The email includes 2-3 of these elements."_
 points       | ✓        | integer           |
+
+### Exemplar
+
+An exemplar is a sample answer for the prompts in this assignment:
+
+attribute       | required | type              | notes
+--------------  | -------- | ----------------- | -----
+id              | ✓        | string            | A unique identifier for this examplar
+prompt_responses| ✓        | array             | Array of prompt response. See [below](#prompt_response)
+
+
+### Prompt Response
+
+A prompt response is a sample answer for the prompt. The number of prompt
+responses is the same as the number of prompts.
+
+attribute      | required | type              | notes
+-------------- | -------- | ----------------- | -----
+id             | ✓        | string            | A unique identifier for this prompt response, which corresponding to the same order of prompt id.
+response_type  | ✓        | enum              | One of: "url", "rich_text"
+response_content | ✓        | string            | url link or free text content

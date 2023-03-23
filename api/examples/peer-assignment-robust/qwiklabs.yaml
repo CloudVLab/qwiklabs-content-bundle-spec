@@ -37,6 +37,7 @@ prompts:
       es: Cargue el guión gráfico general.
   response_types:
   - file_upload
+  - url
   rubric_items:
   - type: multiple-choice
     id: prompt-1-rubric-1
@@ -119,3 +120,20 @@ prompts:
       locales:
         en: Provide feedback on the close-up storyboard.
         es: Proporcione comentarios sobre el guión gráfico de primer plano.
+
+exemplars:
+- id: examplar-1
+  prompt_responses:
+  - id: prompt-response-1
+    response_type: url
+    response_content:
+      locales:
+        en: http://www.google.com
+        es: http://www.google.com
+
+  - id: prompt-response-2
+    response_type: rich_text
+    response_content:
+      locales:
+        en: This is my rich text answer
+        es: This is my rich text answer in Spanish

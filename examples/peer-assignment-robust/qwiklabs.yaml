@@ -1,0 +1,81 @@
+entity_type: PeerAssignment
+schema_version: 1
+
+default_locale: en
+
+title: Robust Peer Assignment Example
+
+review_criteria: Just the basics, nothing more.
+
+duration: 120
+
+instruction:
+  type: html
+  uri: "./instructions/en.html"
+
+objectives: Learn how to do a peer assignment.
+
+passing_score: 5
+
+prompts:
+- id: prompt-1
+  stem: Upload a big picture storyboard.
+  response_types:
+  - file_upload
+  - url
+  rubric_items:
+  - type: multiple-choice
+    id: prompt-1-rubric-1
+    stem: The template is filled out.
+    options:
+    - id: prompt-1-rubric-1-option-1
+      title: 0 parts of the template are filled out.
+      points: 0
+    - id: prompt-1-rubric-1-option-2
+      title: Some parts of the template are filled out.
+      points: 1
+    - id: prompt-1-rubric-1-option-3
+      title: All parts of the template are filled out.
+      points: 2
+  - type: true-false
+    id: prompt-1-rubric-2
+    stem: The big picture storyboard is clearly focused on a user.
+    true_points: 1
+    false_points: 0
+- id: prompt-2
+  stem: Upload a close-up storyboard.
+  response_types:
+  - file_upload
+  - url
+  rubric_items:
+  - type: multiple-choice
+    id: prompt-2-rubric-1
+    stem: The template is filled out.
+    options:
+    - id: prompt-2-rubric-1-option-1
+      title: 0 parts of the template are filled out.
+      points: 0
+    - id: prompt-2-rubric-1-option-2
+      title: Some parts of the template are filled out.
+      points: 1
+    - id: prompt-2-rubric-1-option-3
+      title: All parts of the template are filled out.
+      points: 2
+  - type: true-false
+    id: prompt-2-rubric-2
+    stem: The close-up storyboard is clearly focused on a user.
+    true_points: 1
+    false_points: 0
+  - type: ungraded-text
+    id: prompt-2-rubric-3
+    stem: Provide feedback on the close-up storyboard.
+
+exemplars:
+- id: examplar-1
+  prompt_responses:
+  - id: prompt-response-1
+    response_type: url
+    response_content: http://www.google.com
+  - id: prompt-response-2
+    response_type: rich_text
+    response_content: This is my rich text answer
