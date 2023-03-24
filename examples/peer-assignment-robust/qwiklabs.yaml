@@ -74,8 +74,10 @@ exemplars:
 - id: examplar-1
   prompt_responses:
   - id: prompt-response-1
+    prompt_id: prompt-1
     response_type: url
     response_content: http://www.google.com
   - id: prompt-response-2
+    prompt_id: prompt-2
     response_type: rich_text
     response_content: This is my rich text answer
