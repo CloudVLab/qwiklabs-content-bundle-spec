@@ -1,4 +1,0 @@
-# Most of the PRs into this repo are done by copybara.
-# Automatically assign some folks to them. Copybara PRs can touch any file,
-# so we have to check at the root level.
-* @akefeli @davetchen

@@ -201,6 +201,7 @@ responses is the same as the number of prompts.
 
 attribute      | required | type              | notes
 -------------- | -------- | ----------------- | -----
-id             | ✓        | string            | A unique identifier for this prompt response, which corresponding to the same order of prompt id.
+id             | ✓        | string            | A unique identifier for this prompt response.
+prompt_id      | ✓        | string            | Corresponding prompt id.
 response_type  | ✓        | enum              | One of: "url", "rich_text"
 response_content | ✓        | string            | url link or free text content
