@@ -139,7 +139,7 @@ Rubric items are used for peers to evaluate other learner submission. Rubric ite
 
 * `multiple-choice`
 * `true-false`
-* `ungraded-text`
+* `reflective-text`
 
 #### multiple-choice Rubric Item
 
@@ -164,14 +164,14 @@ stem         | ✓        | string            | e.g. _"All parts of the big pict
 true_points  | ✓        | integer           | Usually 1
 false_points | ✓        | integer           | Usually 0
 
-#### ungraded-text Rubric Item
+#### reflective-text Rubric Item
 
-A rubric item that has an ungraded text question, associated with no points.
+A rubric item that has an reflective text question, associated with no points.
 
 attribute    | required | type              | notes
 ------------ | -------- | ----------------- | -----
 id           | ✓        | string            | A unique identifier for this item.
-type         | ✓        | enum              | The item type, which is always `ungraded-text`
+type         | ✓        | enum              | The item type, which is always `reflective-text`
 stem         | ✓        | string            | e.g. _"Provide constructive feedback for your classmates on their submission."_
 
 ### Option

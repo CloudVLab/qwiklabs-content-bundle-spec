@@ -114,7 +114,7 @@ prompts:
         es: El guión gráfico de primer plano está claramente centrado en un usuario.
     true_points: 1
     false_points: 0
-  - type: ungraded-text
+  - type: reflective-text
     id: prompt-2-rubric-3
     stem:
       locales:
