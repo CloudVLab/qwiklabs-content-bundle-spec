@@ -848,7 +848,10 @@ student_files       |          | path | Relative path to a directory student fil
 ###### Student Files
 
 Student files specified in the qwiklabs.yaml will be added to the directory
-`/home/jovyan/work`. This work folder is viewable in the Jupyter Notebook.
+`/home/jovyan`. This folder is viewable in the Jupyter Notebook.
+
+For notebooks that require activity tracking, all files accessed by the
+notebook must be placed in the `/home/jovyan` directory with no subdirectories.
 
 <!-- TODO(b/273306870): Replace the jovyan work directory with a qwiklabs work directory. -->
 
@@ -856,6 +859,16 @@ Student files specified in the qwiklabs.yaml will be added to the directory
 
 Startup scripts are executed from `/home/jovyan` which is the directory where
 Jupyter Notebook is installed.
+
+Startup scripts are run as root, but the student accesses the notebook as the
+unprivileged Jovyan user. Thus, if your startup script creates any files or
+directories you want students to have access to, you must adjust the permissions
+of those files/directories. To ensure students have full access to all of the
+contents of `/home/jovyan`, add the following command at the end of your script:
+
+<!--* pragma: { seclinter_this_is_fine: true } *-->
+`chmod -R 777 ~jovyan`
+<!--* pragma: { seclinter_this_is_fine: false } *-->
 
 ###### File open on startup
 
