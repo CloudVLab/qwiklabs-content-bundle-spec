@@ -339,8 +339,30 @@ Result (lab started, same as the previous example):
 
 ![example preview](./images/ql-variable-03.png)
 
-### `<ql-activity-tracking>`
+## `<ql-hint>`
 
+Renders the content contained in the tags as a button labeled "Need a Hint?".
+When the lab is running, the learner can click the button to view the content
+contained within. `<ql-hint>` tags work with most pieces of the static content
+without any additional work, however we currently do not support dynamic content,
+including any activity tracking or `<ql-variable>` tags.
+
+In particular: images, fragments and code blocks work just fine.
+
+### Attributes for `<ql-hint>`
+
+None
+
+### Example
+
+```Here is the description of a task you should do
+
+<ql-hint>
+And here, we go into depth about how to do it specifically
+</ql-hint>
+```
+
+## `<ql-activity-tracking>`
 TODO: add documentation
 
 ### `<ql-multiple-choice-probe>`
@@ -378,16 +400,17 @@ a YouTube video ID.
 
 Details:
 
-Attribute | Type    | Required | Description
---------- | ------- | -------- | -----------
-src       | string  | true*    | A URL that leads directly to a video file.
-youtubeId | string  | true*    | The ID of the YouTube video to embed. <br/> (the part of the URL after `?v=`)
-width     | integer | false    | Display width of the video, in pixels.
-height    | integer | false    | Display height of the video, in pixels.
-loop      | boolean | false    | Whether to loop this video automatically.
-autoplay  | boolean | false    | Whether to play this video immediately on page load.
-controls  | boolean | false    | Whether to show video playback and volume controls. <br/> Only applicable to videos using `src`.
-lang      | string  | false    | Subtitle preference for YouTube videos (2-letter language code)
+Attribute | Type | Required | Description
+--- | --- | --- | ---
+src | string | true* | A URL that leads directly to a video file.
+youtubeId | string | true* | The ID of the YouTube video to embed. <br/> (the part of the URL after `?v=`)
+width | integer | false | Display width of the video, in pixels.
+height | integer | false | Display height of the video, in pixels.
+loop | boolean | false | Whether to loop this video automatically.
+autoplay | boolean | false | Whether to play this video immediately on page load.
+controls | boolean | false | Whether to show video playback and volume controls. <br/> Only applicable to videos using `src`.
+lang | string | false | Subtitle preference for YouTube videos (2-letter language code)
+
 
 \* One of `src` or `youtubeId` must be present, but not both.
 
