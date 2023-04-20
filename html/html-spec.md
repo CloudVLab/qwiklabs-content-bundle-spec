@@ -53,7 +53,7 @@ Renders pre-formatted and syntax-highlighted code blocks.
 *   `noWrap: boolean`
 
     By default, code blocks wrap their contents. Setting this attribute will
-    make code blocks *not* wrap text within themselves. Instead, a horizontal
+    make code blocks _not_ wrap text within themselves. Instead, a horizontal
     scrollbar will appear to view the full contents.
 
 *   `tabTitle: string|null`
@@ -76,11 +76,6 @@ Renders pre-formatted and syntax-highlighted code blocks.
     code-block does not have a copy button, and has different styling.
 
     Use this property to set this block as "output", instead of "input".
-
-*   `templated: boolean`
-
-    Allows the use of templated variables in this code block. See
-    [Templated Variables](#templated-variables) below.
 
 #### Indentation
 
@@ -136,90 +131,6 @@ Would be rendered as:
   }
 ```
 
-#### Escaping Content
-
-The contents of code blocks must be
-[HTML-escaped](https://www.w3.org/International/questions/qa-escapes#use) in
-order to render correctly.
-
-This is most relevant for HTML/XML content, for example:
-
-```html
-<ql-code-block language="html">
-&lt;h1&gt;What is a monad?&lt;/h1&gt;
-&lt;p&gt;A monad is just a monoid in the category of endofunctors.&lt;/p&gt;
-&lt;img src="monad.png" alt="Monad diagram"&gt;
-</ql-code-block>
-```
-
-will render as:
-
-![example preview](./images/ql-code-block-01.png)
-
-#### Templated Variables
-
-Much like [\<ql-variable>](#ql-variable), Lab outputs such as usernames,
-passwords, project IDs, etc. can be rendered directly within code blocks using
-the `templated` attribute.
-
-Code blocks marked as `templated` will allow the usage of triple curly braces
-within the code content. The curly braces must contain the output `key` to be
-rendered, and optionally may contain a `placeholder` that is rendered before the
-lab is started and data is available.
-
-```
-{{{key}}}
-{{{key|placeholder}}}
-```
-
-For example, say you want to use the user's username and password in a snippet
-of Python. See the following example:
-
-```html
-<ql-code-block language="python" templated>
-def init_api():
-  # Logs into Cool API with your username {{{user_1.username}}}
-  api = CoolApi.login(
-    '{{{user_1.username|your_username}}}',
-    '{{{user_1.username|your_password}}}',
-  )
-  return api
-</ql-code-block>
-```
-
-When the lab page is first opened, only the placeholders will be shown:
-
-![example preview](./images/ql-code-block-02.png)
-
-After the lab has been started and provisioned, the code block will be updated
-to include the lab outputs:
-
-![example preview](./images/ql-code-block-03.png)
-
-### Markdown Syntax (GitHub integration only)
-
-Code blocks can be rendered with Markdown using triple back ticks:
-
-~~~
-```javascript
-console.log('hello world!');
-```
-~~~
-
-Code block properties can be easily utilized in Markdown as well:
-
-~~~
-```python output noWrap
-print('this will be styled as an output code block and will not wrap lines.')
-```
-~~~
-
-When rendering a code block through Markdown, HTML-escaping the contents is not
-necessary and will be handled automatically.
-
-Also, Markdown code blocks without an explicit `language` specified will be
-rendered with `language="plaintext"`.
-
 #### Examples
 
 Two tabs of code blocks, one with a custom title.
@@ -265,9 +176,8 @@ Result:
 
 ### `<ql-variable>`
 
-Much like a [templated \<ql-code-block>](#templated-variables), Lab outputs such
-as usernames, passwords, project IDs, etc. can be rendered directly within lab
-instructions using the `<ql-variable>` component.
+Lab outputs such as usernames, passwords, project IDs, etc. can be rendered
+directly within lab instructions using the `<ql-variable>` component.
 
 #### Attributes for `<ql-variable>`
 
@@ -359,8 +269,7 @@ None
 
 <ql-hint>
 And here, we go into depth about how to do it specifically
-</ql-hint>
-```
+</ql-hint>```
 
 ## `<ql-activity-tracking>`
 TODO: add documentation
@@ -400,17 +309,16 @@ a YouTube video ID.
 
 Details:
 
-Attribute | Type | Required | Description
---- | --- | --- | ---
-src | string | true* | A URL that leads directly to a video file.
-youtubeId | string | true* | The ID of the YouTube video to embed. <br/> (the part of the URL after `?v=`)
-width | integer | false | Display width of the video, in pixels.
-height | integer | false | Display height of the video, in pixels.
-loop | boolean | false | Whether to loop this video automatically.
-autoplay | boolean | false | Whether to play this video immediately on page load.
-controls | boolean | false | Whether to show video playback and volume controls. <br/> Only applicable to videos using `src`.
-lang | string | false | Subtitle preference for YouTube videos (2-letter language code)
-
+Attribute | Type    | Required | Description
+--------- | ------- | -------- | -----------
+src       | string  | true*    | A URL that leads directly to a video file.
+youtubeId | string  | true*    | The ID of the YouTube video to embed. <br/> (the part of the URL after `?v=`)
+width     | integer | false    | Display width of the video, in pixels.
+height    | integer | false    | Display height of the video, in pixels.
+loop      | boolean | false    | Whether to loop this video automatically.
+autoplay  | boolean | false    | Whether to play this video immediately on page load.
+controls  | boolean | false    | Whether to show video playback and volume controls. <br/> Only applicable to videos using `src`.
+lang      | string  | false    | Subtitle preference for YouTube videos (2-letter language code)
 
 \* One of `src` or `youtubeId` must be present, but not both.
 
