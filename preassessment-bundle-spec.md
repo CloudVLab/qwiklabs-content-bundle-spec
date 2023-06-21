@@ -21,8 +21,7 @@ following required attributes:
 
 | attribute     | type   | notes                                               |
 | ------------- | ------ | --------------------------------------------------- |
-| id            | string | Reference to the unique identifier for the lab used |
-:               :        : as a pre-assessment - `library/slug` or `slug`.     :
+| id            | string | Reference to the unique identifier for the lab used as a pre-assessment - `library/slug` or `slug`. |
 | equivalencies | array  | See [below](#equivalencies)                         |
 
 ## Equivalencies
@@ -33,15 +32,9 @@ array contains the following required attributes:
 
 | attribute          | type    | notes                                         |
 | ------------------ | ------- | --------------------------------------------- |
-| preassessment_step | integer | The step number of one of the pre-assessment  |
-:                    :         : lab's activity tracking steps, starting from  :
-:                    :         : 1.                                            :
-| tested_out_id      | string  | Reference to the unique identifier for the    |
-:                    :         : tested out activity - `library/slug` or       :
-:                    :         : `slug`.                                       :
-| tested_out_type    | string  | The type of the tested out activity - `lab`,  |
-:                    :         : `quiz`, `video`, or `document`(refers to both :
-:                    :         : `link` and `file` activities).                :
+| preassessment_step | integer | The step number of one of the pre-assessment lab's activity tracking steps, starting from 1. |
+| tested_out_id      | string  | Reference to the unique identifier for the tested out activity - `library/slug` or `slug`. |
+| tested_out_type    | string  | The type of the tested out activity - `lab`, `quiz`, `video`, or `document`(refers to both `link` and `file` activities). |
 
 Pre-assessment bundle specifications also must adhere to the following rules:
 
