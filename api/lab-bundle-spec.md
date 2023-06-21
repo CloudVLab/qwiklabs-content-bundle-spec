@@ -376,9 +376,11 @@ reference             | displayed as
 [USER].drive_url      | button
 [USER].calendar_url   | button
 [USER].app_sheet_url  | button
+[USER].access_token   | copyable text
 
 > **Note:** `[USER].local_username` and `[USER].public_key` are only meant to be
-> used as custom properties within a startup script.
+> used as custom properties within a startup script. `[USER].access_token`
+> requires special permissions to use for now.
 
 All of the URLs will take the student to a new page where they can sign in with
 their temporary credentials and then get redirected to the requested Workspace

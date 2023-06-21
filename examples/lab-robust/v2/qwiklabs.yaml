@@ -50,6 +50,8 @@ environment:
       custom_properties:
       - key: primary_project_zone
         reference: primary_project.default_zone
+      - key: folder_name
+        reference: primary_folder.display_name
     allowed_locations:
     - us-central1-a
   - type: gcp_user
