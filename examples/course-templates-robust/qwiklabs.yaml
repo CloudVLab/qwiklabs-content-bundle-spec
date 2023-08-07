@@ -1,0 +1,183 @@
+entity_type: CourseTemplate
+schema_version: 1
+
+# CourseTemplate Attributes
+default_locale: en
+
+title: GCP Intro Course
+
+description: Get a taste of what GCP has to offer.
+
+version: v2.3
+
+objectives: |
+      <p>This course will teach people</p>
+      <ul>
+        <li>What GCP is</li>
+        <li>How to use some of its core components</li>
+      </ul>
+
+audience: |
+      <p>This course is intended for people who</p>
+      <ul><li>Are new to GCP</li></ul>
+
+prerequisites: <p>A basic understanding of serverless architecture is recommended but not required.</p>
+
+tags: [sample, life-changing, gcp]
+product_tags: ['app engine', 'kubernetes engine', 'cloud functions', 'cloud datastore', 'cloud sql', 'spanner', 'bigquery']
+role_tags: ['cloud architect', 'developers backend', 'developers frontend', 'database admin']
+domain_tags: ['infrastructure', 'application development', 'data']
+level: 3
+image: gcp-intro-course-image.png
+badge: gcp-intro-course-badge.png
+
+estimated_duration_days: 1
+
+instructor_resources:
+- id: how-to-teach
+  title: How to teach
+  uri: https://www.wikihow.com/Teach
+
+- id: how-to-teach-well
+  title: How to teach well
+  uri: https://www.wikihow.com/TeachingWell
+
+resources:
+- type: video
+  id: intro-video
+  title: Welcome to GCP!
+  video_id: oHg5SJYRHA0
+  video_provider: YouTube
+  description: Overview of Google Cloud Platform
+  duration: 360
+- type: video
+  id: outro-video
+  title: Wasn't that fun?!
+  video_id: oHg5SJYRHA0
+  video_provider: YouTube
+  duration: 100
+- type: link
+  id: choosing-compute
+  title: Choosing a Compute Option
+  uri: https://cloud.google.com/docs/choosing-a-compute-option
+- type: file
+  id: storage-options
+  title: Storage Options
+  uri: resources/storage_options_en.pdf
+
+course_surveys:
+- survey-f59d1335-ul5lc0
+- survey-ul5lc0
+- survey-f59d1335
+
+modules:
+- id: intro-module
+  title: Introduction
+  description: Some introductory material
+  learning_objectives:
+  - Objective for intro module
+  steps:
+  - id: intro-video
+    activity_options:
+    - type: resource
+      id: intro-video
+    prompt: If you've never used GCP, we recommend this overview video.
+    optional: true
+
+  - id: intro-lab
+    activity_options:
+    - type: lab
+      id: intro-to-gcp
+
+- id: learn-compute
+  title: Learn about compute
+  learning_objectives:
+  - Objective for learn module
+  steps:
+  - id: choose-compute
+    activity_options:
+    - type: resource
+      id: choosing-compute
+
+  - id: learn-compute
+    activity_options:
+    - type: lab
+      id: intro-to-appengine-python
+    - type: lab
+      id: intro-to-kubernetes-engine
+    - type: lab
+      id: intro-to-cloud-functions
+    prompt: Learn more about one of these common compute resources.
+- id: learn-storage
+  title: Learn about storage
+  learning_objectives:
+  - Objective for learn module
+  steps:
+  - id: storage-options
+    activity_options:
+    - type: resource
+      id: storage-options
+
+  - id: learn-storage
+    activity_options:
+    - type: lab
+      id: intro-to-datastore
+    - type: lab
+      id: intro-to-cloudsql
+    - type: lab
+      id: intro-to-spanner
+    prompt: Learn more about one of these common database technologies.
+
+  - id: intro-to-bigquery
+    activity_options:
+    - type: lab
+      id: intro-to-bigquery
+
+  - id: bigquery-quiz
+    activity_options:
+    - type: quiz
+      id: bigquery-quiz
+      category: graded
+      version: '1.0'
+
+  - id: peer-assignment
+    activity_options:
+    - type: peer_assignment
+      id: peer-assignment
+
+- id: outro-module
+  title: Finish up
+  learning_objectives:
+  - Objective for outro module
+  steps:
+  - id: advanced-gcp-task
+    activity_options:
+    - type: lab
+      id: advanced-gcp-task
+    optional: true
+    prompt: If you want to try your hand at this advanced task, go for it!
+
+  - id: outro-video
+    activity_options:
+    - type: resource
+      id: outro-video
+
+retake_policies:
+- activity_type: 'Quiz'
+  retake_cooldown:
+  - 1
+- activity_type: 'Quiz'
+  activity_category: 'practice'
+  retake_limit: 3
+  retake_window: 1
+- activity_type: 'Quiz'
+  activity_category: 'graded'
+  retake_cooldown:
+  - 1
+  retake_limit: 3
+  retake_window: 1
+- activity_type: 'Lab'
+  retake_cooldown:
+  - 1
+  - 2
+  - 5

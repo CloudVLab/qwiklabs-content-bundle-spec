@@ -81,7 +81,23 @@ max_hot_labs: 30
 resources: ...
 
 # The important part of a CourseTemplate which lists all of the activities
-modules: ...
+modules:
+  - title:
+      locales:
+        en: What GCP is?
+        es: ¿Qué es GCP?
+
+    description:
+      locales:
+        en: Explains what is GCP
+        es: Explica qué es GCP
+
+    learning_objectives:
+      - Learn what is GCP
+      - Identify what GCP offers
+
+    steps:
+      ...
 
 ```
 
@@ -124,16 +140,16 @@ retake_policies         |          | array      | See [below](#retake-policies)
 
 The meat of a `CourseTemplate` is an ordered list of modules, each of which is a
 collection of steps, defining what a learner needs to do to complete the course.
-A module has a `title`, `description`, and array of `steps`. The full
-specification is as follows:
+A module has a `title`, `description`, `learning_objectives`, and array of
+`steps`. The full specification is as follows:
 
-attribute   | required | type       | notes
------------ | -------- | ---------- | -----------------------------------
-id          | ✓        | string     | A unique identifier for this module
-title       | ✓        | dictionary | A locale dictionary of titles
-description |          | dictionary | A locale dictionary of descriptions
-steps       | ✓        | array      | See below
-
+attribute          | required | type       | notes
+------------------ | -------- | ---------- | -----------------------------------
+id                 | ✓        | string     | A unique identifier for this module
+title              | ✓        | dictionary | A locale dictionary of titles
+description        |          | dictionary | A locale dictionary of descriptions
+steps              | ✓        | array      | See below
+learning_objectives|          | array      | An array of strings
 ### Resources
 
 While heavyweight activities like labs and quizzes must be defined elsewhere in
