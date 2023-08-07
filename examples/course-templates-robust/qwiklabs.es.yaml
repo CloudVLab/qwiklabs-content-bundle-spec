@@ -1,0 +1,75 @@
+# qwiklabs.es.yaml for Spanish localization
+# There is no need to copy everything over from qwiklabs.yaml.
+# Only locale specific attributes need to go in here.
+
+title: Curso de introducción a GCP
+
+description: Prueba lo que GCP tiene para ofrecer.
+
+version: v1 final
+
+objectives: |
+      <p>Este curso enseñará a las personas</p>
+      <ul>
+        <li>Qué es GCP</li>
+        <li>Cómo usar algunos de sus componentes principales</li>
+      </ul>
+
+audience: |
+      <p>Este curso está destinado a personas que</p>
+      <ul><li>Son nuevas en GCP</li></ul>
+
+prerequisites: <p>Se recomienda una comprensión básica de la arquitectura sin servidor, pero no es obligatorio.</p>
+
+instructor_resources:
+- id: how-to-teach
+  title: Como enseñar
+  uri: https://www.wikihow.es/enseñar
+
+- id: how-to-teach-well
+  title: Como enseñar bien
+  uri: https://www.wikihow.com/TeachingWell
+
+resources:
+- type: video
+  id: intro-video
+  title: ¡Bienvenido a GCP!
+  video_id: 7jjoyy7_RCk
+  description: Descripción general de Google Cloud Platform
+- type: video
+  id: outro-video
+  title: Eso fue divertido, ¿verdad?
+  video_id: 7jjoyy7_RCk
+- type: link
+  id: choosing-compute
+  title: Elegir una opción de cómputo
+  uri: https://cloud.google.com/docs/choosing-a-compute-option
+- type: file
+  id: storage-options
+  title: Opciones de Almacenamiento
+  uri: resources/storage_options_es.pdf
+
+modules:
+- id: intro-module
+  title: Introducción
+  description: Algo de material introductorio
+  steps:
+  - id: intro-video
+    prompt: Si nunca ha usado GCP, le recomendamos este video general.
+
+- id: learn-compute
+  title: Aprender acerca de la computadora
+  steps:
+  - id: learn-compute
+    prompt: Obtenga más información sobre uno de estos recursos informáticos comunes.
+- id: learn-storage
+  title: Aprende sobre almacenamiento
+  steps:
+  - id: learn-storage
+    prompt: Obtenga más información sobre una de estas tecnologías de base de datos comunes.
+
+- id: outro-module
+  title: Termina
+  steps:
+  - id: advanced-gcp-task
+    prompt: Si quieres probar suerte en esta tarea avanzada, ¡hazlo!

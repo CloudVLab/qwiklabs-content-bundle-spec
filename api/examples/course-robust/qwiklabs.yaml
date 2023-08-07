@@ -7,10 +7,12 @@ default_locale: en
 title:
   locales:
     en: GCP Intro Course
+    es: Curso de introducción a GCP
 
 description:
   locales:
     en: Get a taste of what GCP has to offer.
+    es: Prueba lo que GCP tiene para ofrecer.
 
 version:
   locales:
@@ -25,16 +27,26 @@ objectives:
         <li>What GCP is</li>
         <li>How to use some of its core components</li>
       </ul>
+    es: |
+      <p>Este curso enseñará a las personas</p>
+      <ul>
+        <li>Qué es GCP</li>
+        <li>Cómo usar algunos de sus componentes principales</li>
+      </ul>
 
 audience:
   locales:
     en: |
       <p>This course is intended for people who</p>
       <ul><li>Are new to GCP</li></ul>
+    es: |
+      <p>Este curso está destinado a personas que</p>
+      <ul><li>Son nuevas en GCP</li></ul>
 
 prerequisites:
   locales:
     en: <p>A basic understanding of serverless architecture is recommended but not required.</p>
+    es: <p>Se recomienda una comprensión básica de la arquitectura sin servidor, pero no es obligatorio.</p>
 
 tags: [sample, life-changing, gcp]
 product_tags: ['app engine', 'kubernetes engine', 'cloud functions', 'cloud datastore', 'cloud sql', 'spanner', 'bigquery']
@@ -60,9 +72,11 @@ instructor_resources:
   title:
     locales:
       en: How to teach well
+      es: Como enseñar bien
   uri:
     locales:
       en: https://www.wikihow.com/TeachingWell
+      es: https://www.wikihow.com/TeachingWell
 
 resources:
 - type: video
@@ -98,9 +112,11 @@ resources:
   title:
     locales:
       en: Choosing a Compute Option
+      es: Elegir una opción de cómputo
   uri:
     locales:
       en: https://cloud.google.com/docs/choosing-a-compute-option
+      es: https://cloud.google.com/docs/choosing-a-compute-option
 - type: file
   id: storage-options
   title:
@@ -119,10 +135,6 @@ course_surveys:
 
 modules:
 - id: intro-module
-  objectives:
-    locales:
-      en: Objective for intro module
-      es: Objective for intro module in Spanish
   title:
     locales:
       en: Introduction
@@ -131,6 +143,8 @@ modules:
     locales:
       en: Some introductory material
       es: Algo de material introductorio
+  learning_objectives:
+  - Objective for intro module
   steps:
   - id: intro-video
     activity_options:
@@ -148,14 +162,12 @@ modules:
       id: intro-to-gcp
 
 - id: learn-compute
-  objectives:
-    locales:
-      en: Objective for learn module
-      es: Objective for learn module in Spanish
   title:
     locales:
       en: Learn about compute
       es: Aprender acerca de la computadora
+  learning_objectives:
+  - Objective for learn module
   steps:
   - id: choose-compute
     activity_options:
@@ -175,14 +187,12 @@ modules:
         en: Learn more about one of these common compute resources.
         es: Obtenga más información sobre uno de estos recursos informáticos comunes.
 - id: learn-storage
-  objectives:
-    locales:
-      en: Objective for learn module
-      es: Objective for learn module in Spanish
   title:
     locales:
       en: Learn about storage
       es: Aprende sobre almacenamiento
+  learning_objectives:
+  - Objective for learn module
   steps:
   - id: storage-options
     activity_options:
@@ -220,14 +230,12 @@ modules:
       id: peer-assignment
 
 - id: outro-module
-  objectives:
-    locales:
-      en: Objective for outro module
-      es: Objective for outro module in Spanish
   title:
     locales:
       en: Finish up
       es: Termina
+  learning_objectives:
+  - Objective for outro module
   steps:
   - id: advanced-gcp-task
     activity_options:
@@ -237,6 +245,7 @@ modules:
     prompt:
       locales:
         en: If you want to try your hand at this advanced task, go for it!
+        es: Si quieres probar suerte en esta tarea avanzada, ¡hazlo!
 
   - id: outro-video
     activity_options:
