@@ -93,8 +93,13 @@ modules:
         es: Explica qué es GCP
 
     learning_objectives:
-      - Learn what is GCP
-      - Identify what GCP offers
+      locales:
+        en:
+          - Learn what is GCP
+          - Identify what GCP offers
+        es:
+          - Más información sobre GCP
+          - Identifica lo que ofrece GCP
 
     steps:
       ...
@@ -149,7 +154,7 @@ id                 | ✓        | string     | A unique identifier for this modu
 title              | ✓        | dictionary | A locale dictionary of titles
 description        |          | dictionary | A locale dictionary of descriptions
 steps              | ✓        | array      | See below
-learning_objectives|          | array      | An array of strings
+learning_objectives|          | dictionary | A locale dictionary of array of learning objectives
 ### Resources
 
 While heavyweight activities like labs and quizzes must be defined elsewhere in

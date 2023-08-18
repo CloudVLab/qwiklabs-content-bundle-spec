@@ -53,23 +53,31 @@ modules:
 - id: intro-module
   title: Introducción
   description: Algo de material introductorio
+  learning_objectives:
+  - Objetivo para el módulo de introducción
   steps:
   - id: intro-video
     prompt: Si nunca ha usado GCP, le recomendamos este video general.
 
 - id: learn-compute
   title: Aprender acerca de la computadora
+  learning_objectives:
+  - Objetivo para el módulo de aprendizaje
   steps:
   - id: learn-compute
     prompt: Obtenga más información sobre uno de estos recursos informáticos comunes.
 - id: learn-storage
   title: Aprende sobre almacenamiento
+  learning_objectives:
+  - Objetivo para el almacenamiento de información
   steps:
   - id: learn-storage
     prompt: Obtenga más información sobre una de estas tecnologías de base de datos comunes.
 
 - id: outro-module
   title: Termina
+  learning_objectives:
+  - Objetivo para módulo outro
   steps:
   - id: advanced-gcp-task
     prompt: Si quieres probar suerte en esta tarea avanzada, ¡hazlo!
