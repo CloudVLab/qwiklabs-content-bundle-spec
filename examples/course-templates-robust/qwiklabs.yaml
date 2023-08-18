@@ -163,20 +163,20 @@ modules:
       id: outro-video
 
 retake_policies:
-- activity_type: 'Quiz'
-  retake_cooldown:
-  - 1
-- activity_type: 'Quiz'
+- id: practice-quiz-policy
+  activity_type: 'Quiz'
   activity_category: 'practice'
   retake_limit: 3
   retake_window: 1
-- activity_type: 'Quiz'
+- id: graded-quiz-policy
+  activity_type: 'Quiz'
   activity_category: 'graded'
   retake_cooldown:
   - 1
   retake_limit: 3
   retake_window: 1
-- activity_type: 'Lab'
+- id: default-lab-policy
+  activity_type: 'Lab'
   retake_cooldown:
   - 1
   - 2

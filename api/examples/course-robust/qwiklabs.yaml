@@ -144,7 +144,11 @@ modules:
       en: Some introductory material
       es: Algo de material introductorio
   learning_objectives:
-  - Objective for intro module
+    locales:
+      en:
+      - Objective for intro module
+      es:
+      - Objetivo para el módulo de introducción
   steps:
   - id: intro-video
     activity_options:
@@ -167,7 +171,11 @@ modules:
       en: Learn about compute
       es: Aprender acerca de la computadora
   learning_objectives:
-  - Objective for learn module
+    locales:
+      en:
+      - Objective for learn module
+      es:
+      - Objetivo para el módulo de aprendizaje
   steps:
   - id: choose-compute
     activity_options:
@@ -192,7 +200,11 @@ modules:
       en: Learn about storage
       es: Aprende sobre almacenamiento
   learning_objectives:
-  - Objective for learn module
+    locales:
+      en:
+      - Objective for learn storage
+      es:
+      - Objetivo para el almacenamiento de información
   steps:
   - id: storage-options
     activity_options:
@@ -235,7 +247,11 @@ modules:
       en: Finish up
       es: Termina
   learning_objectives:
-  - Objective for outro module
+    locales:
+      en:
+      - Objective for outro module
+      es:
+      - Objetivo para módulo outro
   steps:
   - id: advanced-gcp-task
     activity_options:
@@ -253,20 +269,20 @@ modules:
       id: outro-video
 
 retake_policies:
-- activity_type: 'Quiz'
-  retake_cooldown:
-  - 1
-- activity_type: 'Quiz'
+- id: practice-quiz-policy
+  activity_type: 'Quiz'
   activity_category: 'practice'
   retake_limit: 3
   retake_window: 1
-- activity_type: 'Quiz'
+- id: graded-quiz-policy
+  activity_type: 'Quiz'
   activity_category: 'graded'
   retake_cooldown:
   - 1
   retake_limit: 3
   retake_window: 1
-- activity_type: 'Lab'
+- id: default-lab-policy
+  activity_type: 'Lab'
   retake_cooldown:
   - 1
   - 2
