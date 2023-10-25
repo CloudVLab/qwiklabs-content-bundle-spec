@@ -71,8 +71,8 @@ level: 1
 image: gcp-intro-course-image.png
 badge: gcp-intro-course-badge.png
 
-# Estimated time to take the course, in days
-estimated_duration_days: 1
+# Estimated time to take the course, in minutes
+estimated_duration_minutes: 60
 
 # Pseudo-deprecated legacy field that we would like to remove
 max_hot_labs: 30
@@ -133,7 +133,7 @@ domain_tags             |          | array      | Array of strings from the "Dom
 level                   |          | integer    | Integer between 1 and 4, with 1 being the easiest
 image                   |          | string     | Link to an image file to be used as the image for the course
 badge                   |          | string     | Link to an image file to be used as the badge for the course, at least 640px x 640px.
-estimated_duration_days |          | integer    | Estimated time to take the course, in days
+estimated_duration_minutes |          | integer    | Estimated time to take the course, in minutes
 max_hot_labs            |          | integer    | Maximum number of hot labs for this course. Pseudo-deprecated legacy field that we would like to remove.
 course_surveys          |          | array      | Array of course survey 'library/slug'
 instructor_resources    |          | array      | Instructor-specific resources. Array of dictionaries with keys `title` and `uri` and values locale dictionaries.

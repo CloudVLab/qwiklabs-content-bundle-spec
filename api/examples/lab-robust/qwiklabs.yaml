@@ -104,6 +104,16 @@ environment:
     cleanup_script:
       type: qwiklabs
       path: cleanup_script
+  - type: gcp_project
+    id: my_tertiary_project
+    variant: gcpd
+    allowed_locations:
+    - - us-west1
+      - us-east1
+      - us-central1
+    - SAME_AS_FIRST
+    - SAME_AS_FIRST
+    allowed_locations_constraint: DIFFERENT_REGIONS
   - type: gcp_user
     id: user_0
     permissions:
