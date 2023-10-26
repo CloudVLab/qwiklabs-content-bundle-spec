@@ -31,7 +31,7 @@ level: 3
 image: gcp-intro-course-image.png
 badge: gcp-intro-course-badge.png
 
-estimated_duration_days: 1
+estimated_duration_minutes: 60
 
 instructor_resources:
 - id: how-to-teach

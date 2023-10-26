@@ -44,7 +44,7 @@ level: 1
 image: gcp-intro-course-image.png
 badge: gcp-intro-course-badge.png
 
-estimated_duration_days: 1
+estimated_duration_minutes: 60
 
 course_surveys:
 - survey-f59d1335-ul5lc0
