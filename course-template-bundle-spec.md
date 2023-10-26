@@ -72,7 +72,8 @@ image: gcp-intro-course-image.png
 badge: gcp-intro-course-badge.png
 
 # Estimated time to take the course, in minutes
-estimated_duration_minutes: 60
+# This value will be calculated automatically if it is not provided by the author
+estimated_duration_minutes: 0
 
 # Pseudo-deprecated legacy field that we would like to remove
 max_hot_labs: 30
@@ -115,31 +116,31 @@ restricted set in the [HTML spec](./html/html-spec.md).
 
 The full specification is as follows:
 
-attribute               | required | type       | notes
------------------------ | -------- | ---------- | -----
-entity_type             | ✓        | string     | Must be `CourseTemplate`
-schema_version          | ✓        | integer    |
-default_locale          | ✓        | enum       | Must be a valid locale code
-title                   | ✓        | dictionary | A locale dictionary of titles
-description             |          | dictionary | A locale dictionary of descriptions
-version                 |          | dictionary | A locale dictionary of version strings. These version strings should be considered decorators, and are not used as a source of truth for revision history.
-objectives              |          | dictionary | A locale dictionary of objectives
-audience                |          | dictionary | A locale dictionary of audiences
-prerequisites           |          | dictionary | A locale dictionary of prerequisites
-tags                    |          | array      | Array of strings to be used as hints in searching, etc
-product_tags            |          | array      | Array of strings from the "Products" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
-role_tags               |          | array      | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
-domain_tags             |          | array      | Array of strings from the "Domain" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
-level                   |          | integer    | Integer between 1 and 4, with 1 being the easiest
-image                   |          | string     | Link to an image file to be used as the image for the course
-badge                   |          | string     | Link to an image file to be used as the badge for the course, at least 640px x 640px.
-estimated_duration_minutes |          | integer    | Estimated time to take the course, in minutes
-max_hot_labs            |          | integer    | Maximum number of hot labs for this course. Pseudo-deprecated legacy field that we would like to remove.
-course_surveys          |          | array      | Array of course survey 'library/slug'
-instructor_resources    |          | array      | Instructor-specific resources. Array of dictionaries with keys `title` and `uri` and values locale dictionaries.
-resources               |          | array      | See [below](#resources)
-modules                 | ✓        | array      | See [below](#modules)
-retake_policies         |          | array      | See [below](#retake-policies)
+attribute                  | required | type       | notes
+-------------------------- | -------- | ---------- | -----
+entity_type                | ✓        | string     | Must be `CourseTemplate`
+schema_version             | ✓        | integer    |
+default_locale             | ✓        | enum       | Must be a valid locale code
+title                      | ✓        | dictionary | A locale dictionary of titles
+description                |          | dictionary | A locale dictionary of descriptions
+version                    |          | dictionary | A locale dictionary of version strings. These version strings should be considered decorators, and are not used as a source of truth for revision history.
+objectives                 |          | dictionary | A locale dictionary of objectives
+audience                   |          | dictionary | A locale dictionary of audiences
+prerequisites              |          | dictionary | A locale dictionary of prerequisites
+tags                       |          | array      | Array of strings to be used as hints in searching, etc
+product_tags               |          | array      | Array of strings from the "Products" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
+role_tags                  |          | array      | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
+domain_tags                |          | array      | Array of strings from the "Domain" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
+level                      |          | integer    | Integer between 1 and 4, with 1 being the easiest
+image                      |          | string     | Link to an image file to be used as the image for the course
+badge                      |          | string     | Link to an image file to be used as the badge for the course, at least 640px x 640px.
+estimated_duration_minutes |          | integer    | Estimated time to take the course, in minutes. This value will be calculated automatically if it is not provided by the author.
+max_hot_labs               |          | integer    | Maximum number of hot labs for this course. Pseudo-deprecated legacy field that we would like to remove.
+course_surveys             |          | array      | Array of course survey 'library/slug'
+instructor_resources       |          | array      | Instructor-specific resources. Array of dictionaries with keys `title` and `uri` and values locale dictionaries.
+resources                  |          | array      | See [below](#resources)
+modules                    | ✓        | array      | See [below](#modules)
+retake_policies            |          | array      | See [below](#retake-policies)
 
 ### Modules
 
