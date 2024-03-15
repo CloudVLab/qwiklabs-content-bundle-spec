@@ -357,6 +357,8 @@ The allowed variants are:
 *   `default` [default] - Has access to GCP and Workspace services (like Drive)
 *   `gcp_only` - Only has access to GCP (Cloud Console, Cloud Shell, and Data
     Studio)
+*   `extra` - Superset of `default` with access to some additional services.
+    Usage of this variant is restricted.
 
 ###### Valid resource references for gcp_user
 
@@ -852,8 +854,8 @@ student_files       |          | path | Relative path to a directory student fil
 Student files specified in the qwiklabs.yaml will be added to the directory
 `/home/jovyan`. This folder is viewable in the Jupyter Notebook.
 
-For notebooks that require activity tracking, all files accessed by the
-notebook must be placed in the `/home/jovyan` directory with no subdirectories.
+For notebooks that require activity tracking, all files accessed by the notebook
+must be placed in the `/home/jovyan` directory with no subdirectories.
 
 <!-- TODO(b/273306870): Replace the jovyan work directory with a qwiklabs work directory. -->
 
@@ -869,8 +871,8 @@ of those files/directories. To ensure students have full access to all of the
 contents of `/home/jovyan`, add the following command at the end of your script:
 
 <!--* pragma: { seclinter_this_is_fine: true } *-->
-`chmod -R 777 ~jovyan`
-<!--* pragma: { seclinter_this_is_fine: false } *-->
+
+`chmod -R 777 ~jovyan` <!--* pragma: { seclinter_this_is_fine: false } *-->
 
 ###### File open on startup
 
