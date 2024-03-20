@@ -248,6 +248,18 @@ environment:
     reference: my_primary_project.project_id
   - label:
       locales:
+        en: "GCP Project Default Zone 1"
+    reference: my_tertiary_project.default_zone_1
+  - label:
+      locales:
+        en: "GCP Project Default Zone 2"
+    reference: my_tertiary_project.default_zone_2
+  - label:
+      locales:
+        en: "GCP Project Default Zone 3"
+    reference: my_tertiary_project.default_zone_3
+  - label:
+      locales:
         en: "GCP Folder Name"
         es: "Nombre de carpeta de GCP"
     reference: my_primary_folder.folder_name

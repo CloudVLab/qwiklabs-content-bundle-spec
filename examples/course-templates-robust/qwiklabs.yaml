@@ -10,6 +10,8 @@ description: Get a taste of what GCP has to offer.
 
 version: v2.3
 
+auto_upgrade_to_latest_version: true
+
 objectives: |
       <p>This course will teach people</p>
       <ul>
