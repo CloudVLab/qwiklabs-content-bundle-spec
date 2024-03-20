@@ -68,6 +68,7 @@ product_tags: ['compute engine', 'cloud storage']
 role_tags: ['cloud architect', 'developers backend']
 domain_tags: ['infrastructure']
 level: 1
+auto_upgrade_to_latest_version: false
 image: gcp-intro-course-image.png
 badge: gcp-intro-course-badge.png
 
@@ -132,6 +133,7 @@ product_tags               |          | array      | Array of strings from the "
 role_tags                  |          | array      | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 domain_tags                |          | array      | Array of strings from the "Domain" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 level                      |          | integer    | Integer between 1 and 4, with 1 being the easiest
+auto_upgrade_to_latest_version        |          | boolean    | When set to `true` for an on-demand course, students are always auto-upgraded to the latest version
 image                      |          | string     | Link to an image file to be used as the image for the course
 badge                      |          | string     | Link to an image file to be used as the badge for the course, at least 640px x 640px.
 estimated_duration_minutes |          | integer    | Estimated time to take the course, in minutes. This value will be calculated automatically if it is not provided by the author.
