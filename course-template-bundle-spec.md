@@ -124,7 +124,7 @@ entity_type                        | ✓        | string     | Must be `CourseTe
 schema_version                     | ✓        | integer    |
 default_locale                     | ✓        | enum       | Must be a valid locale code
 title                              | ✓        | dictionary | A locale dictionary of titles
-description                        |          | dictionary | A locale dictionary of descriptions
+description                        | ✓        | dictionary | A locale dictionary of descriptions
 version                            |          | dictionary | A locale dictionary of version strings. These version strings should be considered decorators, and are not used as a source of truth for revision history.
 auto_upgrade_to_latest_version     |          | boolean    | `true` if course enrollees should automatically be upgraded to the latest course version. Otherwise, they'll be asked if they want to upgrade when a new version is available.
 objectives                         |          | dictionary | A locale dictionary of objectives
