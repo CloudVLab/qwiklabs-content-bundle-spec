@@ -1,7 +1,8 @@
 # Qwiklabs Resource Specification
 
 Resources are additional materials that learners may refer to while taking a lab
-or course.
+or course. They show up in the student resources section of the lab's control
+panel ([example](https://screenshot.googleplex.com/5zaM3fpob85Yorw))
 
 We encourage content authors to use as few external links as possible. Qwiklabs
 cannot guarantee that those links will be available when a learner takes your
