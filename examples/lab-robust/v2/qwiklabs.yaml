@@ -5,12 +5,22 @@ title: Robust Lab Example
 description: Seriously the best lab you've ever taken. Bar none.
 default_locale: en
 duration: 60
-level: easy
+max_duration: 60
+credits: 5
+level: fundamental
+logo: source-code.png
 tags:
 - sample
 - life-changing
 - gcp
-
+product_tags: ['app engine', 'kubernetes engine', 'cloud functions']
+role_tags: ['cloud architect', 'developers backend', 'developers frontend']
+domain_tags:
+- infrastructure
+- application development
+- data
+legacy_display_options:
+ - hide_connection_fleetconsole
 resources:
 - type: file
   id: sample-pdf
@@ -38,22 +48,23 @@ environment:
       custom_properties:
       - key: userNameWindows
         value: student
-      - key: userName
-        reference: primary_user.local_username
-      - key: userPassword
-        reference: primary_user.password
-      - key: sshPubKey
-        reference: primary_user.public_key
+      - key: projectId
+        reference: primary_user.project_id
+      - key: defaultZone
+        reference: primary_user.default_zone
+      - key: defaultRegion
+        reference: primary_user.default_region
     cleanup_script:
       type: deployment_manager
       path: ./cleanup
       custom_properties:
       - key: primary_project_zone
         reference: primary_project.default_zone
-      - key: folder_name
-        reference: primary_folder.display_name
+      - key: project_id
+        reference: primary_project.project_id
     allowed_locations:
     - us-central1-a
+    allowed_locations_constraint: SAME_REGION
   - type: gcp_user
     id: primary_user
     permissions:
@@ -66,6 +77,62 @@ environment:
     - folder: primary_folder
       roles:
       - roles/compute.xpnAdmin
+    variant: gcp_only
+  - type: cloud_terminal
+    id: shell
+    permissions:
+      - project: project_0
+        roles:
+          - roles/editor
+    variant: basic
+  - type: linux_terminal
+    variant: it_cert_extra
+  - type: jupyter_notebook
+    id: jupyter-notebook
+    student_files:
+    - path: student_files
+    startup_script:
+      path: startup.sh
+    variant: basic
+  - type: azure_resource_group
+    id: azure_resource_group
+    startup_script:
+      type: qwiklabs
+      path: ./startup
+      custom_properties:
+      - key: userNameWindows
+        value: student
+      - key: userName
+        reference: azure_resource_group.resource_group_name
+      - key: consoleUrl
+        reference: azure_resource_group.console_url
+    variant: default
+  - type: azure_user
+    id: user_1
+    permissions:
+    - resource_group: rg_1
+      roles:
+      - storage_account_contributor
+    variant: default
+  - type: ide
+    id: ide
+    student_files:
+    - path: student_files
+    startup_script:
+      path: startup.sh
+    variant: basic
+  - type: windows_vm
+    variant: it_cert
+    id: rdp_vm
+  - type: looker_instance
+    id: looker
+    startup_script:
+      path: startup.sh
+    permissions:
+      - project: project
+        roles:
+          - roles/editor
+    variant: basic
   - type: aws_account
     id: the_account
     variant: aws_vpc
@@ -104,13 +171,20 @@ environment:
     reference: primary_folder.folder_name
   - label: GCP Folder Display Name
     reference: primary_folder.display_name
-
+instruction:
+  type: html
+  uri: 
+    locales:
+      en: instructions/en.md
+    propertyNames: en
+    additionalProperties: en.md
 assessment:
   passing_percentage: 75
   steps:
   - title: Create a Cloud Storage bucket
     locale_id: create_bucket
     maximum_score: 5
+    code: assement-5
     student_messages:
       success: Great job! You created the bucket!
       bucket_missing: Oops! No bucket found.
