@@ -21,6 +21,7 @@ domain_tags:
 - data
 legacy_display_options:
  - hide_connection_fleetconsole
+
 resources:
 - type: file
   id: sample-pdf
@@ -171,6 +172,7 @@ environment:
     reference: primary_folder.folder_name
   - label: GCP Folder Display Name
     reference: primary_folder.display_name
+
 instruction:
   type: html
   uri: 
@@ -178,6 +180,7 @@ instruction:
       en: instructions/en.md
     propertyNames: en
     additionalProperties: en.md
+
 assessment:
   passing_percentage: 75
   steps:
