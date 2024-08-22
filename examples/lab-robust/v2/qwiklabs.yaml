@@ -13,14 +13,6 @@ tags:
 - sample
 - life-changing
 - gcp
-product_tags: ['app engine', 'kubernetes engine', 'cloud functions']
-role_tags: ['cloud architect', 'developers backend', 'developers frontend']
-domain_tags:
-- infrastructure
-- application development
-- data
-legacy_display_options:
- - hide_connection_fleetconsole
 
 resources:
 - type: file
