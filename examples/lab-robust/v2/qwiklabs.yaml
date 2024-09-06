@@ -165,14 +165,6 @@ environment:
   - label: GCP Folder Display Name
     reference: primary_folder.display_name
 
-instruction:
-  type: html
-  uri: 
-    locales:
-      en: instructions/en.md
-    propertyNames: en
-    additionalProperties: en.md
-
 assessment:
   passing_percentage: 75
   steps:
