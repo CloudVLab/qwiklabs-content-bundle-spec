@@ -1,6 +1,10 @@
 entity_type: Quiz
 schema_version: 1
 
+title:
+  locales:
+    en: What is democracy?
+
 passing_percentage: 100
 default_locale: en
 

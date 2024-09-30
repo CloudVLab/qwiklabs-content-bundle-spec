@@ -61,6 +61,10 @@ resources:
     video_id: oHg5SJYRHA0
     video_provider: YouTube
     duration: 360
+  - type: html_bundle
+    title: Sample HTML
+    description: This HTML page makes learning interactive.
+    uri: "https://example.com/sample-en.html"
 ```
 
 ## Valid types
@@ -68,6 +72,7 @@ resources:
 *   `file` - A relative path to a file in the bundle
 *   `link` - A url to an external resource
 *   `video` - A link to a video outside of the bundle such as on Youtube
+*   `html` - A url to an HTML file
 
 To prevent confusion, all resources must explicitly define what type they are.
 
