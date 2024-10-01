@@ -1,6 +1,10 @@
 entity_type: Quiz
 schema_version: 1
 
+title:
+  locales:
+    en: Nobel Prizewinners
+
 passing_percentage: 67
 default_locale: en
 

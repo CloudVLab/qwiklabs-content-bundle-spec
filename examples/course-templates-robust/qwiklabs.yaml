@@ -66,6 +66,10 @@ resources:
   id: storage-options
   title: Storage Options
   uri: resources/storage_options_en.pdf
+- type: html_bundle
+  id: data-structures
+  title: Data Structures
+  uri: https://example.com/index_en.html
 
 course_surveys:
 - survey-f59d1335-ul5lc0
@@ -119,6 +123,11 @@ modules:
     activity_options:
     - type: resource
       id: storage-options
+
+  - id: data-structures
+    activity_options:
+    - type: resource
+      id: data-structures
 
   - id: learn-storage
     activity_options:
