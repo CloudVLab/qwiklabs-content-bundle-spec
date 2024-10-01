@@ -72,7 +72,7 @@ resources:
 *   `file` - A relative path to a file in the bundle
 *   `link` - A url to an external resource
 *   `video` - A link to a video outside of the bundle such as on Youtube
-*   `html` - A url to an HTML file
+*   `html_bundle` - A url to an HTML file
 
 To prevent confusion, all resources must explicitly define what type they are.
 
