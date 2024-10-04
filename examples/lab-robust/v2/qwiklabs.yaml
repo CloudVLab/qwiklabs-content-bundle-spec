@@ -8,7 +8,6 @@ duration: 60
 max_duration: 60
 credits: 5
 level: fundamental
-logo: source-code.png
 tags:
 - sample
 - life-changing
@@ -41,20 +40,18 @@ environment:
       custom_properties:
       - key: userNameWindows
         value: student
-      - key: projectId
-        reference: primary_user.project_id
-      - key: defaultZone
-        reference: primary_user.default_zone
-      - key: defaultRegion
-        reference: primary_user.default_region
+      - key: userName
+        reference: primary_user.local_username
+      - key: userPassword
+        reference: primary_user.password
+      - key: sshPubKey
+        reference: primary_user.public_key
     cleanup_script:
       type: deployment_manager
       path: ./cleanup
       custom_properties:
       - key: primary_project_zone
         reference: primary_project.default_zone
-      - key: project_id
-        reference: primary_project.project_id
     allowed_locations:
     - us-central1-a
     allowed_locations_constraint: SAME_REGION
@@ -82,33 +79,6 @@ environment:
     variant: it_cert_extra
   - type: jupyter_notebook
     id: jupyter-notebook
-    student_files:
-    - path: student_files
-    startup_script:
-      path: startup.sh
-    variant: basic
-  - type: azure_resource_group
-    id: azure_resource_group
-    startup_script:
-      type: qwiklabs
-      path: ./startup
-      custom_properties:
-      - key: userNameWindows
-        value: student
-      - key: userName
-        reference: azure_resource_group.resource_group_name
-      - key: consoleUrl
-        reference: azure_resource_group.console_url
-    variant: default
-  - type: azure_user
-    id: user_1
-    permissions:
-    - resource_group: rg_1
-      roles:
-      - storage_account_contributor
-    variant: default
-  - type: ide
-    id: ide
     student_files:
     - path: student_files
     startup_script:
