@@ -5,9 +5,9 @@ title: Robust Lab Example
 description: Seriously the best lab you've ever taken. Bar none.
 default_locale: en
 duration: 60
+level: easy
 max_duration: 60
 credits: 5
-level: fundamental
 tags:
 - sample
 - life-changing
