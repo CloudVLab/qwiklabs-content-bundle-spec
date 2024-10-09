@@ -5,7 +5,7 @@ title: Robust Lab Example
 description: Seriously the best lab you've ever taken. Bar none.
 default_locale: en
 duration: 60
-level: easy
+level: introductory
 max_duration: 60
 credits: 5
 tags:
@@ -74,7 +74,6 @@ environment:
       - project: project_0
         roles:
           - roles/editor
-    variant: basic
   - type: linux_terminal
     variant: it_cert_extra
   - type: jupyter_notebook
@@ -141,7 +140,6 @@ assessment:
   - title: Create a Cloud Storage bucket
     locale_id: create_bucket
     maximum_score: 5
-    code: assement-5
     student_messages:
       success: Great job! You created the bucket!
       bucket_missing: Oops! No bucket found.
