@@ -5,9 +5,7 @@ title: Robust Lab Example
 description: Seriously the best lab you've ever taken. Bar none.
 default_locale: en
 duration: 60
-level: introductory
-max_duration: 60
-credits: 5
+level: easy
 tags:
 - sample
 - life-changing
@@ -52,9 +50,10 @@ environment:
       custom_properties:
       - key: primary_project_zone
         reference: primary_project.default_zone
+      - key: folder_name
+        reference: primary_folder.display_name
     allowed_locations:
     - us-central1-a
-    allowed_locations_constraint: SAME_REGION
   - type: gcp_user
     id: primary_user
     permissions:
@@ -67,34 +66,6 @@ environment:
     - folder: primary_folder
       roles:
       - roles/compute.xpnAdmin
-    variant: gcp_only
-  - type: cloud_terminal
-    id: shell
-    permissions:
-      - project: project_0
-        roles:
-          - roles/editor
-  - type: linux_terminal
-    variant: it_cert_extra
-  - type: jupyter_notebook
-    id: jupyter-notebook
-    student_files:
-    - path: student_files
-    startup_script:
-      path: startup.sh
-    variant: basic
-  - type: windows_vm
-    variant: it_cert
-    id: rdp_vm
-  - type: looker_instance
-    id: looker
-    startup_script:
-      path: startup.sh
-    permissions:
-      - project: project
-        roles:
-          - roles/editor
-    variant: basic
   - type: aws_account
     id: the_account
     variant: aws_vpc

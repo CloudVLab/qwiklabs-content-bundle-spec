@@ -67,9 +67,9 @@ resources:
   title: Storage Options
   uri: resources/storage_options_en.pdf
 - type: html_bundle
-  id: data-structures
-  title: Data Structures
-  uri: https://example.com/index_en.html
+  id: google-threat-intelligence
+  title: Google Threat Intelligence
+  uri: https://storage.googleapis.com/cloud-training/cls-html5-courses/C-GTI-I/index.html
 
 course_surveys:
 - survey-f59d1335-ul5lc0
@@ -124,10 +124,10 @@ modules:
     - type: resource
       id: storage-options
 
-  - id: data-structures
+  - id: google-threat-intelligence
     activity_options:
     - type: resource
-      id: data-structures
+      id: google-threat-intelligence
 
   - id: learn-storage
     activity_options:

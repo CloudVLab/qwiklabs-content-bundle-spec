@@ -64,7 +64,7 @@ resources:
   - type: html_bundle
     title: Sample HTML
     description: This HTML page makes learning interactive.
-    uri: "https://example.com/sample-en.html"
+    uri: "https://storage.googleapis.com/cloud-training/cls-html5-courses/C-GTI-I/index.html"
 ```
 
 ## Valid types
@@ -72,7 +72,7 @@ resources:
 *   `file` - A relative path to a file in the bundle
 *   `link` - A url to an external resource
 *   `video` - A link to a video outside of the bundle such as on Youtube
-*   `html` - A url to an HTML file
+*   `html_bundle` - A url to an HTML file. The file must be stored in the Cloud Training GCS bucket: https://pantheon.corp.google.com/storage/browser/cloud-training.
 
 To prevent confusion, all resources must explicitly define what type they are.
 
