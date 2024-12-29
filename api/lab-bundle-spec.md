@@ -231,7 +231,7 @@ attribute                        | required | type                              
 -------------------------------- | -------- | -------------------------------------------------------- | -----
 parent                           |          | string                                                   | If this project should reside inside a specific folder, the id of that folder.
 startup_script                   |          | [GCP Startup Script](#gcp-startup-script-startup-script) | GCP startup script object. GCP Projects support startup scripts of type `deployment_manager` and `qwiklabs`.
-ssh_key_user                     |          | string                                                   | If this project should use a user's SSH key, the id of that user.
+ssh_key_user                     |          | string                                                   | If this project should use a user's SSH key, the id of that user. This sets the user's SSH key in the project level metadata and enables os-login as outlined [here](https://cloud.google.com/compute/docs/connect/add-ssh-keys#add_ssh_keys_to_project_metadata).
 allowed_locations                |          | array                                                    | List of GCP regions or zones to set a default zone from.
 
 ```yaml
