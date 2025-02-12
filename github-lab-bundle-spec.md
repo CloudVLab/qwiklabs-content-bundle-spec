@@ -919,7 +919,7 @@ chmod 777 /home/jovyan/work/README.txt
 ###### Activity Tracking
 
 Jupyter Notebook resources offer activity tracking through nbgrader. To use activity tracking,
-it is a prerequisite to set up your `main.ipynb' file for scoring through nbgrader. Visit
+it is a prerequisite to set up your `main.ipynb` file for scoring through nbgrader. Visit
 [go/ql-jupyter-notebook-activity-tracking](go/ql-jupyter-notebook-activity-tracking) for
 instructions on how to do this.
 
