@@ -882,26 +882,21 @@ student_files       |          | path | Relative path to a directory student fil
 
 Student files specified in the qwiklabs.yaml will be added to the directory
 `/home/jovyan/work`, which will the default directory opened on the file
-browser when the student opens the lab:
-
-https://screenshot.googleplex.com/6DFLyQvXEV8aqG5
+browser when the student opens the lab.
 
 When taking the lab, the student will have access to
-everything in the `/home/jovyan` directory, but will not have access to the
-parent directory `/home`. As shown in the previous image, the root directory
-from the perspective of the student is `/home/jovyan`.
+everything in the `/home/jovyan` directory and `/home/jovyan`
+will be the root directory from the perspective of the student.
+The student will not have access to the parent directory `/home`
 
 By default, the lab will display an empty `main.ipynb` file on startup.
 If you include your own `main.ipynb` file in the student files, the lab
 will display your custom `main.ipynb` file on startup instead.
 
 For notebooks with activity tracking, all files accessed by the notebook
-MUST be in the same directory as `main.ipynb`.
+MUST be in the same directory as `main.ipynb` (the `/home/jovyan/work` directory).
 
 ###### Startup Scripts
-
-Startup scripts are executed from `/home/jovyan` which is the directory where
-Jupyter Notebook is installed.
 
 Startup scripts are run as root, but the student accesses the notebook as the
 unprivileged Jovyan user. Thus, if your startup script creates any files or
