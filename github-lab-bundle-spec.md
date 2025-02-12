@@ -881,7 +881,7 @@ student_files       |          | path | Relative path to a directory student fil
 ###### Student Files
 
 Student files specified in the qwiklabs.yaml will be added to the directory
-`/home/jovyan/work`, which will the default directory opened on the file
+`/home/jovyan/work`, which will be the default directory opened on the file
 browser when the student opens the lab.
 
 When taking the lab, the student will have access to
