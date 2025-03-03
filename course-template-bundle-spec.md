@@ -175,13 +175,14 @@ A step consists of a set of one or more activity options, along with some
 metadata. Valid activity types are:
 
 *   `lab`
+*   `challenge_lab`
 *   `quiz`
 *   `peer_assignment`
 *   `resource`
 
-`lab`, `quiz` and `peer_assignment` will reference content defined elsewhere in
-the library, and `resource` will reference content defined elsewhere in the same
-`qwiklabs.yaml` file.
+`lab`, `challenge_lab`, `quiz` and `peer_assignment` will reference content
+defined elsewhere in the library, and `resource` will reference content defined
+elsewhere in the same `qwiklabs.yaml` file.
 
 The overall format should look like:
 
@@ -229,6 +230,11 @@ steps:
     activity_options:
     - type: peer_assignment
       id: peer-assignment
+
+  - id: challenge-lab
+    activity_options:
+    - type: challenge_lab
+      id: challenge-lab
 ```
 
 The order in which steps are listed defines the order they will be displayed.
@@ -241,7 +247,7 @@ attribute        | required | type       | notes
 ---------------- | -------- | ---------- | -----
 id               | ✓        | string     | A unique identifier for this step
 activity_options | ✓        | array      | `activity_options` is an array of dictionaries with the format:
--- type          | ✓        | enum       | One of `lab`, `quiz`, `resource`
+-- type          | ✓        | enum       | One of `lab`, `challenge_lab`, `quiz`, `resource`, `peer_assignment`
 -- category      |          | string     | A subordinate descriptor for an activity of the above `type` used in the context of retakes to indicate the applicable retake policy.
 -- id            | ✓        | string     | Reference to the unique identifier for the activity - `library/slug`.
 -- version       |          | string     | Reference to the semantic version of the activity to which the course step should be frozen.
