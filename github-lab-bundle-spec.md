@@ -881,17 +881,22 @@ student_files       |          | path | Relative path to a directory student fil
 ###### Student Files
 
 Student files specified in the qwiklabs.yaml will be added to the directory
-`/home/jovyan`. This folder is viewable in the Jupyter Notebook.
+`/home/jovyan/work`, which will be the default directory opened on the file
+browser when the student opens the lab.
 
-For notebooks that require activity tracking, all files accessed by the notebook
-must be placed in the `/home/jovyan` directory with no subdirectories.
+When taking the lab, the student will have access to
+everything in the `/home/jovyan` directory and `/home/jovyan`
+will be the root directory from the perspective of the student.
+The student will not have access to the parent directory `/home`.
 
-<!-- TODO(b/273306870): Replace the jovyan work directory with a qwiklabs work directory. -->
+By default, the lab will display an empty `main.ipynb` file on startup.
+If you include your own `main.ipynb` file in the student files, the lab
+will display your custom `main.ipynb` file on startup instead.
+
+For notebooks with activity tracking, all files accessed by the notebook MUST
+be in the same directory as `main.ipynb` (the `/home/jovyan/work` directory).
 
 ###### Startup Scripts
-
-Startup scripts are executed from `/home/jovyan` which is the directory where
-Jupyter Notebook is installed.
 
 Startup scripts are run as root, but the student accesses the notebook as the
 unprivileged Jovyan user. Thus, if your startup script creates any files or
@@ -899,14 +904,57 @@ directories you want students to have access to, you must adjust the permissions
 of those files/directories. To ensure students have full access to all of the
 contents of `/home/jovyan`, add the following command at the end of your script:
 
-<!--* pragma: { seclinter_this_is_fine: true } *-->
+`chmod -R 666 ~jovyan && chmod -R +x ~jovyan`
 
-`chmod -R 777 ~jovyan` <!--* pragma: { seclinter_this_is_fine: false } *-->
+Here is an example of a startup script that installs a package, writes a text
+file to the student directory, and grants the student permissions for that file.
 
-###### File open on startup
+```bash
+pip install --no-cache-dir numpy
+echo "Hello World" > /home/jovyan/work/hello_world.txt
+chmod 666 /home/jovyan/work/README.txt
+# If needed
+chmod +x /home/jovyan/work/README.txt
+```
 
-If there is a `main.ipynb` student file, it will be opened in the Jupyter
-Notebook at lab startup.
+###### Activity Tracking
+
+Jupyter Notebook resources offer activity tracking through nbgrader. To use
+activity tracking, it is a prerequisite to set up your `main.ipynb` file for
+scoring through nbgrader. Visit go/ql-jupyter-notebook-activity-tracking for
+instructions on how to do this.
+
+Student progress on Jupyter Notebook instances can be inspected by running a
+procedure with the `RunRemoteCommand` handle. Assuming your resource ID is
+`notebook`, the following activity tracking section would calculate the current
+lab score.
+
+```yaml
+assessment:
+  passing_percentage: 100
+  steps:
+  - title: Example Jupyter Notebook Lab
+    maximum_score: 100
+    student_messages:
+      success: Success!
+      fail: Fail!
+    services:
+    - notebook.RunRemoteCommand
+    code: |-
+      def check(handles:, maximum_score:, resources:)
+        notebook = handles['jupyter_notebook.RunRemoteCommand']
+        response = notebook.run_remote_command "cd /root/activity_tracking && ./get_score.sh"
+        score = response.stdout.to_i
+        if score == 100
+          { score: score, student_message: 'success' }
+        else
+          { score: score, student_message: 'fail' }
+        end
+      end
+```
+
+Note that running `notebook.run_remote_command "cd /root/activity_tracking && ./get_score.sh"`
+is necessary to calculate the score.
 
 ##### Windows VM (windows_vm)
 
