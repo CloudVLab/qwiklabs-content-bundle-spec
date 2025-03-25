@@ -65,6 +65,7 @@ instructor_resources:
         en: https://www.wikihow.com/Teach
         es: https://www.wikihow.es/enseñar
 
+skill_ids: [550e8400-e29b-41d4-a716-446655440000, 4ed161b5-0d3c-4f06-8381-5f14678e13da]
 tags: [sample, life-changing, gcp]
 product_tags: ['compute engine', 'cloud storage']
 role_tags: ['cloud architect', 'developers backend']
@@ -130,6 +131,7 @@ auto_upgrade_to_latest_version     |          | boolean    | `true` if course en
 objectives                         |          | dictionary | A locale dictionary of objectives
 audience                           |          | dictionary | A locale dictionary of audiences
 prerequisites                      |          | dictionary | A locale dictionary of prerequisites
+skill_ids                          |          | array      | Array of strings representing the skill ids of skills associated with a course built in Creator Suite. This field should be omitted if the course was not built in Creator Suite.
 tags                               |          | array      | Array of strings to be used as hints in searching, etc
 product_tags                       |          | array      | Array of strings from the "Products" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
 role_tags                          |          | array      | Array of strings from the "Roles" column in [this sheet](https://docs.google.com/spreadsheets/d/1hUUch85HBRsRJsgRo9VCg0Pn7ZXi21sl6JU7VOr9LP8)
