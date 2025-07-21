@@ -296,6 +296,7 @@ The allowed variants are:
 <!-- TODO: Describe the functionality of each variant. -->
 
 *   gcpd [default]
+*   gcpd_no_vpc
 *   gcpfree
 *   gcpondemand
 *   gcp_very_low_base
