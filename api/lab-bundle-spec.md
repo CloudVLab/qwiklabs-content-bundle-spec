@@ -529,6 +529,7 @@ attribute           | required | type  | notes
 ------------------- | -------- | ----- | -----
 permissions         | ✓        | array | Array of project/roles(array) pairs
 startup_script.path |          | path  | Relative path to a file with the script contents.
+version             |          | int   | Major version of the resource.
 
 ```yaml
   - type: cloud_terminal
@@ -539,6 +540,7 @@ startup_script.path |          | path  | Relative path to a file with the script
           - roles/editor
     startup_script:
       path: startup.sh
+    version: 1
 ```
 
 Note: Due to a limitation in Qwiklabs, you must specify `roles/editor` on
@@ -646,12 +648,14 @@ running `git clone`) or modify the associated GCP project by running `gcloud`,
 attribute           | required | type | notes
 ------------------- | -------- | ---- | -----
 startup_script.path |          | path | Relative path to a file with the script contents.
+version             |          | int   | Major version of the resource.
 
 ```yaml
   - type: linux_terminal
     id: terminal
     startup_script:
       path: startup.sh
+    version: 1
 ```
 
 ###### Variants for Linux Terminal
@@ -675,6 +679,7 @@ attribute           | required | type  | notes
 ------------------- | -------- | ----- | -----
 permissions         | ✓        | array | Array of project/roles(array) pairs
 startup_script.path |          | path  | Relative path to a file with the script contents.
+version             |          | int   | Major version of the resource.
 
 ```yaml
   - type: looker_instance
@@ -685,6 +690,7 @@ startup_script.path |          | path  | Relative path to a file with the script
           - roles/editor
     startup_script:
       path: startup.sh
+    version: 1
 ```
 
 Note: Even though the spec supports any number of projects with any number
@@ -807,6 +813,7 @@ attribute           | required | type | notes
 ------------------- | -------- | ---- | -----
 startup_script.path |          | path | Relative path to a file with the script contents.
 student_files       |          | path | Relative path to a directory student file contents.
+version             |          | int   | Major version of the resource.
 
 ```yaml
   - type: ide
@@ -815,6 +822,7 @@ student_files       |          | path | Relative path to a directory student fil
       path: startup/startup.sh
     student_files:
       - path: student_files
+    version: 1
 ```
 
 ###### Student Files
@@ -838,6 +846,7 @@ attribute           | required | type | notes
 ------------------- | -------- | ---- | -----
 startup_script.path |          | path | Relative path to a file with the script contents.
 student_files       |          | path | Relative path to a directory student file contents.
+version             |          | int   | Major version of the resource.
 
 ```yaml
   - type: jupyter_notebook
@@ -846,6 +855,7 @@ student_files       |          | path | Relative path to a directory student fil
       path: startup/startup.sh
     student_files:
       - path: student_files
+    version: 1
 ```
 
 <!-- TODO(b/273306870): Replace the jovyan work directory with a qwiklabs work directory. -->
@@ -933,6 +943,7 @@ is necessary to calculate the score.
 attribute           | required | type | notes
 ------------------- | -------- | ---- | -----
 startup_script.path |          | path | Relative path to a file with the script contents.
+version             |          | int   | Major version of the resource.
 
 ```yaml
   - type: windows_vm
@@ -940,6 +951,7 @@ startup_script.path |          | path | Relative path to a file with the script 
     id: vm
     startup_script:
       path: startup.ps1
+    version: 1
 ```
 
 ###### Variants for Windows VM

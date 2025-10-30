@@ -129,6 +129,7 @@ environment:
   - type: gsuite_domain
     id: primary_domain
   - type: cloud_terminal
+    version: 1
     id: shell
     permissions:
     - project: my_primary_project
