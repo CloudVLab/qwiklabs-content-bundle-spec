@@ -641,7 +641,7 @@ Startup scripts are executed from `/home/student` as the `student` user (the
 same user the student uses `cloud_terminal` as). Startup scripts can do
 everything students can do including modifying the terminal (create files or
 running `git clone`) or modify the associated GCP project by running `gcloud`,
-`gsutil`, and `kubectl` commands.
+`gcloud storage`, and `kubectl` commands.
 
 ##### Linux Terminal (linux_terminal)
 
