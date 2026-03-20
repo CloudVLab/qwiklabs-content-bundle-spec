@@ -136,16 +136,20 @@ environment:
       roles:
       - roles/editor
   - type: linux_terminal
+    version: 1
     id: no-script-linux
     variant: it_cert_extra
   - type: linux_terminal
+    version: 1
     id: script-linux
     startup_script:
       path: startup.sh
   - type: windows_vm
+    version: 1
     id: no-script-windows
     variant: it_cert
   - type: windows_vm
+    version: 1
     id: script-windows
     startup_script:
       path: startup.bat
@@ -181,6 +185,7 @@ environment:
     id: my_domain
   - type: looker_instance
     id: looker
+    version: 1
     permissions:
     - project: my_primary_project
       roles:
@@ -189,6 +194,7 @@ environment:
       path: startup.sh
   - type: ide
     id: ide
+    version: 1
     startup_script:
       path: startup.sh
     student_files:

@@ -365,21 +365,23 @@ The allowed variants are:
 
 The valid `reference`s for the `gcp_user` resource are:
 
-reference             | displayed as
---------------------- | -------------
-[USER].username       | copyable text
-[USER].local_username | NA
-[USER].password       | copyable text
-[USER].ssh_key        | PEM and PPK download buttons
-[USER].public_key     | NA
-[USER].docs_url       | button
-[USER].sheets_url     | button
-[USER].slides_url     | button
-[USER].gmail_url      | button
-[USER].drive_url      | button
-[USER].calendar_url   | button
-[USER].app_sheet_url  | button
-[USER].access_token   | copyable text
+reference              | displayed as
+---------------------- | -------------
+[USER].username        | copyable text
+[USER].local_username  | NA
+[USER].password        | copyable text
+[USER].ssh_key         | PEM and PPK download buttons
+[USER].public_key      | NA
+[USER].docs_url        | button
+[USER].sheets_url      | button
+[USER].slides_url      | button
+[USER].gmail_url       | button
+[USER].drive_url       | button
+[USER].calendar_url    | button
+[USER].app_sheet_url   | button
+[USER].apps_script_url | button
+[USER].studio_url      | button
+[USER].access_token    | copyable text
 
 > **Note:** `[USER].local_username` and `[USER].public_key` are only meant to be
 > used as custom properties within a startup script. `[USER].access_token`
@@ -529,7 +531,7 @@ attribute           | required | type  | notes
 ------------------- | -------- | ----- | -----
 permissions         | ✓        | array | Array of project/roles(array) pairs
 startup_script.path |          | path  | Relative path to a file with the script contents.
-version             |          | int   | Major version of the resource.
+version             | ✓        | int   | Supported versions: [`1`, `2`]. Labs should generally be on the highest version number available.
 
 ```yaml
   - type: cloud_terminal
@@ -641,14 +643,14 @@ Startup scripts are executed from `/home/student` as the `student` user (the
 same user the student uses `cloud_terminal` as). Startup scripts can do
 everything students can do including modifying the terminal (create files or
 running `git clone`) or modify the associated GCP project by running `gcloud`,
-`gsutil`, and `kubectl` commands.
+`gcloud storage`, and `kubectl` commands.
 
 ##### Linux Terminal (linux_terminal)
 
 attribute           | required | type | notes
 ------------------- | -------- | ---- | -----
 startup_script.path |          | path | Relative path to a file with the script contents.
-version             |          | int   | Major version of the resource.
+version             | ✓        | int  | Supported versions: [`1`]. Labs should generally be on the highest version number available.
 
 ```yaml
   - type: linux_terminal
@@ -679,7 +681,7 @@ attribute           | required | type  | notes
 ------------------- | -------- | ----- | -----
 permissions         | ✓        | array | Array of project/roles(array) pairs
 startup_script.path |          | path  | Relative path to a file with the script contents.
-version             |          | int   | Major version of the resource.
+version             |          | int   | Supported versions: [`1`]. Labs should generally be on the highest version number available.
 
 ```yaml
   - type: looker_instance
@@ -813,7 +815,7 @@ attribute           | required | type | notes
 ------------------- | -------- | ---- | -----
 startup_script.path |          | path | Relative path to a file with the script contents.
 student_files       |          | path | Relative path to a directory student file contents.
-version             |          | int   | Major version of the resource.
+version             | ✓        | int  | Supported versions: [`1`, `2`]. Labs should generally be on the highest version number available.
 
 ```yaml
   - type: ide
@@ -846,7 +848,7 @@ attribute           | required | type | notes
 ------------------- | -------- | ---- | -----
 startup_script.path |          | path | Relative path to a file with the script contents.
 student_files       |          | path | Relative path to a directory student file contents.
-version             |          | int   | Major version of the resource.
+version             | ✓        | int  | Supported versions: [`1`]. Labs should generally be on the highest version number available.
 
 ```yaml
   - type: jupyter_notebook
@@ -866,17 +868,17 @@ Student files specified in the qwiklabs.yaml will be added to the directory
 `/home/jovyan/work`, which will be the default directory opened on the file
 browser when the student opens the lab.
 
-When taking the lab, the student will have access to
-everything in the `/home/jovyan` directory and `/home/jovyan`
-will be the root directory from the perspective of the student.
-The student will not have access to the parent directory `/home`.
+When taking the lab, the student will have access to everything in the
+`/home/jovyan` directory and `/home/jovyan` will be the root directory from the
+perspective of the student. The student will not have access to the parent
+directory `/home`.
 
-By default, the lab will display an empty `main.ipynb` file on startup.
-If you include your own `main.ipynb` file in the student files, the lab
-will display your custom `main.ipynb` file on startup instead.
+By default, the lab will display an empty `main.ipynb` file on startup. If you
+include your own `main.ipynb` file in the student files, the lab will display
+your custom `main.ipynb` file on startup instead.
 
-For notebooks with activity tracking, all files accessed by the notebook MUST
-be in the same directory as `main.ipynb` (the `/home/jovyan/work` directory).
+For notebooks with activity tracking, all files accessed by the notebook MUST be
+in the same directory as `main.ipynb` (the `/home/jovyan/work` directory).
 
 ###### Startup Scripts
 
@@ -935,15 +937,15 @@ assessment:
       end
 ```
 
-Note that running `notebook.run_remote_command "cd /root/activity_tracking && ./get_score.sh"`
-is necessary to calculate the score.
+Note that running `notebook.run_remote_command "cd /root/activity_tracking &&
+./get_score.sh"` is necessary to calculate the score.
 
 ##### Windows VM (windows_vm)
 
 attribute           | required | type | notes
 ------------------- | -------- | ---- | -----
 startup_script.path |          | path | Relative path to a file with the script contents.
-version             |          | int   | Major version of the resource.
+version             | ✓        | int  | Supported versions: [`1`]. Labs should generally be on the highest version number available.
 
 ```yaml
   - type: windows_vm
