@@ -16,25 +16,17 @@ schema_version: 1
 # CourseTemplate Attributes
 default_locale: en
 
-title:
-  locales:
-    en: GCP Intro Course
+title: GCP Intro Course
 
-description:
-  locales:
-    en: Get a taste of what GCP has to offer.
+description: Get a taste of what GCP has to offer.
 
 # Versions should be considered decorators, and are not used as a source of truth for revision history.
-version:
-  locales:
-    en: 2
-    es: 1
+version: 2
+
 
 auto_upgrade_to_latest_version: false
 
 objectives:
-  locales:
-    en: |
       <p>This course will teach people</p>
       <ul>
         <li>What GCP is</li>
@@ -42,8 +34,6 @@ objectives:
       </ul>
 
 audience:
-  locales:
-    en: |
       <p>This course is intended for people who</p>
       <ul><li>Are new to GCP</li></ul>
 
@@ -56,14 +46,8 @@ course_surveys:
 
 # Resources that will not be surfaced to students, but may be referenced by an instructor
 instructor_resources:
-  - title:
-      locales:
-        en: How to teach
-        es: Como enseñar
-    uri:
-      locales:
-        en: https://www.wikihow.com/Teach
-        es: https://www.wikihow.es/enseñar
+  - title: How to teach
+    uri: https://www.wikihow.com/Teach
 
 skill_ids: [550e8400-e29b-41d4-a716-446655440000, 4ed161b5-0d3c-4f06-8381-5f14678e13da]
 tags: [sample, life-changing, gcp]
@@ -86,24 +70,14 @@ resources: ...
 
 # The important part of a CourseTemplate which lists all of the activities
 modules:
-  - title:
-      locales:
-        en: What GCP is?
-        es: ¿Qué es GCP?
+  - title: What GCP is?
 
-    description:
-      locales:
-        en: Explains what is GCP
-        es: Explica qué es GCP
+    description: Explains what is GCP
 
     learning_objectives:
-      locales:
-        en:
           - Learn what is GCP
           - Identify what GCP offers
-        es:
-          - Más información sobre GCP
-          - Identifica lo que ofrece GCP
+
 
     steps:
       ...
