@@ -329,22 +329,25 @@ allowed_locations                |          | array                             
 > a startup script, the variable must be passed in as custom property
 
 Every GCP project has a default zone set. When no zone is specified (either in a
-gcloud command or API call), GCP will try to use this default zone in that call.
+gcloud command or API call), GCP will try to use a default zone in that call.
 For example, attempting to create a GCE VM without specifying a location will
 create a VM in this location. You can set this default zone by specifying values
 in `allowed_locations`. When a student launches a lab, Qwiklabs will set their
 default zone to a random value from this list. If a region is specified,
 Qwiklabs will randomly pick a zone in that region.
 
-If a lab does not have particular region/zone requirements, we strongly
-recommend specifying at least two whole regions in this list. Unless you have a
-reason not to, we recommend `['us-west1', 'us-central1', 'us-east1']` as a good
-starting point.
+If your lab has a golden lab instance, and you do not specify
+`allowed_locations`, locations mapped from the golden lab instance will be used
+as a starting point.
 
-For backward compatibility, if `allowed_locations` is not specified, we always
-set the default zone to `us-central1-a`. This is usually not an ideal value so
-we recommend always setting `allowed_locations` (even in the unlikely event that
-`us-central1-a` is the one and only zone you want this resource to default to).
+If your lab does not have a golden lab instance, and it does not have particular
+region/zone requirements, we strongly recommend specifying at least two whole
+regions in this list. Unless you have a reason not to, we recommend
+`['us-west1', 'us-central1', 'us-east1']` as a good starting point.
+
+By default, if no golden lab instance exists and no `allowed_locations` are
+specified, or if a golden lab instance exists but no mapped locations were
+found, we set the default zone to `us-central1-a`.
 
 ###### Variants for GCP Project
 
@@ -360,6 +363,8 @@ The allowed variants are:
 *   gcp_low_extra
 *   gcp_medium_extra
 *   gcp_high_extra
+*   gcp_pt
+*   gcp_llm
 
 ###### Valid resource references
 
@@ -547,6 +552,57 @@ Custom script properties are passed into the script as input. A custom script
 property must have a key and either a value or a reference associated with it.
 For examples please see the [GCP project](#gcp-project-gcp-project) or
 [GCP user](#gcp-user-gcp-user) resource.
+
+###### Special Keys
+
+*   `trusted_user`
+
+    If a custom script property has the key `trusted_user`, the platform will
+    automatically populate its value with a boolean (`true` or `false`)
+    representing whether the user taking the lab is considered "trusted" by the
+    platform.
+
+    This key is not required, and if not defined under `custom_properties`,
+    there is no impact on the standard lab experience. When this key is defined
+    under `custom_properties`, the platform will override the `value` provided
+    under the `key` because `value` is only a placeholder value and there is not
+    a default value for this key other than that provided by the platform.
+
+    A user is considered trusted if **any** of the following conditions are met:
+    *   The lab is running on a trusted deployment (where the setting `abuse.trusted_deployment` is enabled). As of July 2026, this is true for all deployments except `run`.
+    *   The lab taker is logged in as part of an organization (such as enterprise students).
+    *   The lab taker is recognized as a partner (their email address matches configured partner domain/email filters or they are registered as a learner in a partner catalog).
+
+    Otherwise, the value will be `false`.
+
+    **Example `qwiklabs.yaml`:**
+
+    ```yaml
+      - type: gcp_user
+        id: user_1
+        startup_script:
+          type: qwiklabs
+          path: startup
+          custom_properties:
+            - key: trusted_user
+              value: value # placeholder value to be overwritten by the platform
+    ```
+
+    **Example Python startup script usage:**
+
+    ```python
+    import qwiklabs_io
+
+    # Read inputs passed by the platform
+    script_input = qwiklabs_io.read_input()
+    is_trusted = script_input['trusted_user'] # Will be True or False
+
+    if is_trusted:
+        # Perform action for trusted users
+        pass
+    ```
+
+
 
 ##### Google Workspace Domain (google_workspace_domain)
 
